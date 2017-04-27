@@ -62,7 +62,7 @@ public class CController {
 	}
 	
 	@RequestMapping("/chef/Review.food")
-	public ModelAndView Review(ModelAndView mv){
+	public ModelAndView review(ModelAndView mv){
 		mv.setViewName("chef/Review");
 		return mv;
 	}
