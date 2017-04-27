@@ -13,8 +13,6 @@ public class MyJDBC {
 	 * 나는 누군가가 이 클래스를 new 시키는 순간
 	 * 가장 필요한 드라이버 로딩과 커넥션을 동시에 실행하겠다.
 	 */
-	
-
 	public MyJDBC() {
 
 		try {

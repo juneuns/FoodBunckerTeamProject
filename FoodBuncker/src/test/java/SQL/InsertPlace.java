@@ -55,9 +55,6 @@ public class InsertPlace {
 			}
 		}
 	}
-//	
-//	public static void main(String[] args){
-//		new InsertPlace();
-//	}
+
 
 }
