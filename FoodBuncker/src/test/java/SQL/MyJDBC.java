@@ -69,8 +69,4 @@ public class MyJDBC {
 		}
 	}
 
-//	public static void main(String[] args) {
-//		new MyJDBC();
-//	}
-
 }

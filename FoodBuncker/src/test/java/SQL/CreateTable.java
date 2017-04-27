@@ -137,6 +137,7 @@ public class CreateTable {
 		}
 		
 		new InsertPlace();
+		
 	}
 
 	public static void main(String[] args) {

@@ -30,7 +30,6 @@ public class InsertPlace {
 				"INSERT INTO Place VALUES((SELECT NVL(MAX(P_No), 0) + 1 FROM Place), '노원구 월계2동 산63', 37.638383, 127.051231, SYSDATE, 'Y')"
 		}; 
 		
-		
 		MyJDBC db = null;
 		Statement stmt = null;
 		try{
