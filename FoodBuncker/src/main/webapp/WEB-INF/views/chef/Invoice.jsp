@@ -67,14 +67,14 @@
                         <!-- Navigation Menu-->
                         <ul class="navigation-menu">
                             <li>
-                                <a href="chefmain.html"><i class="zmdi zmdi-view-dashboard"></i> <span> MainPage </span> </a>
+                                <a href="../chef/Main.food"><i class="zmdi zmdi-view-dashboard"></i> <span> MainPage </span> </a>
                             </li>
                             <li class="has-submenu">
-                                <a href="chefplan.html"><i class="zmdi zmdi-invert-colors"></i> <span> 일정계획입력 및 수정 </span> </a>                                
+                                <a href="../chef/PlanModify.food"><i class="zmdi zmdi-invert-colors"></i> <span> 일정계획입력 및 수정 </span> </a>                                
                             </li>
 
                             <li class="has-submenu">
-                                <a href="reviewboard.html"><i class="zmdi zmdi-collection-text"></i><span>후기 및 답변달기 </span> </a>                                
+                                <a href="../chef/Review.food"><i class="zmdi zmdi-collection-text"></i><span>후기 및 답변달기 </span> </a>                                
                             </li>
 
                             <li class="has-submenu">
@@ -84,17 +84,17 @@
                             <li class="has-submenu">
                                 <a href="#"><i class="zmdi zmdi-chart"></i><span> 메뉴 및 사진 등록 </span> </a>
                                 <ul class="submenu">
-                                    <li><a href="menuupload.html">메뉴 등록 및 수정</a></li>
-                                    <li><a href="photoupload.html">기타 사진 등록</a></li>
+                                    <li><a href="../chef/MenuModify.food">메뉴 등록 및 수정</a></li>
+                                    <li><a href="../chef/PhotoUpload.food">기타 사진 등록</a></li>
                                 </ul>
                             </li>
 
                             <li class="has-submenu">
-                                <a href="chefmodify.html"><i class="zmdi zmdi-collection-item"></i><span> 개인정보수정 </span> </a>                                
+                                <a href="../chef/InfoModify.food"><i class="zmdi zmdi-collection-item"></i><span> 개인정보수정 </span> </a>                                
                             </li>
 
                             <li class="has-submenu">
-                                <a href="index.html"><i class="zmdi zmdi-layers"></i><span>HOME </span> </a>
+                                <a href="../person/MainWindow.food"><i class="zmdi zmdi-layers"></i><span>HOME </span> </a>
                             </li>
                         </ul>
                         <!-- End navigation menu  -->
@@ -162,6 +162,8 @@
 													</tr>
 												</thead>
                                                 <tbody>
+                                                
+ <!-- ---------------------------------   foreach문 사용하여 반복 시작--------------------------------------- --> 	                                                      
                                                     <tr>
                                                         <td>1</td>
                                                         <td>햄버거</td>
@@ -169,6 +171,8 @@
                                                         <td>5000원</td>
                                                         <td>10000원</td>
                                                     </tr>
+<!-- --------------------------------------   foreach문 사용하여 반복 끝--------------------------------------- --> 	                                                           
+<!-- ------------------------------------   위의 foreach문 완성시 삭제 부분 시작--------------------------------------- --> 	                                                           
                                                     <tr>
                                                         <td>2</td>
                                                         <td>콜라</td>
@@ -183,6 +187,8 @@
                                                         <td>2000원</td>
                                                         <td>4000원</td>
                                                     </tr>
+<!-- -----------------------------------------   위의 foreach문 완성시 삭제 부분 끝--------------------------------------- --> 	                                                           
+                                                    
                                                 </tbody>
                                             </table>
                                         </div>
@@ -203,6 +209,8 @@
                                         </div>
                                     </div>
                                     <div class="col-md-3 col-sm-6 col-xs-6 col-md-offset-3">
+                                    
+ <!-- ---------------------------------  총합계는 계산식으로 표현해야 함------------------------------------------------------- -->                                   
                                         <p class="text-right"><b>Sub-total:</b> 16000원</p>
                                         <p class="text-right">Discout: 0%</p>
                                         <p class="text-right">VAT: 0%</p>
@@ -230,20 +238,6 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-xs-6">
-                                2016 - 2017 © Adminto.
-                            </div>
-                            <div class="col-xs-6">
-                                <ul class="pull-right list-inline m-b-0">
-                                    <li>
-                                        <a href="#">About</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Help</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Contact</a>
-                                    </li>
-                                </ul>
                             </div>
                         </div>
                     </div>

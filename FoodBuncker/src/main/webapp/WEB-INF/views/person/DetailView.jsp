@@ -177,12 +177,13 @@
                     </div>
                 </div>
                 <div class="row">
+                
+  <!-- -----------------------  foreach문으로 반복---------------------------------------- -->                   
                     <div class="col-sm-4">
                         <figure class="person style3">
                             <div class="person-img">
                                 <img src="../resources/img/detailviewmenu1.jpg" alt="300x300 Person's Name">
                             </div>
-
                             <figcaption>
                                 <h4>찹스테이크</h4>
                                 <p>1++등급의 한우 살치살을 철판에 구운 후 특제 소스를 덮은 고급 소고기 요리</p>
@@ -191,9 +192,10 @@
                             </figcaption>
                         </figure>
                     </div>
+<!-- -----------------------  foreach문으로 끝---------------------------------------- -->
 
+<!-- -----------------------  위의 foreach문 완성시 삭제해야 할 부분 시작--------------------------------------- -->            
                     <div class="col-sm-4">
-
                         <figure class="person style3">
                             <div class="person-img">
                                 <img src="../resources/img/detailviewmenu2.jpg" alt="Person's Name">
@@ -209,7 +211,6 @@
                     </div>
 
                     <div class="col-sm-4">
-
                         <figure class="person style3">
                             <div class="person-img">
                                 <img src="../resources/img/detailviewmenu3.jpg" alt="Person's Name">
@@ -223,6 +224,8 @@
                             </figcaption>
                         </figure>
                     </div>
+ <!-- -----------------------  위의 foreach문 완성시 삭제해야 할 부분 끝--------------------------------------- -->                    
+                    
                 </div>
             </div>
         </section>
@@ -239,12 +242,16 @@
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
                         <div class="owl-carousel testimonials-slider">
+                        
+  <!-- ----------------------- foreach문 으로 반복--------------------------------------- -->                       
                             <div>
                                 <div class="testimonial">
                                     <p>고기가 연해서 아이들이 먹기에도 좋더라구요. 최고예요</p>
                                     <h4>2017년 4월 10일 구로</h4>
                                 </div>
                             </div>
+<!-- -----------------------  위의 foreach문 반복 끝--------------------------------------- -->                            
+ <!-- -----------------------  위의 foreach문 완성시 삭제해야 할 부분 시작--------------------------------------- -->                            
                             <div>
                                 <div class="testimonial">
                                     <p>소스안에 대체 뭐가 들어간거지?고급 소고기의 맛을 그대로 나타내주면서 필요 없는 맛은 없애주는... 알고싶어요.</p>
@@ -257,6 +264,8 @@
                                     <h4>2017년 3월 29일 대학로</h4>
                                 </div>
                             </div>
+                            
+ <!-- -----------------------  위의 foreach문 완성시 삭제해야 할 부분 끝--------------------------------------- -->                            
                         </div>
                     </div>
                 </div>				
@@ -276,6 +285,8 @@
         <section class="space">
             <div class="container">
                 <div class="row">
+                
+<!-- ----------------------- foreach문으로 반복-------------------------------------- -->                 
                     <div class="col-md-6">
                         <div class="imgbox style4">
                             <div class="img">
@@ -288,6 +299,10 @@
                             </div>
                         </div>
                     </div>
+                    
+<!-- -----------------------  위의 foreach문으로 반복 끝--------------------------------------- -->                     
+<!-- -----------------------  위의 foreach문 완성시 삭제해야 할 부분 시작--------------------------------------- -->                     
+                    
 
                     <div class="col-md-6">
                         <div class="imgbox style4">
@@ -301,6 +316,8 @@
                             </div>
                         </div>
                     </div>
+ <!-- -----------------------  위의 foreach문 완성시 삭제해야 할 부분 끝--------------------------------------- -->                    
+                    
                 </div>
             </div>
         </section>
