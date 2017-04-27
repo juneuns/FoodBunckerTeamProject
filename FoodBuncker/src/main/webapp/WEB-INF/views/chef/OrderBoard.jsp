@@ -128,6 +128,8 @@
                         <div class="row">
 
                             <!--Pricing Column-->
+                            
+ <!-- -----------------------    foreach문으로 반복 시작------------------------------------------------- --> 	                                  
                             <article class="pricing-column col-lg-3 col-sm-6" >
                                 <div class="inner-box card-box" style="height:500px;">
                                     <div class="plan-header text-center">
@@ -142,11 +144,10 @@
                                         <li>찹스테이크 2</li>
                                         <li>콜라 2</li>
                                     </ul>
-                                   
                                 </div>
                             </article>
-
-
+<!-- -----------------------   foreach문으로 반복 끝----------------------------------------------------- --> 	       
+<!-- -----------------------   위의 foreach문 완성시 삭제 부분 시작--------------------------------------- --> 	       
                             <!--Pricing Column-->
                             <article class="pricing-column col-lg-3 col-sm-6">
                                 <div class="ribbon"><span>조리중</span></div>
@@ -164,8 +165,6 @@
                                         <li>콜라 1</li>
                                         <li>포테이토</li>
                                     </ul>
-
-                                    
                                 </div>
                             </article>
 
@@ -187,8 +186,6 @@
                                         <li>콜라 3</li>
                                         <li>치즈스틱 3</li>
                                     </ul>
-
-                                   
                                 </div>
                             </article>
 
@@ -208,10 +205,9 @@
                                         <li>샐러드 1</li>
                                         <li>콜라 2</li>
                                     </ul>
-                                    
                                 </div>
                             </article>
-
+<!-- -----------------------   위의 foreach문 완성시 삭제 부분 끝--------------------------------------- --> 	       
                         </div><!-- end row -->
                     </div>
                 </div>

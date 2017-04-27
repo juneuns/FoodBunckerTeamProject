@@ -88,11 +88,14 @@
         <!-- SECTION 2 - GALLERY -->
         <section class="gallery space">
             <div class="container">
+            
+<!-- -----------------------   foreach문으로 1단 반복, 총 사진 갯수 알아내어 반복 횟수 정해야 함--------------------------------------- -->             
                 <div class="row">
+                
+<!-- -----------------------  foreach문으로 1단 1열 반복-------------------------------------- -->                 
                     <div class="col-sm-6">
                         <div class="item">
                             <img src="../resources/img/detailviewgallery1.jpg" alt="1895x1000 About te image">
-
                             <div class="caption">
                                 <div class="align">
                                     <a href="../person/DetailView.food"><i class="fa fa-link"></i></a>
@@ -102,11 +105,10 @@
                             </div>
                         </div>
                     </div>
-
+<!-- ----------------------- foreach문으로 1단 2열 반복-------------------------------------- --> 
                   <div class="col-sm-6">
                         <div class="item">
                             <img src="../resources/img/detailviewgallery2.jpg" alt="About te image">
-
                             <div class="caption">
                                 <div class="align">
                                     <a href="../person/DetailView.food"><i class="fa fa-link"></i></a>
@@ -116,8 +118,12 @@
                             </div>
                         </div>
                     </div>
+                    
+ <!-- -----------------------  foreach문 1단 2열 끝--------------------------------------- -->                    
                 </div>
-
+<!-- -----------------------   foreach문 1단 반복 끝--------------------------------------- -->                 
+                
+<!-- -----------------------  위의 foreach문 완성시 삭제해야 할 부분 시작--------------------------------------- --> 
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="item">
@@ -207,6 +213,8 @@
                         </div>
                     </div>
                 </div>
+<!-- -----------------------  위의 foreach문 완성시 삭제해야 할 부분 끝--------------------------------------- -->                 
+                
 
                 <div class="row">
                     <div class="text-center">

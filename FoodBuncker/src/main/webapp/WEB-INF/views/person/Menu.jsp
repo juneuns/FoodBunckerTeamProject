@@ -101,7 +101,11 @@
 						</form>
 					</div>
 				</div>
+				
+<!-- -----------------------   foreach문 사용하여 1단 반복--------------------------------------- --> 				
                 <div class="row">
+                
+ <!-- -----------------------   foreach문 사용하여 1단 1열 반복--------------------------------------- --> 	               
                     <div class="col-md-4">
                         <div class="item">
                             <div class="align">
@@ -114,33 +118,35 @@
                             <span class="price">10,000원</span>
                         </div>
                     </div>
-
-                    <div class="col-md-4">
-                         <div class="item">
-                                    <div class="align">
-                                         <div class="item-thumbnail">
-                                            <img src="../resources/img/menu2_200.jpg" alt="About the image">
-                                        </div>
-                                        <h4>Hambuger</h4>
-                                        <p>천연 효모 빵과 신선한 야채, 수제 패티를 넣은 고급의 와퍼</p>
-                                    </div>
-                                    <span class="price">6,000원</span>
-                                </div>
-                    </div>
-
+<!-- -----------------------   foreach문 사용하여 1단 2열 반복--------------------------------------- --> 	
                     <div class="col-md-4">
                         <div class="item">
-                                    <div class="align">
-                                         <div class="item-thumbnail">
-                                            <img src="../resources/img/menu3_200.jpg" alt="About the image">
-                                        </div>
-                                        <h4>Italian Noddle </h4>
-                                        <p>파스타 면을 적절히 삶아 이탈리아식으로 야채 및 향로를 뿌린 요리</p>
-                                    </div>
-                                    <span class="price">8,000원</span>
+                         	<div class="align">
+                            	<div class="item-thumbnail">
+                                	<img src="../resources/img/menu2_200.jpg" alt="About the image">
                                 </div>
+                                <h4>Hambuger</h4>
+                                <p>천연 효모 빵과 신선한 야채, 수제 패티를 넣은 고급의 와퍼</p>
+                            </div>
+                            <span class="price">6,000원</span>
+                    	</div>
+                    </div>
+<!-- -----------------------   foreach문 사용하여 1단 3열 반복--------------------------------------- --> 	
+                    <div class="col-md-4">
+                   		<div class="item">
+                        	<div class="align">
+                            	<div class="item-thumbnail">
+                                	<img src="../resources/img/menu3_200.jpg" alt="About the image">
+                               	</div>
+                                <h4>Italian Noddle </h4>
+                                <p>파스타 면을 적절히 삶아 이탈리아식으로 야채 및 향로를 뿌린 요리</p>
+                          	</div>
+                            <span class="price">8,000원</span>
+                     	</div>
                     </div>
                 </div>
+<!-- -----------------------   foreach문 1단 반복 끝--------------------------------------- --> 	                
+ <!-- -----------------------  위의 foreach문 완성시 삭제해야 할 부분 시작--------------------------------------- -->                
 
                 <div class="row">
                     <div class="col-md-4">
@@ -223,6 +229,8 @@
                                 </div>
                     </div>
                 </div>
+                
+<!-- -----------------------   위의 foreach문 완성시 삭제 부분 끝--------------------------------------- --> 	                
             </div>
         </section>
         <!-- SECTION 2 -->

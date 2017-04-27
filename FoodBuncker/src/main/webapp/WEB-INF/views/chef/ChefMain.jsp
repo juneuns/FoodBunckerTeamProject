@@ -345,13 +345,17 @@
                         <div class="card-box">
                             <h4 class="header-title m-t-0 m-b-30">후기</h4>
                             <div class="inbox-widget nicescroll" style="height: 315px;">
-                                <a href="reviewboard.html">
+                            
+ <!-- -----------------------   foreach문 사용하여  반복--------------------------------------- --> 	                           
+                                <a href="../chef/Review.food">
                                     <div class="inbox-item">                                  
                                         <p class="inbox-item-author">대학로</p>
                                         <p class="inbox-item-text">연극공연이 끝나고 나서 또 한편의 연극을 보는 듯한 뜨거운 트낌...</p>
                                         <p class="inbox-item-date">2017/04/22 13:40 PM</p>
                                     </div>
                                 </a>
+ <!-- -----------------------   foreach문 사용하여  반복 끝--------------------------------------- --> 	                               
+ <!-- -----------------------   위의 foreach문 완성시 삭제 부분 시작--------------------------------------- --> 	                               
                                 <a href="reviewboard.html">
                                     <div class="inbox-item">
                                         <p class="inbox-item-author">종로</p>
@@ -380,6 +384,8 @@
                                         <p class="inbox-item-date">2017/03/29 10:15 AM</p>
                                     </div>
                                 </a>
+<!-- -----------------------   위의 foreach문 완성시 삭제 부분 끝--------------------------------------- --> 	                                       
+                                
                             </div>
                         </div>
                     </div><!-- end col -->
