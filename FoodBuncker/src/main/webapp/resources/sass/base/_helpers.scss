@@ -1,0 +1,99 @@
+/* -----------------------------------------------------------------------------
+// 3. Helpers 
+// ----------------------------------------------------------------------------- */
+
+//
+// Table of content
+// -----------------------------------------------------------------------------
+// - Spacing Classes
+// - Text Helpers
+
+
+// Spacing Classes
+// --------------------------------------------------
+.space {
+    padding: $space 0;
+
+    &-margin {
+        margin: $space 0;
+    }
+
+    &-dark {
+        background-color: $light-bg-color;
+    }
+
+    // top spacing
+    &-top {
+        margin-top: 50px;
+
+        &-sm {
+            margin-top: 20px;
+        }
+
+        &-md {
+            margin-top: 35px;
+        }
+    }
+
+    // bottom spacing
+    &-bottom {
+        margin-bottom: 50px;
+
+        &-sm {
+            margin-bottom: 20px;
+        }
+
+        &-md {
+            margin-bottom: 35px;
+        }
+    }
+}
+
+// remove spaces
+.no-space {
+    padding: 0;
+    margin: 0;
+
+    &-bottom {
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+
+    &-top {
+        margin-top: 0;
+        padding-top: 0;
+    }
+
+    &-right {
+        margin-right: 0;
+        padding-right: 0;
+    }
+
+     &-left {
+        margin-left: 0;
+        padding-left: 0;
+    }
+}
+
+// increase the gap on smaller screens
+@media (max-width:992px){
+
+    // space on mobile
+    .space-mb {
+        margin-bottom: 40px;
+    }
+}
+
+// Text Helpers
+// --------------------------------------------------
+// Alignment
+.text-left           { text-align: left; }
+.text-right          { text-align: right; }
+.text-center         { text-align: center; }
+.text-justify        { text-align: justify; }
+.text-nowrap         { white-space: nowrap; }
+
+// Transformation
+.text-lowercase      { text-transform: lowercase; }
+.text-uppercase      { text-transform: uppercase; }
+.text-capitalize     { text-transform: capitalize; }

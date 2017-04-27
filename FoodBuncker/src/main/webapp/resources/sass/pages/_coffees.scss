@@ -1,0 +1,84 @@
+/* -----------------------------------------------------------------------------
+// 5. Coffees Page 
+// ----------------------------------------------------------------------------- */
+
+//
+// Table of content
+// -----------------------------------------------------------------------------
+// - Section Headline
+// - Section 1 - Hero Title
+// - Section 2 - Coffee Items
+
+
+//
+// Coffees Page
+// --------------------------------------------------
+.coffees {
+
+// Section Headline
+// --------------------------------------------------
+    .section-headline {
+        margin-bottom: 40px;
+        text-align: center;
+
+        h3 {
+            font-size: 28px;
+            font-weight: 800;
+            text-transform: uppercase;
+
+            &:before {
+                content: ' ';
+                display: block;
+                width: 164px;
+                height: 21px;
+                margin: 0 auto 20px auto;
+                background: url(../img/headline-vector.png) center center;
+            }
+        }
+    }
+
+
+// Section 1 - Hero Title
+// --------------------------------------------------
+    .hero-title {
+        background-image: url(http://placehold.it/1895x1000);
+    }
+
+
+// Section 2 - Coffee Items
+// --------------------------------------------------
+    .item {
+        margin-bottom: 50px;
+        padding: 0 30px;
+        text-align: center;
+
+        &-thumbnail {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 20px auto;
+            border-radius: 100%;
+            overflow: hidden;
+        }
+
+        h4 {
+            font-weight: 600;
+
+            &:after {
+                content: ' ';
+                display: block;
+                width: 33px;
+                height: 5px;
+                margin: 20px auto;
+                background: url(../img/vector.png) center center;
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+

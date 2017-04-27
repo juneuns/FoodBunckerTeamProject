@@ -1,0 +1,290 @@
+/* -----------------------------------------------------------------------------
+// 8. Imageboxes 
+// ----------------------------------------------------------------------------- */
+
+// **************************************************
+// We redesigned these components to match with
+// 'Coffee' design
+// - Image Box style 3
+// **************************************************
+
+//
+// Table of content
+// -----------------------------------------------------------------------------
+// - Image Box style 1
+// - Image Box style 2
+// - Image Box style 3
+// - Image Box style 4
+// - Image Box style 5
+
+
+// Image Box style 1
+// --------------------------------------------------
+.imgbox.style1 {
+    background-color: #f9f9f9;
+    padding: 15px 0 15px 30px;
+    margin-bottom: 40px;
+
+    -webkit-border-top-right-radius: 100px;
+            border-top-right-radius: 100px;
+
+    -webkit-border-bottom-right-radius: 100px;
+            border-bottom-right-radius: 100px;
+
+    // image
+    .img {
+        width: 100px;
+        height: 100px;
+        border-radius: 100%;
+        margin-right: 15px;
+        margin-bottom: 0;
+        overflow: hidden;
+        float: right;
+    }
+
+    //heading
+    h4 {
+        text-transform: uppercase;
+        color: #4b4b4b;
+    }
+
+    // change the direction (from left to right)
+    &.opposite {
+        padding: 15px 0 15px 0;
+
+        -webkit-border-top-right-radius: 0;
+                border-top-right-radius: 0;
+
+        -webkit-border-bottom-right-radius: 0;
+                border-bottom-right-radius: 0;
+
+        -webkit-border-top-left-radius: 100px;
+                border-top-left-radius: 100px;
+
+        -webkit-border-bottom-left-radius: 100px;
+                border-bottom-left-radius: 100px;
+
+        .img {
+            float: left;
+            margin: 0 30px 0 15px;
+        }
+    }
+
+    // clearing floats hack
+    @include clearfix();
+}
+
+
+// Image Box style 2
+// --------------------------------------------------
+.imgbox.style2 {
+    background-color: #fff;
+    margin-bottom: 40px;
+
+    -webkit-transition: background .5s;
+       -moz-transition: background .5s;
+        -ms-transition: background .5s;
+         -o-transition: background .5s;
+            transition: background .5s;
+
+    // date
+    .date {
+        position: absolute;
+        top: 0;
+        left: 30px;
+        z-index: 10;
+
+        padding: 10px 15px;
+        font-family: $headings-font-family;
+        font-size: 12px;
+        text-transform: uppercase;
+        background-color: $brand-color;
+        color: #fff;
+
+        -webkit-box-shadow: 3.5px 3.5px 0px 0px rgba(0, 0, 0, 0.1);
+           -moz-box-shadow: 3.5px 3.5px 0px 0px rgba(0, 0, 0, 0.1);
+            -ms-box-shadow: 3.5px 3.5px 0px 0px rgba(0, 0, 0, 0.1);
+             -o-box-shadow: 3.5px 3.5px 0px 0px rgba(0, 0, 0, 0.1);
+                box-shadow: 3.5px 3.5px 0px 0px rgba(0, 0, 0, 0.1);
+
+        // date number
+        .number {
+            display: block;
+            margin-top: -5px;
+            font-size: 24px;
+            color: #fff;
+        }
+    }
+
+    // aligning the content
+    .align {
+        padding: 10px 50px 40px 50px;
+        text-align: center;
+    }
+
+    // heading
+    h3 {
+        color: #4b4b4b;
+        margin: 0 0 25px 0;
+        font-size: 24px;
+    }
+
+    // button
+    .btn {
+        margin: 35px 0 0 0;
+    }
+
+    // imgbox on hover
+    &:hover {
+        background-color: $brand-color;
+        color: #fff;
+
+        h3 {
+            color: #fff;
+        }
+
+        ul {
+            opacity: .7;
+        }
+
+        .btn {
+            background-color: #fff;
+            color: #181818;
+            border-color: #fff;
+        }
+
+    }
+}
+
+
+// Image Box style 3
+// --------------------------------------------------
+.imgbox.style3 {
+    background-color: #fff;
+    margin-bottom: 40px;
+    border-radius: 5px;
+    overflow: hidden;
+
+    // aligning the content
+    .align {
+        padding: 10px 30px 40px 30px;
+        text-align: center;
+    }
+
+    // heading
+    h3 {
+        font-family: $links-font-family;
+        text-transform: uppercase;
+        color: $heading-text-color;
+        font-size: 18px;
+        margin-bottom: 25px;
+    }
+}
+
+// Image Box style 4
+// --------------------------------------------------
+.imgbox.style4 {
+    margin-bottom: 40px;
+
+    // heading
+    h3 {
+        font-size: 18px;
+        color: #4b4b4b;
+        font-weight: 600;
+        margin-bottom: 25px;
+    }
+}
+
+
+// Image Box style 5
+// --------------------------------------------------
+.imgbox.style5 {
+    background-color: #f9f9f9;
+    @include clearfix();
+
+    // simple grid
+
+    // image
+    .img {
+        width: 40%;
+        float: left;
+        margin-bottom: 0;
+    }
+
+    // aligning the content
+    .align {
+        width: 60%;
+        float: left;
+        padding: 57px 60px;
+        text-align: center;
+    }
+
+    // responsive screens
+    @media (max-width:992px) {
+        .img {
+            width: 100%;
+        }
+
+        .align {
+            width: 100%;
+            float: none;
+        }
+    }
+
+    // heading
+    h3 + p {
+        margin-top: 0;
+
+        // small divider
+        &:after {
+            content: '_';
+            display: block;
+            color: $brand-color;
+        }
+    }
+
+    // text conent
+    p + p {
+        margin-bottom: 50px;
+    }
+
+    // buttons
+    .btn {
+        text-transform: uppercase;
+
+        & + .btn {
+            margin-left: 10px;
+        }
+    }
+    // social icons
+    .social  {
+        padding: 0;
+        margin-top: 40px;
+
+        li {
+            display: inline-block;
+            margin-right: 10px;
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+
+        a {
+            display: inline-block;
+            font-size: 18px;
+            width: 50px;
+            height: 50px;
+            border: 1px solid #c4c4c4;
+            color: #c4c4c4;
+            border-radius: 100%;
+            line-height: 50px;
+
+            &:hover {
+                background-color: $brand-color;
+                border-color: $brand-color;
+                color: #fff;
+            }
+        }
+    }
+}

@@ -1,0 +1,28 @@
+@charset 'UTF-8';
+
+@import
+  'utils/utils';
+
+/* 
+// Table of content
+// -----------------------------------------------------------------------------
+// - 1. Buttons
+// - 2. Forms
+// - 3. Navbar
+// - 4. Teams
+// - 5. Testimonials
+// - 6. Progress
+// - 7. Galleries
+// - 8. Imageboxes
+*/
+
+// Components
+@import
+  'components/buttons',
+  'components/forms',
+  'components/navbar',
+  'components/teams',
+  'components/testimonials',
+  'components/progress',
+  'components/galleries',
+  'components/imageboxes';

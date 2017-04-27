@@ -1,0 +1,70 @@
+// -----------------------------------------------------------------------------
+// This file contains all template Sass variables.
+// -----------------------------------------------------------------------------
+
+//
+// Table of content
+// -----------------------------------------------------------------------------
+// - Colors
+// - Typography
+// - Spacing
+
+
+//
+// Colors
+// --------------------------------------------------
+// text
+$brand-color:        #835c4b;
+$text-color:         #9c9c9c;
+$dark-text-color:    #181818;
+$heading-text-color: $dark-text-color;
+$footer-text-color:  #717171;
+
+// background
+$light-bg-color:     #f9f9f9;
+
+// buttons
+$btn-light:          #f8f2ed;
+$btn-grey:           #e5e5e5;
+$btn-dark:           #4b4b4b;
+$btn-colored:        $brand-color;
+
+// stats
+$color-default:      #f9f9f9;
+$color-default-dark: #c4c4c4;
+$color-warning:      #fff9e6;
+$color-warning-dark: #fcdc7b;
+$color-danger:       #ffdee2;
+$color-danger-dark:  #e56f85;
+$color-success:      #ecfac3;
+$color-success-dark: #a1be4d;
+$color-help:         #ddf4ff;
+$color-help-dark:    #5fb0d6;
+$color-info:         #faebff;
+$color-info-dark:    #c183d6;
+
+
+//
+// Typography
+// -------------------------------------------------- 
+// Fonts, line-height, and color for body text, headings, and more.
+$font-family-base:        "Open Sans", Helvetica, Arial, sans-serif !default;
+$headings-font-family:    "Raleway", Helvetica, Arial, sans-serif  !default;
+$links-font-family:       "Raleway", Helvetica, Arial, sans-serif  !default;
+
+$font-size-base:          14px !default;
+$font-size-large:         ceil(($font-size-base * 1.25)) !default; // ~18px
+$font-size-small:         ceil(($font-size-base * 0.85)) !default; // ~12px
+
+$font-size-h1:            floor(($font-size-base * 2.6)) !default; // ~36px
+$font-size-h2:            floor(($font-size-base * 2.15)) !default; // ~30px
+$font-size-h3:            ceil(($font-size-base * 1.7)) !default; // ~24px
+$font-size-h4:            ceil(($font-size-base * 1.25)) !default; // ~18px
+$font-size-h5:            $font-size-base !default;
+$font-size-h6:            ceil(($font-size-base * 0.85)) !default; // ~12px
+
+
+//
+// Spacing
+// --------------------------------------------------
+$space: 100px;

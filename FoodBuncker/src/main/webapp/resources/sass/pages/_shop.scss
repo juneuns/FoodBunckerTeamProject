@@ -1,0 +1,120 @@
+/* -----------------------------------------------------------------------------
+// 3. Shop Page 
+// ----------------------------------------------------------------------------- */
+
+//
+// Table of content
+// -----------------------------------------------------------------------------
+// - Section Headline
+// - Section 1 - Hero Title
+// - Section 2 - Gallery
+
+
+//
+// Shop Page
+// --------------------------------------------------
+.shop {
+
+// Section Headline
+// --------------------------------------------------
+    .section-headline {
+        margin-bottom: 40px;
+        text-align: center;
+
+        h3 {
+            font-size: 28px;
+            font-weight: 800;
+            text-transform: uppercase;
+
+            &:before {
+                content: ' ';
+                display: block;
+                width: 164px;
+                height: 21px;
+                margin: 0 auto 20px auto;
+                background: url(../img/headline-vector.png) center center;
+            }
+        }
+    }
+
+
+// Section 1 - Hero Title
+// --------------------------------------------------
+    .hero-title {
+        background-image: url(http://placehold.it/1895x1000);
+    }
+
+
+// Section 2 - Gallery
+// --------------------------------------------------
+    .gallery {
+        .item {
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 30px;
+
+            .caption {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                opacity: 0;
+                background-color: $brand-color;
+                background-color: rgba(131, 92, 75, .85);
+                text-align: center;
+
+                @include transition(opacity, .5s);
+            }
+
+            a {
+                display: inline-block;
+                width: 40px;
+                height: 40px;
+                margin-right: 5px;
+                text-align: center;
+                color: #fff;
+                border: 2px solid #fff;
+                border-radius: 100%;
+                @include transition(background-color, .5s);
+
+                i {
+                    line-height: 40px;
+                    font-size: 13px;
+                }
+
+                &:hover {
+                    background-color: #fff;
+                    border-color: #fff;
+                    color: $brand-color;
+                }
+            }
+
+            .align {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+
+                -webkit-transform: translate(-50%, -50%);
+                   -moz-transform: translate(-50%, -50%);
+                    -ms-transform: translate(-50%, -50%);
+                     -o-transform: translate(-50%, -50%);
+                        transform: translate(-50%, -50%);
+            }
+
+            h3 {
+                margin-top: 20px;
+                font-weight: 500;
+                font-size: 18px;
+                color: #fff;
+            }
+
+            // item on hover
+            &:hover {
+                .caption {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}

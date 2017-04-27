@@ -1,0 +1,309 @@
+/* -----------------------------------------------------------------------------
+// 2. Typography
+// ----------------------------------------------------------------------------- */
+
+//
+// Table of content
+// -----------------------------------------------------------------------------
+// - General Styles
+// - Text / Links
+// - Text Styles
+// - Headings
+// - Selection
+// - Dropcaps
+// - Blockquotes
+// - Lists
+// - Pagination
+
+// *************************************************
+// We redesigned these components to suit the
+// 'Lawyer' template:
+//
+// - Blockquote
+// **************************************************
+
+// General Styles
+// --------------------------------------------------
+body {
+  color: $text-color;
+  font-family: $font-family-base;
+}
+
+
+// Text / Links
+// --------------------------------------------------
+p {
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: .5px;
+
+    // links in paragraphs
+    a {
+        color: $brand-color;
+        letter-spacing: .5px;
+
+        &:hover,
+        &:focus {
+            color: $dark-text-color;
+        }
+    }
+}
+
+
+// Text Styles
+// --------------------------------------------------
+i,
+.italic {
+    font-style: italic;
+}
+
+// bold
+strong,
+b {
+    color: $heading-text-color;
+    font-weight: 600;
+}
+
+
+// Headings
+// --------------------------------------------------
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: $headings-font-family;
+  color: $heading-text-color;
+  font-weight: 300;
+}
+
+h1, .h1 { font-size: $font-size-h1; }
+h2, .h2 { font-size: $font-size-h2; }
+h3, .h3 { font-size: $font-size-h3; }
+h4, .h4 { font-size: $font-size-h4; }
+h5, .h5 { font-size: $font-size-h5; }
+h6, .h6 { font-size: $font-size-h6; }
+
+
+// Selection
+// --------------------------------------------------
+::selection {
+    background-color: $brand-color;
+    color: #fff;
+}
+
+::-moz-selection {
+    background-color: $brand-color;
+    color: #fff;
+}
+
+.selected {
+    background-color: $brand-color;
+    color: #fff;
+}
+
+mark,
+.mark {
+  padding: 3px;
+  color: #fff;
+  background-color: #4b4b4b;
+}
+
+
+// Dropcaps
+// --------------------------------------------------
+.dropcap::first-letter {
+    float: left;
+    margin-right: 20px;
+    padding: 20px 23px;
+    font-size: 24px;
+    background-color: $brand-color;
+    color: #fff;
+}
+
+.dropcap-square::first-letter {
+    -webkit-border-radius: 5px;
+       -moz-border-radius: 5px;
+        -ms-border-radius: 5px;
+         -o-border-radius: 5px;
+            border-radius: 5px;
+}
+
+.dropcap-fancy::first-letter {
+    background-color: transparent;
+    color: #181818;
+    font-weight: 700;
+    font-size: 28px;
+}
+
+
+// Blockquotes
+// --------------------------------------------------
+blockquote {
+    position: relative;
+    margin: 15px 0;
+    padding: 40px;
+    border-left: none;
+    border-radius: 5px;
+    background-color: #fff;
+    font-family: $headings-font-family;
+    font-size: 18px;
+    font-style: italic;
+    line-height: 26px;
+    color: $brand-color;
+}
+
+// blockquote with border
+.blockquote-bordered {
+    border: 1px solid #f1f1f1;
+    border-top: 3px solid $brand-color;
+    background: transparent;
+    color: #4b4b4b;
+
+    &:before {
+        color: #fff;
+        background-color: $brand-color;
+
+    }
+
+    cite {
+        color: $brand-color;
+    }
+}
+
+
+// Lists
+// --------------------------------------------------
+.list {
+    padding: 0;
+    list-style: none;
+
+    li {
+        margin-bottom: 15px;
+
+        &:before {
+            font-family: 'FontAwesome';
+            color: $brand-color;
+            margin-right: 10px;
+        }
+    }
+}
+
+.list-chevron-circle {
+    li:before {
+        content: '\f138';
+    }
+}
+
+.list-caret {
+    li:before {
+        content: '\f0da';
+    }
+}
+
+.list-star {
+    li:before {
+        content: '\f005';
+        font-size: 12px; // smaller stars
+    }
+}
+
+.list-dotted {
+    li:before {
+        content: '\f111';
+        font-size: 10px; // smaller dots
+    }
+}
+
+.list-check-circle {
+    li:before {
+        content: '\f058';
+    }
+}
+
+.list-arrow {
+    li:before {
+        content: '\f178';
+        font-size: 10px; // smaller dots
+    }
+}
+
+// ordered lists
+ol.list {
+    counter-reset: li;
+
+    li {
+        position: relative;
+        margin-left: 22px;
+        padding-left: 8px;
+        list-style: none;
+
+        &:before {
+            content: counter(li);
+            counter-increment:li;
+
+            position: absolute;
+            left: -25px;
+            width: 22px;
+
+            margin-right:8px; //fallback for browsers that doesn't support counter
+            padding:4px;
+            font-size: 10px;
+            color: $text-color;
+            background-color: #fff;
+            border-radius: 100%;
+            text-align: center;
+        }
+    }
+
+    // alphabetically ordered
+    &.list-ordered {
+        li {
+            list-style-type: upper-alpha;
+
+            &:before {
+                content: none;
+            }
+        }
+    }
+}
+
+
+// Pagination
+// --------------------------------------------------
+.pagination {
+    > li {
+
+        &:first-child,
+        &:last-child {
+            > a {
+                border-radius: 0;
+            }
+        }
+
+        &.active {
+            a,
+            a:hover {
+                background-color: $brand-color;
+                border-color: $brand-color;
+                color: #fff;
+            }
+        }
+
+        a {
+            border-radius: 0;
+            color: #e5e5e5;
+            border: 1px solid #e5e5e5;
+            margin: 0 5px;
+
+            @include transition(all, .5s);
+
+            i {
+                font-size: 14px;
+            }
+
+            &:hover {
+                background-color: $brand-color;
+                border-color: $brand-color;
+                color: #fff;
+            }
+        }
+    }
+}

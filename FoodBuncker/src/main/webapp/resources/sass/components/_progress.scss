@@ -1,0 +1,349 @@
+/* -----------------------------------------------------------------------------
+// 6. Progress 
+// ----------------------------------------------------------------------------- */
+
+//
+// Table of content
+// -----------------------------------------------------------------------------
+// - Progress Bars
+// - Counters
+// - Work Steps 
+// - Work Progress
+
+
+// Progress Bars
+// --------------------------------------------------
+// progress title
+.progress-title {
+	text-transform: uppercase;
+	margin-bottom: 5px;
+	font-family: $links-font-family;
+}
+
+// progress bar
+.progress {
+	height: 10px;
+	margin-bottom: 30px;
+	background-color: $light-bg-color;
+	overflow: visible;
+	border-radius: 10px;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+
+	// active progress bar
+	.progress-bar {
+		position: relative;
+		border-radius: 10px;
+		background-color: $brand-color;
+		-webkit-box-shadow: none;
+		box-shadow: none;
+	}
+
+	// progress number
+	.progress-number {
+		font-family: $headings-font-family;
+		position: absolute;
+		top: -35px;
+		right: -18px;
+		padding: 2px 5px;
+		font-size: 10px;
+		background-color: #4b4b4b;
+		border-radius: 2px;
+
+		i {
+			position: absolute;
+			bottom: -10px;
+			left: 5px;
+			font-size: 18px;
+			color: #4b4b4b;
+		}
+	}
+
+	// style 2
+	&.style2 {
+		.progress-bar {
+			perspective-origin: relative;
+			background-image: -webkit-linear-gradient( 0deg, rgb(32,171,208) 0%, rgb(234,8,140) 100%);
+			   background-image: -moz-linear-gradient( 0deg, rgb(32,171,208) 0%, rgb(234,8,140) 100%);
+			    background-image: -ms-linear-gradient( 0deg, rgb(32,171,208) 0%, rgb(234,8,140) 100%);
+			     background-image: -o-linear-gradient( 0deg, rgb(32,171,208) 0%, rgb(234,8,140) 100%);
+		}
+	}
+
+	// style 3
+	&.style3 {
+		position: relative;
+		height: 35px;
+
+		// progress title
+		.progress-title {
+			position: absolute;
+			top: 0;
+			left: 15px;
+			z-index: 1;
+			font-size: 14px;
+			color :#fff;
+		}
+
+		// progress number
+		.progress-number {
+			position: absolute;
+			right: 10px;
+			top: 6px;
+			color: #fff;
+			background: transparent;
+		}
+
+		// different colors
+		.progress-bar {
+
+			// brand color - pink
+			&.pink {
+				background-color: $brand-color;
+			}
+
+			// light blue
+			&.lightblue {
+				background-color: #26a7ce;
+			}
+
+			// dark blue
+			&.darkblue {
+				background-color: #5d7abb;
+			}
+
+			// purple
+			&.purple {
+				background-color: #964ca8;
+			}
+		}
+	}
+
+	// style 4
+	&.style4 {
+		position: relative;
+		height: 35px;
+		border-radius: 3px;
+
+		// progress title
+		.progress-title {
+			position: absolute;
+			top: 0;
+			left: 15px;
+			z-index: 1;
+			font-size: 14px;
+			color :#fff;
+		}
+
+		// progress number
+		.progress-number {
+			position: absolute;
+			right: 10px;
+			top: 6px;
+			color: #fff;
+			background: transparent;
+		}
+
+		// different colors
+		.progress-bar {
+			border-radius: 3px;
+
+			// brand color - pink
+			&.pink {
+				background-color: $brand-color;
+			}
+
+			// light blue
+			&.lightblue {
+				background-color: #26a7ce;
+			}
+
+			// dark blue
+			&.darkblue {
+				background-color: #5d7abb;
+			}
+
+			// purple
+			&.purple {
+				background-color: #964ca8;
+			}
+		}
+	}
+}
+
+
+// Counters
+// --------------------------------------------------
+// This style of counters needs a background image 
+// and we used the class 'counters-bg' for this time
+// to control the background image
+.counters-bg {
+	background: url(../img/bg.jpg) center center;
+}
+
+.countbox {
+	text-align: center;
+
+    h4 {
+    	font-size: 36px;
+    	line-height: 20px;
+
+    	&:after {
+    		content: ' ';
+    		display: block;
+    		width: 35px;
+    		height: 5px;
+    		background: url(../img/vector.png) center center;
+    		margin: 30px auto 20px auto;
+    	}
+    }
+
+    p {
+    	font-family: $links-font-family;
+    	font-size: 16px;
+    	font-weight: 600;
+    	color: $heading-text-color;
+    }
+}
+
+@media (max-width:992px){
+	.countbox {
+		margin-bottom: 30px;
+	}
+}
+
+
+// Work Steps 
+// --------------------------------------------------
+.work-step {
+	text-align: center;
+	margin-bottom: 30px;
+
+	&:after {
+		content: ' ';
+		display: inline-block;
+		position: absolute;
+		top: 54px;
+		right: -40px;
+		width: 100px;
+		height: 2px;
+		background-color: #f2f2f2;
+	}
+
+	&.last-step:after {
+		content: none;
+	}
+
+	@media (max-width: 1200px){
+		&:after {
+			width: 50px;
+			right: -30px;
+		}
+	}
+
+	@media (max-width: 992px){
+		&:after {
+			content: none;
+		}
+	}
+
+	// step icon
+	.icon {
+		width: 110px;
+		height: 110px;
+		margin: 0 auto 20px auto;
+		text-align: center;
+		line-height: 100px;
+		color: #c4c4c4;
+		font-size: 24px;
+		background: transparent;
+		border-radius: 100%;
+
+		background-image: -webkit-linear-gradient( 0deg, rgb(32,171,208) 0%, rgb(234,8,140) 100%);
+		   background-image: -moz-linear-gradient( 0deg, rgb(32,171,208) 0%, rgb(234,8,140) 100%);
+		    background-image: -ms-linear-gradient( 0deg, rgb(32,171,208) 0%, rgb(234,8,140) 100%);
+		     background-image: -o-linear-gradient( 0deg, rgb(32,171,208) 0%, rgb(234,8,140) 100%);
+		        background-image: linear-gradient( 0deg, rgb(32,171,208) 0%, rgb(234,8,140) 100%);
+
+		&:last-child:after {
+			content: none;
+		}
+
+		// aligning the icon content
+		.align {
+			position: relative;
+		    top: 7.5px;
+		    width: 95px;
+		    height: 95px;
+		    border-radius: 100%;
+		    margin: 0 auto;
+		    background: #fff;
+		}
+	}
+
+	// step heading
+	h4 {
+		text-transform: uppercase;
+	}
+}
+
+
+// Work Progress
+// -------------------------------------
+.work-progress {
+	background: url(../img/devices-bg.jpg) center center;
+
+	// section headline
+	.section-headline {
+		h4 {
+			color: #fff;
+		}
+	}
+
+	// step of the work progress
+	.step {
+		margin-bottom: 30px;
+
+		@include clearfix();
+		// step on hover
+		&:hover {
+			.icon {
+				background-color: $brand-color;
+				border-color: $brand-color;
+			}
+		}
+	}
+
+	// icon
+	.icon {
+		float: left;
+		width: 70px;
+		height: 70px;
+		margin-right: 40px;
+		line-height: 70px;
+		border-radius: 100%;
+		text-align: center;
+		background-color: transparent;
+		font-size: 24px;
+		color: #fff;
+		border: 2px solid #fff;
+
+		-webkit-transition: background-color .5s;
+		   -moz-transition: background-color .5s;
+		    -ms-transition: background-color .5s;
+		     -o-transition: background-color .5s;
+		        transition: background-color .5s;
+	}
+
+	// aliging the content
+	.align {
+		float: left;
+	}
+
+	// step heading heading
+	h5 {
+		text-transform: uppercase;
+		margin-bottom: 30px;
+		color: #fff;
+	}
+}

@@ -1,0 +1,300 @@
+/* -----------------------------------------------------------------------------
+// 1. Homepage 
+// ----------------------------------------------------------------------------- */
+
+//
+// Table of content
+// -----------------------------------------------------------------------------
+// - Section Headline
+// - Section 1 - Hero Splash
+// - Section 2 - Welcome 
+// - Section 3 - Banner
+// - Section 4 - Menu
+// - Section 6 - Gallery
+
+
+//
+// homepage
+// --------------------------------------------------
+.homepage {
+
+// Section Headline
+// --------------------------------------------------
+    .section-headline {
+        margin-bottom: 40px;
+        text-align: center;
+
+        h3 {
+            font-size: 28px;
+            font-weight: 800;
+            text-transform: uppercase;
+
+            &:before {
+                content: ' ';
+                display: block;
+                width: 164px;
+                height: 21px;
+                margin: 0 auto 20px auto;
+                background: url(../img/headline-vector.png) center center;
+            }
+        }
+    }
+
+
+// Section 1 - Hero Splash
+// --------------------------------------------------
+    .hero-splash {
+        position: relative;
+        height: 800px;
+        min-height: 100vh;
+        overflow: hidden;
+        text-align: center;
+        font-family: $headings-font-family;
+        -webkit-background-size: cover;
+           -moz-background-size: cover;
+            -ms-background-size: cover;
+             -o-background-size: cover;
+                background-size: cover;
+
+        .splash-slider {
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            @media (max-width:1000px) {
+                img {
+                    max-width: initial;
+                }
+            }
+        }
+
+        // positioning it in the center
+        .align {
+            position: absolute;
+            top: 50%;
+            right: 0;
+            left: 0;
+            margin: 0 auto;
+
+            -webkit-transform: translateY(-50%);
+               -moz-transform: translateY(-50%);
+                -ms-transform: translateY(-50%);
+                 -o-transform: translateY(-50%);
+                    transform: translateY(-50%);
+
+            img {
+                padding: 0 15px;
+            }
+        }
+    }
+
+
+// Section 2 - Welcome 
+// --------------------------------------------------
+    .welcome {
+        .item {
+            padding: 0 30px;
+            text-align: center;
+
+            .img {
+                width: 150px;
+                height: 150px;
+                margin: 0 auto 20px auto;
+                border-radius: 100%;
+                overflow: hidden;
+            }
+
+            h4 {
+                font-weight: 600;
+
+                &:after {
+                    content: ' ';
+                    display: block;
+                    width: 33px;
+                    height: 5px;
+                    margin: 20px auto;
+                    background: url(../img/vector.png) center center;
+                }
+            }
+        }
+
+        @media (max-width:992px) {
+            .item {
+                margin-bottom: 30px;
+            }
+        }
+    }
+
+
+// Section 3 - Banner 
+// --------------------------------------------------
+    .banner {
+        padding: 150px 0;
+        background: url(http://placehold.it/1895x1200) center center;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
+
+
+// Section 4 - Menu
+// --------------------------------------------------
+    .menu {
+        .item {
+            margin-bottom: 20px;
+            padding: 15px 20px;
+            background-color: $light-bg-color;
+            @include clearfix();
+
+            .align {
+                float: left;
+                width: 80%;
+            }
+
+            &-thumbnail {
+                float: left;
+                display: inline-block;
+                margin-right: 15px;
+                width: 70px;
+                height: 70px;
+                overflow: hidden;
+                border-radius: 100%;
+            }
+
+            h5 {
+                display: inline-block;
+                font-size: 16px;
+                font-weight: 600;
+            }
+
+            p {
+                display: inline-block;
+            }
+
+            .price {
+                float: right;
+                text-align: right;
+                width: 20%;
+                margin-top: 20px;
+                font-size: 18px;
+                font-weight: 600;
+                color: $brand-color;
+            }
+        }
+
+        .owl-buttons {
+
+            .owl-prev,
+            .owl-next {
+                color: #9c9c9c;
+                border: 2px solid #9c9c9c;
+                @include transition(all, .5s);
+                
+                &:hover {
+                    opacity: 1;
+                    color: $brand-color;
+                    border-color: $brand-color;
+                }
+            }
+
+            .owl-prev {
+                left: -80px;
+            }
+
+            .owl-next {
+                right: -80px;
+            }
+        }
+    }
+
+
+// Section 6 - Gallery
+// --------------------------------------------------
+    .gallery {
+        .item {
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 30px;
+
+            .caption {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                opacity: 0;
+                background-color: $brand-color;
+                background-color: rgba(131, 92, 75, .85);
+                text-align: center;
+
+                @include transition(opacity, .5s);
+            }
+
+            a {
+                display: inline-block;
+                width: 40px;
+                height: 40px;
+                margin-right: 5px;
+                text-align: center;
+                color: #fff;
+                border: 2px solid #fff;
+                border-radius: 100%;
+                @include transition(background-color, .5s);
+
+                i {
+                    line-height: 40px;
+                    font-size: 13px;
+                }
+
+                &:hover {
+                    background-color: #fff;
+                    border-color: #fff;
+                    color: $brand-color;
+                }
+            }
+
+            .align {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+
+                -webkit-transform: translate(-50%, -50%);
+                   -moz-transform: translate(-50%, -50%);
+                    -ms-transform: translate(-50%, -50%);
+                     -o-transform: translate(-50%, -50%);
+                        transform: translate(-50%, -50%);
+            }
+
+            h3 {
+                margin-top: 20px;
+                font-weight: 500;
+                font-size: 18px;
+                color: #fff;
+            }
+
+            // item on hover
+            &:hover {
+                .caption {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

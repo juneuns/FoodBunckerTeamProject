@@ -1,0 +1,18 @@
+@charset 'UTF-8';
+
+@import
+  'utils/utils';
+ 
+/*
+// Table of content
+// -----------------------------------------------------------------------------
+// - 1. Header
+// - 2. Footer
+// - 3. Hero Title
+*/
+
+// Layout-related sections
+@import
+  'layout/header',
+  'layout/footer',
+  'layout/hero-title';

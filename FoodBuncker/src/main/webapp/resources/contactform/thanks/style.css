@@ -1,0 +1,49 @@
+body {
+	background-color: #181818;
+	font-family: 'Lato', Arial, sans-serif;
+	height: 100vh;
+}
+
+.container {
+	position: relative;
+	display: table;
+	width: 60%;
+	height: 100%;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.container .align {
+	display: table-cell;
+	vertical-align: middle;
+}
+.container .icon {
+	color: #dadada;
+	font-size: 50px;
+}
+
+.container h1 {
+	color: #dadada;
+	font-size: 50px;
+	margin: 0;
+}
+
+.container p {
+	color: #b8b8b8;
+	font-size: 16px;
+	margin: 15px 0 10px 0;
+	letter-spacing: 1px;
+}
+
+.container p + p {
+	margin: 0;
+}
+
+.container a {
+	color: #f1592a;
+	text-decoration: none;
+}
+
+	.container a:hover {
+		text-decoration: underline;
+	}

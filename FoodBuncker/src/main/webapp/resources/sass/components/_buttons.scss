@@ -1,0 +1,171 @@
+/* -----------------------------------------------------------------------------
+// 1. Buttons 
+// ----------------------------------------------------------------------------- */
+
+//
+// Table of content
+// -----------------------------------------------------------------------------
+// - General Button Styles
+// - Button Sizes
+// - Button Colors
+// - Button with Border
+
+
+// General Button Styles
+// --------------------------------------------------
+.btn {
+    display: inline-block;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    font-family: $links-font-family;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 1px;
+
+    -webkit-transition: background .5s;
+     -moz-transition: background .5s;
+      -ms-transition: background .5s;
+       -o-transition: background .5s;
+          transition: background .5s;
+
+    &:hover,
+    &:focus {
+      text-decoration: none;
+      outline: none;
+    }
+}
+
+// Button Sizes
+// --------------------------------------------------
+// extra small
+.btn-xs {
+    font-size: 10px;
+    padding: 10px 15px;
+}
+
+// small
+.btn-sm {
+    font-size: 11px;
+    padding: 10px 20px;
+}
+
+// medium
+.btn {
+    font-size: 12px;
+    padding: 12px 30px;
+}
+
+// large
+.btn-lg {
+    font-size: 18px;
+    padding: 15px 45px;
+}
+
+// extra large
+.btn-xg {
+    font-size: 24px;
+    padding: 20px 50px;
+}
+
+// full width
+.btn-fullwidth {
+    width: 100%;
+    text-align: center;
+}
+
+
+// Button Colors
+// --------------------------------------------------
+.btn-light {
+    background-color: $btn-light;
+    color: $btn-grey;
+    border-color: $btn-light;
+
+    &:hover {
+        background: transparent;
+        color: $btn-grey;
+        border-color: $btn-light;
+    }
+}
+
+.btn-grey {
+    background-color: $btn-grey;
+    color: #fff;
+    border-color: $btn-grey;
+
+    &:hover {
+        background: transparent;
+        color: $btn-grey;
+        border-color: $btn-grey;
+    }
+}
+
+.btn-dark {
+    background-color: $btn-dark;
+    color: #fff;
+    border-color: $btn-dark;;
+
+    &:hover {
+        background: transparent;
+        color: $btn-dark;
+        border-color: $btn-dark;
+    }
+}
+
+.btn-colored {
+    background-color: $btn-colored;
+    color: #fff;
+    border-color: $btn-colored;
+
+    &:hover {
+        background: transparent;
+        color: $btn-colored;
+        border-color: $btn-colored;
+    }
+}
+
+
+// Button with Border
+// --------------------------------------------------
+.btn-bordered {
+    background: transparent;
+    border-width: 2px;
+
+    &.btn-light {
+        color: $btn-light;
+
+        &:hover {
+            background-color: $btn-light;
+            color: #fff;
+        }
+    }
+
+    &.btn-grey {
+        color: $btn-grey;
+
+        &:hover {
+            background-color: $btn-grey;
+            color: #fff;
+        }
+    }
+
+    &.btn-dark {
+        color: $btn-dark;
+
+        &:hover {
+            background-color: $btn-dark;
+            color: #fff;
+        }
+    }
+
+    &.btn-colored {
+        color: $btn-colored;
+
+        &:hover {
+            background-color: $btn-colored;
+            color: #fff;
+        }
+    }
+}

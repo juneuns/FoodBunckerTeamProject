@@ -1,0 +1,34 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass mixins.
+// -----------------------------------------------------------------------------
+
+//
+// Table of content
+// -----------------------------------------------------------------------------
+// - Transition
+// - Clearfix
+
+
+// Transition
+// --------------------------------------------------
+@mixin transition($property, $duration){
+	-webkit-transition: $property $duration;
+	   -moz-transition: $property $duration;
+		-ms-transition: $property $duration;
+	 	 -o-transition: $property $duration;
+		 	transition: $property $duration;
+}
+
+
+// Clearfix
+// --------------------------------------------------
+@mixin clearfix() {
+  &:before,
+  &:after {
+    content: " "; // 1
+    display: table; // 2
+  }
+  &:after {
+    clear: both;
+  }
+}

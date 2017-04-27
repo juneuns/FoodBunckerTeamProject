@@ -1,0 +1,138 @@
+/* -----------------------------------------------------------------------------
+// 5. Testimonials 
+// ----------------------------------------------------------------------------- */
+
+//
+// Table of content
+// -----------------------------------------------------------------------------
+// - Testimonial style 1
+// - Testimonial style 2
+// - Testimonial style 3
+// - Testimonial style 4
+
+
+// Testimonial Style 1
+// --------------------------------------------------
+.testimonials-slider {
+    .testimonial {
+        text-align: center;
+        p {
+            font-family: $headings-font-family;
+            font-size: 24px;
+            font-weight: 600;
+            line-height: 36px;
+            color: $brand-color;
+        }
+
+        h4 {
+            font-size: 14px;
+            font-weight: 700;
+            margin-top: 30px;
+            color: #181818;
+        }
+    }
+
+    // pagination circles
+    .owl-pagination {
+        position: absolute;
+        bottom: -50px;
+        right: 0;
+        left: 0;
+        margin: 0 auto;
+        text-align: center;
+
+        .owl-page {
+            display: inline-block;
+
+            span {
+                display: block;
+                width: 12px;
+                height: 12px;
+                margin: 5px 4px;
+                filter: Alpha(Opacity=50);
+                opacity: 0.5;
+                border: 1px solid $brand-color;
+                -webkit-border-radius: 20px;
+                -moz-border-radius: 20px;
+                border-radius: 20px;
+                background: transparent;
+            }
+
+            &.active span {
+                filter: Alpha(Opacity=100);
+                opacity: 1;
+                border-color: $brand-color;
+                background-color: $brand-color;
+            }
+        }
+    }
+
+    @media( max-width: 500px) {
+        .owl-buttons {
+            display: none;
+        }
+    }
+}
+
+
+
+// Testimonials' Style 3
+// --------------------------------------------------
+
+// This style of the testimonial component requires
+// a background image, so make sure that you add a background image
+// to the container of the testimonials. In this case we add 'testimonial-bg'
+// class and applied the background image to it.
+
+.testimonial-bg {
+    background: #4a4848 url(../img/devices-bg.jpg) center center;
+}
+
+.testimonial.style3 {
+    width: 70%;
+    text-align: center;
+
+    p {
+        font-family: $headings-font-family;
+        font-size: 24px;
+        line-height: 36px;
+        color: $brand-color;
+    }
+
+    h4 {
+        margin-top: 50px;
+        color: $heading-text-color;
+        text-transform: uppercase;
+    }
+
+    .avatar {
+        position: relative;
+        height: 100px;
+        width: 100px;
+        margin: 0 auto 30px auto;
+        border: 5px solid #fff;
+        border-radius: 100%;
+        overflow: hidden;
+    }
+}
+
+//
+// Testimonial Style 4
+// --------------------------------------------------
+.testimonial.style4 {
+    text-align: center;
+
+    p {
+        font-family: $headings-font-family;
+        font-size: 24px;
+        line-height: 36px;
+        color: $brand-color;
+    }
+
+    h4 {
+        font-size: 14px;
+        font-weight: 600;
+        margin-top: 50px;
+        color: #181818;
+    }
+}
