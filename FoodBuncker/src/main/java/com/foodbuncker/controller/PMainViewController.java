@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class PController {
-	
+public class PMainViewController {
+
 	@RequestMapping("/person/MainWindow.food")
 	public ModelAndView mainView(ModelAndView mv){
 		mv.setViewName("/person/MainWindow");
@@ -28,18 +28,6 @@ public class PController {
 	@RequestMapping("/person/Gallery.food")
 	public ModelAndView galleryView(ModelAndView mv){
 		mv.setViewName("/person/Gallery");
-		return mv;
-	}
-	
-	@RequestMapping("/person/Menu.food")
-	public ModelAndView menuView(ModelAndView mv){
-		mv.setViewName("/person/Menu");
-		return mv;
-	}
-	
-	@RequestMapping("/person/Search.food")
-	public ModelAndView search(ModelAndView mv){
-		mv.setViewName("/person/Search");
 		return mv;
 	}
 }
