@@ -1,0 +1,8 @@
+[core]
+	symlinks = false
+	repositoryformatversion = 0
+	filemode = false
+	logallrefupdates = true
+[remote "origin"]
+	url = https://github.com/sungmo00/FoodBunckerTeamProject.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
