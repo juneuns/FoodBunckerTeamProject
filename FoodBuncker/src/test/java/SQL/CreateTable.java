@@ -30,7 +30,7 @@ public class CreateTable {
 						+ "TI_T_NO NUMBER(5) references TRUCKINFO(T_NO), "
 						+ "TI_SAVENAME VARCHAR2(100) NOT NULL, "
 						+ "TI_IMGBODY VARCHAR2(200) NOT NULL, "
-						+ "TI_THUMB VARCHAR2(100) NOT NULL, "
+//						+ "TI_THUMB VARCHAR2(100) NOT NULL, "	-- 썸네일 이미지 이름....
 						+ "TI_GRADE NUMBER(1) NOT NULL, "
 						+ "TI_ISSHOW CHAR(1) NOT NULL)",
 				"CREATE TABLE PLACE "
@@ -70,7 +70,7 @@ public class CreateTable {
 						+ "M_PRICE NUMBER(5) NOT NULL, "
 						+ "M_BODY VARCHAR2(500) NOT NULL, "
 						+ "M_SAVENAME VARCHAR2(100) NOT NULL, "
-						+ "M_THUMB VARCHAR2(100) NOT NULL, "
+//						+ "M_THUMB VARCHAR2(100) NOT NULL, "
 						+ "M_GRADE CHAR(1) NOT NULL, "
 						+ "M_KEYWORD VARCHAR2(200) NOT NULL, "
 						+ "M_ISSHOW CHAR(1) NOT NULL)",
@@ -137,6 +137,10 @@ public class CreateTable {
 		}
 		
 		new InsertPlace();
+		new TruckinfoInsert();
+		new InsertTruckImg();
+		new InsertMenu();
+		
 		
 	}
 
