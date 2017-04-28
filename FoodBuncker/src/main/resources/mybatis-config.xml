@@ -10,9 +10,20 @@
      <!--  myBatis에서 사용하는 데이터 형태를 간략하게 줄어서 사용할 수 있도록 데이터 형태의 별칭을 선언하는 부분이다.-->
      <typeAliases>
           <!--  <typeAlias alias="int" type="java.lang.Integer" />  -->
+          <typeAlias alias="cmenuVO" type="com.foodbuncker.vo.CMenuPlanInputVO"/>
+          <typeAlias alias="corderVO" type="com.foodbuncker.vo.COrderPayVO"/>
+          <typeAlias alias="cregVO" type="com.foodbuncker.vo.CRegLoginVO"/>
+          <typeAlias alias="pmainVO" type="com.foodbuncker.vo.PMainViewVO"/>
+          <typeAlias alias="pmenuVO" type="com.foodbuncker.vo.PMenuSearchVO"/>
+          
      </typeAliases>
      <!-- 질의 명령을 지정한 xml 파일(우리가 말하는 SQL 파일)의 경로와 파일의 이름을 등록하는 부분이다.-->
      <mappers>
      <!-- <mapper resource="/com/auction/sql/ShoppingSQL.xml" /> -->
+     	<mapper resource="/com/foodbuncker/sql/CMenuPlanInputSQL.xml" />
+     	<mapper resource="/com/foodbuncker/sql/COrderPaySQL.xml" />
+     	<mapper resource="/com/foodbuncker/sql/CRegLoginSQL.xml" />
+     	<mapper resource="/com/foodbuncker/sql/PMainViewSQL.xml" />
+     	<mapper resource="/com/foodbuncker/sql/PMenuSearchSQL.xml" />
      </mappers>
 </configuration>

@@ -35,9 +35,18 @@
 	</bean>
 	<tx:annotation-driven/>
 	
+	<bean id="cmenuPlanInputDAO" class="com.foodbuncker.dao.CMenuPlanInputDAO"></bean>
+	<bean id="corderPayDAO" class="com.foodbuncker.dao.COrderPayDAO"></bean>
+	<bean id="cregLoginDAO" class="com.foodbuncker.dao.CRegLoginDAO"></bean>
+	<bean id="pmainViewDAO" class="com.foodbuncker.dao.PMainViewDAO"></bean>
+	<bean id="pmenuSearchDAO" class="com.foodbuncker.dao.PMenuSearchDAO"></bean>
 	
-	<context:component-scan base-package="com.foodbuncker.dao"></context:component-scan>
-	<context:component-scan base-package="com.foodbuncker.service"></context:component-scan>
+	<bean id="cmenuPlanInputService" class="com.foodbuncker.service.CMenuPlanInputService"></bean>
+	<bean id="corderPayService" class="com.foodbuncker.service.COrderPayService"></bean>
+	<bean id="cregLoginService" class="com.foodbuncker.service.CRegLoginService"></bean>
+	<bean id="pmainViewService" class="com.foodbuncker.service.PMainViewService"></bean>
+	<bean id="pmenuSearchService" class="com.foodbuncker.service.PMenuSearchService"></bean>
+	
 	
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 	<context:component-scan base-package="com.foodbuncker.aop"></context:component-scan>
