@@ -3,20 +3,57 @@
 <!-- vo type alias : "pmenuVO" -->
 <mapper namespace="foodbuncker.PMenuSearch">
 
-<select id="selectMenu" resultType="pmenuVO">
+<select id="selectMenu" resultType="pmenuVO" parameterType="hashmap">
 	SELECT
-		m_no,
-		m_t_no,
-		m_name,
-		m_price,
-		m_body,
-		m_savename,
-		m_grade,
-		m_keyword
+		*
+	FROM
+		(SELECT
+			rownum AS RNO,
+			a.*
+		FROM
+			(SELECT
+				m_no AS NO,
+				m_t_no AS TNO,
+				m_name AS NAME,
+				m_price AS PRICE,
+				m_body AS BODY,
+				m_savename AS IMGNAME,
+				m_grade AS GRADE,
+				m_keyword AS KEYWORD
+			FROM
+				menu
+			WHERE
+				m_isshow='Y'
+			ORDER BY
+				m_no ) a)
+	WHERE
+		RNO BETWEEN #{start} AND #{end}		
+</select>
+
+<select id="selectCount" resultType="int">
+	SELECT
+		COUNT(*)
 	FROM
 		menu
 	WHERE
-		m_isshow='Y'		
+		m_isshow='Y'
 </select>
 
+<select id="selectTNow" resultType="pmenuVO">
+	SELECT
+		oc_t_no AS TNO,
+		t_name AS TNAME,
+		p_lat AS PLAT,
+		p_lng AS PLNG
+	FROM
+		openclose,
+		place,
+		truckinfo
+	WHERE
+		oc_t_no = t_no
+	AND
+		oc_p_no = p_no
+	AND
+		to_char(oc_open,'YYYY/MM/DD)=to_char(SYSDATE,'YYYY/MM'DD')
+</select>
 </mapper>

@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html class="no-js" lang="">
     <head>
@@ -102,136 +102,41 @@
 					</div>
 				</div>
 				
-<!-- -----------------------   foreach문 사용하여 1단 반복--------------------------------------- --> 				
-                <div class="row">
-                
- <!-- -----------------------   foreach문 사용하여 1단 1열 반복--------------------------------------- --> 	               
+			
+         
+           	<div class="row">
+                <c:forEach var="data" items="${LIST }" varStatus="temp">
                     <div class="col-md-4">
                         <div class="item">
                             <div class="align">
                                <div class="item-thumbnail">
-                                 <img src="../resources/img/menu1_200.jpg" alt="About the image">
+                               	<a href="../person/DetailView.food?tno=${data.tno }&nowPage=${PINFO.nowPage }">
+                                 <img src="../image/${data.imgname }" alt="About the image"></a>
                                </div>
-                               <h4>Beef Steak</h4>
-                               <p>한우 등심을 직화로 구워 소스를 입힌 요리</p>
+                               <h4>${data.name }</h4>
+                               <p>${data.body }</p>
                             </div>
-                            <span class="price">10,000원</span>
+                            <span class="price">${data.price }원</span>
                         </div>
                     </div>
-<!-- -----------------------   foreach문 사용하여 1단 2열 반복--------------------------------------- --> 	
-                    <div class="col-md-4">
-                        <div class="item">
-                         	<div class="align">
-                            	<div class="item-thumbnail">
-                                	<img src="../resources/img/menu2_200.jpg" alt="About the image">
-                                </div>
-                                <h4>Hambuger</h4>
-                                <p>천연 효모 빵과 신선한 야채, 수제 패티를 넣은 고급의 와퍼</p>
-                            </div>
-                            <span class="price">6,000원</span>
-                    	</div>
-                    </div>
-<!-- -----------------------   foreach문 사용하여 1단 3열 반복--------------------------------------- --> 	
-                    <div class="col-md-4">
-                   		<div class="item">
-                        	<div class="align">
-                            	<div class="item-thumbnail">
-                                	<img src="../resources/img/menu3_200.jpg" alt="About the image">
-                               	</div>
-                                <h4>Italian Noddle </h4>
-                                <p>파스타 면을 적절히 삶아 이탈리아식으로 야채 및 향로를 뿌린 요리</p>
-                          	</div>
-                            <span class="price">8,000원</span>
-                     	</div>
-                    </div>
-                </div>
-<!-- -----------------------   foreach문 1단 반복 끝--------------------------------------- --> 	                
- <!-- -----------------------  위의 foreach문 완성시 삭제해야 할 부분 시작--------------------------------------- -->                
-
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="item">
-                                    <div class="align">
-                                         <div class="item-thumbnail">
-                                            <img src="../resources/img/menu4_200.jpg" alt="About the image">
-                                        </div>
-                                        <h4>Green Grape Pizza</h4>
-                                        <p>얇고 바삭한 도우 위에 청포도를 올려 청정한 맛을 느낄 수 있는 피자</p>
-                                    </div>
-                                    <span class="price">6,000원</span>
-                                </div>
-                    </div>
-
-                    <div class="col-md-4">
-                         <div class="item">
-                                    <div class="align">
-                                         <div class="item-thumbnail">
-                                            <img src="../resources/img/menu5_200.jpg" alt="About the image">
-                                        </div>
-                                        <h4>red vegitable 피자</h4>
-                                        <p>채소와 곡류로만 만들고 빨간 피망으로 포인트롤 준 피자</p>
-                                    </div>
-                                    <span class="price">8,000원</span>
-                                </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="item">
-                                    <div class="align">
-                                         <div class="item-thumbnail">
-                                            <img src="../resources/img/menu6_200.jpg" alt="About the image">
-                                        </div>
-                                        <h4>Tomato Pizza</h4><br>
-                                        <p>토마토가 올려진 기본 피자</p>
-                                    </div>
-                                    <span class="price">5,000원</span>
-                                </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="item">
-                                    <div class="align">
-                                         <div class="item-thumbnail">
-                                            <img src="../resources/img/menu8_200.jpg" alt="About the image">
-                                        </div>
-                                        <h4>Salmon Steak</h4>
-                                        <p>싱싱한 연어를 직화로 구워 고유의 맛을 살린 요리</p>
-                                    </div>
-                                    <span class="price">10,000원</span>
-                                </div>
-                    </div>
-
-                    <div class="col-md-4">
-                       <div class="item">
-                                    <div class="align">
-                                         <div class="item-thumbnail">
-                                            <img src="../resources/img/menu1_200.jpg" alt="About the image">
-                                        </div>
-                                        <h4>Beef Steak</h4>
-                                        <p>한우 등심을 직화로 구워 소스를 입힌 요리</p>
-                                    </div>
-                                    <span class="price">10,000원</span>
-                                </div>
-                    </div>
-
-                    <div class="col-md-4">
-                         <div class="item">
-                                    <div class="align">
-                                         <div class="item-thumbnail">
-                                            <img src="../resources/img/menu2_200.jpg" alt="About the image">
-                                        </div>
-                                        <h4>Hambuger</h4>
-                                        <p>천연 효모 빵과 신선한 야채, 수제 패티를 넣은 고급의 와퍼</p>
-                                    </div>
-                                    <span class="price">6,000원</span>
-                                </div>
-                    </div>
-                </div>
-                
-<!-- -----------------------   위의 foreach문 완성시 삭제 부분 끝--------------------------------------- --> 	                
-            </div>
+              		<c:if test="${temp.count % 3 eq 0 }">
+              			</div>
+              			<div class="row">
+              		</c:if>                    
+             	</c:forEach> 
+           	</div>
+           	<div class="row" id="moreMenu">
+           	
+           	</div>
+        <c:if test="${PINFO.nowPage ne PINFO.totalPage }">   	
+     		<div class="row">
+            	<div class="text-center">
+                	<button href="#" class="btn btn-default btn-colored" id="lBtn" value="Load More"></button>
+              	</div>
+          	</div>
+		</c:if>	                
+	                
+      	</div>
         </section>
         <!-- SECTION 2 -->
 
@@ -239,25 +144,10 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-4">
-                        <div class="footer-brand">
-                            <img src="../resources/img/logo.png" alt="About the image">
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
                         <div class="footer-social">
-                            <ul class="social">
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                                <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                            </ul>
                         </div>
                     </div>
                     <div class="col-sm-4">
-                        <div class="footer-copyright">
-                            <p>© Zawia</p>
-                        </div>
-                        
                     </div>
                 </div>
             </div>
@@ -281,6 +171,32 @@
             e.src='https://www.google-analytics.com/analytics.js';
             r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
             ga('create','UA-XXXXX-X','auto');ga('send','pageview');
+        </script>
+        <script>
+        $(document).ready(function(){
+        	$("#lBtn").click(function(){
+        		var nowPage=${PINFO.nowPage}+1;
+        		$.getJSON("../person/MenuAddView/"+nowpage+".food",function(data){
+        			var str = "";
+        			$(data).each(function(){
+        				str +="<div class='col-md-4'>"
+                        	+	"<div class='item'>"
+                        	+		"<div class='align'>"
+                           	+			"<div class='item-thumbnail'>"
+                           	+				"<a href='../../person/DetailView.food?tno="+this.tno+"&nowPage="+this.nowPage+"'>"
+                            +				"<img src='../image/"+this.imgname+"' alt='About the image'></a>"
+                           	+			"</div>"
+                           	+			"<h4>"+this.name+"</h4>"
+                           	+			"<p>"+this.body+"</p>"
+                        	+		"</div>"
+                        	+		"<span class='price'>"+this.price+"원</span>"
+                    		+	"</div>"
+                			+"</div>"
+        			});
+        			$("#moreMenu").html(str);
+        		});
+        	});        	
+        });
         </script>
     </body>
 </html>

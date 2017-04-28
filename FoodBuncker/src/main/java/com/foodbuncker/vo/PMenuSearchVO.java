@@ -11,7 +11,28 @@ public class PMenuSearchVO {
 	int grade;
 	String keyword;
 	String isshow;
+	String tname;
+	float plat;
+	float plng;
 	
+	public String getTname() {
+		return tname;
+	}
+	public void setTname(String tname) {
+		this.tname = tname;
+	}
+	public float getPlat() {
+		return plat;
+	}
+	public void setPlat(float plat) {
+		this.plat = plat;
+	}
+	public float getPlng() {
+		return plng;
+	}
+	public void setPlng(float plng) {
+		this.plng = plng;
+	}
 	public int getNo() {
 		return no;
 	}
