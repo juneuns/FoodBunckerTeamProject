@@ -10,9 +10,6 @@ public class COrderPayController {
 	@RequestMapping("/chef/OrderBoard.food")
 	public ModelAndView orderBoard(ModelAndView mv){
 		mv.setViewName("chef/OrderBoard");
-		
-		
-		System.out.println("111111111");
 		return mv;
 	}
 	
