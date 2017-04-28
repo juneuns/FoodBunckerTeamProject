@@ -6,7 +6,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class CMenuPlanInputController {
-	
+
 	@RequestMapping("/chef/Main.food")
 	public ModelAndView chefMainView(ModelAndView mv){
 		mv.setViewName("chef/ChefMain");
