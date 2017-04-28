@@ -2,4 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- vo type alias : "pmenuVO" -->
 <mapper namespace="foodbuncker.PMenuSearch">
+
+<select id="selectMenu" resultType="pmenuVO">
+	SELECT
+		m_no,
+		m_t_no,
+		m_name,
+		m_price,
+		m_body,
+		m_savename,
+		m_grade,
+		m_keyword
+	FROM
+		menu
+	WHERE
+		m_isshow='Y'		
+</select>
+
 </mapper>
