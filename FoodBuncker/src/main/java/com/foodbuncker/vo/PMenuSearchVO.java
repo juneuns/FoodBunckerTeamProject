@@ -8,12 +8,19 @@ public class PMenuSearchVO {
 	int price;
 	String body;
 	String imgname;
-	int grade;
+	char grade;
 	String keyword;
 	String isshow;
 	String tname;
 	float plat;
 	float plng;
+	
+	public char getGrade() {
+		return grade;
+	}
+	public void setGrade(char grade) {
+		this.grade = grade;
+	}
 	
 	public String getTname() {
 		return tname;
@@ -69,12 +76,8 @@ public class PMenuSearchVO {
 	public void setImgname(String imgname) {
 		this.imgname = imgname;
 	}
-	public int getGrade() {
-		return grade;
-	}
-	public void setGrade(int grade) {
-		this.grade = grade;
-	}
+	
+	
 	public String getKeyword() {
 		return keyword;
 	}

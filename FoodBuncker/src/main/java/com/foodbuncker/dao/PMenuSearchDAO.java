@@ -17,7 +17,7 @@ public class PMenuSearchDAO {
 	}
 	
 	public int selectCount(){
-		return sqlSession.selectOne("foodbuncker.PMenuSearch.selectTotal");
+		return sqlSession.selectOne("foodbuncker.PMenuSearch.selectCount");
 	}
 	
 	public ArrayList selectTNow(){

@@ -7,7 +7,7 @@ public class CreateTable {
 
 	public CreateTable() {
 		
-		String[] table = {"ORDERMENU", "MORDER", "MENU", "REPLYBOARD", "BOARD", "PLAN", "OPENCLOSE", "PLACE", "TRUCKIMAGE", "TRUCKINFO"};
+		String[] table = {"ORDERMENU", "MORDER", "MENU", "REPLYBOARD", "BOARD", "PLAN", "OPENCLOSE", "PLACE", "TRUCKIMAGE", "TRUCKINFO","SEARCHRECORD"};
 		String cntTable = "Select count(*) as cnt from tab where tname=";
 		String drop = "Drop Table ";
 	
@@ -36,6 +36,7 @@ public class CreateTable {
 				"CREATE TABLE PLACE "
 						+ "(P_NO NUMBER(5) Constraint P_NO_PK Primary Key, "
 						+ "P_ADDRESS VARCHAR2(200) NOT NULL, "
+						+ "P_PLACENAME VARCHAR2(100) NOT NULL,"
 						+ "P_LAT NUMBER(18, 15) NOT NULL, "
 						+ "P_LNG NUMBER(18, 15) NOT NULL, "
 						+ "P_DATE DATE NOT NULL, "
@@ -50,7 +51,7 @@ public class CreateTable {
 						+ "(PP_NO NUMBER(5) Constraint PP_NO_PK Primary Key, "
 						+ "PP_T_NO NUMBER(5) References TRUCKINFO(T_NO), "
 						+ "PP_P_NO NUMBER(5) References PLACE(P_NO), "
-						+ "PP_DATE VARCHAR2(50) NOT NULL)",
+						+ "PP_DATE date NOT NULL)",
 				"CREATE TABLE BOARD "
 						+ "(B_NO NUMBER(10) Constraint B_NO_PK Primary Key, "
 						+ "B_T_NO NUMBER(5) references TRUCKINFO(T_NO), "
@@ -89,7 +90,11 @@ public class CreateTable {
 						+ "(OM_NO NUMBER(10) Constraint OM_NO_PK Primary Key, "
 						+ "OM_O_NO NUMBER(10) references MORDER(O_NO), "
 						+ "OM_M_NO NUMBER(5) NOT NULL, "
-						+ "OM_NUM NUMBER(2) NOT NULL)"
+						+ "OM_NUM NUMBER(2) NOT NULL)",
+				"CREATE TABLE SEARCHRECORD"
+						+"(SR_NO NUMBER(10) PRIMARY KEY,"
+						+"SR_WORD VARCHAR2(50) NOT NULL,"
+						+"SR_RECORD VARCHAR2(4000) NOT NULL)"
 		};
 		
 		MyJDBC db = null;
@@ -140,6 +145,7 @@ public class CreateTable {
 		new TruckinfoInsert();
 		new InsertTruckImg();
 		new InsertMenu();
+		new InsertOpenClosePlan();
 		
 		
 	}
