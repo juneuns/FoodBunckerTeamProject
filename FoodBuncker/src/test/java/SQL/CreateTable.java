@@ -29,7 +29,7 @@ public class CreateTable {
 						+ "(TI_NO NUMBER(5) Constraint TI_NO_PK Primary Key, "
 						+ "TI_T_NO NUMBER(5) references TRUCKINFO(T_NO), "
 						+ "TI_SAVENAME VARCHAR2(100) NOT NULL, "
-						+ "TI_IMGBODY VARCHAR2(200) NOT NULL, "
+						+ "TI_IMGBODY VARCHAR2(300) NOT NULL, "
 //						+ "TI_THUMB VARCHAR2(100) NOT NULL, "	-- 썸네일 이미지 이름....
 						+ "TI_GRADE NUMBER(1) NOT NULL, "
 						+ "TI_ISSHOW CHAR(1) NOT NULL)",
@@ -126,7 +126,7 @@ public class CreateTable {
 //				System.out.println(table[9-i] + " : 생성완료 ");
 			}
 			
-			System.out.println("######## 테이블 생성 완료! #########");
+			System.out.println("###### 테이블 생성 완료! ########");
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -146,6 +146,7 @@ public class CreateTable {
 		new InsertTruckImg();
 		new InsertMenu();
 		new InsertOpenClosePlan();
+		new InsertBoardReplyBoard();
 		
 		
 	}

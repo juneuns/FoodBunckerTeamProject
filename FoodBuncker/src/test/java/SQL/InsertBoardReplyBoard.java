@@ -1,6 +1,8 @@
 package SQL;
 
+import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class InsertBoardReplyBoard {
@@ -57,5 +59,52 @@ public class InsertBoardReplyBoard {
 			"앞으로 자주 찾아뵙겠습니다. 감사합니다.",
 			"아직 부족합니다. 계속적으로 지켜봐 주세요."
 		};
+		/* review 25개
+		 * reply 5개
+		 */
+		for(int i = 1; i < 9 ; i++){
+			LocalDate date = LocalDate.of(2015, 1, 1);
+			for(int j = 0 ; j < 875 ; j++){
+				int reviewNum = (int)(Math.random()*5);
+				for(int k = 0 ; k < reviewNum ; k++){
+					int reviewNo = (int)(Math.random()*25);
+					int isReply = (int)(Math.random()*10);
+					int replyNo = (int)(Math.random()*5);
+					sql = "insert into board values((SELECT NVL(MAX(b_No), 0) + 1 FROM board),"+i+",'"+review[reviewNo]+"',to_date('"+date+"','YYYY-MM-DD'),'Y')";
+					list.add(sql);
+					if(isReply > 3){
+						sql = "insert into replyboard values((SELECT NVL(MAX(rb_No), 0) + 1 FROM replyboard),(SELECT NVL(MAX(b_No), 0) FROM board),'"+reply[replyNo]+"',to_date('"+date+"','YYYY-MM-DD'),'Y')";
+						list.add(sql);
+					}
+				}
+				date = date.plusDays(1);
+			}
+		}
+		
+		try{
+			db = new MyJDBC();
+			stmt = db.getSTMT();
+			
+			list.stream().forEach(n->{
+				try {
+					stmt.execute(n);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			});
+			System.out.println("******* board, replyboard 입력 완료 **********");
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			try{
+				db.close(stmt);
+				db.close(db.con);
+			}
+			catch(Exception ef){
+				ef.printStackTrace();
+			}
+		}
+		
 	}
 }
