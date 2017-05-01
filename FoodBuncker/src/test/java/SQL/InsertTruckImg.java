@@ -31,7 +31,7 @@ public class InsertTruckImg {
 				"INSERT INTO TRUCKIMAGE VALUES((SELECT NVL(MAX(TI_No), 0) + 1 FROM TruckImage), 6, 'truck06_c_01.jpg', '기존의 피자 체인점의 특별하지 않은 맛이 싫어 새로운 맛으로 승부를 보기위해 독립, 직접 피자를 만들고 있습니다.', 2, 'Y')", 
 				"INSERT INTO TRUCKIMAGE VALUES((SELECT NVL(MAX(TI_No), 0) + 1 FROM TruckImage), 7, 'truck07_c_01.jpg', '버거만을 연구하였습니다.미국 전통의 버거와 한국인의 입맛을 고려하여 항상 연구하고 시도하고 있습니다.', 2, 'Y')", 
 				"INSERT INTO TRUCKIMAGE VALUES((SELECT NVL(MAX(TI_No), 0) + 1 FROM TruckImage), 8, 'truck08_c_01.jpg', '태국 전통의 볶음요리와 살치살 스테이크의 전문 쉐프의 손길을 느낄 수 있습니다.', 2, 'Y')", 
-				// 일반 이미지
+				// 메인메뉴 이미지
 				"INSERT INTO TRUCKIMAGE VALUES((SELECT NVL(MAX(TI_No), 0) + 1 FROM TruckImage), 1, 'truck01_o_01.jpg', 'LA식 갈비와 볶은 김치와의 만남. 상상하기 어려운 맛이지만 한 번 맛보신 분들은 그 강렬한 맛을 잊지 못하고 다시 찾아 오시더군요.', 3, 'Y')", 
 				"INSERT INTO TRUCKIMAGE VALUES((SELECT NVL(MAX(TI_No), 0) + 1 FROM TruckImage), 2, 'truck02_o_01.jpg', '쉐프가 직접 고른 1++등급의 한우 살치살을 고열의 철판에 짧은 시간에 구워내어 육즙의 손실을 최소화시킨 고급스러운 맛', 3, 'Y')", 
 				"INSERT INTO TRUCKIMAGE VALUES((SELECT NVL(MAX(TI_No), 0) + 1 FROM TruckImage), 3, 'truck03_o_01.jpg', '마가린에 구운 원조 남포동식 호떡,볶은 씨앗이 고소하게 씹힙니다.', 3, 'Y')", 
@@ -39,7 +39,17 @@ public class InsertTruckImg {
 				"INSERT INTO TRUCKIMAGE VALUES((SELECT NVL(MAX(TI_No), 0) + 1 FROM TruckImage), 5, 'truck05_o_01.jpg', '부드러운 고기와 약간 매콤한 소스가 섞여 최고의 맛을 보여 드립니다. ', 3, 'Y')", 
 				"INSERT INTO TRUCKIMAGE VALUES((SELECT NVL(MAX(TI_No), 0) + 1 FROM TruckImage), 6, 'truck06_o_01.jpg', '화덕 피자의 바삭하고 쫄깃한 식감을 느낄 수 있으며 신선한 토핑으로 재료 각각의 맛을 느낄 수 있습니다.', 3, 'Y')", 
 				"INSERT INTO TRUCKIMAGE VALUES((SELECT NVL(MAX(TI_No), 0) + 1 FROM TruckImage), 7, 'truck07_o_01.jpg', '소스의 강한 맛을 줄여 소고기 고유의 맛을 살리고 신선한 야채를 느낄 수 있는 최고급 버거', 3, 'Y')", 
-				"INSERT INTO TRUCKIMAGE VALUES((SELECT NVL(MAX(TI_No), 0) + 1 FROM TruckImage), 8, 'truck08_o_01.jpg', '최고급의 한우 살치살을 철판에 구워 부드러운 맛을 느낄 수 있습니다.', 3, 'Y')"
+				"INSERT INTO TRUCKIMAGE VALUES((SELECT NVL(MAX(TI_No), 0) + 1 FROM TruckImage), 8, 'truck08_o_01.jpg', '최고급의 한우 살치살을 철판에 구워 부드러운 맛을 느낄 수 있습니다.', 3, 'Y')",
+				
+				//일반이미지
+				"INSERT INTO TRUCKIMAGE VALUES((SELECT NVL(MAX(TI_No), 0) + 1 FROM TruckImage), 2, 'truck02_t_02.jpg', '2016/4/20 대학로에서', 4, 'Y')",
+				"INSERT INTO TRUCKIMAGE VALUES((SELECT NVL(MAX(TI_No), 0) + 1 FROM TruckImage), 2, 'truck02_t_03.jpg', '2016/4/20 대학로에서', 4, 'Y')",
+				"INSERT INTO TRUCKIMAGE VALUES((SELECT NVL(MAX(TI_No), 0) + 1 FROM TruckImage), 2, 'truck02_t_04.jpg', '2016/4/20 대학로에서', 4, 'Y')",
+				"INSERT INTO TRUCKIMAGE VALUES((SELECT NVL(MAX(TI_No), 0) + 1 FROM TruckImage), 2, 'truck02_t_05.jpg', '2016/4/20 대학로에서', 4, 'Y')",
+				"INSERT INTO TRUCKIMAGE VALUES((SELECT NVL(MAX(TI_No), 0) + 1 FROM TruckImage), 2, 'truck03_t_02.jpg', '2016/8/10 보라매공원', 4, 'Y')",
+				"INSERT INTO TRUCKIMAGE VALUES((SELECT NVL(MAX(TI_No), 0) + 1 FROM TruckImage), 2, 'truck03_t_03.jpg', '2016/8/10 보라매공원', 4, 'Y')",
+				"INSERT INTO TRUCKIMAGE VALUES((SELECT NVL(MAX(TI_No), 0) + 1 FROM TruckImage), 2, 'truck03_t_04.jpg', '2016/8/10 보라매공원', 4, 'Y')",
+				"INSERT INTO TRUCKIMAGE VALUES((SELECT NVL(MAX(TI_No), 0) + 1 FROM TruckImage), 2, 'truck04_t_02.jpg', '2017/3/29 잠실', 4, 'Y')",
 		};
 
 		MyJDBC db = null;
