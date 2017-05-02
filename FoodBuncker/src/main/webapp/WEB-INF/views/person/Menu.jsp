@@ -94,8 +94,8 @@
 							<div class="form-group">
 								<label class="col-md-2 control-label">검색어</label>
 								<div class="col-md-10">
-									<input type="text" class="form-control" value="검색어를 입력해 주세요.">
-									<input type="submit" class="btn btn-primary" value="검색">
+									<input type="text" class="form-control" value="검색어를 입력해 주세요." name="word" id="word">
+									<input type="button" class="btn btn-primary" value="검색" id="sBtn" >
 								</div>
 							</div>
 						</form>
@@ -193,7 +193,10 @@
         				alert("에러다"+menuPage);
         			} 
         		});
-        	});        	
+        	});
+        	$("#sBtn").click(function(){
+        		
+        	});
         });
         function setMenuView(data){
         	var str = "";
