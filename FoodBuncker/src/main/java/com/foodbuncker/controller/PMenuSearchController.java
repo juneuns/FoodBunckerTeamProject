@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.View;
 
 import com.foodbuncker.service.PMenuSearchService;
 import com.foodbuncker.util.PageUtil;
@@ -48,12 +49,15 @@ public class PMenuSearchController {
 	
 	@RequestMapping("/person/Search.food")
 	public ModelAndView searchView(ModelAndView mv, HttpServletRequest req){
-		ArrayList oneTPlan = service.selectOneTPlan(req.getParameter("tno"));
+		String strTno = req.getParameter("tno");
+		String clip = req.getParameter("clip");
+		ArrayList oneTPlan = service.selectOneTPlan(strTno);
 		ArrayList allTruck = service.selectAllTruck();
 		ArrayList tNowList = service.selectTNow();
 		ArrayList tWeekPlan = service.selectTWeekPlan();
 		String startDate = service.getStartDate();
 		String endDate = service.getEndDate();
+		String tName = service.getTName(strTno);
 		ArrayList dayWeekList = service.getDayWeek();
 		mv.addObject("DAYWEEKLIST",dayWeekList);
 		mv.addObject("STARTDATE",startDate);
@@ -62,7 +66,17 @@ public class PMenuSearchController {
 		mv.addObject("ALLTRUCK",allTruck);
 		mv.addObject("TNOWLIST",tNowList);
 		mv.addObject("TWEEKPLAN",tWeekPlan);
+		mv.addObject("TNAME",tName);
 		mv.setViewName("/person/Search");
+		
+		return mv;
+	}
+	
+	@RequestMapping("/person/TruckSearch.food")
+	public ModelAndView truckSearch(ModelAndView mv, HttpServletRequest req){
+		ArrayList oneTPlan = service.selectOneTPlan(req.getParameter("tno"));
+		mv.addObject("ONETPLAN",oneTPlan);
+		mv.setViewName("/person/TruckSearchAjax");
 		return mv;
 	}
 	

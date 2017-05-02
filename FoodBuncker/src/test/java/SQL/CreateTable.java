@@ -7,7 +7,7 @@ public class CreateTable {
 
 	public CreateTable() {
 		
-		String[] table = {"ORDERMENU", "MORDER", "MENU", "REPLYBOARD", "BOARD", "PLAN", "OPENCLOSE", "PLACE", "TRUCKIMAGE", "TRUCKINFO","SEARCHRECORD"};
+		String[] table = {"RANGECAL","ORDERMENU", "MORDER", "MENU", "REPLYBOARD", "BOARD", "PLAN", "OPENCLOSE", "PLACE", "TRUCKIMAGE", "TRUCKINFO","SEARCHRECORD"};
 		String cntTable = "Select count(*) as cnt from tab where tname=";
 		String drop = "Drop Table ";
 	
@@ -22,8 +22,8 @@ public class CreateTable {
 						+ "T_NUM VARCHAR2(20) NOT NULL, "
 						+ "T_ID VARCHAR2(20) NOT NULL, "
 						+ "T_PASSWORD VARCHAR2(20) NOT NULL, "
-						+ "T_KEYWORD VARCHAR2(200) NOT NULL, "
-						+ "T_BODY VARCHAR2(2000) NOT NULL, "
+//						+ "T_KEYWORD VARCHAR2(200) NOT NULL, "
+//						+ "T_BODY VARCHAR2(2000) NOT NULL, "
 						+ "T_ISSHOW CHAR(1) NOT NULL)",
 				"CREATE TABLE TRUCKIMAGE "
 						+ "(TI_NO NUMBER(5) Constraint TI_NO_PK Primary Key, "
@@ -94,7 +94,12 @@ public class CreateTable {
 				"CREATE TABLE SEARCHRECORD"
 						+"(SR_NO NUMBER(10) PRIMARY KEY,"
 						+"SR_WORD VARCHAR2(50) NOT NULL,"
-						+"SR_RECORD VARCHAR2(4000) NOT NULL)"
+						+"SR_RECORD VARCHAR2(4000) NOT NULL)",
+				"CREATE TABLE RANGECAL ("
+						+"RG_NO NUMBER(5) PRIMARY KEY,"
+						+"RG_YM VARCHAR2(10) NOT NULL,"
+						+"RG_T_NO NUMBER(5) references truckinfo(t_no),"
+						+"RG_RANGE NUMBER(10) NOT NULL)"
 		};
 		
 		MyJDBC db = null;
@@ -147,6 +152,7 @@ public class CreateTable {
 		new InsertMenu();
 		new InsertOpenClosePlan();
 		new InsertBoardReplyBoard();
+		new InsertRangeCalc();
 		
 		
 	}

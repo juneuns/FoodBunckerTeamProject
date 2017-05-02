@@ -35,5 +35,8 @@ public class PMenuSearchDAO {
 	public ArrayList selectOneTPlan(int tno){
 		return (ArrayList)sqlSession.selectList("foodbuncker.PMenuSearch.selectOneTPlan",tno);
 	}
+	public String selectOneTName(int tno){
+		return sqlSession.selectOne("foodbuncker.PMenuSearch.selectOneTName", tno);
+	}
 
 }
