@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html class="no-js" lang="">
     <head>
@@ -104,12 +104,9 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-12">
-                        <div class="imgbox style4">
-                            <div class="img">
-                                <img src="../resources/img/aboutmap.jpg" alt="1895x1000 About the image">
+                    <div class="col-md-12" align="center">
+                            <div id="map_canvas" style="width:1000px;height:400px;">
                             </div>
-                        </div>
                     </div>                   
                 </div>
             </div>
@@ -132,107 +129,33 @@
                                 <thead>
 									<tr>
 <!----------------------------------------------당일부터 일주일간 표시--------------------------------------------------- -->
-										<td colspan="8">2017년 4월 24일 - 2017년 4월 30일</td>
+										<td colspan="8">${STARTDATE } - ${ENDDATE }</td>
 									</tr>
                                     <tr>
                                         <th></th>
-                                        <th>24일(월)</th>
-                                        <th>25일(화)</th>
-                                        <th>26일(수)</th>
-										<th>26일(목)</th>
-										<th>26일(금)</th>
-										<th>26일(토)</th>
-										<th>26일(일)</th>
+                                    <c:forEach var="data" items="${DAYWEEKLIST }">
+                                        <th>${ data}</th>
+                                     </c:forEach>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 
-<!-- -----------------------   foreach문 사용하여  반복--------------------------------------- --> 	                                
+<!-- -----------------------   foreach문 사용하여  반복--------------------------------------- --> 
+							                                
                                     <tr>
-                                        <th scope="row">truck1</th>
-                                        <td>구로1동</td>
-                                        <td>종로 신영동</td>
-                                        <td>대학로</td>
-										<td>구로1동</td>
-                                        <td>종로 신영동</td>
-                                        <td>대학로</td>
-										<td>대학로</td>
+                            <c:forEach var="data" items="${TWEEKPLAN }" varStatus="st">
+                            	<c:if test="${st.count%7 == 1 }">
+                                        <th scope="row">${data.tname }</th>
+                              	</c:if>
+                                        <td>${data.pname }</td>
+                                 <c:if test="${st.count%7 == 0 }">
                                     </tr>
-                                    
+                                    <tr>
+                                 </c:if>
+                           </c:forEach>	         
 <!-- -----------------------   foreach문 사용하여  반복 끝--------------------------------------- --> 
 
-<!-- -----------------------   위의 foreach문 완성시 삭제 부분 시작--------------------------------------- --> 		                                    
-                                    <tr>
-                                        <th scope="row">truck2</th>
-                                        <td>구로1동</td>
-                                        <td>종로 신영동</td>
-                                        <td>대학로</td>
-										<td>구로1동</td>
-                                        <td>종로 신영동</td>
-                                        <td>대학로</td>
-										<td>대학로</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">truck3</th>
-                                        <td>구로1동</td>
-                                        <td>종로 신영동</td>
-                                        <td>대학로</td>
-										<td>구로1동</td>
-                                        <td>종로 신영동</td>
-                                        <td>대학로</td>
-										<td>대학로</td>
-                                    </tr>
-									<tr>
-                                        <th scope="row">truck4</th>
-                                       <td>구로1동</td>
-                                        <td>종로 신영동</td>
-                                        <td>대학로</td>
-										<td>구로1동</td>
-                                        <td>종로 신영동</td>
-                                        <td>대학로</td>
-										<td>대학로</td>
-                                    </tr>
-									<tr>
-                                        <th scope="row">truck5</th>
-                                       <td>구로1동</td>
-                                        <td>종로 신영동</td>
-                                        <td>대학로</td>
-										<td>구로1동</td>
-                                        <td>종로 신영동</td>
-                                        <td>대학로</td>
-										<td>대학로</td>
-                                    </tr>
-									<tr>
-                                        <th scope="row">truck6</th>
-                                       <td>구로1동</td>
-                                        <td>종로 신영동</td>
-                                        <td>대학로</td>
-										<td>구로1동</td>
-                                        <td>종로 신영동</td>
-                                        <td>대학로</td>
-										<td>대학로</td>
-                                    </tr>
-									<tr>
-                                        <th scope="row">truck7</th>
-                                        <td>구로1동</td>
-                                        <td>종로 신영동</td>
-                                        <td>대학로</td>
-										<td>구로1동</td>
-                                        <td>종로 신영동</td>
-                                        <td>대학로</td>
-										<td>대학로</td>
-                                    </tr>
-									<tr>
-                                        <th scope="row">truck8</th>
-                                        <td>구로1동</td>
-                                        <td>종로 신영동</td>
-                                        <td>대학로</td>
-										<td>구로1동</td>
-                                        <td>종로 신영동</td>
-                                        <td>대학로</td>
-										<td>대학로</td>
-                                    </tr>
-<!-- -----------------------   foreach문 사용하여 1단 끝--------------------------------------- --> 	                                    
+                                
                                     
                                 </tbody>
                             </table>
@@ -251,8 +174,12 @@
                         <form class="form-horizontal" role="form" id="frm" action="">
 							<div class="form-group">
 								<div class="col-md-10">
-									<input type="text" class="form-control" value="검색어를 입력해 주세요.">
-									<input type="submit" class="btn btn-primary" value="검색">
+									<select id="truckName">
+									<option value=0>=======선택하세요==========</option>
+										<c:forEach var="data" items="${ALLTRUCK }">
+											<option value="${data.tno }">${data.tname }</option>
+										</c:forEach>
+									</select>
 								</div>
 							</div>
 						</form> 
@@ -318,41 +245,98 @@
 		<!-- BEGIN PAGE SCRIPTS -->
 		<script src="../resources/assets/plugins/jquery-ui/jquery-ui.min.js"></script>
         <script src="../resources/assets/plugins/moment/moment.js"></script> 
+        
         <script src='../resources/assets/plugins/fullcalendar/dist/fullcalendar.min.js'></script>
-		<!-- 달력내 일정 입력 jquery -->
         <script src="../resources/assets/pages/jquery.fullcalendar.js"></script> 
+		<!-- 달력내 일정 입력 jquery -->
+        
+        <script type="text/javascript" src="https://apis.daum.net/maps/maps3.js?apikey=dac3b6738ce771f13c325339b20d8183&libraries=services"></script>
 		<script>
 		$(document).ready(function(){
-			var events = [{
-					title: '대학로',
-					start: '2017-04-25',
-					className: 'bg-danger'
-					}, {
-					title: '대학로',
-					start:'2017-04-26',				
-					className: 'bg-danger'
-					}, {
-					title: '대학로',
-					start:'2017-04-27',				
-					className: 'bg-danger'
-					}, {
-					title: '대학로',
-					start:'2017-04-28',				
-					className: 'bg-danger'
-					}, {
-					title: '대학로',
-					start:'2017-04-29',				
-					className: 'bg-danger'
-				}];
-			//$('#calendar').fullCalendar('removeEvents');
-			$('#calendar').fullCalendar({
-			defaultDate: '2017-04-12',
-			editable: true,
-			eventLimit: true, // allow "more" link when too many events
-			events: events
+				//$('#calendar').fullCalendar('removeEvents');
+				$('#calendar').fullCalendar({
+				//	defaultDate: '2017-04-12',
+				//	editable: true,
+				//	eventLimit: true, // allow "more" link when too many events
+					events: [
+						{
+							title: '대학로',
+							start: '2017-04-25',
+							className: 'bg-danger'
+						}, 
+						{
+							title: '대학로',
+							start:'2017-04-26',				
+							className: 'bg-danger'
+						}, 
+						{
+							title: '대학로',
+							start:'2017-04-27',				
+							className: 'bg-danger'
+						}, 
+						{
+							title: '대학로',
+							start:'2017-04-28',				
+							className: 'bg-danger'
+						}, 
+						{
+							title: '대학로',
+							start:'2017-04-29',				
+							className: 'bg-danger'
+						}
+					]
 			});
-		
-	
+			
+			
+			function init(){
+    			map_initialize(37.5045083, 127.0489959);
+    		}
+			
+    		window.onload=init();
+    		var map;
+    		
+    		function map_initialize( myLat, myLng ){
+    			console.log("map_initialize2");
+    			var position = new daum.maps.LatLng(myLat,myLng);    			
+    			map = new daum.maps.Map(document.getElementById('map_canvas'),{
+    				center: position,
+    				level: 9,
+    				mapTypeId: daum.maps.MapTypeId.ROAD
+    				
+    			});
+    			map.setDraggable(false);
+    			map.setZoomable(false);
+    			var tLat = new Array();
+    			var tLng = new Array();
+    			var tno = new Array();
+    			var tname = new Array();
+    			<c:forEach items="${TNOWLIST}" var="item">    			
+    				tLat.push("${item.plat}");
+    				tLng.push("${item.plng}");
+    				tno.push("${item.tno}");
+    				tname.push("${item.tname}");
+    			</c:forEach>
+    			for( var i=0 ; i < tLat.length ; i++){
+    				addMarker(tLat[i],tLng[i],tno[i],tname[i]);
+    			}
+    			function addMarker(tLat,tLng,tno,tname){	
+    				var geocoder = new daum.maps.services.Geocoder();
+    				var coords=new daum.maps.LatLng(tLat, tLng);
+    				var marker = new daum.maps.Marker({
+    					map: map,
+    					position: coords,
+    					clickable: true
+    				});
+    				var contentname = tname;
+    				var infowindow = new daum.maps.InfoWindow({
+    					content : '<div style="padding:5px;"> <a href="../person/DetailView.hair?tno='+tno+'">'+tname+'</a></div>',
+    					removable: true
+    				});
+    				daum.maps.event.addListener(marker,'click',function(){
+    					infowindow.open(map, marker);
+    				}); 
+    			}
+    		};
 
 		});
 		</script>

@@ -23,7 +23,7 @@ public class InsertMenu {
 
 				"INSERT INTO Menu VALUES((SELECT NVL(MAX(M_No), 0) + 1 FROM Menu), 2, '찹스테이크', 13500,'1++등급 한우의 안심을 사용한 부드러운 맛', 'truck02_m_01.jpg', 'M','#비프스테이크#시카고#스테이크#소고기', 'Y')",
 				"INSERT INTO Menu VALUES((SELECT NVL(MAX(M_No), 0) + 1 FROM Menu), 2, '시카고립', 12500,'1++등급 한우의 등심을 사용하여 소고기의 참맛을 느낄 수 있습니다.', 'truck02_m_02.jpg', 'S','#등심#한우#스테이크#소고기#시카고', 'Y')",
-				"INSERT INTO Menu VALUES((SELECT NVL(MAX(M_No), 0) + 1 FROM Menu), 2, '시카고살치스테이크', 15500,'1++등급 한우의 살치살을 이용한 요리', 'truck0_m_03.jpg', 'S','#살치살#스테이크#시카고#소고기', 'Y')",
+				"INSERT INTO Menu VALUES((SELECT NVL(MAX(M_No), 0) + 1 FROM Menu), 2, '시카고살치스테이크', 15500,'1++등급 한우의 살치살을 이용한 요리', 'truck02_m_03.jpg', 'S','#살치살#스테이크#시카고#소고기', 'Y')",
 
 				"INSERT INTO Menu VALUES((SELECT NVL(MAX(M_No), 0) + 1 FROM Menu), 3, '씨앗호떡', 3500,'견과류가 풍부한 명물 호떡', 'truck03_m_01.jpg', 'M','#견과류#땅콩#호두#호떡#씨앗#남포동', 'Y')",
 				"INSERT INTO Menu VALUES((SELECT NVL(MAX(M_No), 0) + 1 FROM Menu), 3, '옛날호떡', 3000,'옛날식으로 만든 평범하지만 잊지 못하는 맛', 'truck03_m_02.jpg', 'S','#예날#호떡#남포동', 'Y')",

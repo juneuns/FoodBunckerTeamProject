@@ -198,5 +198,5 @@
 //initializing CalendarApp
 function($) {
     "use strict";
-  $.CalendarApp.init()
+  //$.CalendarApp.init()
 }(window.jQuery);

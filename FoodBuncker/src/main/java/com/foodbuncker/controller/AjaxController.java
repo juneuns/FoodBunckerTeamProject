@@ -18,8 +18,9 @@ public class AjaxController {
 	@Autowired
 	PMenuSearchService service;
 	
-	@RequestMapping("../person/MenuAddView/{nowpage}.food")
+	@RequestMapping("/person/MenuAddView/{nowpage}.food")
 	public ResponseEntity<List<PMenuSearchVO>> list(@PathVariable("nowPage") Integer nowPage){
+		System.out.println("ajax호출 성공");
 		ResponseEntity<List<PMenuSearchVO>> entity = null;
 		PageUtil pInfo = service.pageInfo(nowPage);	
 		try{

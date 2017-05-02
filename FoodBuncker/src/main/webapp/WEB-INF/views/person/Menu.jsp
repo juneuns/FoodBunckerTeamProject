@@ -128,10 +128,11 @@
            	<div class="row" id="moreMenu">
            	
            	</div>
+           	
         <c:if test="${PINFO.nowPage ne PINFO.totalPage }">   	
      		<div class="row">
             	<div class="text-center">
-                	<button href="#" class="btn btn-default btn-colored" id="lBtn" value="Load More"></button>
+                	<input type="button" class="btn btn-default btn-colored" id="lBtn" value="Load More">
               	</div>
           	</div>
 		</c:if>	                
@@ -172,31 +173,51 @@
             r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
             ga('create','UA-XXXXX-X','auto');ga('send','pageview');
         </script>
+        
+        
         <script>
         $(document).ready(function(){
         	$("#lBtn").click(function(){
         		var nowPage=${PINFO.nowPage}+1;
-        		$.getJSON("../person/MenuAddView/"+nowpage+".food",function(data){
-        			var str = "";
-        			$(data).each(function(){
-        				str +="<div class='col-md-4'>"
-                        	+	"<div class='item'>"
-                        	+		"<div class='align'>"
-                           	+			"<div class='item-thumbnail'>"
-                           	+				"<a href='../../person/DetailView.food?tno="+this.tno+"&nowPage="+this.nowPage+"'>"
-                            +				"<img src='../image/"+this.imgname+"' alt='About the image'></a>"
-                           	+			"</div>"
-                           	+			"<h4>"+this.name+"</h4>"
-                           	+			"<p>"+this.body+"</p>"
-                        	+		"</div>"
-                        	+		"<span class='price'>"+this.price+"원</span>"
-                    		+	"</div>"
-                			+"</div>"
-        			});
-        			$("#moreMenu").html(str);
+         		$.ajax({
+        			type : "GET",
+        			url : "../person/MenuAddView.food",
+        			data : "temp=" + new Date() + "&nowPage="+nowPage,
+        			dataType : "json",
+	       			success : setMenuView,
+					error : function(){
+        				alert("에러다");
+        			} 
         		});
         	});        	
         });
+        function setMenuView(data){
+        	var str = "";
+        	var addmenus = data.menuadd
+			$.each(addmenus,function(key,temp){
+				var tno = temp.tno;
+				var nowPage = temp.nowPage;
+				var imgname = temp.imgname;
+				var name = temp.name;
+				var body = temp.body;
+				var price = temp.price;
+				str +="<div class='col-md-4'>"
+                	+	"<div class='item'>"
+                	+		"<div class='align'>"
+                   	+			"<div class='item-thumbnail'>"
+                   	+				"<a href='../../person/DetailView.food?tno="+tno+"&nowPage="+nowPage+"'>"
+                    +				"<img src='../image/"+imgname+"' alt='About the image'></a>"
+                   	+			"</div>"
+                   	+			"<h4>"+name+"</h4>"
+                   	+			"<p>"+body+"</p>"
+                	+		"</div>"
+                	+		"<span class='price'>"+this.price+"원</span>"
+            		+	"</div>"
+        			+"</div>"
+			});
+        	//alert(str);
+			$("#moreMenu").append(str);
+        }
         </script>
     </body>
 </html>

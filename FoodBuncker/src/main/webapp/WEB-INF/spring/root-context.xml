@@ -18,8 +18,8 @@
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
     	<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
     	<property name="url" value="jdbc:oracle:thin:@localhost:1521:orcl" />
-    	<property name="username" value="foodtruck" />
-    	<property name="password" value="1234" />
+    	<property name="username" value="scott" />
+    	<property name="password" value="tiger" />
 	</bean> 
 	
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">

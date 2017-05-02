@@ -23,5 +23,17 @@ public class PMenuSearchDAO {
 	public ArrayList selectTNow(){
 		return (ArrayList)sqlSession.selectList("foodbuncker.PMenuSearch.selectTNow");
 	}
+	
+	public ArrayList selectTWeekPlan(HashMap map){
+		return (ArrayList)sqlSession.selectList("foodbuncker.PMenuSearch.selectTWeekPlan",map);
+	}
+	
+	public ArrayList selectAllTruck(){
+		return (ArrayList)sqlSession.selectList("foodbuncker.PMenuSearch.selectAllTruck");
+	}
+	
+	public ArrayList selectOneTPlan(int tno){
+		return (ArrayList)sqlSession.selectList("foodbuncker.PMenuSearch.selectOneTPlan",tno);
+	}
 
 }

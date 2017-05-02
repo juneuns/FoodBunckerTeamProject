@@ -39,6 +39,16 @@
 		m_isshow='Y'
 </select>
 
+<select id="selectAllTruck" resultType="pmenuVO">
+	SELECT
+		t_no AS TNO,
+		t_name AS TNAME
+	FROM 
+		truckinfo
+	ORDER BY
+		t_no
+</select>
+
 <select id="selectTNow" resultType="pmenuVO">
 	SELECT
 		oc_t_no AS TNO,
@@ -54,6 +64,45 @@
 	AND
 		oc_p_no = p_no
 	AND
-		to_char(oc_open,'YYYY/MM/DD)=to_char(SYSDATE,'YYYY/MM'DD')
+		to_char(oc_open,'YYYY/MM/DD')=to_char(SYSDATE,'YYYY/MM/DD')
+</select>
+
+<select id="selectTWeekPlan" parameterType="hashmap" resultType="pmenuVO">
+	SELECT
+		t_name AS TNAME,
+		pp_date AS PDATE,
+		p_placeName AS PNAME
+	FROM
+		truckinfo,
+		plan,
+		place
+	WHERE
+		pp_t_no = t_no
+	AND
+		pp_p_no = p_no
+	AND
+		t_isshow = 'Y'
+	AND
+		pp_date BETWEEN to_date(#{startdate},'YYYY/MM/DD') AND to_date(#{enddate},'YYYY/MM/DD')
+	ORDER BY
+		t_no,
+		pp_date
+</select>
+
+<select id="selectOneTPlan" parameterType="int" resultType="pmenuVO">
+	SELECT
+		t_name AS TNAME,
+		p_placename AS PNAME,
+		pp_date AS PDATE
+	FROM
+		plan,
+		truckinfo,
+		place
+	WHERE
+		pp_t_no = t_no
+	AND
+		pp_p_no = p_no
+	AND 
+		t_no=#{tno}
 </select>
 </mapper>
