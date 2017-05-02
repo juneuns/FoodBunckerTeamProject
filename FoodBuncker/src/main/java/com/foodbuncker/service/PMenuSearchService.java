@@ -93,5 +93,15 @@ public class PMenuSearchService {
 		dayWeekList.add(vo.getpDayWeek7());
 		return dayWeekList;
 	}
+	
+	public String getTName(String strTno){
+		int tno = 0;
+		try{
+			tno = Integer.parseInt(strTno);
+		}catch(Exception e){
+			tno = 1;
+		}
+		return dao.selectOneTName(tno);
+	}
 
 }

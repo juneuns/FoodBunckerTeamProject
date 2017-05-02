@@ -169,13 +169,13 @@
         <section class="container">
             <div class="container">
                 <div class="row">
-                    <div class="section-headline">
+                    <div class="section-headline" id="trucksearch">
                         <h3>FOOD TRUCK 별 위치 검색</h3>
                         <form class="form-horizontal" role="form" id="frm" action="">
 							<div class="form-group">
 								<div class="col-md-10">
 									<select id="truckName">
-									<option value=0>=======선택하세요==========</option>
+									  <option value=0>=======선택하세요==========</option> 
 										<c:forEach var="data" items="${ALLTRUCK }">
 											<option value="${data.tno }">${data.tname }</option>
 										</c:forEach>
@@ -188,6 +188,9 @@
             </div>
 			<div class="col-md-12">
 				<div class="card-box">
+				<div class="row">
+					<h2>${TNAME }</h2>
+				</div>
 				  <div id="calendar"></div>
                 </div>
             </div> <!-- end col -->
@@ -197,24 +200,15 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-4">
-                        <div class="footer-brand">
-                            <img src="../resources/img/logo.png" alt="About the image">
-                        </div>
+                        
                     </div>
                     <div class="col-sm-4">
                         <div class="footer-social">
-                            <ul class="social">
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                                <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                            </ul>
+                            
                         </div>
                     </div>
                     <div class="col-sm-4">
-                        <div class="footer-copyright">
-                            <p>© Zawia</p>
-                        </div>
+                        
                         
                     </div>
                 </div>
@@ -247,52 +241,72 @@
         <script src="../resources/assets/plugins/moment/moment.js"></script> 
         
         <script src='../resources/assets/plugins/fullcalendar/dist/fullcalendar.min.js'></script>
-        <script src="../resources/assets/pages/jquery.fullcalendar.js"></script> 
+       <!-- <script src="../resources/assets/pages/jquery.fullcalendar.js"></script> --> 
 		<!-- 달력내 일정 입력 jquery -->
         
         <script type="text/javascript" src="https://apis.daum.net/maps/maps3.js?apikey=dac3b6738ce771f13c325339b20d8183&libraries=services"></script>
 		<script>
-		$(document).ready(function(){
-				//$('#calendar').fullCalendar('removeEvents');
-				$('#calendar').fullCalendar({
-				//	defaultDate: '2017-04-12',
-				//	editable: true,
-				//	eventLimit: true, // allow "more" link when too many events
-					events: [
-						{
-							title: '대학로',
-							start: '2017-04-25',
+		
+		function fullCalendarInit(){
+			//$('#calendar').fullCalendar('removeEvents');
+			$('#calendar').fullCalendar({
+			//	defaultDate: '2017-04-12',
+			//	editable: false,
+			//	eventLimit: true, // allow "more" link when too many events
+				header: {
+                left: 'title'
+              
+                //right: 'month,agendaWeek,agendaDay'
+            },
+				events: [
+					<c:forEach items="${ONETPLAN}" var="data" varStatus="st"> 
+					{
+						title: '${data.pname}',
+						start: '${data.pdate}',
+						<c:if test="${data.pno%5 == 0}">
 							className: 'bg-danger'
-						}, 
-						{
-							title: '대학로',
-							start:'2017-04-26',				
-							className: 'bg-danger'
-						}, 
-						{
-							title: '대학로',
-							start:'2017-04-27',				
-							className: 'bg-danger'
-						}, 
-						{
-							title: '대학로',
-							start:'2017-04-28',				
-							className: 'bg-danger'
-						}, 
-						{
-							title: '대학로',
-							start:'2017-04-29',				
-							className: 'bg-danger'
-						}
-					]
+						</c:if>
+						<c:if test="${data.pno%5 == 1}">
+							className: 'bg-success'
+						</c:if>
+						<c:if test="${data.pno%5 == 2}">
+							className: 'bg-purple'
+						</c:if>
+						<c:if test="${data.pno%5 == 3}">
+							className: 'bg-info'
+						</c:if>
+						<c:if test="${data.pno%5 == 4}">
+							className: 'bg-warning'
+						</c:if>
+						
+						
+						<c:if test="${st.last eq true}">
+							}
+						</c:if>
+						<c:if test="${st.last eq false}">
+							},
+						</c:if>
+					</c:forEach>
+				]
 			});
-			
-			
+		}
+		
+		$(document).ready(function(){
 			function init(){
     			map_initialize(37.5045083, 127.0489959);
     		}
 			
+			$("#truckName").change(function(){
+				var tno = $("#truckName option:selected").val();
+				$(location).attr("href","../person/Search.food?tno="+tno+"&clip=trucksearch");
+			});
+					
+		
+				
+			
+			
     		window.onload=init();
+    		window.onload=fullCalendarInit();
     		var map;
     		
     		function map_initialize( myLat, myLng ){

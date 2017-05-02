@@ -120,8 +120,10 @@
                         </div>
                     </div>
               		<c:if test="${temp.count % 3 eq 0 }">
-              			</div>
-              			<div class="row">
+              			<c:if test="${temp.last eq false }">
+              				</div>
+              				<div class="row">
+              			</c:if>
               		</c:if>                    
              	</c:forEach> 
            	</div>
@@ -176,17 +178,19 @@
         
         
         <script>
+        var menuPage=0;
         $(document).ready(function(){
         	$("#lBtn").click(function(){
-        		var nowPage=${PINFO.nowPage}+1;
+        		menuPage = menuPage+1;
+        		//var nowPage=${PINFO.nowPage}+1;
          		$.ajax({
         			type : "GET",
         			url : "../person/MenuAddView.food",
-        			data : "temp=" + new Date() + "&nowPage="+nowPage,
+        			data : "temp=" + new Date() + "&nowPage="+(menuPage+1),
         			dataType : "json",
 	       			success : setMenuView,
 					error : function(){
-        				alert("에러다");
+        				alert("에러다"+menuPage);
         			} 
         		});
         	});        	
@@ -194,6 +198,7 @@
         function setMenuView(data){
         	var str = "";
         	var addmenus = data.menuadd
+        	var i = 0 ;
 			$.each(addmenus,function(key,temp){
 				var tno = temp.tno;
 				var nowPage = temp.nowPage;
@@ -201,6 +206,7 @@
 				var name = temp.name;
 				var body = temp.body;
 				var price = temp.price;
+				i=i+1
 				str +="<div class='col-md-4'>"
                 	+	"<div class='item'>"
                 	+		"<div class='align'>"
@@ -214,6 +220,10 @@
                 	+		"<span class='price'>"+this.price+"원</span>"
             		+	"</div>"
         			+"</div>"
+        		if(i % 3 == 0 ){
+      				str +="</div>"
+      					+ "<div class='row'>"
+        		} 
 			});
         	//alert(str);
 			$("#moreMenu").append(str);
