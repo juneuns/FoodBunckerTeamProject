@@ -2,4 +2,101 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- vo type alias : "pmainVO" -->
 <mapper namespace="foodbuncker.PMainView">
+
+	<!-- 메뉴정보 가져오기 -->
+	<select id="selectMenu" resultType="pmainVO">
+		SELECT 
+			M_NO AS  NO,
+			M_T_NO AS TNO,
+			M_NAME AS NAME,
+			M_PRICE AS PRICE,
+			M_BODY AS BODY,
+			M_SAVENAME AS SNAME,
+			M_GRADE AS GRADE,
+			M_KEYWORD AS KWORD
+		FROM 
+			MENU
+		WHERE 
+			M_ISSHOW = 'Y'
+	</select>
+	
+	<!-- 후기글 가져오기 -->
+	<select id="selectReview" resultType="pmainVO">
+		SELECT
+			B_NO AS NO,
+			B_T_NO AS TNO,
+			B_BODY AS BODY,
+			B_DATE AS WDATE,
+			T_NAME AS TNAME
+		FROM
+			BOARD INNER JOIN TRUCKINFO
+		ON
+			BOARD.B_T_NO = TRUCKINFO.T_NO
+		WHERE 
+			T_ISSHOW = 'Y'
+		AND 
+			B_ISSHOW = 'Y'		
+	</select>
+	
+	<!-- 푸드트럭 정보 가져오기 -->
+	<select id="selectTruck" resultType="pmainVO">
+		SELECT
+			T_NO AS NO,
+			T_CHEF AS CHEF,
+			T_NAME AS NAME,
+			T_PHONE AS PHONE,
+			T_OPEN AS OPEN,
+			T_EMAIL AS EMAIL,
+			T_NUM AS NUM,
+			T_ID AS ID,
+			TI_SAVENAME AS SNAME
+		FROM
+			TRUCKINFO INNER JOIN TRUCKIMAGE
+		ON
+			TRUCKINFO.T_NO = TRUCKIMAGE.TI_T_NO
+		WHERE 
+			T_ISSHOW = 'Y' 
+		AND 
+			TI_ISSHOW = 'Y'
+		AND
+			TI_GRADE = 1
+		
+	</select>
+	
+	 
+	<!-- 푸드트럭 상세정보 가져오기 
+	<select id="">
+		SELECT
+			TI_NO AS TINO,
+			TI_T_NO AS TNO,
+			TI_SAVENAME AS SNAME,
+			TI_IMGBODY AS IMG,
+			TI_GRADE AS GRADE
+			
+	</select>
+	 -->
+	
+	<!-- 푸드트럭 메뉴 상세정보 가져오기 -->
+	<select id="selectMenuView" resultType="pmainVO" parameterType="int">
+		SELECT
+			M_NO AS MNO,
+			M_T_NO AS MTNO,
+			M_NAME AS MNAME,
+			M_PRICE AS PRICE,
+			M_BODY AS BODY,
+			M_SAVENAME AS SNAME,
+			M_GRADE AS GRADE,
+			T_NO AS TNO
+		FROM
+			MENU INNER JOIN TRUCKINFO
+		ON
+			MENU.M_T_NO = TRUCKINFO.T_NO
+		WHERE
+			M_ISSHOW = 'Y'
+		AND
+			T_ISSHOW = 'Y'
+		AND
+			T_NO = #{tno}	
+	</select>
+	
 </mapper>
