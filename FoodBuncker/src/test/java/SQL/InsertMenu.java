@@ -42,8 +42,8 @@ public class InsertMenu {
 				"INSERT INTO Menu VALUES((SELECT NVL(MAX(M_No), 0) + 1 FROM Menu), 6, '씬 피자', 7000,'도우를 얇게 하여 바삭함을 가지고 있는 피자', 'truck06_m_02.jpg', 'S','#피자#화덕#화덕피자#씬', 'Y')",
 				"INSERT INTO Menu VALUES((SELECT NVL(MAX(M_No), 0) + 1 FROM Menu), 6, '마늘 피자', 8000,'구운 마늘을 올려 느끼함을 없앤 어른신을 위한 피자', 'truck06_m_03.jpg', 'S','#피자#화덕#화덕피자#마늘', 'Y')",
 				"INSERT INTO Menu VALUES((SELECT NVL(MAX(M_No), 0) + 1 FROM Menu), 6, '이탈리안 피자', 8000,'장통 이탈리안 식으로 화덕에서 구운 피자', 'truck06_m_04.jpg', 'S','#피자#화덕#화덕피자#이탈리아', 'Y')",
-				"INSERT INTO Menu VALUES((SELECT NVL(MAX(M_No), 0) + 1 FROM Menu), 6, '고구마 피자', 8000,'곱게 갈은 고구마를 듬뿍 올려 달콤한  피자', 'truck06_m_04.jpg', 'S','#피자#화덕#화덕피자#고구마', 'Y')",
-				"INSERT INTO Menu VALUES((SELECT NVL(MAX(M_No), 0) + 1 FROM Menu), 6, '감자 피자', 8000,'얇게 썬 감자를 올려 감자를 좋아하시는 분을 위한 피자', 'truck06_m_04.jpg', 'S','#피자#화덕#화덕피자#감자', 'Y')",
+				"INSERT INTO Menu VALUES((SELECT NVL(MAX(M_No), 0) + 1 FROM Menu), 6, '고구마 피자', 8000,'곱게 갈은 고구마를 듬뿍 올려 달콤한  피자', 'truck06_m_05.jpg', 'S','#피자#화덕#화덕피자#고구마', 'Y')",
+				"INSERT INTO Menu VALUES((SELECT NVL(MAX(M_No), 0) + 1 FROM Menu), 6, '감자 피자', 8000,'얇게 썬 감자를 올려 감자를 좋아하시는 분을 위한 피자', 'truck06_m_06.jpg', 'S','#피자#화덕#화덕피자#감자', 'Y')",
 				
 				"INSERT INTO Menu VALUES((SELECT NVL(MAX(M_No), 0) + 1 FROM Menu), 7, '섬버거', 10000,'수제 와퍼, 빵, 데친 야채를 넣은 최고의 수제버거', 'truck07_m_01.jpg', 'M','#햄버거#와퍼#섬버거#수제', 'Y')",
 				"INSERT INTO Menu VALUES((SELECT NVL(MAX(M_No), 0) + 1 FROM Menu), 7, '미니버거', 6000,'크기를 줄여 칼로리가 적은 다이어트 버거', 'truck07_m_02.jpg', 'S','#햄버거#와퍼#섬버거#수제#다이어트', 'Y')",

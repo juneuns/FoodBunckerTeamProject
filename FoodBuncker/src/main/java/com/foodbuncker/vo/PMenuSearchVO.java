@@ -11,6 +11,13 @@ import java.util.Locale;
 public class PMenuSearchVO {
 	int no;
 	int tno;
+	int pno;
+	public int getPno() {
+		return pno;
+	}
+	public void setPno(int pno) {
+		this.pno = pno;
+	}
 	String name;
 	int price;
 	String body;

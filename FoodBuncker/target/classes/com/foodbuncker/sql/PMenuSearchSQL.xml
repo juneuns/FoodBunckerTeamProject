@@ -91,6 +91,7 @@
 
 <select id="selectOneTPlan" parameterType="int" resultType="pmenuVO">
 	SELECT
+		p_no AS PNO,
 		t_name AS TNAME,
 		p_placename AS PNAME,
 		pp_date AS PDATE
@@ -103,6 +104,14 @@
 	AND
 		pp_p_no = p_no
 	AND 
+		t_no=#{tno}
+</select>
+<select id="selectOneTName" parameterType="int" resultType="string">
+	SELECT 
+		t_name AS TNAME
+	FROM
+		truckinfo
+	WHERE
 		t_no=#{tno}
 </select>
 </mapper>
