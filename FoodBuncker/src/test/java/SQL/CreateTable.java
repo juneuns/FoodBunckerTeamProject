@@ -153,6 +153,7 @@ public class CreateTable {
 		new InsertOpenClosePlan();
 		new InsertBoardReplyBoard();
 		new InsertRangeCalc();
+		new InsertSearchRecord();
 		
 		
 	}
