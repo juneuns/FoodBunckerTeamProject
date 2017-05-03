@@ -173,7 +173,7 @@
                         <h3>FOOD TRUCK 별 위치 검색</h3>
                         <form class="form-horizontal" role="form" id="frm" action="">
 							<div class="form-group">
-								<div class="col-md-10">
+								<div class="col-md-12">
 									<select id="truckName">
 									  <option value=0>=======선택하세요==========</option> 
 										<c:forEach var="data" items="${ALLTRUCK }">
@@ -343,7 +343,7 @@
     				});
     				var contentname = tname;
     				var infowindow = new daum.maps.InfoWindow({
-    					content : '<div style="padding:5px;"> <a href="../person/DetailView.hair?tno='+tno+'">'+tname+'</a></div>',
+    					content : '<div style="padding:5px;"> <a href="../person/DetailView.food?tno='+tno+'">'+tname+'</a></div>',
     					removable: true
     				});
     				daum.maps.event.addListener(marker,'click',function(){

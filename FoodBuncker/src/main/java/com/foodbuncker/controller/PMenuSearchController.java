@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.foodbuncker.service.PMenuSearchService;
 import com.foodbuncker.util.PageUtil;
@@ -21,9 +22,16 @@ public class PMenuSearchController {
 	
 	@RequestMapping("/person/Menu.food")
 	public ModelAndView menuView(ModelAndView mv,HttpServletRequest req){
+		String word="";
 		int nowPage = service.changePage(req.getParameter("nowPage"));
+		try{
+			word = req.getParameter("word");
+		}catch(Exception e){
+			word = "";
+		}
 		PageUtil pInfo = service.pageInfo(nowPage);		
-		ArrayList<PMenuSearchVO> list = service.selectMenu(pInfo);
+		ArrayList<PMenuSearchVO> list = service.selectMenu(pInfo,word);
+		mv.addObject("WORD",word);
 		mv.addObject("PINFO",pInfo);
 		mv.addObject("LIST",list);
 		mv.setViewName("/person/Menu");
@@ -33,17 +41,20 @@ public class PMenuSearchController {
 	
 	@RequestMapping("/person/MenuAddView.food")
 	public ModelAndView menuAddView(ModelAndView mv, HttpServletRequest req){
-		//System.out.println("ajax 호출 왔어요. ");
+		String word="";
 		String strPage = req.getParameter("nowPage");
 		int nowPage = Integer.parseInt(strPage);
-		//System.out.println(nowPage);
 		PageUtil pInfo = service.pageInfo(nowPage);
-		ArrayList<PMenuSearchVO> list = service.selectMenu(pInfo);
+		try{
+			word = req.getParameter("word");
+		}catch(Exception e){
+			word = "";
+		}
+		ArrayList<PMenuSearchVO> list = service.selectMenu(pInfo,word);
 		mv.addObject("PINFO",pInfo);
 		mv.addObject("nowPage",nowPage);
 		mv.addObject("LIST",list);
 		mv.setViewName("/person/MenuAddViewAjax");
-		//System.out.println(list.size());
 		return mv;
 	}
 	
@@ -77,6 +88,25 @@ public class PMenuSearchController {
 		ArrayList oneTPlan = service.selectOneTPlan(req.getParameter("tno"));
 		mv.addObject("ONETPLAN",oneTPlan);
 		mv.setViewName("/person/TruckSearchAjax");
+		return mv;
+	}
+	
+	@RequestMapping("/person/MenuSearchRecordProc.food")
+	public ModelAndView menuSearchRecordProc(ModelAndView mv, HttpServletRequest req){
+		String strNo = req.getParameter("no");
+		int no = Integer.parseInt(strNo);
+		String word="";
+		try{
+			word = req.getParameter("word");
+		}catch(Exception e){
+			word = "";
+		}
+		service.searchRecordProc(word, no);
+		String tno = req.getParameter("tno");
+		RedirectView rv = new RedirectView();
+		rv.addStaticAttribute("tno", tno);
+		rv.setUrl("../person/DetailView.food");
+		mv.setView(rv);
 		return mv;
 	}
 	

@@ -30,6 +30,30 @@
 		RNO BETWEEN #{start} AND #{end}		
 </select>
 
+<select id="selectAllMenu" resultType="pmenuVO">
+	SELECT
+		m_no AS NO,
+		m_t_no AS TNO,
+		m_name AS NAME,
+		m_price AS PRICE,
+		m_body AS BODY,
+		m_savename AS IMGNAME,
+		m_grade AS GRADE,
+		m_keyword AS KEYWORD
+	FROM
+		menu
+</select>
+
+<select id="selectSearchRecord" parameterType="string" resultType="hashmap">
+	SELECT
+		sr_no AS NO,
+		sr_record AS RECORD
+	FROM
+		searchrecord
+	WHERE
+		sr_word=#{word}
+</select>
+
 <select id="selectCount" resultType="int">
 	SELECT
 		COUNT(*)
@@ -114,4 +138,23 @@
 	WHERE
 		t_no=#{tno}
 </select>
+
+<insert id="insertSearchRecord" parameterType="hashmap">
+	INSERT INTO
+		searchrecord
+	VALUES(
+		(SELECT NVL(MAX(sr_No), 0) + 1 FROM searchrecord),
+		#{word},
+		#{record}
+	)
+</insert>
+
+<update id="updateSearchRecord" parameterType="hashmap">
+	UPDATE
+		searchrecord
+	SET
+		sr_record = #{record}
+	WHERE
+		sr_no = #{no}
+</update>
 </mapper>
