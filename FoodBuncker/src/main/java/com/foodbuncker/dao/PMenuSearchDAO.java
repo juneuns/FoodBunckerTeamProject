@@ -35,8 +35,25 @@ public class PMenuSearchDAO {
 	public ArrayList selectOneTPlan(int tno){
 		return (ArrayList)sqlSession.selectList("foodbuncker.PMenuSearch.selectOneTPlan",tno);
 	}
+	
 	public String selectOneTName(int tno){
 		return sqlSession.selectOne("foodbuncker.PMenuSearch.selectOneTName", tno);
+	}
+	
+	public ArrayList<PMenuSearchVO> selectAllMenu(){
+		return (ArrayList)sqlSession.selectList("foodbuncker.PMenuSearch.selectAllMenu");
+	}
+	
+	public HashMap selectSearchRecord(String word){
+		return (HashMap)sqlSession.selectOne("foodbuncker.PMenuSearch.selectSearchRecord", word);
+	}
+	
+	public void insertSearchRecord(HashMap map){
+		sqlSession.insert("foodbuncker.PMenuSearch.insertSearchRecord",map);
+	}
+	
+	public void updateSearchRecord(HashMap map){
+		sqlSession.update("foodbuncker.PMenuSearch.updateSearchRecord",map);
 	}
 
 }

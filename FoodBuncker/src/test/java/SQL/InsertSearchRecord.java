@@ -44,7 +44,7 @@ public class InsertSearchRecord {
 								int intTemp = Integer.parseInt(temp[1]);
 								intTemp = intTemp+1;
 								temp[1] = String.valueOf(intTemp);
-								midResult = temp.toString();
+								midResult = temp[0]+temp[1];
 								String updateWord = preResult + midResult + sufResult;
 								//System.out.println(updateWord);
 								sql = "update searchrecord set sr_record='"+updateWord+"' where sr_no="+no;
@@ -52,7 +52,7 @@ public class InsertSearchRecord {
 							}
 						
 						}else{
-							sql = "insert into searchrecord values((SELECT NVL(MAX(sr_No), 0) + 1 FROM searchrecord), '"+word[j]+"','"+i+":10')";
+							sql = "insert into searchrecord values((SELECT NVL(MAX(sr_No), 0) + 1 FROM searchrecord), '"+word[j]+"',',"+i+":10')";
 							stmt.execute(sql);
 						}
 					}

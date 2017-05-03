@@ -90,12 +90,12 @@
             <div class="container">
 				<div class="row">
 					<div class="col-lg-6">
-						<form class="form-horizontal" role="form" id="frm" action="">
+						<form class="form-horizontal" role="form" id="frm" action="../person/Menu.food">
 							<div class="form-group">
 								<label class="col-md-2 control-label">검색어</label>
 								<div class="col-md-10">
-									<input type="text" class="form-control" value="검색어를 입력해 주세요.">
-									<input type="submit" class="btn btn-primary" value="검색">
+									<input type="text" class="form-control" placeholder="검색어를 입력해 주세요." value="${WORD }" name="word" id="word">
+									<input type="button" class="btn btn-primary" value="검색" id="sBtn" >
 								</div>
 							</div>
 						</form>
@@ -110,7 +110,7 @@
                         <div class="item">
                             <div class="align">
                                <div class="item-thumbnail">
-                               	<a href="../person/DetailView.food?tno=${data.tno }&nowPage=${PINFO.nowPage }">
+                               	<a href="../person/MenuSearchRecordProc.food?tno=${data.tno }&nowPage=${PINFO.nowPage }&word=${WORD}&no=${data.no}">
                                  <img src="../image/${data.imgname }" alt="About the image"></a>
                                </div>
                                <h4>${data.name }</h4>
@@ -180,6 +180,7 @@
         <script>
         var menuPage=0;
         $(document).ready(function(){
+        	
         	$("#lBtn").click(function(){
         		menuPage = menuPage+1;
         		//var nowPage=${PINFO.nowPage}+1;
@@ -193,12 +194,22 @@
         				alert("에러다"+menuPage);
         			} 
         		});
-        	});        	
+        	});
+        	
+        	$("#sBtn").click(function(){
+        		var word=$("#word").val();
+        		if(word==""){
+        			alert("검색어를 입력해 주세요.");
+        			return;
+        		}
+        		$("#frm").submit();
+        	});
         });
         function setMenuView(data){
         	var str = "";
         	var addmenus = data.menuadd
         	var i = 0 ;
+        	var word=$("#word").val();
 			$.each(addmenus,function(key,temp){
 				var tno = temp.tno;
 				var nowPage = temp.nowPage;
@@ -206,12 +217,13 @@
 				var name = temp.name;
 				var body = temp.body;
 				var price = temp.price;
+				var no = temp.no;
 				i=i+1
 				str +="<div class='col-md-4'>"
                 	+	"<div class='item'>"
                 	+		"<div class='align'>"
                    	+			"<div class='item-thumbnail'>"
-                   	+				"<a href='../../person/DetailView.food?tno="+tno+"&nowPage="+nowPage+"'>"
+                   	+				"<a href='../person/MenuSearchRecordProc.food?tno="+tno+"&nowPage="+nowPage+"'&word='"+word+"'&no="+no+">"
                     +				"<img src='../image/"+imgname+"' alt='About the image'></a>"
                    	+			"</div>"
                    	+			"<h4>"+name+"</h4>"

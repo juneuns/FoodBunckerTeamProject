@@ -2,4 +2,57 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- vo alias : "cmenuVO" -->
 <mapper namespace="foodbuncker.CMenuPlanInput">
+
+<select id="selectAllPlace" resultType="cmenuVO">
+	SELECT
+		p_no AS PNO,
+		p_placename AS PNAME
+	FROM
+		place
+</select>
+
+<select id="selectOneTPlan" parameterType="int" resultType="cmenuVO">
+	SELECT
+		pp_no AS NO,
+		pp_p_no AS PNO,
+		p_placename AS PNAME,
+		pp_date AS PDATE
+	FROM
+		plan,
+		place
+	WHERE
+		pp_p_no=p_no
+	AND
+		pp_t_no=#{tno}
+</select>
+
+<insert id="insertPlan" parameterType="hashmap">
+	INSERT INTO
+		plan
+	VALUES(
+		(SELECT NVL(MAX(pp_No), 0) + 1 FROM plan),
+		#{tno},
+		#{pno},
+		to_date(#{pdate},'YYYY-MM-DD')
+	)
+</insert>
+
+<delete id="deletePlan" parameterType="hashmap">
+	DELETE
+		plan
+	WHERE
+		pp_date = to_date(#{pdate},'YYYY-MM-DD')
+	AND
+		pp_t_no = #{tno}
+	AND
+		pp_p_no = (
+			SELECT
+				p_no
+			FROM
+				place
+			WHERE
+				p_placename = #{pname}
+		)
+</delete>
+
 </mapper>

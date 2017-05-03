@@ -13,7 +13,7 @@
         <title>Chef Main Page</title>
 
         <!--Morris Chart CSS -->
-		<link rel="stylesheet" href="assets/plugins/morris/morris.css">
+		<link rel="stylesheet" href="../resources/assets/plugins/morris/morris.css">
 
         <link href="../resources/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="../resources/assets/css/core.css" rel="stylesheet" type="text/css" />

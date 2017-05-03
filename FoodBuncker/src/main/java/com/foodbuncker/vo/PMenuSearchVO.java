@@ -9,15 +9,9 @@ import java.util.Locale;
 
 // vo type alias : "pmenuVO" 
 public class PMenuSearchVO {
-	int no;
+	public int no;
 	int tno;
 	int pno;
-	public int getPno() {
-		return pno;
-	}
-	public void setPno(int pno) {
-		this.pno = pno;
-	}
 	String name;
 	int price;
 	String body;
@@ -182,5 +176,11 @@ public class PMenuSearchVO {
 	}
 	public void setpDayWeek7(String pDayWeek7) {
 		this.pDayWeek7 = pDayWeek7;
+	}
+	public int getPno() {
+		return pno;
+	}
+	public void setPno(int pno) {
+		this.pno = pno;
 	}
 }
