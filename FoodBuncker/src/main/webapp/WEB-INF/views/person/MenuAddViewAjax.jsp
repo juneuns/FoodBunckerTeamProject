@@ -13,12 +13,13 @@
 {"menuadd" : [
 				<c:forEach var="data" items="${LIST }" varStatus="st">
 					<c:if test="${st.last eq false }">
-					{"tno" : "${data.tno }", "price" : "${data.price }", "body" : "${data.body }", "imgname" : "${data.imgname }","nowPage":"${nowPage }","name":"${data.name}"},
+					{"tno" : "${data.tno }", "price" : "${data.price }", "body" : "${data.body }", "imgname" : "${data.imgname }","nowPage":"${nowPage }","name":"${data.name}","no":"${data.no}"},
 					</c:if>
 					<c:if test="${st.last ne false }">
-					{"tno" : "${data.tno }", "price" : "${data.price }", "body" : "${data.body }", "imgname" : "${data.imgname }","nowPage":"${nowPage }","name":"${data.name}"}
+					{"tno" : "${data.tno }", "price" : "${data.price }", "body" : "${data.body }", "imgname" : "${data.imgname }","nowPage":"${nowPage }","name":"${data.name}","no":"${data.no}"}
 					</c:if>
 				</c:forEach>
 
-			]
+			],
+	"word":"${WORD}"
 }

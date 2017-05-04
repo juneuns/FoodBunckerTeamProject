@@ -183,11 +183,11 @@
         	
         	$("#lBtn").click(function(){
         		menuPage = menuPage+1;
-        		//var nowPage=${PINFO.nowPage}+1;
+        		var word = $("#word").val();
          		$.ajax({
         			type : "GET",
         			url : "../person/MenuAddView.food",
-        			data : "temp=" + new Date() + "&nowPage="+(menuPage+1),
+        			data : "temp=" + new Date() + "&nowPage="+(menuPage+1)+"&word='"+word+"'",
         			dataType : "json",
 	       			success : setMenuView,
 					error : function(){
@@ -207,9 +207,9 @@
         });
         function setMenuView(data){
         	var str = "";
-        	var addmenus = data.menuadd
+        	var addmenus = data.menuadd;
+        	var word = data.word;
         	var i = 0 ;
-        	var word=$("#word").val();
 			$.each(addmenus,function(key,temp){
 				var tno = temp.tno;
 				var nowPage = temp.nowPage;
@@ -223,7 +223,7 @@
                 	+	"<div class='item'>"
                 	+		"<div class='align'>"
                    	+			"<div class='item-thumbnail'>"
-                   	+				"<a href='../person/MenuSearchRecordProc.food?tno="+tno+"&nowPage="+nowPage+"'&word='"+word+"'&no="+no+">"
+                   	+				"<a href='../person/MenuSearchRecordProc.food?tno="+tno+"&nowPage="+nowPage+"&no="+no+"&word="+word+"'>"
                     +				"<img src='../image/"+imgname+"' alt='About the image'></a>"
                    	+			"</div>"
                    	+			"<h4>"+name+"</h4>"
@@ -237,6 +237,7 @@
       					+ "<div class='row'>"
         		} 
 			});
+			
         	//alert(str);
 			$("#moreMenu").append(str);
         }
