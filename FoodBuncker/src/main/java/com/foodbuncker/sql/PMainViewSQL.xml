@@ -64,19 +64,72 @@
 	</select>
 	
 	 
-	<!-- 푸드트럭 상세정보 가져오기 
-	<select id="">
+	<!-- 푸드트럭 치프 이미지, 설명 가져오기 --> 
+	<select id="selectChef" resultType="pmainVO" parameterType="int">
 		SELECT
 			TI_NO AS TINO,
 			TI_T_NO AS TNO,
 			TI_SAVENAME AS SNAME,
-			TI_IMGBODY AS IMG,
-			TI_GRADE AS GRADE
-			
+			TI_IMGBODY AS IMGBODY,
+			TI_GRADE AS GRADE,
+			T_CHEF AS CHEF,
+			T_NAME AS NAME
+		FROM
+			TRUCKIMAGE INNER JOIN TRUCKINFO
+		ON
+			TRUCKIMAGE.TI_T_NO = TRUCKINFO.T_NO	
+		WHERE 
+			TI_ISSHOW = 'Y'
+		AND
+			T_ISSHOW = 'Y'
+		AND
+			TI_GRADE = 2
+		AND
+			TI_T_NO = #{tno}
 	</select>
-	 -->
 	
-	<!-- 푸드트럭 메뉴 상세정보 가져오기 -->
+	<!-- 푸드트럭 메인 이미지, 설명 가져오기 --> 
+	<select id="selectMain" resultType="pmainVO" parameterType="int">
+		SELECT
+			TI_NO AS TINO,
+			TI_T_NO AS TNO,
+			TI_SAVENAME AS SNAME,
+			TI_IMGBODY AS IMGBODY,
+			TI_GRADE AS GRADE,
+			T_NAME AS NAME
+		FROM
+			TRUCKIMAGE	INNER JOIN TRUCKINFO
+		ON
+			TRUCKIMAGE.TI_T_NO = TRUCKINFO.T_NO	
+		WHERE 
+			TI_ISSHOW = 'Y'
+		AND
+			T_ISSHOW = 'Y'
+		AND
+			TI_GRADE = 1
+		AND
+			TI_T_NO = #{tno}
+	</select>
+	
+	<!-- 푸드트럭 일반 이미지, 설명 가져오기 --> 
+	<select id="selectGeneral" resultType="pmainVO" parameterType="int">
+		SELECT
+			TI_NO AS TINO,
+			TI_T_NO AS TNO,
+			TI_SAVENAME AS SNAME,
+			TI_IMGBODY AS IMGBODY,
+			TI_GRADE AS GRADE
+		FROM
+			TRUCKIMAGE	
+		WHERE 
+			TI_ISSHOW = 'Y'
+		AND
+			TI_GRADE = 3
+		AND
+			TI_T_NO = #{tno}
+	</select>
+		
+	<!-- 푸드트럭별 메뉴 가져오기 -->
 	<select id="selectMenuView" resultType="pmainVO" parameterType="int">
 		SELECT
 			M_NO AS MNO,
@@ -86,7 +139,8 @@
 			M_BODY AS BODY,
 			M_SAVENAME AS SNAME,
 			M_GRADE AS GRADE,
-			T_NO AS TNO
+			T_NO AS TNO,
+			T_NAME AS TNAME
 		FROM
 			MENU INNER JOIN TRUCKINFO
 		ON
@@ -98,5 +152,72 @@
 		AND
 			T_NO = #{tno}	
 	</select>
+	
+	<!-- 푸드트럭별 메인메뉴 가져오기 -->
+	<select id="selectMainMenu" resultType="pmainVO" parameterType="int">
+		SELECT 
+			M_NO AS MNO,
+			M_T_NO AS MTNO,
+			M_NAME AS MNAME,
+			M_PRICE AS PRICE,
+			M_BODY AS BODY,
+			M_SAVENAME AS SNAME,
+			M_GRADE AS GRADE
+		FROM
+			MENU
+		WHERE
+			M_ISSHOW = 'Y'
+		AND
+			M_GRADE = 'M'
+		AND
+			M_T_NO = #{tno}
+	</select>
+	
+	<!-- 푸드트럭별  후기 가져오기 -->
+	<select id="selectReviewView" resultType="pmainVO" parameterType="int">
+		SELECT
+			B_NO AS BNO,
+			B_T_NO AS BTNO,
+			B_BODY AS BODY,
+			B_DATE AS WDATE,
+			T_NO AS TNO,
+			T_NAME AS NAME
+		FROM
+			BOARD INNER JOIN TRUCKINFO
+		ON
+			BOARD.B_T_NO = TRUCKINFO.T_NO
+		WHERE
+			T_ISSHOW = 'Y'
+		AND
+			B_ISSHOW = 'Y'
+		AND
+			B_T_NO = #{tno}
+		ORDER BY
+			B_NO DESC
+	</select>
+	
+	<!-- 총 운행거리 불러오기 -->
+	<select id="selectKM" resultType="int" parameterType="int">
+		SELECT
+			SUM(RG_RANGE)
+		FROM
+			RANGECAL	
+		WHERE
+			RG_T_NO = #{tno}
+	</select>
+	
+	<!-- 총 메뉴판매 수 불러오기 -->
+	<select id="">
+		SELECT
+			OM_NO AS NO,
+			OM_O_NO AS ONO,
+			OM_M_NO AS MNO,
+			OM_NUM AS NUM
+		FROM
+			ORDERMENU
+			
+			
+	</select>
+	
 	
 </mapper>

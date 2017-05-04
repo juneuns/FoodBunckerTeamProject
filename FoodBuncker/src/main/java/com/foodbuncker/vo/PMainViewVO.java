@@ -1,5 +1,6 @@
 package com.foodbuncker.vo;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 //vo type alias : "pmainVO"
@@ -7,24 +8,69 @@ public class PMainViewVO {
 	public int no;
 	public int mno;
 	public int tno;
-	public String name;
+	public int tino;
+	public int bno;
+	public int mtno;
+	public int btno;
 	public int price;
-	public String body;
-	public String sname;
+	
 	public char grade;
-	public String kword;
+	
+	public String name;
+	public String mname;
+	public String sname;
 	public String tname;
+	public String body;
+	public String kword;
 	public String chef;
 	public String phone;
 	public String open;
 	public String email;
 	public String num;
 	public String id;
+	public String imgbody;
+	
+	
 	public Date wdate;
-	public String mname;
-	public int mtno;
 	
 	
+	
+	
+	
+	
+	
+	public int getTino() {
+		return tino;
+	}
+
+	public void setTino(int tino) {
+		this.tino = tino;
+	}
+
+	public String getImgbody() {
+		return imgbody;
+	}
+
+	public void setImgbody(String imgbody) {
+		this.imgbody = imgbody;
+	}
+
+	public int getBno() {
+		return bno;
+	}
+
+	public void setBno(int bno) {
+		this.bno = bno;
+	}
+
+	public int getBtno() {
+		return btno;
+	}
+
+	public void setBtno(int btno) {
+		this.btno = btno;
+	}
+
 	public String getMname() {
 		return mname;
 	}
@@ -175,6 +221,11 @@ public class PMainViewVO {
 
 	public void setKword(String kword) {
 		this.kword = kword;
+	}
+	
+	public String getShowdate() {
+		SimpleDateFormat	form = new SimpleDateFormat("yyyy년 MM월 dd일");
+		return		form.format(wdate);
 	}
 
 }

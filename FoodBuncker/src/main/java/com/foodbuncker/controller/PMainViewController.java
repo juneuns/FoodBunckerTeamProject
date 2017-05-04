@@ -34,8 +34,22 @@ public class PMainViewController {
 		String strtno = req.getParameter("tno");
 		int tno = Integer.parseInt(strtno);
 		ArrayList list = pmvService.selectMenuView(tno);
+		ArrayList list2 = pmvService.selectReviewView(tno);
+		ArrayList clist = pmvService.selectChef(tno);
+		ArrayList mlist = pmvService.selectMain(tno);
+		ArrayList glist = pmvService.selectGeneral(tno);
+		ArrayList mmlist = pmvService.selectMainMenu(tno);
+		int km = pmvService.selectKM(tno);
+		
+		
 		
 		mv.addObject("LIST", list);
+		mv.addObject("LIST2", list2);
+		mv.addObject("CLIST", clist);
+		mv.addObject("MLIST", mlist);
+		mv.addObject("GLIST", glist);
+		mv.addObject("MMLIST", mmlist);
+		mv.addObject("KM", km);
 		mv.setViewName("/person/DetailView");
 		return mv;
 	}

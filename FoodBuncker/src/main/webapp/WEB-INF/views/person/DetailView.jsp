@@ -83,12 +83,16 @@
 		IN</a> </nav> </header>
 
 	<!-- SECTION 1 - HERO TITLE -->
+	<c:forEach var="data" items="${MLIST}">
+	
 	<section class="hero-title"
-		style="background-image:url(../resources/img/detailviewhead.jpg);">
+		style="background-image:url(../image/${data.sname});">
 	<div class="container">
+		
 		<div class="row">
-			<h2>CICAGO MOONS</h2>
+			<h2>${data.name}</h2>
 		</div>
+	</c:forEach>
 		<!-- // .row -->
 	</div>
 	<!-- // .container --> </section>
@@ -100,45 +104,49 @@
 		<div class="row">
 			<div class="col-md-4">
 				<div class="imgbox style4">
+					<c:forEach var="data" items="${CLIST}">
 					<div class="img">
-						<img src="../resources/img/detailviewchef.jpg"
+						<img src="../image/${data.sname}"
+							alt="About the image">
+					</div>
+					
+					<div class="align">
+						<h3>Chef - ${data.chef}</h3>
+						<p>${data.imgbody}</p>
+					</div>
+					</c:forEach>
+				</div>
+			</div>
+			
+			<div class="col-md-4">
+				<div class="imgbox style4">
+					<c:forEach var="data" items="${MLIST}">
+					<div class="img">
+						<img src="../image/${data.sname}"
 							alt="About the image">
 					</div>
 
 					<div class="align">
-						<h3>Chef</h3>
-						<p>젊은 DJ의 감각으로 스테이크 고유의 맛을 연구했습니다. 미국의 요리법과 한국만의 재료를 이용한 한국인에
-							맞는 맛을 여러분께 선보입니다.</p>
+						<h3>Food Truck - ${data.name}</h3>
+						<p>${data.imgbody}</p>
 					</div>
+					</c:forEach>
 				</div>
 			</div>
-
+			
 			<div class="col-md-4">
 				<div class="imgbox style4">
+					<c:forEach var="data" items="${MMLIST}">
 					<div class="img">
-						<img src="../resources/img/detailviewtruck.jpg"
-							alt="About the image">
+						<img src="../image/${data.sname}"
+							alt="1895X1000 About the image" height="190px" width="395px">
 					</div>
 
 					<div class="align">
-						<h3>Food Truck Image</h3>
-						<p>상단 오픈형 트럭을 개조하여 완벽한 조리환경을 구성했습니다.</p>
+						<h3>Main Menu - ${data.mname}</h3>
+						<p>${data.body}</p>
 					</div>
-				</div>
-			</div>
-
-			<div class="col-md-4">
-				<div class="imgbox style4">
-					<div class="img">
-						<img src="../resources/img/detailviewmenu.jpg"
-							alt="1895X1000 About the image">
-					</div>
-
-					<div class="align">
-						<h3>Main Menu</h3>
-						<p>쉐프가 직접 고른 1++등급의 한우 살치살을 고열의 철판에 짧은 시간에 구워내어 육즙의 손실을 최소화시킨
-							고급스러운 맛</p>
-					</div>
+					</c:forEach>
 				</div>
 			</div>
 		</div>
@@ -173,7 +181,7 @@
 
 			<div class="col-sm-6 col-md-3">
 				<div class="countbox">
-					<h4>35198KM</h4>
+					<h4>${KM}</h4>
 					<p>총 운행거리</p>
 				</div>
 			</div>
@@ -186,14 +194,16 @@
 	<section class="space">
 	<div class="container">
 		<div class="row">
+			<c:forEach var="data" items="${LIST}" varStatus="st">
+			<c:if test="${st.first eq true}">
 			<div class="section-headline">
-				<h3>MENU</h3>
+				<h3>${data.tname} MENU</h3>
 			</div>
 		</div>
 		<div class="row">
-
+			</c:if>
 			<!-- -----------------------  foreach문으로 반복---------------------------------------- -->
-			<c:forEach var="data" items="${LIST}">
+			
 			<div class="col-sm-4">
 				<figure class="person style3">
 				<div class="person-img">
@@ -247,23 +257,27 @@
 	<div class="space space-dark">
 		<div class="container">
 			<div class="row">
+			<c:forEach var="data" items="${LIST2}" varStatus="st">
+				<c:if test="${st.first eq true}">
 				<div class="section-headline">
-					<h3>Customer Feedback</h3>
+					<h3>${data.name} Customer Feedback</h3>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2">
 					<div class="owl-carousel testimonials-slider">
-
+				</c:if>
 						<!-- ----------------------- foreach문 으로 반복--------------------------------------- -->
 						<div>
 							<div class="testimonial">
-								<p>고기가 연해서 아이들이 먹기에도 좋더라구요. 최고예요</p>
-								<h4>2017년 4월 10일 구로</h4>
+								<p>${data.body}</p>
+								<h4>${data.showdate}</h4>
 							</div>
 						</div>
+			</c:forEach>			
 						<!-- -----------------------  위의 foreach문 반복 끝--------------------------------------- -->
 						<!-- -----------------------  위의 foreach문 완성시 삭제해야 할 부분 시작--------------------------------------- -->
+						<!-- 
 						<div>
 							<div class="testimonial">
 								<p>소스안에 대체 뭐가 들어간거지?고급 소고기의 맛을 그대로 나타내주면서 필요 없는 맛은 없애주는...
@@ -278,7 +292,7 @@
 								<h4>2017년 3월 29일 대학로</h4>
 							</div>
 						</div>
-
+						 -->
 						<!-- -----------------------  위의 foreach문 완성시 삭제해야 할 부분 끝--------------------------------------- -->
 					</div>
 				</div>
@@ -302,23 +316,26 @@
 		<div class="row">
 
 			<!-- ----------------------- foreach문으로 반복-------------------------------------- -->
+			<c:forEach var="data" items="${GLIST}">
 			<div class="col-md-6">
 				<div class="imgbox style4">
 					<div class="img">
-						<img src="../resources/img/detailviewgallery1.jpg"
+						<img src="../image/${data.sname}"
 							alt="1895x1000 About the image">
 					</div>
 
 					<div class="align">
+						<!-- 
 						<h3>푸드트럭 옆면사진</h3>
-						<p>2017년 4월 22일 군포시 산본</p>
+						 -->
+						<p>${data.imgbody}</p>
 					</div>
 				</div>
 			</div>
-
+			</c:forEach>
 			<!-- -----------------------  위의 foreach문으로 반복 끝--------------------------------------- -->
 			<!-- -----------------------  위의 foreach문 완성시 삭제해야 할 부분 시작--------------------------------------- -->
-
+			<!-- 
 
 			<div class="col-md-6">
 				<div class="imgbox style4">
@@ -333,6 +350,7 @@
 					</div>
 				</div>
 			</div>
+			 -->
 			<!-- -----------------------  위의 foreach문 완성시 삭제해야 할 부분 끝--------------------------------------- -->
 
 		</div>
