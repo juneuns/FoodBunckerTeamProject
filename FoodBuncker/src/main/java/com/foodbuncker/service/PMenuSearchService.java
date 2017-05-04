@@ -36,11 +36,8 @@ public class PMenuSearchService {
 				HashMap tempMap = dao.selectSearchRecord(word);
 				ArrayList<PMenuSearchVO> allMenu = dao.selectAllMenu();
 				String resultSet = ((String)tempMap.get("RECORD")).substring(1);
-//				System.out.println(resultSet);
-//				System.out.println(word);
 				String[] temp = resultSet.trim().split(",");
 				List<String> resultList = Arrays.asList(temp);
-//				System.out.println("중간점검");
 				resultList.sort(new Comparator(){
 					@Override
 					public int compare(Object o1, Object o2) {
@@ -62,7 +59,6 @@ public class PMenuSearchService {
 				ArrayList<Integer> finalListNo = (ArrayList)noList.stream().skip(start-1).limit(pageRow).collect(Collectors.toList());
 				ArrayList<PMenuSearchVO> finalList = new ArrayList<>();
 				finalListNo.stream().forEach(n->{
-//					System.out.println(n);
 					Optional<PMenuSearchVO> tempVO = allMenu.stream().filter(m->m.no==n).findFirst();
 					finalList.add(tempVO.get());
 				});
@@ -71,7 +67,8 @@ public class PMenuSearchService {
 				HashMap<String,Integer> map = new HashMap<>();
 				map.put("start", start);
 				map.put("end", end);
-				e.printStackTrace();
+//				System.out.println("결과가 없어요.");
+//				e.printStackTrace();
 				return dao.selectMenu(map);
 			}
 		}

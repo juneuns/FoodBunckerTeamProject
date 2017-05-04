@@ -26,6 +26,7 @@ public class PMenuSearchController {
 		int nowPage = service.changePage(req.getParameter("nowPage"));
 		try{
 			word = req.getParameter("word");
+			//System.out.println("첫번째 : "+word);
 		}catch(Exception e){
 			word = "";
 		}
@@ -46,7 +47,9 @@ public class PMenuSearchController {
 		int nowPage = Integer.parseInt(strPage);
 		PageUtil pInfo = service.pageInfo(nowPage);
 		try{
-			word = req.getParameter("word");
+			String temp = req.getParameter("word");
+			word = temp.trim().substring(temp.indexOf("'")+1, temp.lastIndexOf("'"));
+			//System.out.println("두번째 : "+word);
 		}catch(Exception e){
 			word = "";
 		}
@@ -54,6 +57,7 @@ public class PMenuSearchController {
 		mv.addObject("PINFO",pInfo);
 		mv.addObject("nowPage",nowPage);
 		mv.addObject("LIST",list);
+		mv.addObject("WORD",word);
 		mv.setViewName("/person/MenuAddViewAjax");
 		return mv;
 	}
@@ -98,8 +102,11 @@ public class PMenuSearchController {
 		String word="";
 		try{
 			word = req.getParameter("word");
+			//System.out.println("word:"+word);
 		}catch(Exception e){
+			e.printStackTrace();
 			word = "";
+			//System.out.println("word");
 		}
 		service.searchRecordProc(word, no);
 		String tno = req.getParameter("tno");
