@@ -3,4 +3,36 @@
 
 <!-- vo alias : "corderVO" -->
 <mapper namespace="foodbuncker.COrderPay">
+
+<select id="selectAllOrder" parameterType="int" resultType="corderVO">
+	SELECT
+		o_no AS ONO,
+		o_t_no AS TNO,
+		o_ordtime AS ORDERTIME,
+		o_paytime AS PAYTIME,
+		o_servtime AS SERVTIME
+	FROM
+		morder
+	WHERE
+		o_t_no = #{tno}
+	AND
+		(o_paytime = o_servtime OR o_ordtime = o_paytime)
+	ORDER BY
+		o_no
+</select>
+
+<select id="selectAllOrderMenu" resultType="corderVO" parameterType="int">
+	SELECT
+		m_name AS MNAME,
+		om_num AS MNUM,
+		om_o_no AS ONO
+	FROM
+		ordermenu,
+		menu
+	WHERE
+		om_m_no = m_no
+	AND
+		om_o_no = #{ono}
+</select>
+
 </mapper>

@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
@@ -130,84 +130,37 @@
                             <!--Pricing Column-->
                             
  <!-- -----------------------    foreach문으로 반복 시작------------------------------------------------- --> 	                                  
-                            <article class="pricing-column col-lg-3 col-sm-6" >
+                   		<c:forEach var="data" items="${ORDERLIST }">
+                   			<article class="pricing-column col-lg-3 col-sm-6" >
+                   			<c:if test="${data.orderTime  ne data.payTime }">
+                   				<div class="ribbon"><span>조리중</span></div>
+                   			</c:if>
                                 <div class="inner-box card-box" style="height:500px;">
                                     <div class="plan-header text-center">
                                         <h3 class="plan-title">주문No</h3>
-                                        <h2 class="plan-price">19</h2>
-                                        <div class="plan-duration">주문시간 10:12</div>
+                                        <h2 class="plan-price">${data.ono }</h2>
+                                        <div class="plan-duration">주문시간 ${data.orderTime }</div>
                                     </div>
 									<div class="text-center">
+									<c:if test="${data.orderTime  eq data.payTime }">
                                         <a href="../chef/Invoice.food" class="btn btn-success btn-bordred btn-rounded waves-effect waves-light">결제</a>
+                                 	</c:if>
+                                 	<c:if test="${data.orderTime ne data.payTime }">
+                                        <a href="../chef/Invoice.food" class="btn btn-primary btn-bordred btn-rounded waves-effect waves-light">결제완료</a>
+                                 	</c:if>
                                     </div>
                                     <ul class="plan-stats list-unstyled text-center">
-                                        <li>찹스테이크 2</li>
-                                        <li>콜라 2</li>
+                                    	<c:forEach var="data1" items="${ORDERMENULIST }">
+                                    		<c:if test="${data.ono eq data1.ono }">
+                                    			<li>${data1.mName }            ${data1.mnum }</li>
+                                    		</c:if>
+                                        </c:forEach>
                                     </ul>
                                 </div>
                             </article>
-<!-- -----------------------   foreach문으로 반복 끝----------------------------------------------------- --> 	       
-<!-- -----------------------   위의 foreach문 완성시 삭제 부분 시작--------------------------------------- --> 	       
-                            <!--Pricing Column-->
-                            <article class="pricing-column col-lg-3 col-sm-6">
-                                <div class="ribbon"><span>조리중</span></div>
-                                <div class="inner-box card-box" style="height:500px;">
-                                    <div class="plan-header text-center">
-                                        <h3 class="plan-title">주문No</h3>
-                                        <h2 class="plan-price">20</h2>
-                                        <div class="plan-duration">주문시간 10:20</div>
-                                    </div>
-									<div class="text-center">
-                                        <button class="btn btn-primary btn-bordred btn-rounded waves-effect waves-light">결제완료</button>
-                                    </div>
-                                    <ul class="plan-stats list-unstyled text-center">
-                                        <li>햄버거 1</li>
-                                        <li>콜라 1</li>
-                                        <li>포테이토</li>
-                                    </ul>
-                                </div>
-                            </article>
-
-
-                            <!--Pricing Column-->
-                            <article class="pricing-column col-lg-3 col-sm-6">
-                                <div class="inner-box card-box" style="height:500px;">
-                                    <div class="plan-header text-center">
-                                        <h3 class="plan-title">주문No</h3>
-                                        <h2 class="plan-price">21</h2>
-                                        <div class="plan-duration">주문시간 10:30</div>
-                                    </div>
-									<div class="text-center">
-                                        <a href="invoice.html" class="btn btn-success btn-bordred btn-rounded waves-effect waves-light">결제</a>
-                                    </div>
-                                    <ul class="plan-stats list-unstyled text-center">
-                                        <li>햄버거 3</li>
-                                        <li>샐러드 1</li>
-                                        <li>콜라 3</li>
-                                        <li>치즈스틱 3</li>
-                                    </ul>
-                                </div>
-                            </article>
-
-                            <!--Pricing Column-->
-                            <article class="pricing-column col-lg-3 col-sm-6">
-                                <div class="inner-box card-box" style="height:500px;">
-                                    <div class="plan-header text-center">
-                                        <h3 class="plan-title">주문No</h3>
-                                        <h2 class="plan-price">23</h2>
-                                        <div class="plan-duration">주문시간 10:42</div>
-                                    </div>
-									<div class="text-center">
-                                        <a href="invoice.html" class="btn btn-success btn-bordred btn-rounded waves-effect waves-light">결제</a>
-                                    </div>
-                                    <ul class="plan-stats list-unstyled text-center">
-                                        <li>스테이크 2</li>
-                                        <li>샐러드 1</li>
-                                        <li>콜라 2</li>
-                                    </ul>
-                                </div>
-                            </article>
-<!-- -----------------------   위의 foreach문 완성시 삭제 부분 끝--------------------------------------- --> 	       
+                            
+                  		</c:forEach>
+<!-- -----------------------   foreach문으로 반복 끝----------------------------------------------------- --> 
                         </div><!-- end row -->
                     </div>
                 </div>
