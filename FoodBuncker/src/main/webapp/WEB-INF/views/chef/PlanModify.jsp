@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"   pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
@@ -124,28 +124,27 @@
                                                 <div id="external-events" class="m-t-20">
                                                     <p>해당되는 위치를 원하는 날짜로 드래그 하세요.</p></br>
 													드래그 후 클릭하여 반드시 저장해야 합니다.
+													
 <!-- ---------------------------------------    foreach문으로 반복 시작--------------------------------------- --> 	       													
-												<c:forEach var="data" items="${ALLPLACE }">
-													<c:if test="${data.pno%5 == 0}">
-														<div class="external-event bg-danger" data-class="bg-danger" name="${data.pno }">
-													</c:if>
-													<c:if test="${data.pno%5 == 1}">
-														<div class="external-event bg-success" data-class="bg-success" name="${data.pno }">
-													</c:if>
-													<c:if test="${data.pno%5 == 2}">
-														<div class="external-event bg-purple" data-class="bg-purple" name="${data.pno }">
-													</c:if>
-													<c:if test="${data.pno%5 == 3}">
-														<div class="external-event bg-info" data-class="bg-info" name="${data.pno }"> 
-													</c:if>
-													<c:if test="${data.pno%5 == 4}">
-														<div class="external-event bg-warning" data-class="bg-warning" name="${data.pno }">
-													</c:if>
-                                                    
-                                                        <i class="fa fa-move"></i>${data.pname }
+													
+                                                    <div class="external-event bg-primary" data-class="bg-primary">
+                                                        <i class="fa fa-move"></i>종로구 종로1가
                                                     </div>
 <!-- -------------------------------------- --- foreach문으로 반복 끝--------------------------------------- -->
-                                           	</c:forEach>
+<!-- -----------------------   --------------위의 foreach문 완성시 삭제 부분 시작--------------------------------------- --> 	        	       
+                                                    <div class="external-event bg-pink" data-class="bg-pink">
+                                                        <i class="fa fa-move"></i>대학로
+                                                    </div>
+
+                                                    <div class="external-event bg-warning" data-class="bg-warning">
+                                                        <i class="fa fa-move"></i>구로1동
+                                                    </div>
+
+                                                    <div class="external-event bg-purple" data-class="bg-purple">
+                                                        <i class="fa fa-move"></i>보라매공원
+                                                    </div>
+<!-- ------------------------------------------   위의 foreach문 완성시 삭제 부분 시작--------------------------------------- --> 	                                                         
+												
                                                 </div>
                                             </div>
                                         </div>
@@ -165,21 +164,19 @@
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                        <h4 class="modal-title"><strong>Delete Event</strong></h4>
+                                        <h4 class="modal-title"><strong>Add New Event</strong></h4>
                                     </div>
                                     <div class="modal-body"></div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
-                                        <!-- 
                                         <button type="button" class="btn btn-success save-event waves-effect waves-light">Create event</button>
-                                        -->
                                         <button type="button" class="btn btn-danger delete-event waves-effect waves-light" data-dismiss="modal">Delete</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Modal Add Category --><!-- 
+                        <!-- Modal Add Category -->
                         <div class="modal fade none-border" id="add-category">
                             <div class="modal-dialog">
                                 <div class="modal-content">
@@ -215,7 +212,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div> -->
+                        </div>
                         <!-- END MODAL -->
                     </div>
                     <!-- end col-12 -->
@@ -261,129 +258,40 @@
         <!-- BEGIN PAGE SCRIPTS -->
         <script src="../resources/assets/plugins/moment/moment.js"></script>
         <script src='../resources/assets/plugins/fullcalendar/dist/fullcalendar.min.js'></script>
-      <!-- 	<script src="../resources/assets/pages/jquery.fullcalendar.js"></script>  -->
+        <script src="../resources/assets/pages/jquery.fullcalendar.js"></script>
 
 		<script>
-		var CalendarApp = function() {
-	        this.$body = $("body")
-	        this.$modal = $('#event-modal'),
-	        this.$event = $('#external-events div.external-event'),
-	        this.$calendar = $('#calendar'),
-	        this.$saveCategoryBtn = $('.save-category'),
-	        this.$categoryForm = $('#add-category form'),
-	        this.$extEvents = $('#external-events'),
-	        this.$calendarObj = null
-	    };
-
-		$(document).ready(function(){	
+		$(document).ready(function(){			
+			//$('#calendar').fullCalendar('removeEvents');
 			$('#calendar').fullCalendar({
-				//	defaultDate: '2017-04-12',
-					editable: true,
-					eventLimit: true, // allow "more" link when too many events
-					droppable: true, // this allows things to be dropped onto the calendar !!!
-	    	        selectable: true,
-	        	    drop: function(date) { 
-	        	    		var eventObj = $(this);
-            				var originalEventObject = eventObj.data('eventObject');
-            				var $categoryClass = eventObj.attr('data-class');
-            				var pno = eventObj.attr('name');
-            				var copiedEventObject = $.extend({}, originalEventObject);
-            				copiedEventObject.start = date;
-           				 	if ($categoryClass)
-                				copiedEventObject['className'] = [$categoryClass];
-           				 	$.ajax({
-           				 		data : "temp="+ new Date() + "&pno="+pno+"&pdate="+date,
-           				 		dataType : "json",
-           				 		type : "GET",
-           				 		url : "../chef/PlanModifyProc.food",
-           				 		success : function(){},
-           				 		error : function(){	}
-           				 	});
-           				 	$('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
-				 			alert("저장되었습니다.");
-	        	    	},
-	            	select: function (start, end, allDay) { $this.onSelect(start, end, allDay); },
-	           		eventClick: function(calEvent, jsEvent, view) {
-	           			//var eventObj = $(calEvent);
-	           			var pname = calEvent.title;
-	           			var pdate = calEvent.start;
-	           			//var date = eventObj.attr('date');
-	           			//alert(pname);
-	           			//alert(pdate);
-	           			var $this = this;
-	                    var form = $("<form></form>");
-	                    form.append("<label>Delete를 클릭하면 선택하신 일정이 삭제됩니다.</label>");
-	                    form.append("<div class='input-group'><input class='form-control' type=text value='" + calEvent.title + "' readonly /></div>");
-	                    $('#event-modal').modal({
-	                        backdrop: 'static'
-	                    });
-	                    $('#event-modal').find('.delete-event').show().end().find('.save-event').hide().end().find('.modal-body').empty().prepend(form).end().find('.delete-event').unbind('click').click(function () {
-	                    	$.ajax({
-           				 		data : "temp="+ new Date() + "&pname="+pname+"&pdate="+pdate,
-           				 		dataType : "json",
-           				 		type : "GET",
-           				 		url : "../chef/PlanDeleteProc.food",
-           				 		success : function(){},
-           				 		error : function(){}
-           				 	});
-	                    	$('#calendar').fullCalendar('removeEvents', function (ev) {
-	                            return (ev._id == calEvent._id);
-	                        });
-	                        $('#event-modal').modal('hide');
-	                    });
-	               //     $('#event-modal').find('form').on('submit', function () {
-	               //        calEvent.title = form.find("input[type=text]").val();
-	               //         $('#calendar').fullCalendar('updateEvent', calEvent);
-	               //         $('#event-modal').modal('hide');
-	               //         return false;
-	               //     });
-	           		},
-					events: [
-						<c:forEach items="${ONETPLAN}" var="data" varStatus="st"> 
-						{
-							title: '${data.pname}',
-							start: '${data.pdate}',
-							<c:if test="${data.pno%5 == 0}">
-								className: 'bg-danger'
-							</c:if>
-							<c:if test="${data.pno%5 == 1}">
-								className: 'bg-success'
-							</c:if>
-							<c:if test="${data.pno%5 == 2}">
-								className: 'bg-purple'
-							</c:if>
-							<c:if test="${data.pno%5 == 3}">
-								className: 'bg-info'
-							</c:if>
-							<c:if test="${data.pno%5 == 4}">
-								className: 'bg-warning'
-							</c:if>
-							
-							<c:if test="${st.last eq true}">
-								}
-							</c:if>
-							<c:if test="${st.last eq false}">
-								},
-							</c:if>
-						</c:forEach>
-					]
-				});
-			
-			 $('#external-events div.external-event').each(function () {
-		            // create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
-		            // it doesn't need to have a start or end
-		            var eventObject = {
-		                title: $.trim($(this).text()) // use the element's text as the event title
-		            };
-		            // store the Event Object in the DOM element so we can get to it later
-		            $(this).data('eventObject', eventObject);
-		            // make the event draggable using jQuery UI
-		            $(this).draggable({
-		                zIndex: 999,
-		                revert: true,      // will cause the event to go back to its
-		                revertDuration: 0  //  original position after the drag
-		            });
-		        });
+				defaultDate: '2017-04-12',
+				editable: true,
+				eventLimit: true, // allow "more" link when too many events
+				events: [{
+					title: '대학로',
+					start: '2017-04-25',
+					className: 'bg-danger'
+					}, {
+					title: '대학로',
+					start:'2017-04-26',				
+					className: 'bg-danger'
+					}, {
+					title: '대학로',
+					start:'2017-04-27',				
+					className: 'bg-danger'
+					}, {
+					title: '대학로',
+					start:'2017-04-28',				
+					className: 'bg-danger'
+					}, {
+					title: '대학로',
+					start:'2017-04-29',				
+					className: 'bg-danger'
+				}],
+				droppable: true, // this allows things to be dropped onto the calendar !!!
+				eventLimit: true, // allow "more" link when too many events
+				selectable: true,
+			});
 		});
 		</script>
     </body>

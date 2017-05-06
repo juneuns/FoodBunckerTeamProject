@@ -3,4 +3,90 @@
 
 <!-- vo alias : "cregVO" -->
 <mapper namespace="foodbuncker.CRegLogin">
+
+	<!-- 회원 조회 질의 명령 -->
+	<select id="Login" resultType="int" parameterType="cregVO">
+		SELECT
+			COUNT(*) AS CNT
+		FROM
+			TruckInfo
+		WHERE
+			 T_ID = #{id}
+			 AND T_PASSWORD = #{pw}
+			 AND T_isShow = 'Y'
+	</select>
+	
+	<!-- 회원 번호 질의 명령 -->
+	<select id="selectTNo" resultType="int" parameterType="cregVO">
+		SELECT
+			T_NO AS NO
+		FROM
+			TruckInfo
+		WHERE
+			 T_ID = #{id}
+			 AND T_isShow = 'Y'
+	</select>
+	
+	<!-- 트럭이미지 테이블 회원 정보 유무 질의 명령 -->
+	<select id="selectImgTable" resultType="int" parameterType="cregVO">
+		SELECT
+			COUNT(*) AS CNT
+		FROM
+			TruckImage
+		WHERE
+			 TI_T_NO = #{no}
+			 AND TI_isShow = 'Y'
+	</select>
+	
+	<!-- 메뉴 테이블 회원 정보 유무 질의 명령 -->
+	<select id="selectMenuTable" resultType="int" parameterType="cregVO">
+		SELECT
+			COUNT(*) AS CNT
+		FROM
+			Menu
+		WHERE
+			 M_T_NO = #{no}
+			 AND M_isShow ='Y'
+	</select>
+	
+	<!-- 로그인 정보 질의 명령 -->
+	<select id="selectLoginInfo" resultType="cregVO" parameterType="cregVO">
+		SELECT
+			T_NO AS NO, T_CHEF AS CHEF, T_NAME AS NAME, T_PHONE AS PHONE, T_EMAIL AS EMAIL
+		FROM
+			TruckInfo
+		WHERE
+			 T_ID = #{id}
+			 AND T_isShow ='Y'
+	</select>
+	
+	<!-- 회원정보 1차 등록 질의 명령 -->
+	<insert id="insertTInfo" parameterType="cregVO">
+		INSERT INTO
+			TruckInfo
+		VALUES((SELECT NVL(MAX(T_No), 0) + 1 FROM TruckInfo),
+			#{chef}, #{name}, #{phone}, #{open}, #{email}, #{num}, #{id}, #{pw}, 'Y')
+	</insert>
+	
+	<!-- 트럭이미지 등록 질의 명령 -->
+	<insert id="insertTImg" parameterType="cregVO">
+		INSERT INTO
+			TruckImage
+		VALUES((SELECT NVL(MAX(TI_No), 0) + 1 FROM TruckImage), #{no}, #{sname}, #{imgbody}, #{tigrade}, 'Y')
+	</insert>
+	
+	<!-- 메뉴 이미지 등록 질의 명령 -->
+	<insert id="insertTMenu" parameterType="cregVO">
+		INSERT INTO
+			TruckImage
+		VALUES((SELECT NVL(MAX(TI_No), 0) + 1 FROM TruckImage), #{no}, #{sname}, #{imgbody}, 3, 'Y')
+	</insert>
+	
+	<!-- 메뉴 이미지 등록 질의 명령 -->
+	<insert id="insertMMenu" parameterType="cregVO">
+		INSERT INTO
+			Menu
+		VALUES((SELECT NVL(MAX(M_No), 0) + 1 FROM Menu), #{no}, #{mmenuName}, #{mmenuPrice}, #{imgbody}, #{sname}, #{mmenugrade}, #{keyword}, 'Y')
+	</insert>
+	
 </mapper>
