@@ -35,4 +35,149 @@
 		om_o_no = #{ono}
 </select>
 
+<select id="selectOpenClosePlace" parameterType="int" resultType="corderVO">
+	SELECT
+		oc_t_no AS TNO,
+		oc_open AS OPENTIME,
+		oc_close AS CLOSETIME,
+		p_no AS PNO,
+		p_placename AS PLACENAME		
+	FROM
+		(SELECT
+			*
+		FROM
+			(SELECT
+				oc_t_no,
+				oc_open,
+				oc_close
+			FROM
+				openclose
+			WHERE
+				oc_t_no = #{tno}
+			AND
+				to_date(oc_open,'YYYY/MM/DD') = to_date(SYSDATE,'YYYY/MM/DD')
+			ORDER BY
+				oc_open DESC)
+		WHERE
+			rownum = 1),
+		place,
+		plan		
+	WHERE
+		pp_t_no = oc_t_no
+	AND
+		pp_p_no = p_no
+	AND
+		to_date(pp_date,'YYYY/MM/DD') = to_date(SYSDATE,'YYYY/MM/DD')
+	
+		
+	
+</select>
+
+<insert id="insertOpenTime" parameterType="hashmap">
+	INSERT INTO
+		openclose
+	VALUES(
+		(SELECT NVL(MAX(oc_no),0)+1 FROM openclose),
+		#{tno},
+		SYSDATE,
+		SYSDATE,
+		#{pno}
+	)
+</insert>
+
+<update id="updateCloseTime" parameterType="int">
+	UPDATE
+		openclose
+	SET
+		oc_close = SYSDATE
+	WHERE
+		oc_t_no = #{tno}
+	AND
+		to_date(oc_open,'YYYY/MM/DD')=to_date(SYSDATE,'YYYY/MM/DD')
+	
+</update>
+
+<select id="selectPnoPnameTname" parameterType="int" resultType="corderVO">
+	SELECT 
+		pp_p_no AS PNO,
+		p_placename AS PNAME,
+		t_name AS TNAME
+	FROM
+		plan,
+		place,
+		truckinfo
+	WHERE
+		pp_t_no = #{tno}
+	AND
+		to_date(pp_date,'YYYY/MM/DD') = to_date(SYSDATE,'YYYY/MM/DD')
+	AND
+		pp_t_no = t_no
+	AND
+		pp_p_no = p_no
+	
+</select>
+
+<select id="selectOrderMenu" parameterType="int" resultType="corderVO">
+	SELECT
+		om_o_no AS ONO,
+		om_m_no AS MNO,
+		om_num AS MNUM,
+		m_name AS MNAME,
+		m_price AS PRICE
+	FROM
+		(SELECT
+			om_o_no,
+			om_m_no,
+			om_num		
+		FROM
+			ordermenu		
+		WHERE
+			om_o_no = #{ono}
+		ORDER BY
+			om_no),
+		menu
+	WHERE
+		om_m_no = m_no
+		
+</select>
+
+<select id="selectOneOrderInfo" parameterType="int" resultType="corderVO">
+	SELECT
+		o_no AS ONO,
+		o_t_no AS TNO,
+		o_ordTime AS ORDERTIME,
+		t_name AS TNAME
+	FROM	
+		(SELECT
+			o_no,
+			o_t_no,
+			o_ordTime
+		FROM
+			morder
+		WHERE
+			o_no=#{ono}),
+		truckinfo
+	WHERE
+		o_t_no = t_no
+</select>
+
+<update id="updatePaytime" parameterType="int">
+	UPDATE
+		morder
+	SET
+		o_paytime = SYSDATE,
+		o_servtime = SYSDATE
+	WHERE
+		o_no = #{ono}
+</update>
+
+<update id="updateServtime" parameterType="int">
+	UPDATE
+		morder
+	SET
+		o_servtime = SYSDATE
+	WHERE
+		o_no = #{ono}
+</update>
+
 </mapper>

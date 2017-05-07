@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"   pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
@@ -42,7 +42,7 @@
 
 					<!-- LOGO -->
                     <div class="topbar-left">
-                        <a href="index.html" class="logo"><span>Food<span>Buncker</span></span></a>
+                        <a href="../person/MainWindow.food" class="logo"><span>Food<span>Buncker</span></span></a>
                     </div>
                     <!-- End Logo container-->
                     <div class="menu-extras">                        
@@ -111,7 +111,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="btn-group pull-right m-t-15">
-                            <a href="../chef/OrderBoard.food"><button type="button" class="btn btn-custom dropdown-toggle waves-effect waves-light" aria-expanded="false">이전화면으로 <span class="m-l-5"><i class="fa fa-cog"></i></span></button></a>
+                            <a href="../chef/OrderBoard.food?tno=${ORDERINFO.tno }"><button type="button" class="btn btn-custom dropdown-toggle waves-effect waves-light" aria-expanded="false">이전화면으로 <span class="m-l-5"><i class="fa fa-cog"></i></span></button></a>
                         </div>
                         <h4 class="page-title">Invoice</h4>
                     </div>
@@ -127,11 +127,11 @@
                             <div class="panel-body">
                                 <div class="clearfix">
                                     <div class="pull-left">
-                                        <h3 class="logo invoice-logo">Cicago Food</h3>
+                                        <h3 class="logo invoice-logo">${ORDERINFO.tname }</h3>
                                     </div>
                                     <div class="pull-right">
                                         <h4>Invoice # <br>
-                                            <strong>2016-04-23654789</strong>
+                                            <strong>${ORDERINFO.ono }</strong>
                                         </h4>
                                     </div>
                                 </div>
@@ -139,8 +139,8 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="pull-right m-t-30">
-                                            <p><strong>주문일: </strong> 2017/04/22</p>
-                                            <p class="m-t-10"><strong>주문번호: </strong> #13</p>
+                                            <p><strong>주문시간: </strong> ${ORDERINFO.orderTime }</p>
+                                            <p class="m-t-10"><strong>주문번호: </strong> ${ORDERINFO.ono }</p>
                                         </div>
                                     </div><!-- end col -->
                                 </div>
@@ -163,31 +163,20 @@
 												</thead>
                                                 <tbody>
                                                 
- <!-- ---------------------------------   foreach문 사용하여 반복 시작--------------------------------------- --> 	                                                      
+ <!-- ---------------------------------   foreach문 사용하여 반복 시작--------------------------------------- --> 
+ 												<c:set var="sum" value="0"/>	
+ 												<c:forEach var="data" items="${ORDERMENULIST }" varStatus="st">                                                      
                                                     <tr>
-                                                        <td>1</td>
-                                                        <td>햄버거</td>
-                                                        <td>2</td>
-                                                        <td>5000원</td>
-                                                        <td>10000원</td>
+                                                        <td>${st.count }</td>
+                                                        <td>${data.mName }</td>
+                                                        <td>${data.mnum }</td>
+                                                        <td>${data.price }원</td>
+                                                        <td>${data.mnum * data.price }원</td>
                                                     </tr>
+                                                    	<c:set var="sum" value="${sum+data.mnum*data.price }"></c:set>
+                                              	</c:forEach>
 <!-- --------------------------------------   foreach문 사용하여 반복 끝--------------------------------------- --> 	                                                           
-<!-- ------------------------------------   위의 foreach문 완성시 삭제 부분 시작--------------------------------------- --> 	                                                           
-                                                    <tr>
-                                                        <td>2</td>
-                                                        <td>콜라</td>
-                                                        <td>2</td>
-                                                        <td>1000원</td>
-                                                        <td>2000원</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>3</td>
-                                                        <td>샐러드</td>
-                                                        <td>2</td>
-                                                        <td>2000원</td>
-                                                        <td>4000원</td>
-                                                    </tr>
-<!-- -----------------------------------------   위의 foreach문 완성시 삭제 부분 끝--------------------------------------- --> 	                                                           
+                                              
                                                     
                                                 </tbody>
                                             </table>
@@ -211,17 +200,17 @@
                                     <div class="col-md-3 col-sm-6 col-xs-6 col-md-offset-3">
                                     
  <!-- ---------------------------------  총합계는 계산식으로 표현해야 함------------------------------------------------------- -->                                   
-                                        <p class="text-right"><b>Sub-total:</b> 16000원</p>
+                                        <p class="text-right"><b>Sub-total:</b> ${sum }원</p>
                                         <p class="text-right">Discout: 0%</p>
                                         <p class="text-right">VAT: 0%</p>
                                         <hr>
-                                        <h3 class="text-right">16000원</h3>
+                                        <h3 class="text-right">${sum }원</h3>
                                     </div>
                                 </div>
                                 <hr>
                                 <div class="hidden-print">
                                     <div class="pull-right">
-                                        <a href="../chef/PayProc.food" class="btn btn-primary waves-effect waves-light">결제</a>
+                                        <a href="../chef/PayProc.food?ono=${ORDERINFO.ono }&tno=${ORDERINFO.tno}" class="btn btn-primary waves-effect waves-light">결제</a>
                                     </div>
                                 </div>
                             </div>

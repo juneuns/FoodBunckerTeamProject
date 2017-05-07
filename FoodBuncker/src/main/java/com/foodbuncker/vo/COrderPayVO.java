@@ -15,7 +15,26 @@ public class COrderPayVO {
 	int mno;
 	int mnum;
 	String mName;
+	public Date openTime;
+	public Date closeTime;
+	int pno;
+	String pname;
+	String tname;
+	int price;
 	
+	
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	public String getTname() {
+		return tname;
+	}
+	public void setTname(String tname) {
+		this.tname = tname;
+	}
 	public int getTno() {
 		return tno;
 	}
@@ -63,6 +82,30 @@ public class COrderPayVO {
 	}
 	public void setServTime(Date servDate) {
 		this.servTime = LocalDateTime.ofInstant(servDate.toInstant(),ZoneId.systemDefault());
+	}
+	public Date getOpenTime() {
+		return openTime;
+	}
+	public void setOpenTime(Date openTime) {
+		this.openTime = openTime;
+	}
+	public Date getCloseTime() {
+		return closeTime;
+	}
+	public void setCloseTime(Date closeTime) {
+		this.closeTime = closeTime;
+	}
+	public int getPno() {
+		return pno;
+	}
+	public void setPno(int pno) {
+		this.pno = pno;
+	}
+	public String getPname() {
+		return pname;
+	}
+	public void setPname(String pname) {
+		this.pname = pname;
 	}
 	
 	
