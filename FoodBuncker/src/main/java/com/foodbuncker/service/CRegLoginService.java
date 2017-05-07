@@ -12,6 +12,8 @@ import com.foodbuncker.dao.CRegLoginDAO;
 import com.foodbuncker.util.FileUtil;
 import com.foodbuncker.vo.CRegLoginVO;
 
+import jdk.nashorn.internal.runtime.regexp.joni.Regex;
+
 /**
  * 
  * @author jeon eun seok
@@ -177,6 +179,60 @@ public class CRegLoginService {
 		catch(Exception e){}
 		
 		return saveName;
+	}
+	
+	/*
+	 * 회원등록 확인 전담 서비스 함수
+	 */
+	public CRegLoginVO confirmReg(int no){
+		int tno = no ;
+		System.out.println("confim service utno : " + no);
+		
+		CRegLoginVO data = (CRegLoginVO) cregLoginDAO.selectAllRegInfoDAO(no);
+		String tmp = data.keyword ;
+		
+		try{
+			data.keyword1 = tmp.split("#")[1];
+		} catch(Exception e){}
+		try{
+			data.keyword2 = tmp.split("#")[2];
+		} catch(Exception e){}
+		try{
+			data.keyword3 = tmp.split("#")[3];
+		} catch(Exception e){}
+		try{
+			data.keyword4 = tmp.split("#")[4];
+		} catch(Exception e){}
+		try{
+			data.keyword5 = tmp.split("#")[5];
+		} catch(Exception e){}
+		
+		System.out.println("confirm Reg keyword : " + data.keyword1);
+		
+		return data;
+	}
+	
+	/*
+	 * 회원가입 최종 완료 처리 전담 서비스 함수
+	 */
+	public void regProcSrvc(CRegLoginVO cregVO, HttpSession session){
+		// 회원 정보 업데이트 해주고...
+		cregLoginDAO.updateRegConf(cregVO);
+		System.out.println("###############업데이트 완료#####");
+		// 만약 이미지가 변경 되었으면 다시 넣어준다.
+				
+		// 만약 이미지 변경이 없으면 데이터만 업데이트 해준다.
+				
+		return ;
+	}
+	
+	/*
+	 * 회원 기본 정보 가저오기 전담 서비스 함수
+	 */
+	public CRegLoginVO memberinfoSrvc(CRegLoginVO cregVO){
+		System.out.println("@@@@@@@@@@@@@@@@  mod srvc VO NO  : " + cregVO.no);
+		
+		return cregLoginDAO.selectMemberInfoDAO(cregVO.no);
 	}
 	
 }

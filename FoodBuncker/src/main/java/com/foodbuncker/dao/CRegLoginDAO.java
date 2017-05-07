@@ -58,6 +58,22 @@ public class CRegLoginDAO {
 	}
 	
 	/*
+	 * 회원 기본 정보 질의 명령 전담 함수
+	 */
+	public CRegLoginVO selectMemberInfoDAO(int no){
+		CRegLoginVO cregVO = (CRegLoginVO) sqlSession.selectOne("foodbuncker.CRegLogin.selectMemberInfo", no);
+		return cregVO;
+	}
+	
+	/*
+	 * 회원 정보 확인 질의 명령 전담 함수
+	 */
+	public CRegLoginVO selectAllRegInfoDAO(int no){
+		System.out.println("regconfirm DAO no : " + no);
+		return (CRegLoginVO) sqlSession.selectOne("foodbuncker.CRegLogin.selectRegAll", no);
+	}
+	
+	/*
 	 * 회원 1차 등록 질의 명령 전담 함수
 	 */
 	public void insertTInfoDAO(CRegLoginVO cregVO){
@@ -79,9 +95,33 @@ public class CRegLoginDAO {
 	}
 	
 	/*
-	 * 메인메뉴 등록 질의 명령 전담 함수
+	 * 메인메뉴 등록 질의 명령 처리 전담 함수
 	 */
 	public void insertMMenuDAO(CRegLoginVO cregVO){
 		sqlSession.insert("foodbuncker.CRegLogin.insertMMenu", cregVO);
+	}
+	
+	/*
+	 * 회원정보 업데이트 질의 명령 전담함수
+	 */
+	public void updateRegConf(CRegLoginVO cregVO){
+		sqlSession.update("foodbuncker.CRegLogin.updateTInfo", cregVO);
+		return ;
+	}
+	
+	/*
+	 *트럭이미지 업데이트 질의 명령 처리 전담함수
+	 */
+	public void updateTImgDAO(CRegLoginVO cregVO){
+		sqlSession.update("foodbuncker.CRegLogin.updateTImg", cregVO);
+		return ;
+	}
+	
+	/*
+	 * 메뉴정보 업데이트 질의 명령 처리 전담함수
+	 */
+	public void updateMImgDAO(CRegLoginVO cregVO){
+		sqlSession.update("foodbuncker.CRegLogin.updateMImg", cregVO);
+		return ;
 	}
 }

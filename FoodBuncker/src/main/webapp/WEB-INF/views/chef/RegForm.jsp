@@ -40,7 +40,7 @@
 
 	$(document).ready(function(){
 		alert("이건 나와라!!!");
-		alert("tabNo : " + ${tabNo} );
+		alert("tabNo : " + ${tabNo});
 		var clkTab = ${tabNo} ;
 		if(${tabNo} == '' || ${tabNo} == 0 ){
 			alert("0 tabNo : " + ${tabNo});
@@ -62,8 +62,8 @@
 			$("#sBtn").click(function(){
 				// 무결성 검사하기
 				var tcName = $("#chef").val();
-				if(tcName==null){
-					alert("비었다네....!");
+				if(tcName == ''){
+					return ;
 				};
 				var tname = $("#name").val();
 				var tnumber = $("#num").val();
@@ -75,13 +75,14 @@
 				var trpw = $("#rpw").val();
 				
 				if(tpw != trpw){
-					$("#rpw").val("");
+					$("#rpw").val('');
 					alert("비밀번호를 확인하세요!");
 				}
 				
-				if( tcName != '' && tname != '' && tnumber != '' && tphone != '' && temail != '' && topenDate != '' && tid != '' && tpw != '' && trpw != '' && tpw == trpw){
+				if( tcName != '' && tname != '' && tnumber != '' && tphone != '' && temail != '' && topenDate != '' && tid != '' && tpw != '' && tpw == trpw){
 					// 모든 사항이 입력된 경우 폼의 내용을 보내자.
-					alert(clkTab);
+					$("#tabNo").val(clkTab);
+					alert("이건 나와야지...");
 					$("#ffrm").attr("action", "../chef/TempSave.food").submit();
 				};
 				
@@ -94,7 +95,7 @@
 				alert("fileupload");
 				var tchefImg = $("#chefImg").val();
 				if(tchefImg==''){
-					alert("비었다네....!");
+					return;
 				};
 				alert(tchefImg);
 				var tchefComt = $("#chefComment").val();
@@ -103,10 +104,11 @@
 				
 				
 				alert(tchefComt);
-				/* if(tchefImg != '' && tchfComt != '' && ttruckImg != '' && ttruckComt != ''){ */
-				if(tchefComt != '' && ttruckComt != ''){
+				if(tchefImg != "" && tchefComt != "" && ttruckImg != "" && ttruckComt != ""){
+				/* if(tchefComt != '' && ttruckComt != ''){ */
 					// 모든 사항이 입력된 경우 폼의 내용을 보내자.
 					alert(tchefComt);
+					$(".tabNo").val(clkTab);
 					$("#sfrm").attr("action", "../chef/TempSave.food").submit();
 				};
 				
@@ -125,8 +127,9 @@
 					alert(tkeyword);
 				
 				/* if( tmmenuName != '' && tmmenuPrice != '' && tmmenuComment != '' && tkeyword != ''){ */
- 				if(tmmenuImg != '' && tmmenuName != '' && tmmenuPrice != '' && tmmenuComment != '' && tkeyword != ''){
+ 				if(tmmenuImg != "" && tmmenuName != "" && tmmenuPrice != "" && tmmenuComment != "" && tkeyword != ""){
 					// 모든 사항이 입력된 경우 폼의 내용을 보내자.
+					$(".tabNo").val(clkTab);
 					$("#tfrm").attr("action", "../chef/TempSave.food").submit();
 				};
 				
@@ -173,7 +176,7 @@
 							
 					<form method="POST" action="" id="ffrm" name="ffrm">
 							
-								<input type="hidden" id="tabNo" />
+								<input type="hidden" id="tabNo" name="tabNo" />
 								<div class="form-group clearfix">
 									<label class="col-md-4 control-label " for="chef">사업주 이름</label>
 									<div class="col-md-8">
@@ -245,6 +248,7 @@
 									<div class="row">
 									
 								<form method="POST" action="" id="sfrm" enctype="multipart/form-data">
+											<input type="hidden" class="tabNo" name="tabNo" />
 											<div>
 												<h4 class="header-title m-t-0 m-b-30">쉐프사진등록</h4>
 												<h6 class="m-b-30">1895X1000pixel</h6>
@@ -286,6 +290,7 @@
 												<div class="col-lg-12">
 												
 												<form method="POST" action="" id="tfrm" enctype="multipart/form-data">
+													<input type="hidden" class="tabNo" name="tabNo" />
 													<div>
 														<h4 class="header-title m-t-0 m-b-30">주메뉴사진등록</h4>
 														<h6 class="m-b-30">1895X1000pixel</h6>
@@ -357,10 +362,10 @@
 								
 									<ul class="pager m-b-0 wizard">
 										<!-- <li class="previous first" style="display:none;"><a href="#">First</a></li> -->
-										<li class="previous"><a href="" class="btn btn-primary waves-effect waves-light" id="pBtn">Previous</a></li>
+										<!-- <li class="previous"><a href="" class="btn btn-primary waves-effect waves-light" id="pBtn">Previous</a></li> -->
 										<li class="msave"><a href="" class="btn btn-primary waves-effect waves-light" id="sBtn">중간저장</a></li>
 										<!-- <li class="next last" style="display:none;"><a href="#">Last</a></li> -->
-										<li class="next"><a href="" class="btn btn-primary waves-effect waves-light" id="nBtn">Next</a></li>
+										<!-- <li class="next"><a href="" class="btn btn-primary waves-effect waves-light" id="nBtn">Next</a></li> -->
 									</ul>
 									<div></div>
 								</div>
