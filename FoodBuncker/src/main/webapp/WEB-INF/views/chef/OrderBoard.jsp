@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
@@ -10,7 +10,7 @@
 
         <link rel="shortcut icon" href="../resources/assets/images/favicon.ico">
 
-        <title>Order Board</title>
+        <title>${OPENCLOSEPLACE.tname }</title>
 
         <link href="../resources/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="../resources/assets/css/core.css" rel="stylesheet" type="text/css" />
@@ -42,7 +42,7 @@
 
 					<!-- LOGO -->
                     <div class="topbar-left">
-                        <a href="index.html" class="logo"><span>Food<span>Buncker</span></span></a>
+                        <a href="../person/MainWindow.food" class="logo"><span>Food<span>Buncker</span></span></a>
                     </div>
                     <!-- End Logo container-->
                     <div class="menu-extras">                        
@@ -110,14 +110,16 @@
                 <!-- Page-Title -->
                 <div class="row">
                     <div class="col-sm-12">
+                    <c:if test="${OPENCLOSEPLACE.openTime ne OPENCLOSEPLACE.closeTime }">
                         <div class="btn-group pull-right m-t-15">
-                            <button type="button" class="btn btn-custom dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="false">상태변경 <span class="m-l-5"><i class="fa fa-cog"></i></span></button>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="#">시작</a></li>
-                                <li><a href="#">잠깐 정지</a></li>
-                                <li><a href="#">종료</a></li>
-                            </ul>
+                            <button type="button" class="btn btn-custom waves-effect waves-light"  id="oBtn">영업시작입력 <span class="m-l-5"><i class="fa fa-cog"></i></span></button>
                         </div>
+                  	</c:if>
+                  	<c:if test="${OPENCLOSEPLACE.openTime eq OPENCLOSEPLACE.closeTime }">
+                        <div class="btn-group pull-right m-t-15">
+                            <button type="button" class="btn btn-danger waves-effect waves-light" id="cBtn">영업종료입력 <span class="m-l-5"><i class="fa fa-cog"></i></span></button>
+                        </div>
+                  	</c:if>
                         <h4 class="page-title">Order Board</h4>
                     </div>
                 </div>
@@ -130,84 +132,37 @@
                             <!--Pricing Column-->
                             
  <!-- -----------------------    foreach문으로 반복 시작------------------------------------------------- --> 	                                  
-                            <article class="pricing-column col-lg-3 col-sm-6" >
+                   		<c:forEach var="data" items="${ORDERLIST }">
+                   			<article class="pricing-column col-lg-3 col-sm-6" >
+                   			<c:if test="${data.orderTime  ne data.payTime }">
+                   				<div class="ribbon"><span>조리중</span></div>
+                   			</c:if>
                                 <div class="inner-box card-box" style="height:500px;">
                                     <div class="plan-header text-center">
                                         <h3 class="plan-title">주문No</h3>
-                                        <h2 class="plan-price">19</h2>
-                                        <div class="plan-duration">주문시간 10:12</div>
+                                        <h2 class="plan-price">${data.ono }</h2>
+                                        <div class="plan-duration">주문시간 ${data.orderTime }</div>
                                     </div>
 									<div class="text-center">
-                                        <a href="../chef/Invoice.food" class="btn btn-success btn-bordred btn-rounded waves-effect waves-light">결제</a>
+									<c:if test="${data.orderTime  eq data.payTime }">
+                                        <a href="../chef/Invoice.food?ono=${data.ono }" class="btn btn-success btn-bordred btn-rounded waves-effect waves-light">결제</a>
+                                 	</c:if>
+                                 	<c:if test="${data.orderTime ne data.payTime }">
+                                        <a href="../chef/CookEndProc.food?ono=${data.ono }&tno=${data.tno}" class="btn btn-primary btn-bordred btn-rounded waves-effect waves-light">완료입력</a>
+                                 	</c:if>
                                     </div>
                                     <ul class="plan-stats list-unstyled text-center">
-                                        <li>찹스테이크 2</li>
-                                        <li>콜라 2</li>
+                                    	<c:forEach var="data1" items="${ORDERMENULIST }">
+                                    		<c:if test="${data.ono eq data1.ono }">
+                                    			<li>${data1.mName }            ${data1.mnum }</li>
+                                    		</c:if>
+                                        </c:forEach>
                                     </ul>
                                 </div>
                             </article>
-<!-- -----------------------   foreach문으로 반복 끝----------------------------------------------------- --> 	       
-<!-- -----------------------   위의 foreach문 완성시 삭제 부분 시작--------------------------------------- --> 	       
-                            <!--Pricing Column-->
-                            <article class="pricing-column col-lg-3 col-sm-6">
-                                <div class="ribbon"><span>조리중</span></div>
-                                <div class="inner-box card-box" style="height:500px;">
-                                    <div class="plan-header text-center">
-                                        <h3 class="plan-title">주문No</h3>
-                                        <h2 class="plan-price">20</h2>
-                                        <div class="plan-duration">주문시간 10:20</div>
-                                    </div>
-									<div class="text-center">
-                                        <button class="btn btn-primary btn-bordred btn-rounded waves-effect waves-light">결제완료</button>
-                                    </div>
-                                    <ul class="plan-stats list-unstyled text-center">
-                                        <li>햄버거 1</li>
-                                        <li>콜라 1</li>
-                                        <li>포테이토</li>
-                                    </ul>
-                                </div>
-                            </article>
-
-
-                            <!--Pricing Column-->
-                            <article class="pricing-column col-lg-3 col-sm-6">
-                                <div class="inner-box card-box" style="height:500px;">
-                                    <div class="plan-header text-center">
-                                        <h3 class="plan-title">주문No</h3>
-                                        <h2 class="plan-price">21</h2>
-                                        <div class="plan-duration">주문시간 10:30</div>
-                                    </div>
-									<div class="text-center">
-                                        <a href="invoice.html" class="btn btn-success btn-bordred btn-rounded waves-effect waves-light">결제</a>
-                                    </div>
-                                    <ul class="plan-stats list-unstyled text-center">
-                                        <li>햄버거 3</li>
-                                        <li>샐러드 1</li>
-                                        <li>콜라 3</li>
-                                        <li>치즈스틱 3</li>
-                                    </ul>
-                                </div>
-                            </article>
-
-                            <!--Pricing Column-->
-                            <article class="pricing-column col-lg-3 col-sm-6">
-                                <div class="inner-box card-box" style="height:500px;">
-                                    <div class="plan-header text-center">
-                                        <h3 class="plan-title">주문No</h3>
-                                        <h2 class="plan-price">23</h2>
-                                        <div class="plan-duration">주문시간 10:42</div>
-                                    </div>
-									<div class="text-center">
-                                        <a href="invoice.html" class="btn btn-success btn-bordred btn-rounded waves-effect waves-light">결제</a>
-                                    </div>
-                                    <ul class="plan-stats list-unstyled text-center">
-                                        <li>스테이크 2</li>
-                                        <li>샐러드 1</li>
-                                        <li>콜라 2</li>
-                                    </ul>
-                                </div>
-                            </article>
-<!-- -----------------------   위의 foreach문 완성시 삭제 부분 끝--------------------------------------- --> 	       
+                            
+                  		</c:forEach>
+<!-- -----------------------   foreach문으로 반복 끝----------------------------------------------------- --> 
                         </div><!-- end row -->
                     </div>
                 </div>
@@ -246,6 +201,18 @@
         <!-- App js -->
         <script src="../resources/assets/js/jquery.core.js"></script>
         <script src="../resources/assets/js/jquery.app.js"></script>
+        
+        <script>
+        $(document).ready(function(){
+        	$("#oBtn").click(function(){
+        		$(location).attr("href","../chef/OpenProc.food?tno="+${OPENCLOSEPLACE.tno}+"&pno="+${OPENCLOSEPLACE.pno});
+        		alert("영업시작 입력이 되었습니다.")
+        	});
+        	$("#cBtn").click(function(){
+        		$(location).attr("href","../chef/CloseProc.food?tno="+${OPENCLOSEPLACE.tno}+"&pno="+${OPENCLOSEPLACE.pno});
+        	});
+        });
+        </script>
 
     </body>
 </html>

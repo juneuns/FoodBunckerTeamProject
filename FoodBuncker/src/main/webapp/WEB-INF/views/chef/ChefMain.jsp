@@ -44,7 +44,7 @@
 
 					<!-- LOGO -->
                     <div class="topbar-left">
-                        <a href="index.html" class="logo"><span>Food<span>Buncker</span></span></a>
+                        <a href="../person/MainWindow.food" class="logo"><span>Food<span>Buncker</span></span></a>
                     </div>
                     <!-- End Logo container-->
                     <div class="menu-extras">                        
