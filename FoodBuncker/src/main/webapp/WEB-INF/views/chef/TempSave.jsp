@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
@@ -52,118 +52,155 @@
                     <div class="col-sm-12">
                         <div class="card-box">
 							<h4 class="m-b-30 m-t-0 header-title"><b>기본내용</b></h4>
-								<form action="#" class="form-horizontal">
+							
+							
+								<form method="POST" action="" class="form-horizontal" id="frm" name="frm" enctype="multipart/form-data">
 									<div class="form-group">
 										<label class="col-sm-5 control-label">사업주이름</label>
 										<div class="col-sm-7">
-											<a href="#" id="chefName" data-type="text" data-pk="1" >홍길동</a>
-                                        </div>
-                                    </div>
+											<a href="#" id="chef" name="chef" data-type="text" data-pk="2" >${DATA.chef}</a>
+                    </div>
+                   </div>
+
+									<div class="form-group">
+										<label class="col-sm-5 control-label">I D</label>
+                                        <div class="col-sm-7">
+											<a href="#" id="id" name="id" data-type="text" data-pk="1">${DATA.id}</a>
+										</div>
+									</div>
 										
 									<div class="form-group">
 										<label class="col-sm-5 control-label">상호명(트럭명)</label>
                                         <div class="col-sm-7">
-											<a href="#" id="truckName" data-type="text" data-pk="1">bugertruck</a>
+											<a href="#" id="name" name="name" data-type="text" data-pk="1">${DATA.name}</a>
                                         </div>
                                     </div>                                        
 
 									<div class="form-group">
 										<label class="col-sm-5 control-label">사업자번호</label>
                                         <div class="col-sm-7">
-											<a href="#" id="number" data-type="text" data-pk="1" data-placement="right" data-placeholder="Required" data-title="Enter your firstname">111-22-33333</a>
+											<a href="#" id="num" name="num" data-type="text" data-pk="1" data-placement="right" data-placeholder="Required" data-title="Enter your firstname">${DATA.num}</a>
                                         </div>
                                     </div>
 
 									<div class="form-group">
 										<label class="col-sm-5 control-label">전화번호</label>
                                         <div class="col-sm-7">
-											<a href="#" id="phone" data-type="text" data-pk="1">010-1111-1111</a>
+											<a href="#" id="phone" name="phone" data-type="text" data-pk="1">${DATA.phone}</a>
                                         </div>
                                     </div>   
 
 									<div class="form-group">
 										<label class="col-sm-5 control-label">이메일</label>
                                         <div class="col-sm-7">
-											<a href="#" id="email" data-type="text" data-pk="1">truck@truck.com</a>
+											<a href="#" id="email" name="email" data-type="text" data-pk="1">${DATA.email}</a>
                                         </div>
                                     </div> 
 										
 									<div class="form-group">
 										<label class="col-sm-5 control-label">개업일</label>
                                         <div class="col-sm-7">
-											<a href="#" id="openDate" data-type="text" data-pk="1">2016/04/22</a>
+											<a href="#" id="open" name="open" data-type="text" data-pk="1">${DATA.open}</a>
                                         </div>
                                     </div>
 
-									<div class="form-group">
-										<label class="col-sm-5 control-label">ID</label>
-                                        <div class="col-sm-7">
-											<a href="#" id="id" data-type="text" data-pk="1">truck12</a>
-										</div>
-									</div>
-
 									<h4 class="m-b-30 m-t-0 header-title"><b>쉐프이미지</b></h4>
-									<input type="file" class="dropify" data-default-file="../resources/img/detailviewchef.jpg"  />
+									<input type="file" class="dropify" id="chefImg" name="chefImg" data-default-file="../image/${DATA.chefImgName}"  />
 
 									<div class="form-group">
-										<label class="col-sm-5 control-label">쉐프한마디</label>
+										<label class="col-sm-5 control-label">쉐프 한마디</label>
                                         <div class="col-sm-7">
-											<a href="#" id="chefComment" data-type="text" data-pk="1">최고의 맛을 위해!! 열정을 쏟겠습니다.</a>
+											<a href="#" id="chefComment" name="chefComment" data-type="text" data-pk="1">${DATA.chefComment}</a>
 										</div>
                                     </div>
 
 									<h4 class="m-b-30 m-t-0 header-title"><b>트럭이미지</b></h4>
-									<input type="file" class="dropify" data-default-file="../resources/img/detailviewtruck.jpg"  />
+									<input type="file" class="dropify" id="truckImg" name="truckImg" data-default-file="../image/${DATA.truckImgName}"  />
 
 									<div class="form-group">
-										<label class="col-sm-5 control-label">트럭설명</label>
+										<label class="col-sm-5 control-label">트럭 설명</label>
                                         <div class="col-sm-7">
-											<a href="#" id="truckComment" data-type="text" data-pk="1">여러분이 계신곳이라면 어디든지 달려갑니다.</a>
+											<a href="#" id="truckComment" name="truckComment" data-type="text" data-pk="1">${DATA.truckComment}</a>
 										</div>
 									</div>
 
-									<div class="form-group">
+									<%-- <div class="form-group">
 										<label class="col-sm-5 control-label">검색키워드</label>
                                         <div class="col-sm-7">
-											<a href="#" id="keyword" data-type="text" data-pk="1">소고기;숯불;스테이크;시카고;푸드트럭</a>
+											<a href="#" id="keyword" data-type="text" data-pk="1">${DATA.keyword}</a>
 										</div>
 									</div>
-
-									<h4 class="m-b-30 m-t-0 header-title"><b>주메뉴이미지</b></h4>
-									<input type="file" class="dropify" data-default-file="../resources/img/detailviewmenu.jpg"  />
-
-									<div class="form-group">
-										<label class="col-sm-5 control-label">주메뉴이름</label>
-                                        <div class="col-sm-7">
-											<a href="#" id="mmenuName" data-type="text" data-pk="1">Steak</a>
-										</div>
-									</div>
+ --%>
+									<h4 class="m-b-30 m-t-0 header-title"><b>주메뉴 이미지</b></h4>
+									<input type="file" class="dropify" id="mmenuImg" name="mmenuImg" data-default-file="../image/${DATA.mmenuImgName}"  />
 
 									<div class="form-group">
-										<label class="col-sm-5 control-label">주메뉴가격(원)</label>
+										<label class="col-sm-5 control-label">주메뉴 이름</label>
                                         <div class="col-sm-7">
-											<a href="#" id="mmenuPrice" data-type="text" data-pk="1">9000</a>
+											<a href="#" id="mmenuName" name="mmenuName" data-type="text" data-pk="1">${DATA.mmenuName}</a>
 										</div>
 									</div>
 
 									<div class="form-group">
-										<label class="col-sm-5 control-label">주메뉴설명</label>
-                                        <div class="col-sm-7">
-											<a href="#" id="mmenuComment" data-type="text" data-pk="1">1++의 살치살에 특제 소스를 덮은 스테이크</a>
+										<label class="col-sm-5 control-label">주메뉴 가격(원)</label>
+                    <div class="col-sm-7">
+											<a href="#" id="mmenuPrice" name="mmenuPrice" data-type="text" data-pk="1">${DATA.mmenuPrice}</a>
 										</div>
 									</div>
 
 									<div class="form-group">
-										<label class="col-sm-5 control-label">검색키워드</label>
-                                        <div class="col-sm-7">
-											<a href="#" id="mmenukeyword" data-type="text" data-pk="1">소고기;숯불;스테이크;시카고;푸드트럭</a>
+										<label class="col-sm-5 control-label">주메뉴 설명</label>
+                    <div class="col-sm-7">
+											<a href="#" id="mmenuComment" name="mmenuComment" data-type="text" data-pk="1">${DATA.mmenuComment}</a>
 										</div>
+									</div>
+
+<%-- 									<div class="form-group">
+ 										<label class="col-sm-5 control-label">검색키워드</label>
+                    <div class="col-sm-7">
+											<a href="#" id="mmenukeyword" data-type="text" data-pk="1">${DATA.keyword}</a>
+										</div>
+									</div> --%>
+
+ 									<div class="form-group">
+										<label class="col-sm-5 control-label">검색 키워드 1</label>
+                    <div class="col-sm-7">
+                    	<a href="#" id="keyword1" name="keyword1" data-type="text" data-pk="1">${DATA.keyword1}</a>
+                    </div>
+									</div>
+
+									<div class="form-group">
+										<label class="col-sm-5 control-label">검색 키워드 2</label>
+                    <div class="col-sm-7">
+                    	<a href="#" id="keyword2" name="keyword2" data-type="text" data-pk="1">${DATA.keyword2}</a>
+                    </div>
+									</div>
+
+									<div class="form-group">
+										<label class="col-sm-5 control-label">검색 키워드 3</label>
+                    <div class="col-sm-7">
+                    	<a href="#" id="keyword3" name="keyword3" data-type="text" data-pk="1">${DATA.keyword3}</a>
+                    </div>
+									</div>
+
+									<div class="form-group">
+										<label class="col-sm-5 control-label">검색 키워드 4</label>
+                    <div class="col-sm-7">
+                    	<a href="#" id="keyword4" name="keyword4" data-type="text" data-pk="1">${DATA.keyword4}</a>
+                    </div>
+									</div>
+
+									<div class="form-group">
+										<label class="col-sm-5 control-label">검색 키워드 5</label>
+                    <div class="col-sm-7">
+                    	<a href="#" id="keyword5" name="keyword5" data-type="text" data-pk="1">${DATA.keyword5}</a>
+                    </div>
 									</div>
 								</form>
 								<div class="btn-group btn-group-justified m-b-10">
-                                <a class="btn btn-primary waves-effect waves-light" role="button" href="../chef/RegProc.food" id="finalReg">최종가입</a>
                                 <a class="btn btn-warning waves-effect waves-light" role="button" href="../person/MainWindow.food">Home</a>
-                                <a class="btn btn-danger waves-effect waves-light" id="cBtn" role="button" href="#">보류</a>
+                                <a class="btn btn-primary waves-effect waves-light" role="button" href="" id="finalReg">최종가입</a>
+                                <!-- <a class="btn btn-danger waves-effect waves-light" id="cBtn" role="button" href="#">보류</a> -->
                             </div>
 							</div><!-- end col -->
 						</div><!-- end row -->
@@ -171,6 +208,8 @@
                 <!-- end row -->
 			</div>
 		</div>
+		
+	
         <!-- jQuery  -->
         <script src="../resources/assets/js/jquery.min.js"></script>
         <script src="../resources/assets/js/bootstrap.min.js"></script>
@@ -202,23 +241,39 @@
 
 		<script>
 		$(document).ready(function(){
-			$('#number').editable({mode: 'inline'});
-			$('#chefName').editable({mode: 'inline'});
-			$('#truckName').editable({mode: 'inline'});
+			$('#num').editable({mode: 'inline'});
+			$('#chef').editable({mode: 'inline'});
+			$('#name').editable({mode: 'inline'});
 			$('#phone').editable({mode: 'inline'});
 			$('#email').editable({mode: 'inline'});
-			$('#openDate').editable({mode: 'inline'});
+			$('#open').editable({mode: 'inline'});
 			$('#id').editable({mode: 'inline'});
 			$('#chefComment').editable({mode: 'inline'});
 			$('#truckComment').editable({mode: 'inline'});
-			$('#keyword').editable({mode: 'inline'});
 			$('#mmenuName').editable({mode: 'inline'});
 			$('#mmenuPrice').editable({mode: 'inline'});
 			$('#mmenuComment').editable({mode: 'inline'});
-			$('#mmenukeyword').editable({mode: 'inline'});
+			$('#keyword1').editable({mode: 'inline'});
+			$('#keyword2').editable({mode: 'inline'});
+			$('#keyword3').editable({mode: 'inline'});
+			$('#keyword4').editable({mode: 'inline'});
+			$('#keyword5').editable({mode: 'inline'});
+			
+			
+			
 			$('#finalReg').click(function(){
 				alert("FOOD BUNCKER의 회원 가입을 환영합니다.");
-				$(location).attr("href","chefmain.html");
+				
+				
+				var tel = $('#phone').val();
+				$('#phone').val(tel);
+				alert($('#phone').val());
+				
+				
+				
+				
+				$(location).attr("href", "../chef/ChefMain.food");
+				/* $("#frm").attr("action", "../chef/RegProc.food").submit(); */
 			});
 
 			$('#cBtn').click(function(){
@@ -282,5 +337,10 @@
                 }
             });
         </script>
+        
+        
+        
+
 	</body>
+     
 </html>
