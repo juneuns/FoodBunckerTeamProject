@@ -19,7 +19,7 @@ public class CRegLoginVO {
 	public String imgbody;
 	public int tigrade;
 	public int tabNo;
-	public int confNo;
+	public String isShow;
 	
 	public MultipartFile chefImg;
 	public String chefImgName;
@@ -41,12 +41,12 @@ public class CRegLoginVO {
 	public String keyword5;
 	
 	
-	
-	public int getConfNo() {
-		return confNo;
+
+	public String getIsShow() {
+		return isShow;
 	}
-	public void setConfNo(int confNo) {
-		this.confNo = confNo;
+	public void setIsShow(String isShow) {
+		this.isShow = isShow;
 	}
 	public String getKeyword1() {
 		return keyword1;

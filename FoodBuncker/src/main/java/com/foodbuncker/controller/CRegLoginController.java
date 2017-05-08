@@ -309,7 +309,6 @@ public class CRegLoginController {
 		System.out.println("@@@@@@@@@@@@@@@@  Session VO NO  : " + cregVO.no);
 		CRegLoginVO data = cregLoginService.memberinfoSrvc(cregVO);
 		
-		System.out.println("@@@@@@@@@@@@@@@@  Session NO  : " + no);
 		System.out.println("@@@@@@@@@@@@@@@@  INfoModify  chef : " + data.chef);
 		mv.addObject("DATA", data);
 		mv.setViewName("chef/InfoModify");

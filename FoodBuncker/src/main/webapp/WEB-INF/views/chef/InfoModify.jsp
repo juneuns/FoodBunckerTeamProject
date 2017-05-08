@@ -37,7 +37,6 @@
         <script src="../resources/assets/js/modernizr.min.js"></script>
     </head>
 
-    
     <body>	
         <div class="account-pages"></div>
         <div class="clearfix"></div>

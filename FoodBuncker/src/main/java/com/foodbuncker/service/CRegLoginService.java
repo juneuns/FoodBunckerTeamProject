@@ -151,7 +151,7 @@ public class CRegLoginService {
 			data.tabNo = tabNo ;
 			data.cnt = 1 ;
 			System.out.println("############# 메뉴table 이미지 업로드완료");
-			System.out.println("############# cRegInfoSrvc tabNo : " + tabNo);
+//			System.out.println("############# cRegInfoSrvc tabNo : " + tabNo);
 		}
 		return data;
 	}

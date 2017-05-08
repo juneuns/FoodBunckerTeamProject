@@ -244,7 +244,7 @@
 			$('#num').editable({mode: 'inline'});
 			$('#chef').editable({mode: 'inline'});
 			$('#name').editable({mode: 'inline'});
-			$('#phone').editable({mode: 'inline'});
+			$('#phone').editable({mode: 'inline'}, {name: 'phone'});
 			$('#email').editable({mode: 'inline'});
 			$('#open').editable({mode: 'inline'});
 			$('#id').editable({mode: 'inline'});

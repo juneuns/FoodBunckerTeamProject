@@ -110,7 +110,7 @@
 		INSERT INTO
 			TruckInfo
 		VALUES((SELECT NVL(MAX(T_No), 0) + 1 FROM TruckInfo),
-			#{chef}, #{name}, #{phone}, #{open}, #{email}, #{num}, #{id}, #{pw}, 'Y')
+			#{chef}, #{name}, #{phone}, #{open}, #{email}, #{num}, #{id}, #{pw}, 'S')
 	</insert>
 	
 	<!-- 트럭이미지 등록 질의 명령 -->

@@ -25,7 +25,6 @@ public class CRegLoginDAO {
 	 * 회원 넘버 질의 명령 실행 전담 함수
 	 */
 	public int selectTImgCNTDAO(CRegLoginVO cregVO){
-//		System.out.println("################ selectTImgCNTDAO ID :" + cregVO.id);
 //		System.out.println("################ selectTImgCNTDAO NO :" + cregVO.no);
 		int tmpno = (int) sqlSession.selectOne("foodbuncker.CRegLogin.selectImgTable", cregVO);
 

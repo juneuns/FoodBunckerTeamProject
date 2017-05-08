@@ -39,7 +39,7 @@
 <script>
 
 	$(document).ready(function(){
-		alert("이건 나와라!!!");
+		/* alert("이건 나와라!!!"); */
 		alert("tabNo : " + ${tabNo});
 		var clkTab = ${tabNo} ;
 		if(${tabNo} == '' || ${tabNo} == 0 ){
