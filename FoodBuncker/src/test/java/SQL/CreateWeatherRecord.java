@@ -18,9 +18,13 @@ public class CreateWeatherRecord {
 			stmt.execute(sql1);
 			stmt.execute(sql2);
 		}catch(Exception e){
-			e.printStackTrace();
+			try {
+				stmt.execute(sql2);
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
 		}
-		System.out.println("테이블 생성 완료");
+		System.out.println("날씨테이블 생성 완료");
 		
 		String[] sql = {
 				"insert into weatherrecord values	(to_date(	'	2015-01-01 1:00	','YYYY-MM-DD HH24:MI'),	-7.4	,	0	,	33	)",
@@ -4379,14 +4383,11 @@ public class CreateWeatherRecord {
 		db.close(stmt);
 		db.close(db.con);
 		System.out.println("2015년 1월-6월 입력완료");
-		
-	}
-	
-	public static void main(String[] args){
-		new CreateWeatherRecord();
 		new CreateWeatherRecord2();
 		new CreateWeatherRecord3();
 		new CreateWeatherRecord4();
 		new CreateWeatherRecord5();
+		
+		
 	}
 }

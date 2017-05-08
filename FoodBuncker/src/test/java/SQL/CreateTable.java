@@ -7,7 +7,7 @@ public class CreateTable {
 
 	public CreateTable() {
 		
-		String[] table = {"RANGECAL","ORDERMENU", "MORDER", "MENU", "REPLYBOARD", "BOARD", "PLAN", "OPENCLOSE", "PLACE", "TRUCKIMAGE", "TRUCKINFO","SEARCHRECORD"};
+		String[] table = {"SELLDATA","RANGECAL","ORDERMENU", "MORDER", "MENU", "REPLYBOARD", "BOARD", "PLAN", "OPENCLOSE", "PLACE", "TRUCKIMAGE", "TRUCKINFO","SEARCHRECORD"};
 		String cntTable = "Select count(*) as cnt from tab where tname=";
 		String drop = "Drop Table ";
 	
@@ -99,7 +99,30 @@ public class CreateTable {
 						+"RG_NO NUMBER(5) PRIMARY KEY,"
 						+"RG_YM VARCHAR2(10) NOT NULL,"
 						+"RG_T_NO NUMBER(5) references truckinfo(t_no),"
-						+"RG_RANGE NUMBER(10) NOT NULL)"
+						+"RG_RANGE NUMBER(10) NOT NULL)",
+				"CREATE TABLE SELLDATA ("
+						+"sd_p_no number(5) references place(p_no),"
+						+"sd_yearmonth varchar2(10),"
+						+"sd_selltotal number(10),"
+						+"sd_monrate number(4,2),"
+						+"sd_tuesrate number(4,2),"
+						+"sd_wedrate number(4,2),"
+						+"sd_thurrate number(4,2),"
+						+"sd_frirate number(4,2),"
+						+"sd_satrate number(4,2),"
+						+"sd_sunrate number(4,2),"
+						+"sd_1014rate number(4,2),"
+						+"sd_1417rate number(4,2),"
+						+"sd_1721rate number(4,2),"
+						+"sd_2124rate number(4,2),"
+						+"sd_manrate number(4,2),"
+						+"sd_womanrate number(4,2),"
+						+"sd_10rate number(4,2),"
+						+"sd_20rate number(4,2),"
+						+"sd_30rate number(4,2),"
+						+"sd_40rate number(4,2),"
+						+"sd_50rate number(4,2),"
+						+"sd_60rate number(4,2))"
 		};
 		
 		MyJDBC db = null;
@@ -154,6 +177,8 @@ public class CreateTable {
 		new InsertBoardReplyBoard();
 		new InsertRangeCalc();
 		new InsertSearchRecord();
+		new CreateWeatherRecord();
+		new InsertSellData();
 		
 		
 	}
