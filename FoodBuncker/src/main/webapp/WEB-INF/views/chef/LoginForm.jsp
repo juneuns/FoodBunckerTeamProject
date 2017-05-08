@@ -1,6 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
+
 <html>
     <head>
         <meta charset="utf-8">
@@ -33,32 +34,38 @@
         <script src="../resources/assets/js/modernizr.min.js"></script>
         
     </head>
+
+
+
     <body>
 
         <div class="account-pages"></div>
         <div class="clearfix"></div>
         <div class="wrapper-page">
             <div class="text-center">
-                <a href="index.html" class="logo"><span>Food<span>Buncker</span></span></a>
+                <a href="../person/MainWindow.food" class="logo"><span>Food<span>Buncker</span></span></a>
                 <h5 class="text-muted m-t-0 font-600">Chef Login</h5>
             </div>
         	<div class="m-t-40 card-box">
                 <div class="text-center">
                     <h4 class="text-uppercase font-bold m-b-0">Sign In</h4>
                 </div>
+                <div class="col-sm-12 text-center m-l-5" style="height:3px;text-align:center;bottom-padding:-10px;">
+                	<c:if test="${STATUS eq false}">
+                		<p class="text-primary m-l-4"><b>다시 입력해주세요!</b></p>
+                	</c:if>
+                </div>
+                
                 <div class="panel-body">
-
-                    <form method="POST" class="form-horizontal m-t-20" action="">
-
+                    <form method="POST" class="form-horizontal m-t-20" action="../chef/LoginProc.food">
                         <div class="form-group ">
                             <div class="col-xs-12">
-                                <input class="form-control" type="text" required="" placeholder="ID">
+                                <input class="form-control" type="text" required="" placeholder="ID" id="id" name="id" />
                             </div>
                         </div>
-
                         <div class="form-group">
                             <div class="col-xs-12">
-                                <input class="form-control" type="password" required="" placeholder="Password">
+                                <input class="form-control" type="password" required="" placeholder="Password" id="pw" name="pw" />
                             </div>
                         </div>
                         <div class="form-group text-center m-t-30">
@@ -66,25 +73,21 @@
                                 <button class="btn btn-custom btn-bordred btn-block waves-effect waves-light" type="submit">Log In</button>
                             </div>
                         </div>
-						<!--
-                        <div class="form-group m-t-30 m-b-0">
+            <!--             <div class="form-group m-t-30 m-b-0">
                             <div class="col-sm-12">
                                 <a href="#" class="text-muted"><i class="fa fa-lock m-r-5"></i> password를 잊으셨나요?</a>
                             </div>
-                        </div>
-						-->
+                        </div> -->
                     </form>
 
                 </div>
             </div>
             <!-- end card-box-->
-
             <div class="row">
                 <div class="col-sm-12 text-center">
-                    <p class="text-muted">아직 회원가입을 안하셨나요? <a href="../chef/RegForm.food" class="text-primary m-l-5"><b>회원가입</b></a></p>
+                    <p class="text-muted">아직 회원가입을 안하셨나요? <a href="../chef/RegForm.food" class="text-primary m-l-5" id="rBtn" ><b>회원가입</b></a></p>
                 </div>
             </div>
-            
         </div>
         <!-- end wrapper page -->
         
@@ -111,4 +114,5 @@
         <script src="../resources/assets/js/jquery.app.js"></script>
 	
 	</body>
+
 </html>

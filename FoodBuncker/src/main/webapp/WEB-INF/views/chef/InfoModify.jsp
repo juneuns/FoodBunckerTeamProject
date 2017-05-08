@@ -36,6 +36,7 @@
 
         <script src="../resources/assets/js/modernizr.min.js"></script>
     </head>
+
     <body>	
         <div class="account-pages"></div>
         <div class="clearfix"></div>
@@ -44,7 +45,7 @@
                 <a href="index.html" class="logo"><span>Food<span>Buncker</span></span></a>
                 <h5 class="text-muted m-t-0 font-600">개인정보수정</h5>
             </div>
-		</div>
+				</div>
         <!-- end wrapper page -->	
 		<div class="wrapper">
 			<div class="container">
@@ -52,52 +53,52 @@
                     <div class="col-sm-12">
                         <div class="card-box">
 							<h4 class="m-b-30 m-t-0 header-title"><b>기본내용</b></h4>
-								<form action="#" class="form-horizontal">
+								<form method="POST" action="#" class="form-horizontal" id="frm" name="frm">
 									<div class="form-group">
 										<label class="col-sm-5 control-label">사업주이름</label>
 										<div class="col-sm-7">
-											<a href="#" id="chefName" data-type="text" data-pk="1" >홍길동</a>
+											<a href="#" id="chef" name=="chef" data-type="text" data-pk="1" >${DATA.chef}</a>
                                         </div>
                                     </div>
 									<div class="form-group">
 										<label class="col-sm-5 control-label">상호명(트럭명)</label>
                                         <div class="col-sm-7">
-											<a href="#" id="truckName" data-type="text" data-pk="1">bugertruck</a>
+											<a href="#" id="name" name="name" data-type="text" data-pk="1">${DATA.name}</a>
                                         </div>
                                     </div>                                        
 
 									<div class="form-group">
 										<label class="col-sm-5 control-label">사업자번호</label>
                                         <div class="col-sm-7">
-											<a href="#" id="number" data-type="text" data-pk="1" data-placement="right" data-placeholder="Required" data-title="Enter your firstname">111-22-33333</a>
+											<a href="#" id="num" name="num" data-type="text" data-pk="1" data-placement="right" data-placeholder="Required" data-title="Enter your firstname">${DATA.num}</a>
                                         </div>
                                     </div>
 
 									<div class="form-group">
 										<label class="col-sm-5 control-label">전화번호</label>
                                         <div class="col-sm-7">
-											<a href="#" id="phone" data-type="text" data-pk="1">010-1111-1111</a>
+											<a href="#" id="phone" name="phone" data-type="text" data-pk="1">${DATA.phone}</a>
                                         </div>
                                     </div>   
 
 									<div class="form-group">
 										<label class="col-sm-5 control-label">이메일</label>
                                         <div class="col-sm-7">
-											<a href="#" id="email" data-type="text" data-pk="1">truck@truck.com</a>
+											<a href="#" id="email" name="email" data-type="text" data-pk="1">${DATA.email}</a>
                                         </div>
                                     </div> 
 										
 									<div class="form-group">
 										<label class="col-sm-5 control-label">개업일</label>
                                         <div class="col-sm-7">
-											<a href="#" id="openDate" data-type="text" data-pk="1">2016/04/22</a>
+											<a href="#" id="open" name="open" data-type="text" data-pk="1">${DATA.open}</a>
                                         </div>
                                     </div>
 
 									<div class="form-group">
 										<label class="col-sm-5 control-label">ID</label>
                                         <div class="col-sm-7">
-											<a href="#" id="id" data-type="text" data-pk="1">truck12</a>
+											<a href="#" id="id" name="id" data-type="text" data-pk="1">${DATA.id}</a>
 										</div>
 									</div>
 								</form>
@@ -112,6 +113,9 @@
                 <!-- end row -->
 			</div>
 		</div>
+		
+		
+		
         <!-- jQuery  -->
         <script src="../resources/assets/js/jquery.min.js"></script>
         <script src="../resources/assets/js/bootstrap.min.js"></script>
@@ -164,8 +168,11 @@
 
 			$('#cBtn').click(function(){
 				alert("수정된 내용이 저장되지 않았습니다.쉐프 메인 페이지로 이동합니다.");
-				$(location).attr("href","chefmain.html");
-			});
+				var tmp = $('#chef').val();
+		 		$('#chef').val(tmp);
+		 		alert("이건 나와라!!" + tmp);
+				/* $(location).attr("href","chefmain.html"); */
+			}); 
 
 			$('#basicwizard').bootstrapWizard({'tabClass': 'nav nav-tabs navtab-wizard nav-justified bg-muted'});
 

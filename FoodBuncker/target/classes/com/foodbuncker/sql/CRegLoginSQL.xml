@@ -3,4 +3,188 @@
 
 <!-- vo alias : "cregVO" -->
 <mapper namespace="foodbuncker.CRegLogin">
+
+	<!-- 회원 조회 질의 명령 -->
+	<select id="Login" resultType="int" parameterType="cregVO">
+		SELECT
+			COUNT(*) AS CNT
+		FROM
+			TruckInfo
+		WHERE
+			 T_ID = #{id}
+			 AND T_PASSWORD = #{pw}
+			 AND T_isShow = 'Y'
+	</select>
+	
+	<!-- 회원 번호 질의 명령 -->
+	<select id="selectTNo" resultType="int" parameterType="cregVO">
+		SELECT
+			T_NO AS NO
+		FROM
+			TruckInfo
+		WHERE
+			 T_ID = #{id}
+			 AND T_isShow = 'Y'
+	</select>
+	
+	<!-- 트럭이미지 테이블 회원 정보 유무 질의 명령 -->
+	<select id="selectImgTable" resultType="int" parameterType="cregVO">
+		SELECT
+			COUNT(*) AS CNT
+		FROM
+			TruckImage
+		WHERE
+			 TI_T_NO = #{no}
+			 AND TI_isShow = 'Y'
+	</select>
+	
+	<!-- 메뉴 테이블 회원 정보 유무 질의 명령 -->
+	<select id="selectMenuTable" resultType="int" parameterType="cregVO">
+		SELECT
+			COUNT(*) AS CNT
+		FROM
+			Menu
+		WHERE
+			 M_T_NO = #{no}
+			 AND M_isShow ='Y'
+	</select>
+	
+	<!-- 로그인 정보 질의 명령 -->
+	<select id="selectLoginInfo" resultType="cregVO" parameterType="cregVO">
+		SELECT
+			T_NO AS NO, T_CHEF AS CHEF, T_NAME AS NAME, T_PHONE AS PHONE, T_EMAIL AS EMAIL
+		FROM
+			TruckInfo
+		WHERE
+			 T_ID = #{id}
+			 AND T_isShow ='Y'
+	</select>
+	
+	<!--회원 기본 정보 질의 명령 -->
+	<select id="selectMemberInfo" resultType="cregVO" parameterType="int">
+		SELECT
+			T_NO AS NO, T_CHEF AS CHEF, T_NAME AS NAME, T_NUM AS NUM, T_PHONE AS PHONE, T_EMAIL AS EMAIL, T_ID AS ID, T_OPEN AS OPEN
+		FROM
+			TruckInfo
+		WHERE
+			 T_NO = #{no}
+			 AND T_isShow ='Y'
+	</select>
+	
+	<select id="selectRegAll" resultType="cregVO" parameterType="int">
+		SELECT
+			T.T_NO NO, T.T_CHEF CHEF, T.T_NAME NAME, T.T_NUM NUM, 
+			T.T_PHONE PHONE, T.T_EMAIL EMAIL, T.T_OPEN OPEN, T.T_ID ID,
+			TT.chefImgName chefImgName, TT.chefComment chefComment, TT.truckImgName truckImgName, 
+			TT.truckComment truckComment, TT.mmenuImgName mmenuImgName, TT.mmenuComment mmenuComment, TT.mmenuName mmenuName, TT.mmenuPrice mmenuPrice, TT.keyword keyword
+		FROM
+			TRUCKINFO T,
+			(SELECT 
+				TI_T_NO AS T_NO,  
+				(select ti_savename from TruckImage where ti_grade = 2 and ti_isshow = 'Y' and ti_t_no = #{no}) chefImgName, 
+				(select TI_IMGBODY from TruckImage where ti_grade = 2 and ti_isshow = 'Y' and ti_t_no = #{no}) chefComment, 
+				(select ti_savename from TruckImage where ti_grade = 1 and ti_isshow = 'Y' and ti_t_no = #{no}) truckImgName, 
+				(select TI_IMGBODY from TruckImage where ti_grade = 1 and ti_isshow = 'Y' and ti_t_no = #{no}) truckComment, 
+				(select ti_savename from TruckImage where ti_grade = 3 and ti_isshow = 'Y' and ti_t_no = #{no}) mmenuImgName, 
+				(select TI_IMGBODY from TruckImage where ti_grade = 3 and ti_isshow = 'Y' and ti_t_no = #{no}) mmenuComment,
+				(select M_NAME from Menu where m_GRADE = 'M' and M_isShow = 'Y' and M_T_NO = #{no}) mmenuName,
+				(select M_Price from Menu where m_GRADE = 'M' and M_isShow = 'Y' and M_T_NO = #{no}) mmenuPrice,
+				(select M_KEYWORD from Menu where m_GRADE = 'M' and M_isShow = 'Y' and M_T_NO = #{no}) keyword
+			FROM 
+				TruckImage Ti, Menu M
+			WHERE 
+				ti.ti_isshow = 'Y' 
+				AND M.M_isshow = 'Y'
+				AND TI.TI_T_NO = #{no}
+				AND TI.TI_T_NO = M.M_T_NO
+			GROUP BY
+				TI_T_NO) TT
+		WHERE
+			T.T_ISSHOW = 'Y'
+			AND T.T_NO = #{no}
+			AND T.T_NO=TT.T_NO
+	</select>
+	
+	<!-- 회원정보 1차 등록 질의 명령 -->
+	<insert id="insertTInfo" parameterType="cregVO">
+		INSERT INTO
+			TruckInfo
+		VALUES((SELECT NVL(MAX(T_No), 0) + 1 FROM TruckInfo),
+			#{chef}, #{name}, #{phone}, #{open}, #{email}, #{num}, #{id}, #{pw}, 'S')
+	</insert>
+	
+	<!-- 트럭이미지 등록 질의 명령 -->
+	<insert id="insertTImg" parameterType="cregVO">
+		INSERT INTO
+			TruckImage
+		VALUES((SELECT NVL(MAX(TI_No), 0) + 1 FROM TruckImage), #{no}, #{sname}, #{imgbody}, #{tigrade}, 'Y')
+	</insert>
+	
+	<!-- 메뉴 이미지 등록 질의 명령 -->
+	<insert id="insertTMenu" parameterType="cregVO">
+		INSERT INTO
+			TruckImage
+		VALUES((SELECT NVL(MAX(TI_No), 0) + 1 FROM TruckImage), #{no}, #{sname}, #{imgbody}, 3, 'Y')
+	</insert>
+	
+	<!-- 메뉴 이미지 등록 질의 명령 -->
+	<insert id="insertMMenu" parameterType="cregVO">
+		INSERT INTO
+			Menu
+		VALUES((SELECT NVL(MAX(M_No), 0) + 1 FROM Menu), #{no}, #{mmenuName}, #{mmenuPrice}, #{imgbody}, #{sname}, #{mmenugrade}, #{keyword}, 'Y')
+	</insert>
+	
+	<!-- 회원정보 업데이트 질의 명령 -->
+	<update id="updateTInfo" parameterType="cregVO">
+		UPDATE
+			TruckInfo
+		SET
+			T_CHEF=#{chef},
+			T_NAME=#{name},
+			T_PHONE=#{phone},
+			T_OPEN=#{open}, 
+			T_EMAIL=#{email}, 
+			T_NUM=#{num}, 
+			T_ID=#{id},
+			T_ISSHOW='Y'
+		WHERE
+			T_NO=#{no}
+	</update>
+	
+	<!-- 트럭이미지 트럭이미지 새로 업로드될때 업데이트 질의 명령 -->
+	<update id="updateTImgisShow" parameterType="cregVO">
+		UPDATE
+			TruckImage
+		SET
+			TI_isShow='N'
+		WHERE
+			TI_NO=(select ti_no from TruckImage where TI_SAVENAME=#{sname})
+	</update>
+		
+	<!-- 트럭이미지 업데이트 질의 명령 -->
+	<update id="updateTImg" parameterType="cregVO">
+		UPDATE
+			TruckImage
+		SET
+			TI_IMGBODY=#{imgbody}
+		WHERE
+			TI_NO=(select ti_no from TruckImage where TI_SAVENAME=#{sname})
+	</update>
+		
+	<!-- 트럭이미지 업데이트 질의 명령 -->
+	<update id="updateMImg" parameterType="cregVO">
+		UPDATE
+			Menu
+		SET
+			M_name=#{mmenuName},
+			M_Price=#{mmenuPrice},
+			M_BODY=#{imgbody}
+			M_SaveName=#{sname},
+			m_grade=#{mmenugrade}, 
+			m_keyword=#{keyword}
+		WHERE
+			M_NO=(select M_no from menu where m_SAVENAME=#{sname})
+	</update>
+
+	
 </mapper>
