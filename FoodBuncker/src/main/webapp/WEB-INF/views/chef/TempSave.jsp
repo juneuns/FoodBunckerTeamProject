@@ -59,8 +59,8 @@
 										<label class="col-sm-5 control-label">사업주이름</label>
 										<div class="col-sm-7">
 											<a href="#" id="chef" name="chef" data-type="text" data-pk="2" >${DATA.chef}</a>
-                    </div>
-                   </div>
+                    					</div>
+                   					</div>
 
 									<div class="form-group">
 										<label class="col-sm-5 control-label">I D</label>
@@ -143,59 +143,64 @@
 
 									<div class="form-group">
 										<label class="col-sm-5 control-label">주메뉴 가격(원)</label>
-                    <div class="col-sm-7">
+                    					<div class="col-sm-7">
 											<a href="#" id="mmenuPrice" name="mmenuPrice" data-type="text" data-pk="1">${DATA.mmenuPrice}</a>
 										</div>
 									</div>
 
 									<div class="form-group">
 										<label class="col-sm-5 control-label">주메뉴 설명</label>
-                    <div class="col-sm-7">
+                    					<div class="col-sm-7">
 											<a href="#" id="mmenuComment" name="mmenuComment" data-type="text" data-pk="1">${DATA.mmenuComment}</a>
 										</div>
 									</div>
 
 <%-- 									<div class="form-group">
  										<label class="col-sm-5 control-label">검색키워드</label>
-                    <div class="col-sm-7">
+                    					<div class="col-sm-7">
 											<a href="#" id="mmenukeyword" data-type="text" data-pk="1">${DATA.keyword}</a>
 										</div>
 									</div> --%>
 
  									<div class="form-group">
 										<label class="col-sm-5 control-label">검색 키워드 1</label>
-                    <div class="col-sm-7">
-                    	<a href="#" id="keyword1" name="keyword1" data-type="text" data-pk="1">${DATA.keyword1}</a>
-                    </div>
+                    					<div class="col-sm-7">
+                    						<a href="#" id="keyword1" name="keyword1" data-type="text" data-pk="1">${DATA.keyword1}</a>
+                    					</div>
 									</div>
 
 									<div class="form-group">
 										<label class="col-sm-5 control-label">검색 키워드 2</label>
-                    <div class="col-sm-7">
-                    	<a href="#" id="keyword2" name="keyword2" data-type="text" data-pk="1">${DATA.keyword2}</a>
-                    </div>
+                    					<div class="col-sm-7">
+                    						<a href="#" id="keyword2" name="keyword2" data-type="text" data-pk="1">${DATA.keyword2}</a>
+                   	 					</div>
 									</div>
 
 									<div class="form-group">
 										<label class="col-sm-5 control-label">검색 키워드 3</label>
-                    <div class="col-sm-7">
-                    	<a href="#" id="keyword3" name="keyword3" data-type="text" data-pk="1">${DATA.keyword3}</a>
-                    </div>
+                    					<div class="col-sm-7">
+                    						<a href="#" id="keyword3" name="keyword3" data-type="text" data-pk="1">${DATA.keyword3}</a>
+                    					</div>
 									</div>
 
 									<div class="form-group">
 										<label class="col-sm-5 control-label">검색 키워드 4</label>
-                    <div class="col-sm-7">
-                    	<a href="#" id="keyword4" name="keyword4" data-type="text" data-pk="1">${DATA.keyword4}</a>
-                    </div>
+                    					<div class="col-sm-7">
+                    						<a href="#" id="keyword4" name="keyword4" data-type="text" data-pk="1">${DATA.keyword4}</a>
+                    					</div>
 									</div>
 
 									<div class="form-group">
 										<label class="col-sm-5 control-label">검색 키워드 5</label>
-                    <div class="col-sm-7">
-                    	<a href="#" id="keyword5" name="keyword5" data-type="text" data-pk="1">${DATA.keyword5}</a>
-                    </div>
+                    					<div class="col-sm-7">
+                    						<a href="#" id="keyword5" name="keyword5" data-type="text" data-pk="1">${DATA.keyword5}</a>
+                    					</div>
 									</div>
+									
+ 									<input type="hidden" id="keyword" name="keyword" >
+									<input type="hidden" id="oldChefImg" name="oldChefImg" >
+									<input type="hidden" id="oldTruckImg" name="oldTruckImg" >
+									<input type="hidden" id="oldMenuImg" name="oldMenuImg" >
 								</form>
 								<div class="btn-group btn-group-justified m-b-10">
                                 <a class="btn btn-warning waves-effect waves-light" role="button" href="../person/MainWindow.food">Home</a>
@@ -244,7 +249,7 @@
 			$('#num').editable({mode: 'inline'});
 			$('#chef').editable({mode: 'inline'});
 			$('#name').editable({mode: 'inline'});
-			$('#phone').editable({mode: 'inline'}, {name: 'phone'});
+			$('#phone').editable({mode: 'inline'});
 			$('#email').editable({mode: 'inline'});
 			$('#open').editable({mode: 'inline'});
 			$('#id').editable({mode: 'inline'});
@@ -264,16 +269,38 @@
 			$('#finalReg').click(function(){
 				alert("FOOD BUNCKER의 회원 가입을 환영합니다.");
 				
+				$('#num').val($('#num').text());
+				$('#chef').val($('#chef').text());
+				$('#name').val($('#name').text());
+				$('#phone').val($('#phone').text());
+				$('#email').val($('#email').text());
+				$('#open').val($('#open').text());
+				$('#id').val($('#id').text());
+				$('#chefComment').val($('#chefComment').text());
+				$('#truckComment').val($('#truckComment').text());
+				$('#mmenuName').val($('#mmenuName').text());
+				$('#mmenuPrice').val($('#mmenuPrice').text());
+				$('#mmenuComment').val($('#mmenuComment').text());
+
+				alert("1 : " + $('#phone').val());
+				var tk1 = $('#keyword1').text();
+				var tk2 = $('#keyword2').text();
+				var tk3 = $('#keyword3').text();
+				var tk4 = $('#keyword4').text();
+				var tk5 = $('#keyword5').text();
+				alert("2 : " + $('#phone').val());
 				
-				var tel = $('#phone').val();
-				$('#phone').val(tel);
-				alert($('#phone').val());
+				/* $('#oldChefImg').val() = ${DATA.chefImgName}; */
+				alert("3 : " + $('#phone').val());
+				/* $('#oldTruckImg').val() = ${DATA.truckImgName};
+				$('#oldMenuImg').val() = ${DATA.mmenuImgName}; */
+
+				$('#keyword').val('#' + tk1 + '#' + tk2 + '#' + tk3 + '#' + tk4 + '#' + tk5) ;
 				
+				alert($('#keyword').val());
+				alert("4 : " + $('#phone').val());
 				
-				
-				
-				$(location).attr("href", "../chef/ChefMain.food");
-				/* $("#frm").attr("action", "../chef/RegProc.food").submit(); */
+				$('#frm').attr("action", "../chef/RegProc.food").submit();
 			});
 
 			$('#cBtn').click(function(){

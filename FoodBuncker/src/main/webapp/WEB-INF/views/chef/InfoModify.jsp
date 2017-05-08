@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
@@ -147,20 +147,15 @@
 
 		<script>
 		$(document).ready(function(){
-			$('#number').editable({mode: 'inline'});
-			$('#chefName').editable({mode: 'inline'});
-			$('#truckName').editable({mode: 'inline'});
+			/* $('#num').editable({mode: 'inline'});
+			$('#chef').editable({mode: 'inline'});
+			$('#name').editable({mode: 'inline'}); */
 			$('#phone').editable({mode: 'inline'});
 			$('#email').editable({mode: 'inline'});
-			$('#openDate').editable({mode: 'inline'});
-			$('#id').editable({mode: 'inline'});
-			$('#chefComment').editable({mode: 'inline'});
-			$('#truckComment').editable({mode: 'inline'});
-			$('#keyword').editable({mode: 'inline'});
-			$('#mmenuName').editable({mode: 'inline'});
-			$('#mmenuPrice').editable({mode: 'inline'});
-			$('#mmenuComment').editable({mode: 'inline'});
-			$('#mmenukeyword').editable({mode: 'inline'});
+			/* $('#open').editable({mode: 'inline'});
+			$('#id').editable({mode: 'inline'}); */
+			
+			
 			$('#finalReg').click(function(){
 				alert("수정된 정보가 저장되었습니다.");
 				$(location).attr("href","chefmain.html");
@@ -168,10 +163,16 @@
 
 			$('#cBtn').click(function(){
 				alert("수정된 내용이 저장되지 않았습니다.쉐프 메인 페이지로 이동합니다.");
-				var tmp = $('#chef').val();
-		 		$('#chef').val(tmp);
-		 		alert("이건 나와라!!" + tmp);
-				/* $(location).attr("href","chefmain.html"); */
+				
+				/* $('#chef').val($('#chef').text());
+				$('#name').val($('#name').text());
+				$('#num').val($('#num').text()); */
+				$('#phone').val($('#phone').text());
+				$('#email').val($('#email').text());
+				/* $('#open').val($('#open').text());
+				$('#id').val($('#id').text()); */
+				
+				$('frm').attr("action","../chef/InfoModifyProc.food");
 			}); 
 
 			$('#basicwizard').bootstrapWizard({'tabClass': 'nav nav-tabs navtab-wizard nav-justified bg-muted'});

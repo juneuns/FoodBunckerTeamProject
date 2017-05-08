@@ -319,7 +319,7 @@
 													</div>
 													
 													<div class="form-group clearfix">
-															<input type="hidden" id="keyword" name="keyword" />
+														<input type="hidden" id="keyword" name="keyword" />
 														<label class="col-lg-2 control-label" for="keyword1"> 검색키워드1</label>
 														<div class="col-lg-10">
 															<input id="keyword1" name="keyword1" type="text" class="required form-control">

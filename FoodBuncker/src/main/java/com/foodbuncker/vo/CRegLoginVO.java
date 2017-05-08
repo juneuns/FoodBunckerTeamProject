@@ -40,8 +40,73 @@ public class CRegLoginVO {
 	public String keyword4;
 	public String keyword5;
 	
+	public String oldChefImg;
+	public String oldTruckImg;
+	public String oldMenuImg;
+	
+	public String oldMenuImg1;
+	public String oldMenuImg2;
+	public String oldMenuImg3;
+	public String oldMenuImg4;
+	public String oldMenuImg5;
+	public String oldMenuImg6;
+	
 	
 
+	public String getOldChefImg() {
+		return oldChefImg;
+	}
+	public void setOldChefImg(String oldChefImg) {
+		this.oldChefImg = oldChefImg;
+	}
+	public String getOldTruckImg() {
+		return oldTruckImg;
+	}
+	public void setOldTruckImg(String oldTruckImg) {
+		this.oldTruckImg = oldTruckImg;
+	}
+	public String getOldMenuImg() {
+		return oldMenuImg;
+	}
+	public void setOldMenuImg(String oldMenuImg) {
+		this.oldMenuImg = oldMenuImg;
+	}
+	public String getOldMenuImg1() {
+		return oldMenuImg1;
+	}
+	public void setOldMenuImg1(String oldMenuImg1) {
+		this.oldMenuImg1 = oldMenuImg1;
+	}
+	public String getOldMenuImg2() {
+		return oldMenuImg2;
+	}
+	public void setOldMenuImg2(String oldMenuImg2) {
+		this.oldMenuImg2 = oldMenuImg2;
+	}
+	public String getOldMenuImg3() {
+		return oldMenuImg3;
+	}
+	public void setOldMenuImg3(String oldMenuImg3) {
+		this.oldMenuImg3 = oldMenuImg3;
+	}
+	public String getOldMenuImg4() {
+		return oldMenuImg4;
+	}
+	public void setOldMenuImg4(String oldMenuImg4) {
+		this.oldMenuImg4 = oldMenuImg4;
+	}
+	public String getOldMenuImg5() {
+		return oldMenuImg5;
+	}
+	public void setOldMenuImg5(String oldMenuImg5) {
+		this.oldMenuImg5 = oldMenuImg5;
+	}
+	public String getOldMenuImg6() {
+		return oldMenuImg6;
+	}
+	public void setOldMenuImg6(String oldMenuImg6) {
+		this.oldMenuImg6 = oldMenuImg6;
+	}
 	public String getIsShow() {
 		return isShow;
 	}

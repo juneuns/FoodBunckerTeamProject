@@ -123,4 +123,11 @@ public class CRegLoginDAO {
 		sqlSession.update("foodbuncker.CRegLogin.updateMImg", cregVO);
 		return ;
 	}
+	
+	/*
+	 * 회원 기본 정보 업데이트 지르이 명령 처리 전담 함수
+	 */
+	public void updateModifyTInfo(CRegLoginVO cregVO){
+		sqlSession.update("foodbuncker.CRegLogin.updateMemberTInfo", cregVO);
+	}
 }

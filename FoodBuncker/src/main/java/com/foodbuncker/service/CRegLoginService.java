@@ -88,6 +88,7 @@ public class CRegLoginService {
 		return data;
 	}
 	
+	
 	/*
 	 * 회원 등록 전담 처리 서비스 함수
 	 */
@@ -233,6 +234,14 @@ public class CRegLoginService {
 		System.out.println("@@@@@@@@@@@@@@@@  mod srvc VO NO  : " + cregVO.no);
 		
 		return cregLoginDAO.selectMemberInfoDAO(cregVO.no);
+	}
+	
+	/*
+	 * 회원 기본 정보 수정 서비스 함수
+	 */
+	public void infoModifyProcSrvc(CRegLoginVO cregVO){
+		cregLoginDAO.updateModifyTInfo(cregVO);
+		return ;
 	}
 	
 }

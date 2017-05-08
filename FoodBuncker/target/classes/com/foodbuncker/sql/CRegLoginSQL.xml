@@ -134,7 +134,7 @@
 		VALUES((SELECT NVL(MAX(M_No), 0) + 1 FROM Menu), #{no}, #{mmenuName}, #{mmenuPrice}, #{imgbody}, #{sname}, #{mmenugrade}, #{keyword}, 'Y')
 	</insert>
 	
-	<!-- 회원정보 업데이트 질의 명령 -->
+	<!-- 회원정보 회원 등록 단계 업데이트 질의 명령 -->
 	<update id="updateTInfo" parameterType="cregVO">
 		UPDATE
 			TruckInfo
@@ -147,6 +147,17 @@
 			T_NUM=#{num}, 
 			T_ID=#{id},
 			T_ISSHOW='Y'
+		WHERE
+			T_NO=#{no}
+	</update>
+	
+	<!-- 회원정보 회원 단계 업데이트 질의 명령 -->
+	<update id="updateMemberTInfo" parameterType="cregVO">
+		UPDATE
+			TruckInfo
+		SET
+			T_PHONE=#{phone},
+			T_EMAIL=#{email}
 		WHERE
 			T_NO=#{no}
 	</update>
