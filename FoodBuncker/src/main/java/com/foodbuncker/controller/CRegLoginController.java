@@ -190,7 +190,9 @@ public class CRegLoginController {
 		int tabNo = (int) session.getAttribute("tabNo");
 		System.out.println("Tempsave tabNo : " + tabNo);
 		if(tabNo == 0){
-			cregLoginService.cRegInfoSrvc(session, cregVO);
+			try {
+				cregLoginService.cRegInfoSrvc(session, cregVO);
+			} catch (Exception e) {}
 			
 			// 정보가 등록 되었으면 로그인 처리도 해줘야 한다.
 			System.out.println("############ TempsaveControll tabNo 0-099 : " + tabNo );
@@ -221,7 +223,9 @@ public class CRegLoginController {
 			cregVO.truckImgName = truckImg ;
 			cregVO.no = (int) session.getAttribute("UTNO");
 			// 데이터베이스에 기록하자.
-			cregLoginService.cRegInfoSrvc(session, cregVO);
+			try {
+				cregLoginService.cRegInfoSrvc(session, cregVO);
+			} catch (Exception e) {}
 			tabNo = (int) session.getAttribute("tabNo");
 			System.out.println("############ TempsaveControll tabNo 1 : " + tabNo );
 			
@@ -249,7 +253,9 @@ public class CRegLoginController {
 			System.out.println("############ TempsaveControll menucomnet : " + cregVO.mmenuComment );
 			
 			// 데이터베이스에 기록하자.
-			cregLoginService.cRegInfoSrvc(session, cregVO);
+			try {
+				cregLoginService.cRegInfoSrvc(session, cregVO);
+			} catch (Exception e) {}
 			tabNo = (int) session.getAttribute("tabNo");
 //			mv.addObject("tabNo", cregVO.tabNo);
 //			mv.addObject("DATA", cregVO);
@@ -286,9 +292,12 @@ public class CRegLoginController {
 	 */
 	@RequestMapping("/chef/RegProc.food")
 	public ModelAndView regProc(ModelAndView mv, CRegLoginVO cregVO, HttpSession session){
-		int no = (int) session.getAttribute("UTNO");
-		cregVO.no = no ;
-		System.out.println("###############regConf   여긴 오냐???##### chef : " + cregVO.chef);
+		
+		cregVO.no = (int) session.getAttribute("UTNO") ;
+		try{
+			cregVO.mmenuPrice = Integer.parseInt(cregVO.strPrice);
+		}
+		catch(Exception e){}
 		System.out.println("###############regConf phone  여긴 오냐???#####  phone : " + cregVO.phone);
 		cregLoginService.regProcSrvc(cregVO, session);
 		System.out.println("###############regConf   여긴???#####");
@@ -320,20 +329,24 @@ public class CRegLoginController {
 	 */
 	@RequestMapping("/chef/InfoModifyProc.food")
 	public ModelAndView infoModifyProc(ModelAndView mv, CRegLoginVO cregVO, HttpSession session){
-		int no = (int) session.getAttribute("UTNO");
-		cregVO.no = no ;
-		// 회원 정보 수정해주고
-		cregLoginService.infoModifyProcSrvc(cregVO);
 		
+		cregVO.no = (int) session.getAttribute("UTNO");
+
+		System.out.println("################## modifyProc 작업 확인  phone number : " + cregVO.phone);
+		
+		// 회원 정보 수정해주고
 		// 데이터 가져오자.
-		CRegLoginVO data = cregLoginService.memberinfoSrvc(cregVO);
-		System.out.println("################## modifyProc 작업 확인 : ");
+		CRegLoginVO data = cregLoginService.infoModifyProcSrvc(cregVO);
+		System.out.println("################## modifyProc Update 성공 #######################");
+		
+		System.out.println("################## modifyProc 작업 확인  data.no : " + data.no);
 		// 데이터는 뷰에게 전달해 준다.
 		mv.addObject("DATA", data);
 		mv.setViewName("/chef/InfoModify");
 		return mv;
 	}
 	
+
 	@RequestMapping("/chef/ChefMain.food")
 	public ModelAndView chefMain(ModelAndView mv, HttpSession session){
 		
@@ -343,4 +356,20 @@ public class CRegLoginController {
 		mv.setViewName("/chef/ChefMain");
 		return mv;
 	}
+	
+	/*
+	 * 메뉴 등록하면 보여주기 
+	 */
+	@RequestMapping("/chef/MenuModify.food")
+	public ModelAndView menuModify(ModelAndView mv, HttpSession session){
+		// 할일
+		//		데이터 받고
+		
+		// 		데이터 만들고
+		
+		// 		뷰에거 넘겨주자
+		mv.setViewName("chef/MenuModify");
+		return mv ;
+	}
+	
 }

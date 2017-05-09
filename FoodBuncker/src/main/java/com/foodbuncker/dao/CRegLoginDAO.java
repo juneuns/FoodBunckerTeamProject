@@ -3,6 +3,8 @@ package com.foodbuncker.dao;
  * 
  */
 
+import java.util.ArrayList;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -73,6 +75,16 @@ public class CRegLoginDAO {
 	}
 	
 	/*
+	 * 회원 메뉴 가져오기 질의명령 처리함수 
+	 */
+	public ArrayList selectMenuDAO(CRegLoginVO cregVO){
+		ArrayList list = new ArrayList();
+		sqlSession.selectList("foodbuncker.CRegLogin.selectMenuSql", cregVO);
+		
+		return list ;
+	}
+	
+	/*
 	 * 회원 1차 등록 질의 명령 전담 함수
 	 */
 	public void insertTInfoDAO(CRegLoginVO cregVO){
@@ -80,18 +92,12 @@ public class CRegLoginDAO {
 	}
 	
 	/*
-	 * 회원 2차 등록 질의 명령 전담 함수
+	 * 회원 트럭이미지테이블 등록 질의 명령 전담 함수
 	 */
 	public void insertTImgDAO(CRegLoginVO cregVO){
 		sqlSession.insert("foodbuncker.CRegLogin.insertTImg", cregVO);
 	}
 	
-	/*
-	 * 회원 3차 등록 질의 명령 전담 함수
-	 */
-	public void insertTMenuDAO(CRegLoginVO cregVO){
-		sqlSession.insert("foodbuncker.CRegLogin.insertTMenu", cregVO);
-	}
 	
 	/*
 	 * 메인메뉴 등록 질의 명령 처리 전담 함수
@@ -105,6 +111,22 @@ public class CRegLoginDAO {
 	 */
 	public void updateRegConf(CRegLoginVO cregVO){
 		sqlSession.update("foodbuncker.CRegLogin.updateTInfo", cregVO);
+		return ;
+	}
+	
+	/*
+	 * 기존 트럭이미지 isShow 업데이트 질의 명령 처리 전담함수
+	 */
+	public void updateTImgIsShowDAO(CRegLoginVO cregVO){
+		sqlSession.update("foodbuncker.CRegLogin.updateTImgisShow", cregVO);
+		return ;
+	}
+	
+	/*
+	 * 기존 메뉴 이미지 isShow 업데이트 질의 명령 처리 전담함수
+	 */
+	public void updateMImgIsShowDAO(CRegLoginVO cregVO){
+		sqlSession.update("foodbuncker.CRegLogin.updateMImgisShow", cregVO);
 		return ;
 	}
 	

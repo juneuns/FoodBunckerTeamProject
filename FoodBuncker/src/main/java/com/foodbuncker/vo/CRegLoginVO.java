@@ -1,11 +1,15 @@
 package com.foodbuncker.vo;
 
+import java.io.File;
+import java.util.ArrayList;
+
 import org.springframework.web.multipart.MultipartFile;
 
 //vo alias : "cregVO"
 public class CRegLoginVO {
 	public int cnt;
 	public int no;
+	public int mNo;
 	public String chef;
 	public String name;
 	public String phone;
@@ -29,8 +33,12 @@ public class CRegLoginVO {
 	public String truckComment;
 	public MultipartFile mmenuImg;
 	public String mmenuImgName;
+	public String truckThumb;
+	public String chefThumb;
+	public String thumbName;
 	public String mmenuName;
 	public int mmenuPrice;
+	public String strPrice;
 	public String mmenuComment;
 	public String mmenugrade;
 	public String keyword;
@@ -44,15 +52,68 @@ public class CRegLoginVO {
 	public String oldTruckImg;
 	public String oldMenuImg;
 	
-	public String oldMenuImg1;
-	public String oldMenuImg2;
-	public String oldMenuImg3;
-	public String oldMenuImg4;
-	public String oldMenuImg5;
-	public String oldMenuImg6;
+	public MultipartFile subMImg;
+	public String subMImage;
+	public String thumbSMImg;
+	public String oldSubMImg;
 	
+	public ArrayList list;
 	
 
+	public int getmNo() {
+		return mNo;
+	}
+	public void setmNo(int mNo) {
+		this.mNo = mNo;
+	}
+	public String getStrPrice() {
+		return strPrice;
+	}
+	public void setStrPrice(String strPrice) {
+		this.strPrice = strPrice;
+	}
+	public MultipartFile getSubMImg() {
+		return subMImg;
+	}
+	public void setSubMImg(MultipartFile subMImg) {
+		this.subMImg = subMImg;
+	}
+	public String getSubMImage() {
+		return subMImage;
+	}
+	public void setSubMImage(String subMImage) {
+		this.subMImage = subMImage;
+	}
+	public String getThumbSMImg() {
+		return thumbSMImg;
+	}
+	public void setThumbSMImg(String thumbSMImg) {
+		this.thumbSMImg = thumbSMImg;
+	}
+	public String getOldSubMImg() {
+		return oldSubMImg;
+	}
+	public void setOldSubMImg(String oldSubMImg) {
+		this.oldSubMImg = oldSubMImg;
+	}
+	public String getTruckThumb() {
+		return truckThumb;
+	}
+	public void setTruckThumb(String truckThumb) {
+		this.truckThumb = truckThumb;
+	}
+	public String getChefThumb() {
+		return chefThumb;
+	}
+	public void setChefThumb(String chefThumb) {
+		this.chefThumb = chefThumb;
+	}
+	public String getThumbName() {
+		return thumbName;
+	}
+	public void setThumbName(String thumbName) {
+		this.thumbName = thumbName;
+	}
 	public String getOldChefImg() {
 		return oldChefImg;
 	}
@@ -70,42 +131,6 @@ public class CRegLoginVO {
 	}
 	public void setOldMenuImg(String oldMenuImg) {
 		this.oldMenuImg = oldMenuImg;
-	}
-	public String getOldMenuImg1() {
-		return oldMenuImg1;
-	}
-	public void setOldMenuImg1(String oldMenuImg1) {
-		this.oldMenuImg1 = oldMenuImg1;
-	}
-	public String getOldMenuImg2() {
-		return oldMenuImg2;
-	}
-	public void setOldMenuImg2(String oldMenuImg2) {
-		this.oldMenuImg2 = oldMenuImg2;
-	}
-	public String getOldMenuImg3() {
-		return oldMenuImg3;
-	}
-	public void setOldMenuImg3(String oldMenuImg3) {
-		this.oldMenuImg3 = oldMenuImg3;
-	}
-	public String getOldMenuImg4() {
-		return oldMenuImg4;
-	}
-	public void setOldMenuImg4(String oldMenuImg4) {
-		this.oldMenuImg4 = oldMenuImg4;
-	}
-	public String getOldMenuImg5() {
-		return oldMenuImg5;
-	}
-	public void setOldMenuImg5(String oldMenuImg5) {
-		this.oldMenuImg5 = oldMenuImg5;
-	}
-	public String getOldMenuImg6() {
-		return oldMenuImg6;
-	}
-	public void setOldMenuImg6(String oldMenuImg6) {
-		this.oldMenuImg6 = oldMenuImg6;
 	}
 	public String getIsShow() {
 		return isShow;

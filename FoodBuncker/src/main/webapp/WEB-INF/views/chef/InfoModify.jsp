@@ -37,6 +37,7 @@
         <script src="../resources/assets/js/modernizr.min.js"></script>
     </head>
 
+    
     <body>	
         <div class="account-pages"></div>
         <div class="clearfix"></div>
@@ -53,59 +54,66 @@
                     <div class="col-sm-12">
                         <div class="card-box">
 							<h4 class="m-b-30 m-t-0 header-title"><b>기본내용</b></h4>
-								<form method="POST" action="#" class="form-horizontal" id="frm" name="frm">
+							
+								<form method="POST" action="" class="form-horizontal" id="frm" name="frm">
+								
 									<div class="form-group">
-										<label class="col-sm-5 control-label">사업주이름</label>
-										<div class="col-sm-7">
+									<div>
+										<label class="col-sm-6 control-label">사업주이름</label>
+										<div class="col-sm-6">
 											<a href="#" id="chef" name=="chef" data-type="text" data-pk="1" >${DATA.chef}</a>
                                         </div>
+                  </div>
                                     </div>
 									<div class="form-group">
-										<label class="col-sm-5 control-label">상호명(트럭명)</label>
-                                        <div class="col-sm-7">
+										<label class="col-sm-6 control-label">상호명(트럭명)</label>
+                                        <div class="col-sm-6">
 											<a href="#" id="name" name="name" data-type="text" data-pk="1">${DATA.name}</a>
                                         </div>
                                     </div>                                        
 
 									<div class="form-group">
-										<label class="col-sm-5 control-label">사업자번호</label>
-                                        <div class="col-sm-7">
+										<label class="col-sm-6 control-label">사업자번호</label>
+                                        <div class="col-sm-6">
 											<a href="#" id="num" name="num" data-type="text" data-pk="1" data-placement="right" data-placeholder="Required" data-title="Enter your firstname">${DATA.num}</a>
                                         </div>
                                     </div>
 
 									<div class="form-group">
-										<label class="col-sm-5 control-label">전화번호</label>
-                                        <div class="col-sm-7">
-											<a href="#" id="phone" name="phone" data-type="text" data-pk="1">${DATA.phone}</a>
+										<label class="col-sm-6 control-label">전화번호</label>
+                                        <div class="col-sm-6">
+											<a href="#" id="tphone" name="tphone" data-type="text" data-pk="1">${DATA.phone}</a>
                                         </div>
                                     </div>   
 
 									<div class="form-group">
-										<label class="col-sm-5 control-label">이메일</label>
-                                        <div class="col-sm-7">
-											<a href="#" id="email" name="email" data-type="text" data-pk="1">${DATA.email}</a>
+										<label class="col-sm-6 control-label">이메일</label>
+                                        <div class="col-sm-6">
+											<a href="#" id="temail" name="temail" data-type="text" data-pk="1">${DATA.email}</a>
                                         </div>
                                     </div> 
 										
 									<div class="form-group">
-										<label class="col-sm-5 control-label">개업일</label>
-                                        <div class="col-sm-7">
+										<label class="col-sm-6 control-label">개업일</label>
+                                        <div class="col-sm-6">
 											<a href="#" id="open" name="open" data-type="text" data-pk="1">${DATA.open}</a>
                                         </div>
                                     </div>
 
 									<div class="form-group">
-										<label class="col-sm-5 control-label">ID</label>
-                                        <div class="col-sm-7">
+										<label class="col-sm-6 control-label">ID</label>
+                                        <div class="col-sm-6">
 											<a href="#" id="id" name="id" data-type="text" data-pk="1">${DATA.id}</a>
 										</div>
 									</div>
+									
+									<input type="hidden" id="phone" name="phone">
+									<input type="hidden" id="email" name="email">	
 								</form>
 								<div class="btn-group btn-group-justified m-b-10">
-                                <a class="btn btn-primary waves-effect waves-light" role="button" href="../chef/InfoModifyProc.food" id="finalReg">최종수정</a>
-                                <a class="btn btn-warning waves-effect waves-light" role="button" href="../chef/ChefMain.food">CHef Main</a>
                                 <a class="btn btn-danger waves-effect waves-light" id="cBtn" role="button" href="#">보류</a>
+                                <a class="btn btn-primary waves-effect waves-light" role="button" id="finalReg">최종수정</a>
+                                <a class="btn btn-warning waves-effect waves-light" role="button" >CHef Main</a>
                             </div>
 							</div><!-- end col -->
 						</div><!-- end row -->
@@ -114,8 +122,8 @@
 			</div>
 		</div>
 		
-		
-		
+
+
         <!-- jQuery  -->
         <script src="../resources/assets/js/jquery.min.js"></script>
         <script src="../resources/assets/js/bootstrap.min.js"></script>
@@ -147,32 +155,26 @@
 
 		<script>
 		$(document).ready(function(){
-			/* $('#num').editable({mode: 'inline'});
-			$('#chef').editable({mode: 'inline'});
-			$('#name').editable({mode: 'inline'}); */
-			$('#phone').editable({mode: 'inline'});
-			$('#email').editable({mode: 'inline'});
-			/* $('#open').editable({mode: 'inline'});
-			$('#id').editable({mode: 'inline'}); */
+			$('#tphone').editable({mode: 'inline'});
+			$('#temail').editable({mode: 'inline'});
 			
 			
 			$('#finalReg').click(function(){
 				alert("수정된 정보가 저장되었습니다.");
-				$(location).attr("href","chefmain.html");
+				
+				var tp = $('#tphone').text();
+				$('#phone').val(tp);
+				var tmail = $('#temail').text();
+				$('#email').val(tmail);
+				alert($('#phone').val());
+				
+				$("#frm").attr("action", "../chef/InfoModifyProc.food").submit();
 			});
 
 			$('#cBtn').click(function(){
 				alert("수정된 내용이 저장되지 않았습니다.쉐프 메인 페이지로 이동합니다.");
 				
-				/* $('#chef').val($('#chef').text());
-				$('#name').val($('#name').text());
-				$('#num').val($('#num').text()); */
-				$('#phone').val($('#phone').text());
-				$('#email').val($('#email').text());
-				/* $('#open').val($('#open').text());
-				$('#id').val($('#id').text()); */
-				
-				$('frm').attr("action","../chef/InfoModifyProc.food");
+				$(location).attr("href","chefmain.html");
 			}); 
 
 			$('#basicwizard').bootstrapWizard({'tabClass': 'nav nav-tabs navtab-wizard nav-justified bg-muted'});
