@@ -1,11 +1,13 @@
 package com.foodbuncker.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.foodbuncker.dao.PMainViewDAO;
+import com.foodbuncker.util.PageUtil;
 import com.foodbuncker.vo.PMainViewVO;
 
 public class PMainViewService {
@@ -94,6 +96,21 @@ public class PMainViewService {
 	}
 	
 	/*
+	 * 트럭별 전체 후기 검색 질의 실행 함수
+	 */
+	public ArrayList selectTReviewView(PageUtil pInfo, int tno){
+		int	start = (pInfo.nowPage - 1) * pInfo.pageRow + 1;
+		int	end = start + pInfo.pageRow - 1;
+		
+		HashMap		map = new HashMap();
+		map.put("start", start);
+		map.put("end", end);
+		map.put("tno", tno);
+		
+		return pmvDAO.selectTReviewView(map);
+	}		
+	
+	/*
 	 * 트럭별 치프이미지, 설명 불러오기 질의 실행 함수
 	 */
 	public ArrayList selectChef(int tno){
@@ -152,5 +169,93 @@ public class PMainViewService {
 	public int selectKM(int tno){
 		return pmvDAO.selectKM(tno);
 	}
+	
+	/*
+	 * 트럭별 총 메뉴판매 수 구하기 질의 실행 함수
+	*/ 
+	public int selectSellMenu(int tno){
+		return pmvDAO.selectSellMenu(tno);
+	}
+	
+	
+	/*
+	 * 트럭별 총 고객방문 수 구하기 질의 실행 함수
+	 */
+	public int selectCustomer(int tno){
+		return pmvDAO.selectCustomer(tno);
+	}
+	
+	/*
+	 * 트럭별 영업장소 수 구하기 질의 실행 함수
+	 */
+	public int selectPlace(int tno){
+		return pmvDAO.selectPlace(tno);
+	}
+	
+	/*
+	 * 총 메뉴판매 수 불러오기 질의 실행 함수
+	 */
+	public int selectSellTotal(){
+		return pmvDAO.selectSellTotal();
+	}
+	
+	/*
+	 * 총 고객방문 수 불러오기 질의 실행 함수
+	 */
+	public int selectCusTotal(){
+		return pmvDAO.selectCusTotal();
+	}
+	
+	/*
+	 * 총 서울내 영업장소 수 불러오기 질의 실행 함수
+	 */
+	public int selectPlaceTotal(){
+		return pmvDAO.selectPlaceTotal();
+	}
+	
+	/*
+	 * 가입된 사업주 수 불러오기 질의 실행 함수
+	 */
+	public int selectChefTotal(){
+		return pmvDAO.selectChefTotal();
+	}
+	
+	/*
+	 * 	String Page를 int Page로 변화시켜서 사용하는 함수
+	 */
+	public int changePage(String strPage){
+		int nowPage = 0;
+		try {
+			nowPage = Integer.parseInt(strPage);
+		}
+		catch(Exception e) {
+			nowPage = 1;
+		}
+		return nowPage;
+	}
+	
+	/*
+	 * 	페이지 나눔 정보를 알아내기 위한 함수
+	 */
+	public PageUtil pageInfo(int nowPage) {
+		int		total = pmvDAO.getTotal();
+		PageUtil	pInfo = new PageUtil(nowPage, total, 10, 5);
+		
+		return pInfo;
+	}
+	
+	/*
+	 * 갤러리 이미지 불러오기 질의 실행 함수
+	 */
+	public ArrayList selectImage(PageUtil pInfo){
+		int start = (pInfo.nowPage - 1) * pInfo.pageRow + 1;
+		int end = start + pInfo.pageRow - 1;
+		HashMap map = new HashMap();
+		map.put("start", start);
+		map.put("end", end);
+		
+		return pmvDAO.selectImage(map);
+	}
+	
 	
 }

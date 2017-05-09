@@ -39,6 +39,7 @@
 <!-- MODERNIZR -->
 <script src="../resources/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <body class="about">
 	<!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -55,7 +56,7 @@
 		<div class="row">
 			<div class="col-xs-12">
 				<div class="logo">
-					<a href="#"><img src="../resources/img/logo.png" alt="Logo"></a>
+					<a href="../person/MainWindow.food"><img src="../resources/img/logo.png" alt="Logo"></a>
 				</div>
 
 				<button class="toggle" type="button">
@@ -160,21 +161,21 @@
 		<div class="row">
 			<div class="col-sm-6 col-md-3">
 				<div class="countbox">
-					<h4>35</h4>
+					<h4>${PLACE}</h4>
 					<p>서울 내 영업장소 수</p>
 				</div>
 			</div>
 
 			<div class="col-sm-6 col-md-3">
 				<div class="countbox">
-					<h4>1426</h4>
+					<h4>${CUS}</h4>
 					<p>총 고객방문 수</p>
 				</div>
 			</div>
 
 			<div class="col-sm-6 col-md-3">
 				<div class="countbox">
-					<h4>2789</h4>
+					<h4>${SELL}</h4>
 					<p>총 메뉴판매 수</p>
 				</div>
 			</div>
@@ -303,11 +304,32 @@
 		<div class="col-md-8 col-md-offset-2">
 			<ul class="timeline">
 				<!-- timeline time label -->
-				<span><input class="btn btn-primary" id="repliesBtn"
-					value="더 많이 보기"></span>
+				<div	id="target">
+					<input class="btn btn-primary" id="mBtn"	value="더 많이 보기">
+				</div>
 			</ul>
 		</div>
 	</div>
+<script>
+	var tno = ${TNO};
+	$(document).ready(function(){
+        $("#mBtn").click(function(){
+			$.ajax({
+				data : "temp=" + new Date() + "&tno=" + tno,
+				dataType : "html",
+				error : function(){
+					alert("에러");
+				},
+				success : function(data){
+					$("#target").html(data);
+				},
+				type : "GET",
+				url : "../person/moreReview.food"
+			});
+		});
+	});
+</script>	
+	
 	<!-- // SECTION 5 -->
 
 	<!-- SECTION 6 -->
@@ -387,8 +409,7 @@
 	</footer>
 
 	<!-- JQUERY / PLUGINS -->
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script>
 		window.jQuery
 				|| document
@@ -445,5 +466,6 @@
 			$(".timeline").html(template(data));
 		});
 	</script>
+
 </body>
 </html>

@@ -13,6 +13,7 @@ public class PMainViewVO {
 	public int mtno;
 	public int btno;
 	public int price;
+	public int rno;
 	
 	public char grade;
 	
@@ -30,15 +31,19 @@ public class PMainViewVO {
 	public String id;
 	public String imgbody;
 	
-	
 	public Date wdate;
 	
 	
 	
 	
-	
-	
-	
+	public int getRno() {
+		return rno;
+	}
+
+	public void setRno(int rno) {
+		this.rno = rno;
+	}
+
 	public int getTino() {
 		return tino;
 	}

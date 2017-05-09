@@ -206,18 +206,134 @@
 			RG_T_NO = #{tno}
 	</select>
 	
-	<!-- 총 메뉴판매 수 불러오기 -->
-	<select id="">
+	<!-- 트럭별 총 메뉴판매 수 불러오기 -->
+	<select id="selectSell" resultType="int" parameterType="int">
 		SELECT
-			OM_NO AS NO,
-			OM_O_NO AS ONO,
-			OM_M_NO AS MNO,
-			OM_NUM AS NUM
+			SUM(OM_NUM)
 		FROM
-			ORDERMENU
-			
-			
+			ORDERMENU INNER JOIN MORDER
+		ON
+			ORDERMENU.OM_O_NO = MORDER.O_NO
+		WHERE
+			O_T_NO = #{tno}
 	</select>
 	
+	<!-- 트럭별 총 고객방문 수 불러오기 -->
+	<select id="selectCustomer" resultType="int" parameterType="int">
+		SELECT
+			COUNT(O_NO)
+		FROM
+			MORDER
+		WHERE
+			O_T_NO = #{tno}
+	</select>
+	
+	<!-- 트럭별 영업장소 수 불러오기 -->
+	<select id="selectPlace" resultType="int" parameterType="int">
+		SELECT
+			COUNT(PP_P_NO)
+		FROM
+			PLAN INNER JOIN PLACE
+		ON
+			PLAN.PP_P_NO = PLACE.P_NO
+		WHERE
+			P_ISSHOW = 'Y'
+		AND
+			PP_T_NO = #{tno}
+	</select>
+	
+	<!-- 총 메뉴판매 수 불러오기 -->
+	<select id="selectSellTotal" resultType="int">
+		SELECT
+			SUM(OM_NUM)
+		FROM
+			ORDERMENU
+	</select>
+	
+	<!-- 총 고객방문 수 불러오기 -->
+	<select id="selectCusTotal" resultType="int">
+		SELECT
+			COUNT(O_NO)
+		FROM
+			MORDER
+	</select>
+	
+	<!-- 총 서울내 영업장소 수 -->
+	<select id="selectPlaceTotal" resultType="int">
+		SELECT 
+			COUNT(PP_P_NO)
+		FROM
+			PLAN
+	</select>
+	
+	<!-- 가입된 사업주 수-->
+	<select id="selectChefTotal" resultType="int">
+		SELECT
+			COUNT(T_NO)
+		FROM
+			TRUCKINFO
+	</select>
+	
+	<!-- 후기글 총 데이터 개수 구하기 질의 -->
+	<select id="selectTotal" resultType="int" parameterType="int">
+		SELECT
+			COUNT(B_NO)
+		FROM
+			BOARD	
+	</select>
+	
+	<!-- 후기글 목록 구하기 질의 -->
+	<select id="selectTReviewView" resultType="pmainVO" parameterType="hashmap">
+		SELECT
+			*	
+		FROM
+		(SELECT
+			ROWNUM AS RNO,
+			a.*
+		FROM
+		(SELECT
+			B_NO AS NO,
+			B_T_NO AS TNO,
+			B_BODY AS BODY,
+			B_DATE AS WDATE
+		FROM
+			BOARD
+		WHERE
+			B_ISSHOW = 'Y'
+		AND
+			B_T_NO = #{tno}
+		ORDER BY
+			B_NO DESC) a)
+		WHERE
+			RNO BETWEEN #{start} AND #{end}					
+	</select>
+		
+	<!-- 전체 이미지 불러오기 -->
+	<select id="selectImage" resultType="pmainVO" parameterType="hashmap">
+		SELECT
+			*
+		FROM
+		(SELECT
+			ROWNUM AS RNO,
+			a.*
+		FROM
+		(SELECT
+			TI_NO AS TINO,
+			TI_T_NO AS TNO,
+			TI_SAVENAME AS SNAME,
+			TI_IMGBODY AS BODY,
+			TI_GRADE AS GRADE,
+			T_NAME AS NAME
+		FROM
+			TRUCKIMAGE INNER JOIN TRUCKINFO
+		ON
+			TRUCKIMAGE.TI_T_NO = TRUCKINFO.T_NO	
+		WHERE
+			TI_ISSHOW = 'Y'
+		ORDER BY
+			TI_NO DESC) a)
+		WHERE
+			RNO BETWEEN #{start} AND #{end}
+	</select>	
 	
 </mapper>
