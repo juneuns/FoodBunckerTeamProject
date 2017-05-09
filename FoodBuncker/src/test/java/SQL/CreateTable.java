@@ -179,6 +179,7 @@ public class CreateTable {
 		new InsertSearchRecord();
 		new CreateWeatherRecord();
 		new InsertSellData();
+		new InsertMOrderMenu();
 		
 		
 	}
