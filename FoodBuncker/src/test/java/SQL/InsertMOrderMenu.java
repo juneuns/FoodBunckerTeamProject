@@ -18,7 +18,8 @@ public class InsertMOrderMenu {
 	ArrayList<Float> placeRatio = new ArrayList<>() ;
 //	ArrayList tempRatio;
 //	ArrayList rainRatio;
-	ArrayList<String> insertList = new ArrayList();
+	ArrayList<String> insertList1 = new ArrayList();
+	ArrayList<String> insertList2 = new ArrayList();
 	String sql;
 	int ono = 0;
 	public InsertMOrderMenu(){
@@ -55,14 +56,18 @@ public class InsertMOrderMenu {
 			e.printStackTrace();
 		}
 		
-		for(int i = 0 ; i < 1 ; i++){
-			try{
-			insertList.clear();
+	try{
+		for(int i = 0 ; i < 8 ; i++){
 			
-			sql = "delete from morder";
-			insertList.add(sql);
-			sql = "delete from ordermenu";
-			insertList.add(sql);
+//			insertList1.clear();
+//			insertList2.clear();
+//			
+//			sql = "delete from morder";
+//			insertList1.add(sql);
+//			sql = "delete from ordermenu";
+//			insertList1.add(sql);
+			
+			ArrayList<MenuInfoVO> menuInfoList = getMenuInfoList(i+1);
 			
 			LocalDateTime start = LocalDateTime.of(2015, 1,1,10,0);
 			LocalDateTime hourEnd = LocalDateTime.of(2015, 1,1,11,0);
@@ -75,19 +80,19 @@ public class InsertMOrderMenu {
 			while(now.isBefore((LocalDateTime.of(2017, 5,14,22,0)))){
 			while(now.isBefore(yearEnd) && now.isBefore((LocalDateTime.of(2017, 5,14,22,0)))){// 1년 
 					int yearSaleSum = (int)(Math.random()*(500000-400000)+400000)*1000;
-				System.out.println("yearSaleSum : "+yearSaleSum);	
+//				System.out.println("yearSaleSum : "+yearSaleSum);	
 					while(now.isBefore(monthend) && now.isBefore(yearEnd)){// 1달
 						int monthSaleSum = (int)((yearSaleSum*(monthRatio.get(monthend.getMonthValue()-1))/100*getFactor())/1000)*1000;
-				System.out.println("monthSaleSum : "+monthSaleSum+" monthRatio : "+monthRatio.get(monthend.getMonthValue()-1));		
+				System.out.println("monthSaleSum : "+monthSaleSum+" monthRatio : "+monthRatio.get(monthend.getMonthValue()-1)+"  now: "+now);		
 						while(now.isBefore(dayEnd) && now.isBefore(monthend)){//하루
 							int pno = getPno(dayEnd,i+1);
 							int daySaleSum =(int)(((((float)monthSaleSum/now.with(TemporalAdjusters.lastDayOfMonth()).getDayOfMonth()) *(1+((getWeekRatio(dayEnd,pno))/100-0.143)))*getFactor())/1000)*1000;
-				//System.out.println("daySaleSum : "+daySaleSum);			
+//				System.out.println("daySaleSum : "+daySaleSum);			
 							while(now.isBefore(quarterEnd) && now.isBefore(dayEnd)){//3시간씩
 								int quarterSum = (int)((daySaleSum * (getQuarterRatio(now,pno)))/100/1000)*1000;
-				//System.out.println("quarterSum : "+quarterSum);			
+//				System.out.println("quarterSum : "+quarterSum);			
 								while(now.isBefore(quarterEnd)){ //1시간씩
-				//System.out.println("now : "+now+" hourEnd : "+hourEnd+" quarterEnd : "+quarterEnd+"  dayEnd : "+dayEnd);
+//				System.out.println("now : "+now+" hourEnd : "+hourEnd+" quarterEnd : "+quarterEnd+"  dayEnd : "+dayEnd);
 									HourRatioVO vo = new HourRatioVO(now,pno);
 									int hourSum = (int)(((quarterSum/3f * (vo.hourSaleRatio))*getFactor())/1000)*1000;
 				//System.out.println("hourSum : "+hourSum);
@@ -95,7 +100,7 @@ public class InsertMOrderMenu {
 									while(hourSum >= insertHourSum && now.isBefore(hourEnd) ){
 				//System.out.println("now : "+now+" hourSum : "+hourSum+"  insertHourSum : "+insertHourSum);
 										//if(now.isAfter(hourEnd))break;
-										ono = ono + 1;
+										
 										String gender = "M";
 										if((vo.manRatio/100)<Math.random()){
 											gender = "F";
@@ -125,15 +130,26 @@ public class InsertMOrderMenu {
 										String orderTime = now.format(DateTimeFormatter.ofPattern("yyyy/MM/dd/HH/mm"));
 										String payTime = now.plusMinutes(2).format(DateTimeFormatter.ofPattern("yyyy/MM/dd/HH/mm"));
 										String servTime = now.plusMinutes(cookTime).format(DateTimeFormatter.ofPattern("yyyy/MM/dd/HH/mm"));
-										sql = "insert into morder values("+ono+","+(i+1)+",to_date('"+orderTime+"','YYYY/MM/DD/HH24/MI'),to_date('"+payTime+"','YYYY/MM/DD/HH24/MI'),to_date('"+servTime+"','YYYY/MM/DD/HH24/MI'),"+vo.temperature+","+vo.humi+","+vo.rain+",'"+gender+"',"+oage+")";
-										insertList.add(sql);
+										sql = "insert into morder values((select nvl(max(o_no),0)+1 from morder),"+(i+1)+",to_date('"+orderTime+"','YYYY/MM/DD/HH24/MI'),to_date('"+payTime+"','YYYY/MM/DD/HH24/MI'),to_date('"+servTime+"','YYYY/MM/DD/HH24/MI'),"+vo.temperature+","+vo.humi+","+vo.rain+",'"+gender+"',"+oage+")";
+										//insertList1.add(sql);
+										try{
+											stmt.execute(sql);
+										}catch(Exception e){
+											e.printStackTrace();
+										}
 										
-										ArrayList<MenuInfoVO> menuInfoList = getMenuInfoList(i+1);
 										int menuNum = menuInfoList.size();
 										for(int k = 0 ; k < menuNum ; k++){
 											int count = (int)(Math.random()*3);
-											sql = "insert into ordermenu values((select nvl(max(om_no),0)+1 from ordermenu),"+ono+","+menuInfoList.get(k).mno+","+count+")";
-											insertList.add(sql);
+											if(count == 0) continue;
+											sql = "insert into ordermenu values((select nvl(max(om_no),0)+1 from ordermenu),(select nvl(max(o_no),0) from morder),"+menuInfoList.get(k).mno+","+count+")";
+			//System.out.println("k : "+k+" mno : "+menuInfoList.get(k).mno);
+											//insertList2.add(sql);
+											try{
+												stmt.execute(sql);
+											}catch(Exception e){
+												e.printStackTrace();
+											}
 											insertHourSum = insertHourSum + (count*menuInfoList.get(k).price);
 										}
 										now = now.plusMinutes((int)(Math.random()*(20-2)+2));
@@ -178,8 +194,12 @@ public class InsertMOrderMenu {
 			}
 				
 			
-			insertList(insertList);
+//			insertList(insertList1);
+//			insertList(insertList2);
 			System.out.println("morder,ordermenu 트럭"+(i+1)+" 완료");
+		
+		}
+		
 		}catch(Exception e){
 			e.printStackTrace();
 		}finally{
@@ -187,8 +207,6 @@ public class InsertMOrderMenu {
 			db.close(stmt);
 			db.close(db.con);
 		}
-		}
-		
 	}
 	
 	public float getFactor(){
@@ -244,7 +262,7 @@ public class InsertMOrderMenu {
 		
 		String yearMonth = String.valueOf((now.getYear()==2017)?2016:now.getYear())+((now.getMonthValue()<10)?("0"+String.valueOf(now.getMonthValue())):String.valueOf(now.getMonthValue()));
 		sql = "select "+qcolName+" from selldata where sd_p_no = "+pno+" and sd_yearmonth like '%"+yearMonth+"%'";
-System.out.println("qcolName : "+qcolName+"  pno : "+pno+"  yearmonth : "+yearMonth);
+//System.out.println("qcolName : "+qcolName+"  pno : "+pno+"  yearmonth : "+yearMonth);
 		rs = stmt.executeQuery(sql);
 		rs.next();
 		return rs.getFloat(1);
@@ -283,7 +301,7 @@ System.out.println("qcolName : "+qcolName+"  pno : "+pno+"  yearmonth : "+yearMo
 			
 				rs = stmt.executeQuery(sql);
 				rs.next();
-	System.out.println("hourvo  now : "+now+"  pno : "+pno+"  yearmonth : "+yearMonth);
+	//System.out.println("hourvo  now : "+now+"  pno : "+pno+"  yearmonth : "+yearMonth);
 				this.manRatio = rs.getFloat(1);
 				this.age10Ratio = rs.getFloat(2);
 				this.age20Ratio = rs.getFloat(3);
@@ -330,10 +348,11 @@ System.out.println("qcolName : "+qcolName+"  pno : "+pno+"  yearmonth : "+yearMo
 	}
 	public ArrayList<MenuInfoVO> getMenuInfoList(int tno) throws Exception{
 		String getMenuInfoSql = "select m_no,m_price from menu where m_t_no="+tno;
-		MenuInfoVO vo = new MenuInfoVO();
+		
 		ArrayList<MenuInfoVO> list = new ArrayList<>();
 		rs = stmt.executeQuery(getMenuInfoSql);
 		while(rs.next()){
+			MenuInfoVO vo = new MenuInfoVO();
 			vo.mno = rs.getInt(1);
 			vo.price = rs.getInt(2);
 			list.add(vo);
@@ -341,7 +360,7 @@ System.out.println("qcolName : "+qcolName+"  pno : "+pno+"  yearmonth : "+yearMo
 		return list;
 	}
 	
-	public static void main(String[] args){
-		new InsertMOrderMenu();
-	}
+//	public static void main(String[] args){
+//		new InsertMOrderMenu();
+//	}
 }
