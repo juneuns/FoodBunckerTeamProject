@@ -63,7 +63,7 @@
 	<!--회원 기본 정보 질의 명령 -->
 	<select id="selectMemberInfo" resultType="cregVO" parameterType="int">
 		SELECT
-			T_NO AS NO, T_CHEF AS CHEF, T_NAME AS NAME, T_NUM AS NUM, T_PHONE AS PHONE, T_EMAIL AS EMAIL, T_ID AS ID, T_OPEN AS OPEN
+			T_NO AS no, T_CHEF AS CHEF, T_NAME AS NAME, T_NUM AS NUM, T_PHONE AS PHONE, T_EMAIL AS EMAIL, T_ID AS ID, T_OPEN AS OPEN
 		FROM
 			TruckInfo
 		WHERE
@@ -105,6 +105,20 @@
 			AND T.T_NO=TT.T_NO
 	</select>
 	
+	<!-- 등록회원 메뉴 가저오기 전담 질의 명령 -->
+	<select id="selectMenuSql" resultType="cregVO" parameterType="cregVO">
+		SELECT
+			M_NO AS mNo, M_NAME AS mmenuName,M_PRICE AS mmenuPrice, M_BODY AS imgbody, M_SAVENAME AS sname, M_KEYWORD AS keyword
+		FROM
+			Menu
+		WHERE
+			 M_isShow ='Y'
+			 AND M_GRADE = #{mmenugrade}
+			 AND M_T_NO = #{no}
+		ORDER BY
+			M_NO DESC
+	</select>
+	
 	<!-- 회원정보 1차 등록 질의 명령 -->
 	<insert id="insertTInfo" parameterType="cregVO">
 		INSERT INTO
@@ -121,20 +135,13 @@
 	</insert>
 	
 	<!-- 메뉴 이미지 등록 질의 명령 -->
-	<insert id="insertTMenu" parameterType="cregVO">
-		INSERT INTO
-			TruckImage
-		VALUES((SELECT NVL(MAX(TI_No), 0) + 1 FROM TruckImage), #{no}, #{sname}, #{imgbody}, 3, 'Y')
-	</insert>
-	
-	<!-- 메뉴 이미지 등록 질의 명령 -->
 	<insert id="insertMMenu" parameterType="cregVO">
 		INSERT INTO
 			Menu
-		VALUES((SELECT NVL(MAX(M_No), 0) + 1 FROM Menu), #{no}, #{mmenuName}, #{mmenuPrice}, #{imgbody}, #{sname}, #{mmenugrade}, #{keyword}, 'Y')
+		VALUES((SELECT NVL(MAX(M_No), 0) + 1 FROM Menu), #{no}, #{mmenuName}, #{mmenuPrice}, #{mmenuComment}, #{mmenuImgName}, #{mmenugrade}, #{keyword}, 'Y')
 	</insert>
 	
-	<!-- 회원정보 업데이트 질의 명령 -->
+	<!-- 회원정보 회원 등록 단계 업데이트 질의 명령 -->
 	<update id="updateTInfo" parameterType="cregVO">
 		UPDATE
 			TruckInfo
@@ -151,6 +158,17 @@
 			T_NO=#{no}
 	</update>
 	
+	<!-- 회원정보 회원 단계 업데이트 질의 명령 -->
+	<update id="updateMemberTInfo" parameterType="cregVO">
+		UPDATE
+			TruckInfo
+		SET
+			T_PHONE=#{phone},
+			T_EMAIL=#{email}
+		WHERE
+			T_NO=#{no}
+	</update>
+	
 	<!-- 트럭이미지 트럭이미지 새로 업로드될때 업데이트 질의 명령 -->
 	<update id="updateTImgisShow" parameterType="cregVO">
 		UPDATE
@@ -159,6 +177,16 @@
 			TI_isShow='N'
 		WHERE
 			TI_NO=(select ti_no from TruckImage where TI_SAVENAME=#{sname})
+	</update>
+	
+	<!-- 메인메뉴 이미지 새로 업로드될때 기존 메뉴 안보이게 업데이트 질의 명령 -->
+	<update id="updateMImgisShow" parameterType="cregVO">
+		UPDATE
+			Menu
+		SET
+			M_isShow='N'
+		WHERE
+			M_NO=(select M_no from Menu where M_SAVENAME=#{sname} AND M_T_NO=#{no})
 	</update>
 		
 	<!-- 트럭이미지 업데이트 질의 명령 -->
@@ -178,8 +206,7 @@
 		SET
 			M_name=#{mmenuName},
 			M_Price=#{mmenuPrice},
-			M_BODY=#{imgbody}
-			M_SaveName=#{sname},
+			M_BODY=#{mmenuComment},
 			m_grade=#{mmenugrade}, 
 			m_keyword=#{keyword}
 		WHERE

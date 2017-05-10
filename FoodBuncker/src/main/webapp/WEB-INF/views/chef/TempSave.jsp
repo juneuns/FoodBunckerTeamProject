@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
@@ -36,6 +36,10 @@
 
         <script src="../resources/assets/js/modernizr.min.js"></script>
     </head>
+<script>
+
+
+</script>
     <body>	
         <div class="account-pages"></div>
         <div class="clearfix"></div>
@@ -53,74 +57,92 @@
                         <div class="card-box">
 							<h4 class="m-b-30 m-t-0 header-title"><b>기본내용</b></h4>
 							
-							
-								<form method="POST" action="" class="form-horizontal" id="frm" name="frm" enctype="multipart/form-data">
+								<form method="POST" action="#" class="form-horizontal" id="frm" name="frm" enctype="multipart/form-data">
+									
+									<input type="hidden" id="num" name="num">
+									<input type="hidden" id="chef" name="chef">
+									<input type="hidden" id="name" name="name">
+									<input type="hidden" id="phone" name="phone">
+									<input type="hidden" id="email" name="email">
+									<input type="hidden" id="open" name="open">
+									<input type="hidden" id="id" name="id">
+									<input type="hidden" id="chefComment" name="chefComment">
+									<input type="hidden" id="truckComment" name="truckComment">
+									<input type="hidden" id="mmenuName" name="mmenuName">
+									<input type="hidden" id="strPrice" name="strPrice">
+									<input type="hidden" id="mmenuComment" name="mmenuComment">
+									<input type="hidden" id="keyword" name="keyword">
+									<input type="hidden" id="oldChefImg" name="oldChefImg" value="${DATA.chefImgName}">
+									<input type="hidden" id="oldTruckImg" name="oldTruckImg" value="${DATA.truckImgName}">
+									<input type="hidden" id="oldMenuImg" name="oldMenuImg" value="${DATA.mmenuImgName}" >
+									
 									<div class="form-group">
-										<label class="col-sm-5 control-label">사업주이름</label>
-										<div class="col-sm-7">
-											<a href="#" id="chef" name="chef" data-type="text" data-pk="2" >${DATA.chef}</a>
+										<label class="col-sm-6 control-label">사업주이름</label>
+										<div class="col-sm-6">
+											<a href="#" id="tchef" name="tchef" data-type="text" data-pk="1" >${DATA.chef}</a>
                     </div>
-                   </div>
+                  </div>
 
 									<div class="form-group">
-										<label class="col-sm-5 control-label">I D</label>
-                                        <div class="col-sm-7">
-											<a href="#" id="id" name="id" data-type="text" data-pk="1">${DATA.id}</a>
+										<label class="col-sm-6 control-label">I D</label>
+                    <div class="col-sm-6">
+											<a href="#" id="tid" name="tid" data-type="text" data-pk="1">${DATA.id}</a>
 										</div>
 									</div>
 										
 									<div class="form-group">
-										<label class="col-sm-5 control-label">상호명(트럭명)</label>
-                                        <div class="col-sm-7">
-											<a href="#" id="name" name="name" data-type="text" data-pk="1">${DATA.name}</a>
-                                        </div>
-                                    </div>                                        
+										<label class="col-sm-6 control-label">상호명(트럭명)</label>
+                  	<div class="col-sm-6">
+											<a href="#" id="tname" name="tname" data-type="text" data-pk="1">${DATA.name}</a>
+                  	</div>
+                  </div>                                        
 
 									<div class="form-group">
-										<label class="col-sm-5 control-label">사업자번호</label>
-                                        <div class="col-sm-7">
-											<a href="#" id="num" name="num" data-type="text" data-pk="1" data-placement="right" data-placeholder="Required" data-title="Enter your firstname">${DATA.num}</a>
-                                        </div>
-                                    </div>
+										<label class="col-sm-6 control-label">사업자번호</label>
+                    <div class="col-sm-6">
+											<a href="#" id="tnum" name="tnum" data-type="text" data-pk="1" data-placement="right" data-placeholder="Required" data-title="Enter your firstname">${DATA.num}</a>
+                    </div>
+                  </div>
 
 									<div class="form-group">
-										<label class="col-sm-5 control-label">전화번호</label>
-                                        <div class="col-sm-7">
-											<a href="#" id="phone" name="phone" data-type="text" data-pk="1">${DATA.phone}</a>
-                                        </div>
-                                    </div>   
+										<label class="col-sm-6 control-label">전화번호</label>
+                    <div class="col-sm-6">
+											<a href="#" id="tphone" name="tphone" data-type="text" data-pk="1">${DATA.phone}</a>
+                     </div>
+                    </div>   
 
 									<div class="form-group">
-										<label class="col-sm-5 control-label">이메일</label>
-                                        <div class="col-sm-7">
-											<a href="#" id="email" name="email" data-type="text" data-pk="1">${DATA.email}</a>
-                                        </div>
-                                    </div> 
+										<label class="col-sm-6 control-label">이메일</label>
+                    <div class="col-sm-6">
+											<a href="#" id="temail" name="temail" data-type="text" data-pk="1">${DATA.email}</a>
+                    </div>
+                  </div> 
 										
 									<div class="form-group">
-										<label class="col-sm-5 control-label">개업일</label>
-                                        <div class="col-sm-7">
-											<a href="#" id="open" name="open" data-type="text" data-pk="1">${DATA.open}</a>
-                                        </div>
-                                    </div>
+										<label class="col-sm-6 control-label">개업일</label>
+                    <div class="col-sm-6">
+											<a href="#" id="topen" name="topen" data-type="text" data-pk="1">${DATA.open}</a>
+                    </div>
+									</div>
 
 									<h4 class="m-b-30 m-t-0 header-title"><b>쉐프이미지</b></h4>
-									<input type="file" class="dropify" id="chefImg" name="chefImg" data-default-file="../image/${DATA.chefImgName}"  />
+									<input type="file" class="dropify" id="chefImg" name="chefImg" data-default-file="../image/${DATA.chefImgName}">
 
+									<br>
 									<div class="form-group">
-										<label class="col-sm-5 control-label">쉐프 한마디</label>
-                                        <div class="col-sm-7">
-											<a href="#" id="chefComment" name="chefComment" data-type="text" data-pk="1">${DATA.chefComment}</a>
+										<label class="col-sm-12 control-label" style="text-align:center;">쉐프 한마디</label>
+                    <div class="col-sm-12" style="text-align:center;">
+											<a href="#" id="tchefComment" name="tchefComment" data-type="text" data-pk="1">${DATA.chefComment}</a>
 										</div>
-                                    </div>
+                  </div>
 
 									<h4 class="m-b-30 m-t-0 header-title"><b>트럭이미지</b></h4>
-									<input type="file" class="dropify" id="truckImg" name="truckImg" data-default-file="../image/${DATA.truckImgName}"  />
+									<input type="file" class="dropify" id="truckImg" name="truckImg" data-default-file="../image/${DATA.truckImgName}">
 
 									<div class="form-group">
-										<label class="col-sm-5 control-label">트럭 설명</label>
-                                        <div class="col-sm-7">
-											<a href="#" id="truckComment" name="truckComment" data-type="text" data-pk="1">${DATA.truckComment}</a>
+										<label class="col-sm-12 control-label" style="text-align:center;">트럭 설명</label>
+                      <div class="col-sm-12" style="text-align:center;">
+											<a href="#" id="ttruckComment" name="ttruckComment" data-type="text" data-pk="1">${DATA.truckComment}</a>
 										</div>
 									</div>
 
@@ -132,76 +154,77 @@
 									</div>
  --%>
 									<h4 class="m-b-30 m-t-0 header-title"><b>주메뉴 이미지</b></h4>
-									<input type="file" class="dropify" id="mmenuImg" name="mmenuImg" data-default-file="../image/${DATA.mmenuImgName}"  />
-
+									<input type="file" class="dropify" id="mmenuImg" name="mmenuImg" data-default-file="../image/${DATA.mmenuImgName}">
+									
 									<div class="form-group">
-										<label class="col-sm-5 control-label">주메뉴 이름</label>
-                                        <div class="col-sm-7">
-											<a href="#" id="mmenuName" name="mmenuName" data-type="text" data-pk="1">${DATA.mmenuName}</a>
+										<label class="col-sm-12 control-label" style="text-align:center;">주메뉴 설명</label>
+                    					<div class="col-sm-12" style="text-align:center;">
+											<a href="#" id="tmmenuComment" name="tmmenuComment" data-type="text" data-pk="1">${DATA.mmenuComment}</a>
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<label class="col-sm-6 control-label">주메뉴 이름</label>
+                    <div class="col-sm-6">
+											<a href="#" id="tmmenuName" name="tmmenuName" data-type="text" data-pk="1">${DATA.mmenuName}</a>
 										</div>
 									</div>
 
 									<div class="form-group">
-										<label class="col-sm-5 control-label">주메뉴 가격(원)</label>
-                    <div class="col-sm-7">
-											<a href="#" id="mmenuPrice" name="mmenuPrice" data-type="text" data-pk="1">${DATA.mmenuPrice}</a>
-										</div>
-									</div>
-
-									<div class="form-group">
-										<label class="col-sm-5 control-label">주메뉴 설명</label>
-                    <div class="col-sm-7">
-											<a href="#" id="mmenuComment" name="mmenuComment" data-type="text" data-pk="1">${DATA.mmenuComment}</a>
+										<label class="col-sm-6 control-label">주메뉴 가격(원)</label>
+                    <div class="col-sm-6">
+											<a href="#" id="tmmenuPrice" name="tmmenuPrice" data-type="text" data-pk="1">${DATA.mmenuPrice}</a>
 										</div>
 									</div>
 
 <%-- 									<div class="form-group">
  										<label class="col-sm-5 control-label">검색키워드</label>
-                    <div class="col-sm-7">
+                    					<div class="col-sm-7">
 											<a href="#" id="mmenukeyword" data-type="text" data-pk="1">${DATA.keyword}</a>
 										</div>
 									</div> --%>
 
  									<div class="form-group">
-										<label class="col-sm-5 control-label">검색 키워드 1</label>
-                    <div class="col-sm-7">
+										<label class="col-sm-6 control-label">검색 키워드 1</label>
+                    <div class="col-sm-6">
                     	<a href="#" id="keyword1" name="keyword1" data-type="text" data-pk="1">${DATA.keyword1}</a>
                     </div>
 									</div>
 
 									<div class="form-group">
-										<label class="col-sm-5 control-label">검색 키워드 2</label>
-                    <div class="col-sm-7">
+										<label class="col-sm-6 control-label">검색 키워드 2</label>
+                    <div class="col-sm-6">
                     	<a href="#" id="keyword2" name="keyword2" data-type="text" data-pk="1">${DATA.keyword2}</a>
-                    </div>
+                   	 </div>
 									</div>
 
 									<div class="form-group">
-										<label class="col-sm-5 control-label">검색 키워드 3</label>
-                    <div class="col-sm-7">
+										<label class="col-sm-6 control-label">검색 키워드 3</label>
+                    <div class="col-sm-6">
                     	<a href="#" id="keyword3" name="keyword3" data-type="text" data-pk="1">${DATA.keyword3}</a>
                     </div>
 									</div>
 
 									<div class="form-group">
-										<label class="col-sm-5 control-label">검색 키워드 4</label>
-                    <div class="col-sm-7">
+										<label class="col-sm-6 control-label">검색 키워드 4</label>
+                    <div class="col-sm-6">
                     	<a href="#" id="keyword4" name="keyword4" data-type="text" data-pk="1">${DATA.keyword4}</a>
                     </div>
 									</div>
 
 									<div class="form-group">
-										<label class="col-sm-5 control-label">검색 키워드 5</label>
-                    <div class="col-sm-7">
+										<label class="col-sm-6 control-label">검색 키워드 5</label>
+                    <div class="col-sm-6">
                     	<a href="#" id="keyword5" name="keyword5" data-type="text" data-pk="1">${DATA.keyword5}</a>
                     </div>
 									</div>
+									
 								</form>
 								<div class="btn-group btn-group-justified m-b-10">
-                                <a class="btn btn-warning waves-effect waves-light" role="button" href="../person/MainWindow.food">Home</a>
-                                <a class="btn btn-primary waves-effect waves-light" role="button" href="" id="finalReg">최종가입</a>
-                                <!-- <a class="btn btn-danger waves-effect waves-light" id="cBtn" role="button" href="#">보류</a> -->
-                            </div>
+                   <a class="btn btn-warning waves-effect waves-light" role="button" href="../person/MainWindow.food">Home</a>
+                   <a class="btn btn-primary waves-effect waves-light" role="button" id="finalReg" >최종가입</a>
+                  <!-- <a class="btn btn-danger waves-effect waves-light" id="cBtn" role="button" href="#">보류</a> -->
+               </div>
 							</div><!-- end col -->
 						</div><!-- end row -->
 					</div><!-- end col -->
@@ -241,18 +264,18 @@
 
 		<script>
 		$(document).ready(function(){
-			$('#num').editable({mode: 'inline'});
-			$('#chef').editable({mode: 'inline'});
-			$('#name').editable({mode: 'inline'});
-			$('#phone').editable({mode: 'inline'}, {name: 'phone'});
-			$('#email').editable({mode: 'inline'});
-			$('#open').editable({mode: 'inline'});
-			$('#id').editable({mode: 'inline'});
-			$('#chefComment').editable({mode: 'inline'});
-			$('#truckComment').editable({mode: 'inline'});
-			$('#mmenuName').editable({mode: 'inline'});
-			$('#mmenuPrice').editable({mode: 'inline'});
-			$('#mmenuComment').editable({mode: 'inline'});
+			$('#tnum').editable({mode: 'inline'});
+			$('#tchef').editable({mode: 'inline'});
+			$('#tname').editable({mode: 'inline'});
+			$('#tphone').editable({mode: 'inline'});
+			$('#temail').editable({mode: 'inline'});
+			$('#topen').editable({mode: 'inline'});
+			$('#tid').editable({mode: 'inline'});
+			$('#tchefComment').editable({mode: 'inline'});
+			$('#ttruckComment').editable({mode: 'inline'});
+			$('#tmmenuName').editable({mode: 'inline'});
+			$('#tmmenuPrice').editable({mode: 'inline'});
+			$('#tmmenuComment').editable({mode: 'inline'});
 			$('#keyword1').editable({mode: 'inline'});
 			$('#keyword2').editable({mode: 'inline'});
 			$('#keyword3').editable({mode: 'inline'});
@@ -260,20 +283,41 @@
 			$('#keyword5').editable({mode: 'inline'});
 			
 			
-			
 			$('#finalReg').click(function(){
 				alert("FOOD BUNCKER의 회원 가입을 환영합니다.");
 				
+				$('#num').val($('#tnum').text());
+				$('#chef').val($('#tchef').text());
+				$('#name').val($('#tname').text());
+				$('#phone').val($('#tphone').text());
+				$('#email').val($('#temail').text());
+				$('#open').val($('#topen').text());
+				$('#id').val($('#tid').text());
+				$('#chefComment').val($('#tchefComment').text());
+				$('#truckComment').val($('#ttruckComment').text());
+				$('#mmenuName').val($('#tmmenuName').text());
+				$('#mPrice').val($('#tmmenuPrice').text());
+				$('#mmenuComment').val($('#tmmenuComment').text());
+
+				alert("1 : " + $('#phone').val());
+				var tk1 = $('#keyword1').text();
+				var tk2 = $('#keyword2').text();
+				var tk3 = $('#keyword3').text();
+				var tk4 = $('#keyword4').text();
+				var tk5 = $('#keyword5').text();
+				alert("2 : " + $('#phone').val());
 				
-				var tel = $('#phone').val();
-				$('#phone').val(tel);
-				alert($('#phone').val());
+				/* '""#oldChefImg').val() = ${DATA.chefImgName}; */
+				alert("3 : " + $('#phone').val());
+				/* '""#oldTruckImg').val() = ${DATA.truckImgName};
+				$('#oldMenuImg').val() = ${DATA.mmenuImgName}; */
+
+				$('#keyword').val('#' + tk1 + '#' + tk2 + '#' + tk3 + '#' + tk4 + '#' + tk5) ;
 				
+				alert($('#oldChefImg').val());
+				alert("4 : " + $('#phone').val());
 				
-				
-				
-				$(location).attr("href", "../chef/ChefMain.food");
-				/* $("#frm").attr("action", "../chef/RegProc.food").submit(); */
+				$('#frm').attr("action", "../chef/RegProc.food").submit();
 			});
 
 			$('#cBtn').click(function(){

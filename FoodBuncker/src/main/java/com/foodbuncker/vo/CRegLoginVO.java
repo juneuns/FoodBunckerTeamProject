@@ -1,11 +1,15 @@
 package com.foodbuncker.vo;
 
+import java.io.File;
+import java.util.ArrayList;
+
 import org.springframework.web.multipart.MultipartFile;
 
 //vo alias : "cregVO"
 public class CRegLoginVO {
 	public int cnt;
 	public int no;
+	public int mNo;
 	public String chef;
 	public String name;
 	public String phone;
@@ -29,8 +33,12 @@ public class CRegLoginVO {
 	public String truckComment;
 	public MultipartFile mmenuImg;
 	public String mmenuImgName;
+	public String truckThumb;
+	public String chefThumb;
+	public String thumbName;
 	public String mmenuName;
 	public int mmenuPrice;
+	public String strPrice;
 	public String mmenuComment;
 	public String mmenugrade;
 	public String keyword;
@@ -40,8 +48,90 @@ public class CRegLoginVO {
 	public String keyword4;
 	public String keyword5;
 	
+	public String oldChefImg;
+	public String oldTruckImg;
+	public String oldMenuImg;
+	
+	public MultipartFile subMImg;
+	public String subMImage;
+	public String thumbSMImg;
+	public String oldSubMImg;
+	
+	public ArrayList list;
 	
 
+	public int getmNo() {
+		return mNo;
+	}
+	public void setmNo(int mNo) {
+		this.mNo = mNo;
+	}
+	public String getStrPrice() {
+		return strPrice;
+	}
+	public void setStrPrice(String strPrice) {
+		this.strPrice = strPrice;
+	}
+	public MultipartFile getSubMImg() {
+		return subMImg;
+	}
+	public void setSubMImg(MultipartFile subMImg) {
+		this.subMImg = subMImg;
+	}
+	public String getSubMImage() {
+		return subMImage;
+	}
+	public void setSubMImage(String subMImage) {
+		this.subMImage = subMImage;
+	}
+	public String getThumbSMImg() {
+		return thumbSMImg;
+	}
+	public void setThumbSMImg(String thumbSMImg) {
+		this.thumbSMImg = thumbSMImg;
+	}
+	public String getOldSubMImg() {
+		return oldSubMImg;
+	}
+	public void setOldSubMImg(String oldSubMImg) {
+		this.oldSubMImg = oldSubMImg;
+	}
+	public String getTruckThumb() {
+		return truckThumb;
+	}
+	public void setTruckThumb(String truckThumb) {
+		this.truckThumb = truckThumb;
+	}
+	public String getChefThumb() {
+		return chefThumb;
+	}
+	public void setChefThumb(String chefThumb) {
+		this.chefThumb = chefThumb;
+	}
+	public String getThumbName() {
+		return thumbName;
+	}
+	public void setThumbName(String thumbName) {
+		this.thumbName = thumbName;
+	}
+	public String getOldChefImg() {
+		return oldChefImg;
+	}
+	public void setOldChefImg(String oldChefImg) {
+		this.oldChefImg = oldChefImg;
+	}
+	public String getOldTruckImg() {
+		return oldTruckImg;
+	}
+	public void setOldTruckImg(String oldTruckImg) {
+		this.oldTruckImg = oldTruckImg;
+	}
+	public String getOldMenuImg() {
+		return oldMenuImg;
+	}
+	public void setOldMenuImg(String oldMenuImg) {
+		this.oldMenuImg = oldMenuImg;
+	}
 	public String getIsShow() {
 		return isShow;
 	}
