@@ -59,12 +59,15 @@ public class CRegLoginService {
 			
 			// 회원 번호는 데이터베이스에서 가져오자.
 //			System.out.println("############# selectInfoNoDAO 진입전 ##############");
-			int tno = cregLoginDAO.selectInfoNoDAO(cregVO);
-			cregVO.no = tno ;
+//			int tno = 0 ;
+			try{
+				cregVO.no = cregLoginDAO.selectInfoNoDAO(cregVO);
+			}catch(Exception e){}
+//			cregVO.no = tno ;
 //			System.out.println("############# selectInfoNoDAO 진입후 ##############");
-			session.setAttribute("UTNO", tno);
+			session.setAttribute("UTNO", cregVO.no);
 			System.out.println("session set UTNO : " + cregVO.no);
-			cregVO.no = tno ;
+//			cregVO.no = tno ;
 			tabNo = 1;
 			int imgCnt = cregLoginDAO.selectTImgCNTDAO(cregVO);
 			int mImgCnt = cregLoginDAO.selectMImgCNTDAO(cregVO);
@@ -78,11 +81,16 @@ public class CRegLoginService {
 			cregVO = cregLoginDAO.selectInfoDAO(cregVO);
 			System.out.println("############ session isshow : " + cregVO.isShow);
 			if(cregVO.isShow.equals("Y")){
-
-				System.out.println("############ session isshow  tabNO 4 : " + cregVO.isShow);
+				cregVO.id = (String) session.getAttribute("UID");
+				System.out.println("############ session isshow  id : " + cregVO.id);
+				System.out.println("############ session isshow  tabNO 4 : " + cregVO.no);
 				tabNo = 4 ;
-				tno = cregLoginDAO.selectInfoNoDAO(cregVO);
-				session.setAttribute("UTNO", tno);
+				try{
+					cregVO.no = cregLoginDAO.selectInfoNoDAO(cregVO);
+					session.setAttribute("UTNO", cregVO.no);
+				}catch(Exception e){
+					cregVO.no = (int) session.getAttribute("UTNO");
+				}
 				session.setAttribute("tabNo", tabNo);
 			}
 		}
@@ -167,6 +175,15 @@ public class CRegLoginService {
 			data.cnt = 1 ;
 			System.out.println("############# 메뉴table 이미지 업로드완료");
 //			System.out.println("############# cRegInfoSrvc tabNo : " + tabNo);
+		}
+		else if(tabNo ==3){
+			
+		}
+		else if(tabNo == 4){
+			
+		}
+		else{
+			
 		}
 		return data;
 	}
