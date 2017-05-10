@@ -37,12 +37,19 @@ public class CRegLoginController {
 			status = (boolean) session.getAttribute("STATUS");
 		}
 		catch(Exception e){}
-		if (isLogin){
+		
+		int tno ;
+		try{
+			tno = (int) session.getAttribute("UTNO");
+		}catch(Exception e){
+			tno = 0 ;
+		}
+		if (isLogin || tno > 0 ){
 			// 이미 로그인 처리가 된 회원은 해당 뷰로 다시 보내자.
 			CRegLoginVO cregVO = new CRegLoginVO();
 			cregVO.cnt = 1 ;
 			cregVO.id = (String) session.getAttribute("UID");
-			cregVO.no = (int) session.getAttribute("UTNO");
+			cregVO.no = tno ;
 			cregLoginService.sessionSettingSrvc(session, cregVO);
 			
 			RedirectView rv = new RedirectView();
