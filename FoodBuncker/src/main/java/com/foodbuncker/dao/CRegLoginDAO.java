@@ -75,12 +75,19 @@ public class CRegLoginDAO {
 	}
 	
 	/*
+	 * 트럭이미지 가져오기 질의명령 처리함수 
+	 */
+	public ArrayList selectTImgDAO(CRegLoginVO cregVO){
+			ArrayList list = (ArrayList) sqlSession.selectList("foodbuncker.CRegLogin.selectTImgSql", cregVO);
+			return list ;
+	}
+	
+	/*
 	 * 회원 메뉴 가져오기 질의명령 처리함수 
 	 */
 	public ArrayList selectMenuDAO(CRegLoginVO cregVO){
-		ArrayList list = (ArrayList) sqlSession.selectList("foodbuncker.CRegLogin.selectMenuSql", cregVO);
-		
-		return list ;
+			ArrayList list = (ArrayList) sqlSession.selectList("foodbuncker.CRegLogin.selectMenuSql", cregVO);
+			return list ;
 	}
 	
 	/*

@@ -9,6 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class CRegLoginVO {
 	public int cnt;
 	public int no;
+	public int tino;
 	public int mNo;
 	public String chef;
 	public String name;
@@ -41,6 +42,7 @@ public class CRegLoginVO {
 	public String strPrice;
 	public String mmenuComment;
 	public String mmenugrade;
+	
 	public String keyword;
 	public String keyword1;
 	public String keyword2;
@@ -51,7 +53,8 @@ public class CRegLoginVO {
 	public String oldChefImg;
 	public String oldTruckImg;
 	public String oldMenuImg;
-	
+
+	public String mImgName;
 	public MultipartFile subMImg;
 	public String subMImage;
 	public String thumbSMImg;
@@ -60,6 +63,24 @@ public class CRegLoginVO {
 	public ArrayList list;
 	
 
+	public int getTino() {
+		return tino;
+	}
+	public void setTino(int tino) {
+		this.tino = tino;
+	}
+	public String getmImgName() {
+		return mImgName;
+	}
+	public void setmImgName(String mImgName) {
+		this.mImgName = mImgName;
+	}
+	public ArrayList getList() {
+		return list;
+	}
+	public void setList(ArrayList list) {
+		this.list = list;
+	}
 	public int getmNo() {
 		return mNo;
 	}

@@ -74,11 +74,20 @@ public class CRegLoginService {
 			if(mImgCnt > 0){
 				tabNo = 3 ;
 			}
+
+			cregVO = cregLoginDAO.selectInfoDAO(cregVO);
+			System.out.println("############ session isshow : " + cregVO.isShow);
+			if(cregVO.isShow.equals("Y")){
+
+				System.out.println("############ session isshow  tabNO 4 : " + cregVO.isShow);
+				tabNo = 4 ;
+				session.setAttribute("tabNo", tabNo);
+			}
 		}
 		session.setAttribute("isLogin", isLogin);
 		session.setAttribute("tabNo", tabNo);
 		
-		System.out.println(session.getAttribute("sessionset   tabNo" + tabNo));
+		System.out.println(session.getAttribute("sessionset   tabNo : " + tabNo));
 		return ;
 	}
 	
@@ -394,21 +403,35 @@ public class CRegLoginService {
 	public CRegLoginVO menuModifySrvc(CRegLoginVO cregVO, HttpSession session){
 		// 메인메뉴 가져오자
 		cregVO.no = (int) session.getAttribute("UTNO");
-		cregVO.mmenugrade = "M" ;
-		ArrayList list = new ArrayList();
-		list = cregLoginDAO.selectMenuDAO(cregVO);
-		
-		Iterator ilist = list.iterator();
-		CRegLoginVO data = new CRegLoginVO();
-		while (ilist.hasNext()){
-			data = (CRegLoginVO) ilist.next();
+		cregVO.tigrade = 3 ;
+		ArrayList list = (ArrayList) cregLoginDAO.selectTImgDAO(cregVO);
+		Iterator itr = list.iterator();
+		try{
+		while((boolean) itr.next()){
+			cregVO = (CRegLoginVO) itr.next();
 		}
+
+		cregVO.mmenugrade = "M" ;
+		CRegLoginVO vo2 = new CRegLoginVO();
+		ArrayList list2 = (ArrayList) cregLoginDAO.selectMenuDAO(cregVO);
+		Iterator itr2 = list2.iterator();
+		while((boolean) itr2.next()){
+			vo2 = (CRegLoginVO) itr2.next();
+		}
+		cregVO.mmenuName = vo2.mmenuName ;
+		cregVO.mNo = vo2.mNo ;
+		cregVO.mmenuPrice = vo2.mmenuPrice;
+		cregVO.mmenuComment = vo2.mmenuComment ;
+		cregVO.sname = vo2.sname ;
+		cregVO.keyword = vo2.keyword ;
+		}catch(Exception e){}
+		System.out.println("&&&&&&&&&&&&&&&&&& 메인메뉴 받기 완료");
 		
 		// 서브 메뉴 가져오자...
 		cregVO.mmenugrade = "S" ;
-		list = cregLoginDAO.selectMenuDAO(cregVO);
-		data.list = list ;
-		return data;
+		cregVO.list = (ArrayList) cregLoginDAO.selectMenuDAO(cregVO);
+		System.out.println("&&&&&&&&&&&&&&&&&& 서브메뉴 받기 완료");
+		return cregVO;
 	}
 	
 }

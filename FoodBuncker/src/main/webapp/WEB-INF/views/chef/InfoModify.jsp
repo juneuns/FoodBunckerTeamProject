@@ -162,13 +162,14 @@
 			$('#finalReg').click(function(){
 				alert("수정된 정보가 저장되었습니다.");
 				
-				var tp = $('#tphone').text();
+				/* var tp = $('#tphone').text();
 				$('#phone').val(tp);
 				var tmail = $('#temail').text();
 				$('#email').val(tmail);
-				alert($('#phone').val());
+				alert($('#phone').val()); */
 				
-				$("#frm").attr("action", "../chef/InfoModifyProc.food").submit();
+				/* $("#frm").attr("action", "../chef/InfoModifyProc.food").submit(); */
+				$(location).attr("href","../FoodBuncker/ChefMain.food");
 			});
 
 			$('#cBtn').click(function(){
