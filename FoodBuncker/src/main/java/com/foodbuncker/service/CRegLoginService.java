@@ -81,6 +81,8 @@ public class CRegLoginService {
 
 				System.out.println("############ session isshow  tabNO 4 : " + cregVO.isShow);
 				tabNo = 4 ;
+				tno = cregLoginDAO.selectInfoNoDAO(cregVO);
+				session.setAttribute("UTNO", tno);
 				session.setAttribute("tabNo", tabNo);
 			}
 		}
