@@ -317,7 +317,8 @@
 				alert($('#oldChefImg').val());
 				alert("4 : " + $('#phone').val()); */
 				
-				$('#frm').attr("action", "../chef/RegProc.food").submit();
+				/* $('#frm').attr("action", "../chef/RegProc.food").submit(); */
+				$(location).attr("href","../chef/ChefMain.food");
 			});
 
 			$('#cBtn').click(function(){
