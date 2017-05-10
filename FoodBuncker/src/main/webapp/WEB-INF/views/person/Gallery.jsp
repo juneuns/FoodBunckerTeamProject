@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html class="no-js" lang="">
     <head>
@@ -30,6 +31,7 @@
         <!-- MODERNIZR -->
         <script src="../resources/js/vendor/modernizr-2.8.3.min.js"></script>
     </head>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>    
     <body class="shop">
         <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -46,7 +48,9 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="logo">
-                            <a href="#"><img src="../resources/img/logo.png" alt="Logo"></a>
+                            <a href="../person/MainWindow.food">
+                            	<img src="../resources/img/logo.png" alt="Logo">
+                            </a>
                         </div>
 
                         <button class="toggle" type="button">
@@ -93,20 +97,25 @@
                 <div class="row">
                 
 <!-- -----------------------  foreach문으로 1단 1열 반복-------------------------------------- -->                 
+                    <c:forEach var="data" items="${ILIST}">
                     <div class="col-sm-6">
                         <div class="item">
-                            <img src="../resources/img/detailviewgallery1.jpg" alt="1895x1000 About te image">
+                            <img src="../image/${data.sname}" alt="1895x1000 About te image">
                             <div class="caption">
                                 <div class="align">
-                                    <a href="../person/DetailView.food"><i class="fa fa-link"></i></a>
-                                    <a href="../resources/img/detailviewgallery1.jpg" class="popup"><i class="fa fa-search"></i></a>
-                                    <h3>Cicago Moons1</h3>
+                                    <a href="../person/DetailView.food?tno=${data.tno}"><i class="fa fa-link"></i></a>
+                                    <a href="../image/${data.sname}" class="popup"><i class="fa fa-search"></i></a>
+                                    <h3>${data.name}</h3>
                                 </div>    
                             </div>
                         </div>
                     </div>
+                    </c:forEach>
+                    <div class="row" id="loadmore">
+                    </div>
 <!-- ----------------------- foreach문으로 1단 2열 반복-------------------------------------- --> 
-                  <div class="col-sm-6">
+                	<!-- 
+					 <div class="col-sm-6">
                         <div class="item">
                             <img src="../resources/img/detailviewgallery2.jpg" alt="About te image">
                             <div class="caption">
@@ -118,12 +127,12 @@
                             </div>
                         </div>
                     </div>
-                    
+                     -->
  <!-- -----------------------  foreach문 1단 2열 끝--------------------------------------- -->                    
-                </div>
 <!-- -----------------------   foreach문 1단 반복 끝--------------------------------------- -->                 
                 
-<!-- -----------------------  위의 foreach문 완성시 삭제해야 할 부분 시작--------------------------------------- --> 
+<!-- -----------------------  위의 foreach문 완성시 삭제해야 할 부분 시작--------------------------------------- -->
+				<!--  
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="item">
@@ -213,16 +222,59 @@
                         </div>
                     </div>
                 </div>
+                 -->
 <!-- -----------------------  위의 foreach문 완성시 삭제해야 할 부분 끝--------------------------------------- -->                 
                 
 
                 <div class="row">
                     <div class="text-center">
-                        <a href="#" class="btn btn-default btn-colored">Load More</a>
+                        <input type="button" class="btn btn-default btn-colored" id="lBtn" value="Load More">
                     </div>
                 </div>
             </div>
         </section>
+<script>
+	var moreImage = 0;
+	$(document).ready(function(){
+		$("#lBtn").click(function(){
+			moreImage = moreImage + 1;
+			$.ajax({
+				data : "temp=" + new Date() + "&nowPage=" + (moreImage+1),
+				dataType : "json",
+				error : function(){
+					alert("에러");
+				},
+				success : addImage,
+				type : "GET",
+				url : "../person/moreGallery.food"
+			});
+		});
+	});
+	function addImage(data){
+		var str = "";
+		var addImage = data.moregallery
+		var i = 0;
+		$.each(addImage, function(key, temp){
+			var tno = temp.tno;
+			var nowPage = temp.nowPage;
+			var sname = temp.sname;
+			var name = temp.name;
+			str += "<div class='col-sm-6'>"
+				+ "<div class='item'>"
+				+ "<img src='../image/"+sname+"' alt='1895x1000 About te image'>"
+				+ "<div class='caption'>"
+				+ "<div class='align'>"
+            	+ "<a href='../person/DetailView.food?tno="+tno+"'><i class='fa fa-link'></i></a>"
+                + "<a href='../image/"+sname+"' class='popup'><i class='fa fa-search'></i></a>"
+                + "<h3>"+name+"</h3>"
+                + "</div>"    
+                + "</div>"       
+                + "</div>"
+                + "</div>"
+		});
+		$("#loadmore").append(str);
+	}
+</script>        
         <!-- SECTION 2 -->
 
         <footer>

@@ -1,6 +1,7 @@
 
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!doctype html>
 <html class="no-js" lang="en">
     <head>
@@ -180,181 +181,49 @@
 
                 <div class="owl-carousel gallery-slider">
                     <!-- SLIDE -->
-                    <div>
                     
-     <!-----------------  foreach사용하여 1단 표시, 전체 메뉴개수로 foreach 반복 횟수 정해야 함. ---------------------------------------------->
-                        <div class="row">
-                        
-     <!------------------- foreach사용하여 2단 표시 --------------------------------------------------------------------------------->
+                    
+                    <c:forEach var="data" items="${LIST}" varStatus="st">
+                    <c:if test="${st.first eq true}">
+                    <div><!-- 슬라이드 -->
+                    </c:if>
+                    <c:if test="${st.count eq 7}">
+                    <div><!-- 슬라이드 -->
+                    </c:if>
+                    <c:if test="${st.count eq 13}">
+                    <div><!-- 슬라이드 -->
+                    </c:if>
+                    	<c:if test="${st.count % 2 eq 1 }">
+                    	<div class="row"><!-- 줄바꾸는거 -->
+                    	</c:if>
                             <div class="col-md-6" >
                                 <div class="item" style="height:150px;">
                                     <div class="align">
                                          <div class="item-thumbnail">
-                                            <img src="../resources/img/menu1_200.jpg" alt="About the image">
+                                            <img src="../image/${data.sname}" alt="About the image">
                                         </div>
-                                        <h5>Beef Steak</h5><br>
-                                        <p>한우 등심을 직화로 구워 소스를 입힌 요리</p>
+                                        <h5>${data.name}</h5><br>
+                                        <p>${data.body}</p>
                                     </div>
-                                    <span class="price">10,000원</span>
+                                    <span class="price">${data.price}원</span>
                                 </div>
                             </div>
+         	        	<c:if test="${st.count % 2 eq 0}">	
+                       	</div><!-- 줄 -->
+                    	</c:if>
+                    <c:if test="${st.count eq 6}">
+                    </div><!-- 슬라이드 -->
+                    </c:if>	
+                    <c:if test="${st.count eq 12}">
+                    </div><!-- 슬라이드 -->
+                    </c:if>
+                    <c:if test="${st.last eq true}">	
+                    </div><!-- 슬라이드 -->
+                    </c:if>
+                    </c:forEach>
+                    
                             
-     <!---------------------------  1번째 단 1번째 끝 ------------------------------------------------------------------------------->
-     <!----------------------------  1번째 단 2번째 시작 ----------------------------------------------------------------------------->
-                            <div class="col-md-6">
-                                <div class="item" style="height:150px;">
-                                    <div class="align">
-                                         <div class="item-thumbnail">
-                                            <img src="../resources/img/menu2_200.jpg" alt="About the image">
-                                        </div>
-                                        <h5>Hambuger</h5>
-                                        <p>천연 효모 빵과 신선한 야채, 수제 패티를 넣은 고급의 와퍼</p>
-                                    </div>
-                                    <span class="price">6,000원</span>
-                                </div>
-                            </div>                            
-     <!------------------------------ foreach문 종료 -------------------------------------------------------------------------------->
-                        </div>
-     <!------------------------------ foreach문  종료 --------------------------------------------------------------------------------->
-                   
-     <!--------------------------------- 위의 foreach완성시 삭제해야할 부분 시작 -------------------------------------------------------------------->     
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="item" style="height:150px;">
-                                    <div class="align">
-                                         <div class="item-thumbnail">
-                                            <img src="../resources/img/menu3_200.jpg" alt="About the image">
-                                        </div>
-                                        <h5>Italian Noddle </h5>
-                                        <p>파스타 면을 적절히 삶아 이탈리아식으로 야채 및 향로를 뿌린 요리</p>
-                                    </div>
-                                    <span class="price">8,000원</span>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="item" style="height:150px;">
-                                    <div class="align">
-                                         <div class="item-thumbnail">
-                                            <img src="../resources/img/menu4_200.jpg" alt="About the image">
-                                        </div>
-                                        <h5>Green Grape Pizza</h5>
-                                        <p>얇고 바삭한 도우 위에 청포도를 올려 청정한 맛을 느낄 수 있는 피자</p>
-                                    </div>
-                                    <span class="price">6,000원</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="item" style="height:150px;">
-                                    <div class="align">
-                                         <div class="item-thumbnail">
-                                            <img src="../resources/img/menu5_200.jpg" alt="About the image">
-                                        </div>
-                                        <h5>red vegitable 피자</h5>
-                                        <p>채소와 곡류로만 만들고 빨간 피망으로 포인트롤 준 피자</p>
-                                    </div>
-                                    <span class="price">8,000원</span>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="item" style="height:150px;">
-                                    <div class="align">
-                                         <div class="item-thumbnail">
-                                            <img src="../resources/img/menu6_200.jpg" alt="About the image">
-                                        </div>
-                                        <h5>Tomato Pizza</h5><br>
-                                        <p>토마토가 올려진 기본 피자</p>
-                                    </div>
-                                    <span class="price">5,000원</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- SLIDE -->
-                    <div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="item" style="height:150px;">
-                                    <div class="align">
-                                         <div class="item-thumbnail">
-                                            <img src="../resources/img/menu7_200.jpg" alt="About the image">
-                                        </div>
-                                        <h5>Primium Pizza</h5><br>
-                                        <p>두꺼운 도우와 풍부한 토핑으로 올린 고급 피자</p>
-                                    </div>
-                                    <span class="price">10,000원</span>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="item" style="height:150px;">
-                                    <div class="align">
-                                         <div class="item-thumbnail">
-                                            <img src="../resources/img/menu8_200.jpg" alt="About the image">
-                                        </div>
-                                        <h5>Salmon Steak</h5>
-                                        <p>싱싱한 연어를 직화로 구워 고유의 맛을 살린 요리</p>
-                                    </div>
-                                    <span class="price">10,000원</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="item" style="height:150px;">
-                                    <div class="align">
-                                         <div class="item-thumbnail">
-                                            <img src="../resources/img/menu1_200.jpg" alt="About the image">
-                                        </div>
-                                        <h5>Beef Steak</h5>
-                                        <p>한우 등심을 직화로 구워 소스를 입힌 요리</p>
-                                    </div>
-                                    <span class="price">10,000원</span>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="item" style="height:150px;">
-                                    <div class="align">
-                                         <div class="item-thumbnail">
-                                            <img src="../resources/img/menu2_200.jpg" alt="About the image">
-                                        </div>
-                                        <h5>Hambuger</h5>
-                                        <p>천연 효모 빵과 신선한 야채, 수제 패티를 넣은 고급의 와퍼</p>
-                                    </div>
-                                    <span class="price">6,000원</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="item" style="height:150px;">
-                                    <div class="align">
-                                         <div class="item-thumbnail">
-                                            <img src="../resources/img/menu3_200.jpg" alt="About the image">
-                                        </div>
-                                        <h5>Italian Noddle</h5>
-                                        <p>파스타 면을 적절히 삶아 이탈리아식으로 야채 및 향로를 뿌린 요리</p>
-                                    </div>
-                                    <span class="price">8,000원</span>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="item" style="height:150px;">
-                                    <div class="align">
-                                         <div class="item-thumbnail">
-                                            <img src="../resources/img/menu4_200.jpg" alt="About the image">
-                                        </div>
-                                        <h5>Green Grape Pizza</h5>
-                                        <p>얇고 바삭한 도우 위에 청포도를 올려 청정한 맛을 느낄 수 있는 피자</p>
-                                    </div>
-                                    <span class="price">6,000원</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        
-  <!--------------------------------- foreach완료시  삭제 해야할 부분 끝-------------------------------------------------------------->                       
-                    </div>
+                    
                 </div>
             </div>
         </section>
@@ -373,31 +242,18 @@
                         <div class="owl-carousel testimonials-slider">
                         
   <!------------------------------- foreach문 시작 ------------------------------------------------------------------------------------->
+  						<c:forEach var="data" items="${LIST2}">
                             <div>
                                 <div class="testimonial">
-                                    <p>국내 패스트 푸드에서 파는 햄버거와는 질적인 차이가 있습니다. 직접 만든 빵은 부드럽고 야채는 신선하여 그 모양을 유지하고 아삭아삭 소리가 납니다. 정말 맛있어요.</p>
-                                    <h4>- 버거트럭</h4>
+                                    <p>${data.body}</p>
+                                    <h4>${data.tname}</h4>
                                 </div>
                             </div>
-                            
+						</c:forEach>                            
    <!------------------------------- foreach문 종료 -------------------------------------------------------------------------------------->
    
-   <!-- ----------------------------위 foreach문 완성시 삭제해야할 부분 시작 ------------------------------------------------------------------------>
-                            <div>
-                                <div class="testimonial">
-                                    <p>이런 고급스러운 요리를 쉽게 만날 수 있다는 것이 행복합니다. 쉐프님의 손길 하나하나가 정성이 많이 들어 있네요.</p>
-                                    <h4>- 스테이크 트럭</h4>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="testimonial">
-                                    <p>이제 바다 요리를 먹으러 바다까지 갈 필요가 없네요. 쉐프님이 직접 재료를 매일마다 골라온다고 합니다. 직접 눈으로 확인해 보세요. 강추합니다.</p>
-                                    <h4>- Sea Truck</h4>
-                                </div>
-                            </div>
+ <!-- ----------------------------위 foreach문 완성시 삭제해야할 부분 시작 ------------------------------------------------------------------------>
  <!-- ----------------------------위 foreach문 완성시 삭제해야할 부분 끝 ------------------------------------------------------------------------>                           
-                      
-                        
                         </div>
                     </div>
                 </div>
@@ -419,67 +275,30 @@
                 <div class="row">
                 
 <!------------------------------- foreach 사용하여 1단의 1,2칸 표시 ----------------------------------------------->
-                    <div class="col-sm-6">
-                        <div class="item">
-                            <img src="../resources/img/truck1_1895.jpg" alt="About te image">
-                            <div class="caption">
-                                <div class="align">
-                                    <a href="../person/DetailView.food"><i class="fa fa-link"></i></a>
-                                    <a href="../resources/img/truck1_1895.jpg" class="popup"><i class="fa fa-search"></i></a>
-                                    <h3>Cicago Moons</h3>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    
 <!---------------------------------  foreach 1단 1칸 종료 ----------------------------------------------------->
 
+				<c:forEach var="data" items="${LIST3}">
                     <div class="col-sm-6">
                         <div class="item">
-                            <img src="../resources/img/truck2_1895.jpg" alt="About te image">
+                            <img src="../image/${data.sname}" alt="About te image">
 
                             <div class="caption">
                                 <div class="align">
-                                    <a href="../person/DetailView.food"><i class="fa fa-link"></i></a>
-                                    <a href="../resources/img/truck2_1895.jpg" class="popup"><i class="fa fa-search"></i></a>
-                                    <h3>Cicago Moons</h3>
+                                    <a href="../person/DetailView.food?tno=${data.no}"><i class="fa fa-link"></i></a>
+                                    <a href="../image/${data.sname}" class="popup"><i class="fa fa-search"></i></a>
+                                    <h3>${data.name}</h3>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </c:forEach>    
+                
                 </div>
+                
 <!----------------------------------- foreach 1단 종료 ------------------------------------------------------>
                 
  <!-- -------------------------------위의 foreach문 완성시 삭제해야할 부분 시작----------------------------------- -->               
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="item">
-                            <img src="../resources/img/truck3_1895.jpg" alt="About te image">
-
-                            <div class="caption">
-                                <div class="align">
-                                    <a href="../person/DetailView.food"><i class="fa fa-link"></i></a>
-                                    <a href="../resources/img/truck3_1895.jpg" class="popup"><i class="fa fa-search"></i></a>
-                                    <h3>Cicago Moons</h3>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6">
-                        <div class="item">
-                            <img src="../resources/img/truck4_1895.jpg" alt="About te image">
-
-                            <div class="caption">
-                                <div class="align">
-                                    <a href="../person/DetailView.food"><i class="fa fa-link"></i></a>
-                                    <a href="../resources/img/truck4_1895.jpg" class="popup"><i class="fa fa-search"></i></a>
-                                    <h3>Cicago Moons</h3>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
  <!-- -------------------------------위의 foreach문 완성시 삭제해야할 부분 끝----------------------------------- -->                
             </div>
         </section>

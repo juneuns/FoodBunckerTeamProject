@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html class="no-js" lang="">
     <head>
@@ -46,7 +47,7 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="logo">
-                            <a href="#"><img src="../resources/img/logo.png" alt="Logo"></a>
+                            <a href="../person/MainWindow.food"><img src="../resources/img/logo.png" alt="Logo"></a>
                         </div>
 
                         <button class="toggle" type="button">
@@ -138,28 +139,28 @@
                 <div class="row">
                     <div class="col-sm-6 col-md-3">
                         <div class="countbox">
-                            <h4>8</h4>
+                            <h4>${CHEFTOTAL}</h4>
                             <p>가입된 푸드트럭 수</p>
                         </div>
                     </div>
 
                     <div class="col-sm-6 col-md-3">
                         <div class="countbox">
-                            <h4>31</h4>
+                            <h4>${PTOTAL}</h4>
                             <p>서울내 영업장소 수</p>
                         </div>
                     </div>
 
                     <div class="col-sm-6 col-md-3">
                         <div class="countbox">
-                            <h4>7301</h4>
+                            <h4>${CTOTAL}</h4>
                             <p>총 고객방문 수</p>
                         </div>
                     </div>
 
                     <div class="col-sm-6 col-md-3">
                         <div class="countbox">
-                            <h4>15341</h4>
+                            <h4>${STOTAL}</h4>
                             <p>총 메뉴판매 수</p>
                         </div>
                     </div>
@@ -169,7 +170,7 @@
         <!-- // SECTION 3 -->
 
         <!-- SECTION 4 -->
-        <section class="space">
+        <section class="menu space">
             <div class="container">
                 <div class="row">
                     <div class="section-headline">
@@ -179,26 +180,47 @@
 
                 <div class="owl-carousel gallery-slider">
                     <!-- SLIDE -->
-                    <div>
-                    
- <!-- ---------------------- foreach문으로 1단 시작, 총 메뉴수 알아내어 반복 횟수 정해야 함----------------------------------------- -->                   
-                        <div class="row">
-                        
- <!-- -----------------------foreach문으로 1단 1열 시작---------------------------------------- -->                       
-                            <div class="col-md-4">
-                                <div class="item">
+                    <c:forEach var="data" items="${MLIST}" varStatus="st">
+                    <c:if test="${st.first eq true}">
+                    <div><!-- 슬라이드 -->
+                    </c:if>
+                    <c:if test="${st.count eq 7}">
+                    <div><!-- 슬라이드 -->
+                    </c:if>
+                    <c:if test="${st.count eq 13}">
+                    <div><!-- 슬라이드 -->
+                    </c:if>
+                    	<c:if test="${st.count % 2 eq 1 }">
+                    	<div class="row"><!-- 줄바꾸는거 -->
+                    	</c:if>
+                            <div class="col-md-4" ><!-- 이름 -->
+                                <div class="item" > <!-- 본문,가격 -->
                                     <div class="align">
                                          <div class="item-thumbnail">
-                                            <img src="../resources/img/menu1_200.jpg" alt="About the image">
+                                            <img src="../image/${data.sname}" alt="About the image">
                                         </div>
-                                        <h5>Beef Steak</h5><br>
-                                        <p>한우 등심을 직화로 구워 소스를 입힌 요리</p>
+                                        <h5>${data.name}</h5><br>
+                                        <p>${data.body}</p>
                                     </div>
-                                    <span class="price">10,000원</span>
+                                    <span class="price">${data.price}원</span>
                                 </div>
                             </div>
-                            
+                        <c:if test="${st.count % 2 eq 0}">	
+                       	</div><!-- 줄 -->
+                    	</c:if>
+                    <c:if test="${st.count eq 6}">
+                    </div><!-- 슬라이드 -->
+                    </c:if>	
+                    <c:if test="${st.count eq 12}">
+                    </div><!-- 슬라이드 -->
+                    </c:if>
+                    <c:if test="${st.last eq true}">	
+                    </div><!-- 슬라이드 -->
+                    </c:if>
+                    </c:forEach>
+                        
  <!-- -----------------------foreach문으로 1단 2열 시작---------------------------------------- -->                           
+                            <!-- 
                             <div class="col-md-4">
                                 <div class="item">
                                     <div class="align">
@@ -212,10 +234,11 @@
                                 </div>
                             </div>
                         </div>
+                         -->
 <!-- -----------------------foreach문으로 1단 2열 끝---------------------------------------- --> 
 
 <!-- -----------------------위의 foreach문 완성시 삭제해야 할 부분 시작---------------------------------------- -->                     
-                        
+                        <!-- 
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="item">
@@ -269,7 +292,9 @@
                             </div>
                         </div>
                     </div>
+                     -->
                     <!-- SLIDE -->
+                    <!-- 
                     <div>
                         <div class="row">
                             <div class="col-md-4">
@@ -349,6 +374,7 @@
                                 </div>
                             </div>
                         </div>
+                         -->
  <!-- -----------------------위의 foreach문 완성시 삭제해야 할 부분 끝---------------------------------------- -->                                  
                         
                     </div>
@@ -369,16 +395,19 @@
                     <div class="col-md-8 col-md-offset-2">
                         <div class="owl-carousel testimonials-slider">
                         
-  <!-- ----------------------- foreach문 사용하여 반복---------------------------------------- -->                                 
+  <!-- ----------------------- foreach문 사용하여 반복---------------------------------------- -->
+  	                       	<c:forEach var="data" items="${RLIST}">			  
                             <div>
                                 <div class="testimonial">
-                                    <p>국내 패스트 푸드에서 파는 햄버거와는 질적인 차이가 있습니다. 직접 만든 빵은 부드럽고 야채는 신선하여 그 모양을 유지하고 아삭아삭 소리가 납니다. 정말 맛있어요.</p>
-                                    <h4>- 버거트럭</h4>
+                                    <p>${data.body}</p>
+                                    <h4>${data.tname}</h4>
                                 </div>
                             </div>
+                            </c:forEach>
   <!-- ----------------------- foreach문 끝---------------------------------------- -->                                 
                             
   <!-- ----------------------- 위의 foreach문 완성시 삭제해야할 부분 시작---------------------------------------- -->          
+                            <!-- 
                             <div>
                                 <div class="testimonial">
                                     <p>이런 고급스러운 요리를 쉽게 만날 수 있다는 것이 행복합니다. 쉐프님의 손길 하나하나가 정성이 많이 들어 있네요.</p>
@@ -391,6 +420,7 @@
                                     <h4>- Sea Truck</h4>
                                 </div>
                             </div>
+                             -->
   <!-- ----------------------- 위의 foreach문 완성시 삭제해야할 부분 끝---------------------------------------- -->                               
                             
                         </div>
