@@ -20,6 +20,7 @@ public class InsertMOrderMenu {
 //	ArrayList rainRatio;
 	ArrayList<String> insertList = new ArrayList();
 	String sql;
+	int ono = 0;
 	public InsertMOrderMenu(){
 		
 		
@@ -71,8 +72,8 @@ public class InsertMOrderMenu {
 			LocalDateTime yearEnd = LocalDateTime.of(2015, 12,31,22,0);
 			LocalDateTime now = start;
 			 
-			while(now.isBefore(yearEnd)){// 1년 
-				if(now.isAfter((LocalDateTime.of(2016, 12,31,22,0)))) break; //발표 전날까지
+			while(now.isBefore((LocalDateTime.of(2017, 5,14,22,0)))){
+			while(now.isBefore(yearEnd) && now.isBefore((LocalDateTime.of(2017, 5,14,22,0)))){// 1년 
 					int yearSaleSum = (int)(Math.random()*(500000-400000)+400000)*1000;
 				System.out.println("yearSaleSum : "+yearSaleSum);	
 					while(now.isBefore(monthend) && now.isBefore(yearEnd)){// 1달
@@ -93,8 +94,8 @@ public class InsertMOrderMenu {
 									int insertHourSum = 0;
 									while(hourSum >= insertHourSum && now.isBefore(hourEnd) ){
 				//System.out.println("now : "+now+" hourSum : "+hourSum+"  insertHourSum : "+insertHourSum);
-										if(now.isAfter(hourEnd))break;
-										int ono = getMaxMOrderNo();
+										//if(now.isAfter(hourEnd))break;
+										ono = ono + 1;
 										String gender = "M";
 										if((vo.manRatio/100)<Math.random()){
 											gender = "F";
@@ -124,7 +125,7 @@ public class InsertMOrderMenu {
 										String orderTime = now.format(DateTimeFormatter.ofPattern("yyyy/MM/dd/HH/mm"));
 										String payTime = now.plusMinutes(2).format(DateTimeFormatter.ofPattern("yyyy/MM/dd/HH/mm"));
 										String servTime = now.plusMinutes(cookTime).format(DateTimeFormatter.ofPattern("yyyy/MM/dd/HH/mm"));
-										sql = "insert into morder values("+ono+"'"+(i+1)+",to_date('"+orderTime+"','YYYY/MM/DD/HH24/MI),to_date('"+payTime+"','YYYY/MM/DD/HH24/MI),to_date('"+servTime+"','YYYY/MM/DD/HH24/MI),"+vo.temperature+","+vo.humi+","+vo.rain+",'"+gender+"',"+oage+")";
+										sql = "insert into morder values("+ono+","+(i+1)+",to_date('"+orderTime+"','YYYY/MM/DD/HH24/MI'),to_date('"+payTime+"','YYYY/MM/DD/HH24/MI'),to_date('"+servTime+"','YYYY/MM/DD/HH24/MI'),"+vo.temperature+","+vo.humi+","+vo.rain+",'"+gender+"',"+oage+")";
 										insertList.add(sql);
 										
 										ArrayList<MenuInfoVO> menuInfoList = getMenuInfoList(i+1);
@@ -144,30 +145,37 @@ public class InsertMOrderMenu {
 								}//end hour
 								now = quarterEnd;
 								if(now.getHour()>=22) break;
-								hourEnd = now.plusHours(1);
+								//hourEnd = now.plusHours(1);
 								quarterEnd = quarterEnd.plusHours(3);
 							}//end quarter
 							start = start.plusDays(1);
 							now = start;
+							if(now.isAfter((LocalDateTime.of(2017, 5,14,22,0)))) break;
 							hourEnd = start.plusHours(1);
 							quarterEnd = start.plusHours(4);
 							dayEnd = dayEnd.plusDays(1);
 						}//end day
 						//start = start.plusDays(1);
 						now = start;
+						if(now.isAfter((LocalDateTime.of(2017, 5,14,22,0)))) break;
 						hourEnd = start.plusHours(1);
 						quarterEnd = start.plusHours(4);
-						dayEnd = dayEnd.plusDays(1);
+						
+						//dayEnd = dayEnd.plusDays(1);
 						monthend = monthend.plusMonths(1);
 					}//end month
-					//start = start.plusDays(1);
+					start = start.plusDays(1);
 					now = start;
+					if(now.isAfter((LocalDateTime.of(2017, 5,14,22,0)))) break;
 					hourEnd = start.plusHours(1);
 					quarterEnd = start.plusHours(4);
 					dayEnd = dayEnd.plusDays(1);
 					//monthend.plusMonths(1);
-					yearEnd = yearEnd.plusYears(1);
 				}//end year	
+			now = start;
+			if(now.isAfter((LocalDateTime.of(2017, 5,14,22,0)))) break;
+			yearEnd = yearEnd.plusYears(1);
+			}
 				
 			
 			insertList(insertList);
@@ -265,7 +273,7 @@ System.out.println("qcolName : "+qcolName+"  pno : "+pno+"  yearmonth : "+yearMo
 		
 		public HourRatioVO(LocalDateTime now, int pno) throws Exception{
 			hourSaleRatio =(float)(Math.random()*(1.1f-0.9f)+0.9f);
-			String strYear = String.valueOf(now.getYear());
+			String strYear = String.valueOf((now.getYear()==2017)?2016:now.getYear());
 			String strMonth = String.valueOf(now.getMonthValue());
 			String strDay = String.valueOf(now.getDayOfMonth());
 			String strHour = String.valueOf(now.getHour());
@@ -275,7 +283,7 @@ System.out.println("qcolName : "+qcolName+"  pno : "+pno+"  yearmonth : "+yearMo
 			
 				rs = stmt.executeQuery(sql);
 				rs.next();
-	//System.out.println("now : "+now+"  pno : "+pno);
+	System.out.println("hourvo  now : "+now+"  pno : "+pno+"  yearmonth : "+yearMonth);
 				this.manRatio = rs.getFloat(1);
 				this.age10Ratio = rs.getFloat(2);
 				this.age20Ratio = rs.getFloat(3);
@@ -284,9 +292,6 @@ System.out.println("qcolName : "+qcolName+"  pno : "+pno+"  yearmonth : "+yearMo
 				this.age50Ratio = rs.getFloat(6);
 				this.age60ratio = rs.getFloat(7);
 			
-				if(hcolName.substring(0, 8).equals("20161231")){
-					hcolName = "2016123011";
-				}
 			
 				sql = "select temp,rain,humi from weatherrecord where to_char(wdate,'YYYYMMDDHH24') like '%"+hcolName+"%'";
 			

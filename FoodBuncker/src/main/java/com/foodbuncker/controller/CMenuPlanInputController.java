@@ -35,24 +35,6 @@ public class CMenuPlanInputController {
 		return mv;
 	}
 	
-	@RequestMapping("/chef/Review.food")
-	public ModelAndView review(ModelAndView mv){
-		mv.setViewName("chef/Review");
-		return mv;
-	}
-	
-	@RequestMapping("/chef/MenuModify.food")
-	public ModelAndView menuModify(ModelAndView mv){
-		mv.setViewName("chef/MenuModify");
-		return mv;
-	}
-	
-	@RequestMapping("/chef/PhotoUpload.food")
-	public ModelAndView photoUpload(ModelAndView mv){
-		mv.setViewName("chef/PhotoUpload");
-		return mv;
-	}
-	
 	@RequestMapping("/chef/PlanModifyProc.food")
 	public void modifyPlan(HttpServletRequest req, HttpSession session){
 		service.insertPlan(req.getParameter("pno"), req.getParameter("pdate"), session);
