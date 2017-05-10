@@ -120,6 +120,7 @@
                             <button type="button" class="btn btn-danger waves-effect waves-light" id="cBtn">영업종료입력 <span class="m-l-5"><i class="fa fa-cog"></i></span></button>
                         </div>
                   	</c:if>
+                  	 	
                         <h4 class="page-title">Order Board</h4>
                     </div>
                 </div>
@@ -166,6 +167,13 @@
                         </div><!-- end row -->
                     </div>
                 </div>
+                <div class=row>
+                <div class="col-sm-12">
+                	<div class="btn-group pull-right m-t-15">
+                    	<button type="button" class="btn btn-warning waves-effect waves-light" id="iBtn">메뉴주문입력<span class="m-l-5"><i class="fa fa-cog"></i></span></button>
+                    </div>
+                </div>
+                </div>
                 <!-- end row -->
                 <!-- Footer -->
                 <footer class="footer text-right">
@@ -210,6 +218,9 @@
         	});
         	$("#cBtn").click(function(){
         		$(location).attr("href","../chef/CloseProc.food?tno="+${OPENCLOSEPLACE.tno}+"&pno="+${OPENCLOSEPLACE.pno});
+        	});
+        	$("#iBtn").click(function(){
+        		$(location).attr("href","../chef/OrderInputForm.food?tno="+${OPENCLOSEPLACE.tno}+"&pno="+${OPENCLOSEPLACE.pno});
         	});
         });
         </script>

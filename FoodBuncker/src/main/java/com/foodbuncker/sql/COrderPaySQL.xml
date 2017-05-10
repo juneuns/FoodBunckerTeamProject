@@ -180,4 +180,18 @@
 		o_no = #{ono}
 </update>
 
+<select id="selectOneTMenu" parameterType="int" resultType="corderVO">
+	SELECT
+		m_no AS MNO,
+		m_name AS MNAME,
+		m_price AS PRICE,
+		m_savename AS SAVENAME
+	FROM
+		menu
+	WHERE
+		m_t_no = #{tno}
+	AND
+		m_isshow = 'Y'
+</select>
+
 </mapper>

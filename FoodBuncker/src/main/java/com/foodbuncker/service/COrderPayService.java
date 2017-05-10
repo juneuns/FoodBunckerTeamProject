@@ -99,5 +99,13 @@ public class COrderPayService {
 		int ono = Integer.parseInt(strOno);
 		dao.updateServtime(ono);
 	}
+	
+	public ArrayList<COrderPayVO> selectOneTMenu(String strTno){
+		int tno = 1;
+		try{
+			tno = Integer.parseInt(strTno);
+		}catch(Exception e){}
+		return dao.selectOneTMenu(tno);
+	}
 
 }

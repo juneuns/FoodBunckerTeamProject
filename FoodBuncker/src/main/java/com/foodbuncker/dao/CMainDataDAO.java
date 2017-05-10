@@ -12,12 +12,7 @@ public class CMainDataDAO {
 	@Autowired
 	public SqlSessionTemplate sqlSession;
 	
-	public ArrayList<CMainDataVO> selectOneTReview(HashMap map){
-		return (ArrayList) sqlSession.selectList("foodbuncker.CMainData.selectOneTReview",map);
+	public ArrayList<CMainDataVO> selectOneTReview(int tno){
+		return (ArrayList) sqlSession.selectList("foodbuncker.CMainData.selectOneTReview",tno);
 	}
-	
-	public int selectCount(int tno){
-		return sqlSession.selectOne("foodbuncker.CMainData.selectCount",tno);
-	}
-
 }
