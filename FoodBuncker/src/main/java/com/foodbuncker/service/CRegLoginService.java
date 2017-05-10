@@ -406,7 +406,6 @@ public class CRegLoginService {
 		cregVO.tigrade = 3 ;
 		ArrayList list = (ArrayList) cregLoginDAO.selectTImgDAO(cregVO);
 		Iterator itr = list.iterator();
-		try{
 		while((boolean) itr.next()){
 			cregVO = (CRegLoginVO) itr.next();
 		}
@@ -424,14 +423,13 @@ public class CRegLoginService {
 		cregVO.mmenuComment = vo2.mmenuComment ;
 		cregVO.sname = vo2.sname ;
 		cregVO.keyword = vo2.keyword ;
-		}catch(Exception e){}
 		System.out.println("&&&&&&&&&&&&&&&&&& 메인메뉴 받기 완료");
 		
 		// 서브 메뉴 가져오자...
 		cregVO.mmenugrade = "S" ;
 		cregVO.list = (ArrayList) cregLoginDAO.selectMenuDAO(cregVO);
 		System.out.println("&&&&&&&&&&&&&&&&&& 서브메뉴 받기 완료");
+		
 		return cregVO;
 	}
-	
 }

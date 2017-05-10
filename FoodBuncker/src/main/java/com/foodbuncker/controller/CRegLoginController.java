@@ -140,6 +140,7 @@ public class CRegLoginController {
 		//	3. 모든 등록 절차가 완료된 상태...
 			rv.setUrl("../chef/ChefMain.food");
 			mv.setView(rv);
+//			mv.setViewName("chef/ChefMain");
 		}
 		return mv;
 	}
@@ -349,15 +350,15 @@ public class CRegLoginController {
 	}
 	
 
-	@RequestMapping("/chef/ChefMain.food")
-	public ModelAndView chefMain(ModelAndView mv, HttpSession session){
-		
-		int no = (int) session.getAttribute("UTNO");
-		
-		mv.addObject("TNO", no);
-		mv.setViewName("/chef/ChefMain");
-		return mv;
-	}
+//	@RequestMapping("/chef/ChefMain.food")
+//	public ModelAndView chefMain(ModelAndView mv, HttpSession session){
+//		
+//		int no = (int) session.getAttribute("UTNO");
+//		
+//		mv.addObject("TNO", no);
+//		mv.setViewName("/chef/ChefMain");
+//		return mv;
+//	}
 	
 	/*
 	 * 메뉴 등록하면 보여주기 

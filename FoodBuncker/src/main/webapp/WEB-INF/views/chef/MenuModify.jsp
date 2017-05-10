@@ -69,7 +69,7 @@
                         <!-- Navigation Menu-->
                         <ul class="navigation-menu">
                             <li>
-                                <a href="../chef/Main.food"><i class="zmdi zmdi-view-dashboard"></i> <span> MainPage </span> </a>
+                                <a href="../chef/ChefMain.food"><i class="zmdi zmdi-view-dashboard"></i> <span> MainPage </span> </a>
                             </li>
                             <li class="has-submenu">
                                 <a href="../chef/PlanModify.food"><i class="zmdi zmdi-invert-colors"></i> <span> 일정계획입력 및 수정 </span> </a>                                
@@ -181,7 +181,7 @@
 								<div class="form-group">
 									<label class="col-sm-5 control-label">검색키워드</label>
 									<div class="col-sm-7">
-										<a href="#" id="${data.mNo}keyword" data-type="text" data-pk="1">${data.keyord}</a>
+										<a href="#" id="${data.mNo}keyword" data-type="text" data-pk="1">${data.keyword}</a>
 									</div>
 								</div>
 							</div>
