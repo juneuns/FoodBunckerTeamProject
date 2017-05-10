@@ -17,8 +17,7 @@
 	
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
     	<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
-    	<property name="url" value="jdbc:oracle:thin:@localhost:1895:orcl" />
-<!--     	<property name="url" value="jdbc:oracle:thin:@localhost:1521:orcl" /> -->
+     	<property name="url" value="jdbc:oracle:thin:@localhost:1521:orcl" /> 
     	<property name="username" value="scott" />
     	<property name="password" value="tiger" />
 	</bean> 
@@ -41,12 +40,15 @@
 	<bean id="cregLoginDAO" class="com.foodbuncker.dao.CRegLoginDAO"></bean>
 	<bean id="pmainViewDAO" class="com.foodbuncker.dao.PMainViewDAO"></bean>
 	<bean id="pmenuSearchDAO" class="com.foodbuncker.dao.PMenuSearchDAO"></bean>
+	<bean id="cmaindataDAO" class="com.foodbuncker.dao.CMainDataDAO"></bean>
+	
 	
 	<bean id="cmenuPlanInputService" class="com.foodbuncker.service.CMenuPlanInputService"></bean>
 	<bean id="corderPayService" class="com.foodbuncker.service.COrderPayService"></bean>
 	<bean id="cregLoginService" class="com.foodbuncker.service.CRegLoginService"></bean>
 	<bean id="pmainViewService" class="com.foodbuncker.service.PMainViewService"></bean>
 	<bean id="pmenuSearchService" class="com.foodbuncker.service.PMenuSearchService"></bean>
+	<bean id="cmaindataService" class="com.foodbuncker.service.CMainDataService"></bean>
 	
 	
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>

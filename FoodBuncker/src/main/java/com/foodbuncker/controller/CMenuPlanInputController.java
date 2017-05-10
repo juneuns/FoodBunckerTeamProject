@@ -25,8 +25,7 @@ public class CMenuPlanInputController {
 	
 	@RequestMapping("/chef/PlanModify.food")
 	public ModelAndView planModify(ModelAndView mv,HttpSession session){
-		//int tno = (int)session.getAttribute("UTNO");
-		int tno = 1;
+		int tno = (int)session.getAttribute("UTNO");
 		ArrayList oneTPlan = service.selectOneTPlan(tno);
 		ArrayList allPlace = service.selectAllPlace();
 		mv.addObject("ONETPLAN",oneTPlan);
