@@ -21,8 +21,17 @@ public class COrderPayVO {
 	String pname;
 	String tname;
 	int price;
+	String savename;
 	
 	
+	
+	
+	public String getSavename() {
+		return savename;
+	}
+	public void setSavename(String savename) {
+		this.savename = savename;
+	}
 	public int getPrice() {
 		return price;
 	}

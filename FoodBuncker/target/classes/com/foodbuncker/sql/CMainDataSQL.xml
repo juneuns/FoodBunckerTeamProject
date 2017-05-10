@@ -3,49 +3,46 @@
 <!-- vo alias : "cmainVO" -->
 <mapper namespace="foodbuncker.CMainData">
 
-<select id="selectOneTReview" parameterType="hashmap" resultType="cmainVO">
+<select id="selectOneTReview" parameterType="int" resultType="cmainVO">
+	<![CDATA[
 	SELECT
-		*
+		b_body AS REVIEWBODY,
+		b_date AS REVIEWTIME,
+		p_placename AS PNAME
 	FROM
 		(SELECT
-			rownum AS RNO,
-			a.*
+			b_body,
+			b_date,
+			oc_p_no
 		FROM
 			(SELECT
-				b_body AS REVIEWBODY,
-				b_date AS REVIEWTIME,
-				p_placename AS PNAME
+				b_body,
+				b_date,
+				b_t_no
 			FROM
-				(SELECT
-					b_body,
-					b_date,
-					oc_p_no
-				FROM
-					(SELECT
-						b_body,
-						b_date,
-						b_t_no
-					FROM
-						board
-					WHERE
-						b_t_no = #{tno}
-					AND
-						b_isshow = 'Y'
-					ORDER BY
-						b_no),
-					openclose
-				WHERE
-					oc_t_no = b_t_no
-				AND
-					to_date(oc_open,'YYYY/MM/DD') like to_date(b_date,'YYYY/MM/DD')),
-				place
+				board
 			WHERE
-				p_no = oc_p_no
+				b_t_no = #{tno}
+			AND
+				b_isshow = 'Y'
 			ORDER BY
-				b_date 
-			DESC) a)
-	WHERE
-		RNO BETWEEN #{start} AND #{end}	
+				b_no),
+			openclose
+		WHERE
+			oc_t_no = b_t_no
+		AND
+			to_date(oc_open,'YYYY/MM/DD') like to_date(b_date,'YYYY/MM/DD')),
+			place
+		WHERE
+			rownum <= 10
+		AND
+			p_no = oc_p_no
+		ORDER BY
+			b_date 
+		DESC
+		
+		]]>
+	
 	 
 </select>
 

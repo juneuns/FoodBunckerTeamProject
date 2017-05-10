@@ -52,5 +52,9 @@ public class COrderPayDAO {
 	public void updateServtime(int ono){
 		sqlSession.update("foodbuncker.COrderPay.updateServtime",ono);
 	}
+	
+	public ArrayList<COrderPayVO> selectOneTMenu(int tno){
+		return (ArrayList)sqlSession.selectList("foodbuncker.COrderPay.selectOneTMenu",tno);
+	}
 
 }

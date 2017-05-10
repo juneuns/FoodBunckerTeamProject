@@ -36,11 +36,9 @@ public class CMainDataController {
 //				return mv;
 			}
 		}
-		int nowPage = service.changePage(req.getParameter("nowPage"));
-		PageUtil pInfo = service.pageInfo(nowPage,tno);	
 		
-		ArrayList<CMainDataVO> reviewList = service.selectOneTReview(pInfo,tno);
-		mv.addObject("PINFO",pInfo);
+		
+		ArrayList<CMainDataVO> reviewList = service.selectOneTReview(tno);
 		mv.addObject("REVIEWLIST",reviewList);
 		mv.setViewName("chef/ChefMain");
 		return mv;
@@ -50,5 +48,6 @@ public class CMainDataController {
 	public ModelAndView viewChefData(ModelAndView mv,HttpServletRequest req){
 		return mv;
 	}
-
+	
+	
 }

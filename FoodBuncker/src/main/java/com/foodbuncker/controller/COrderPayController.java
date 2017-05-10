@@ -96,4 +96,13 @@ public class COrderPayController {
 		mv.setView(rv);
 		return mv;
 	}
+	
+	@RequestMapping("/chef/OrderInputForm.food")
+	public ModelAndView orderInputForm(ModelAndView mv, HttpServletRequest req){
+		String strTno = req.getParameter("tno");
+		ArrayList<COrderPayVO> list = service.selectOneTMenu(strTno);
+		mv.addObject("LIST",list);
+		mv.setViewName("/chef/OrderInput");
+		return mv;
+	}
 }
