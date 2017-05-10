@@ -78,8 +78,7 @@ public class CRegLoginDAO {
 	 * 회원 메뉴 가져오기 질의명령 처리함수 
 	 */
 	public ArrayList selectMenuDAO(CRegLoginVO cregVO){
-		ArrayList list = new ArrayList();
-		sqlSession.selectList("foodbuncker.CRegLogin.selectMenuSql", cregVO);
+		ArrayList list = (ArrayList) sqlSession.selectList("foodbuncker.CRegLogin.selectMenuSql", cregVO);
 		
 		return list ;
 	}

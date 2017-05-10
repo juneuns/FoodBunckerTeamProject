@@ -3,6 +3,7 @@ package com.foodbuncker.service;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpSession;
@@ -390,17 +391,24 @@ public class CRegLoginService {
 	/*
 	 * 회원 메뉴 정보 가져오기 전담 서비스 함수
 	 */
-	public void menuModifySrvc(CRegLoginVO cregVO, HttpSession session){
+	public CRegLoginVO menuModifySrvc(CRegLoginVO cregVO, HttpSession session){
 		// 메인메뉴 가져오자
 		cregVO.no = (int) session.getAttribute("UTNO");
 		cregVO.mmenugrade = "M" ;
-		ArrayList mList = new ArrayList();
-		mList = cregLoginDAO.selectMenuDAO(cregVO);
+		ArrayList list = new ArrayList();
+		list = cregLoginDAO.selectMenuDAO(cregVO);
 		
-
-		cregVO.mmenugrade = "M" ;
+		Iterator ilist = list.iterator();
+		CRegLoginVO data = new CRegLoginVO();
+		while (ilist.hasNext()){
+			data = (CRegLoginVO) ilist.next();
+		}
 		
-		return ;
+		// 서브 메뉴 가져오자...
+		cregVO.mmenugrade = "S" ;
+		list = cregLoginDAO.selectMenuDAO(cregVO);
+		data.list = list ;
+		return data;
 	}
 	
 }

@@ -4,6 +4,8 @@ package com.foodbuncker.controller;
  */
 
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -361,13 +363,15 @@ public class CRegLoginController {
 	 * 메뉴 등록하면 보여주기 
 	 */
 	@RequestMapping("/chef/MenuModify.food")
-	public ModelAndView menuModify(ModelAndView mv, HttpSession session){
+	public ModelAndView menuModify(ModelAndView mv, CRegLoginVO cregVO, HttpSession session){
 		// 할일
 		//		데이터 받고
-		
+		cregVO = cregLoginService.menuModifySrvc(cregVO, session);
 		// 		데이터 만들고
-		
+		ArrayList list = cregVO.list ;
 		// 		뷰에거 넘겨주자
+		mv.addObject("DATA", cregVO);
+		mv.addObject("LIST", list);
 		mv.setViewName("chef/MenuModify");
 		return mv ;
 	}

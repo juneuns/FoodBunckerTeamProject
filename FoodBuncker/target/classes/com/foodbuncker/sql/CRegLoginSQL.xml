@@ -106,7 +106,7 @@
 	</select>
 	
 	<!-- 등록회원 메뉴 가저오기 전담 질의 명령 -->
-	<select id="selectMenuSql" resultType="list" parameterType="cregVO">
+	<select id="selectMenuSql" resultType="cregVO" parameterType="cregVO">
 		SELECT
 			M_NO AS mNo, M_NAME AS mmenuName,M_PRICE AS mmenuPrice, M_BODY AS imgbody, M_SAVENAME AS sname, M_KEYWORD AS keyword
 		FROM
