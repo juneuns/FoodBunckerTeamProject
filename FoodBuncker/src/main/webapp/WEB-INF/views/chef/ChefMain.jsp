@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
@@ -13,7 +13,7 @@
         <title>Chef Main Page</title>
 
         <!--Morris Chart CSS -->
-		<link rel="stylesheet" href="assets/plugins/morris/morris.css">
+		<link rel="stylesheet" href="../resources/assets/plugins/morris/morris.css">
 
         <link href="../resources/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="../resources/assets/css/core.css" rel="stylesheet" type="text/css" />
@@ -345,47 +345,15 @@
                         <div class="card-box">
                             <h4 class="header-title m-t-0 m-b-30">후기</h4>
                             <div class="inbox-widget nicescroll" style="height: 315px;">
-                            
  <!-- -----------------------   foreach문 사용하여  반복--------------------------------------- --> 	                           
-                                <a href="../chef/Review.food">
+                                <c:forEach var="data" items="${REVIEWLIST }">
                                     <div class="inbox-item">                                  
-                                        <p class="inbox-item-author">대학로</p>
-                                        <p class="inbox-item-text">연극공연이 끝나고 나서 또 한편의 연극을 보는 듯한 뜨거운 트낌...</p>
-                                        <p class="inbox-item-date">2017/04/22 13:40 PM</p>
+                                        <p class="inbox-item-author">${data.pname }</p>
+                                        <p class="inbox-item-text">${data.reviewBody }</p>
+                                        <p class="inbox-item-date">${data.reviewTime }</p>
                                     </div>
-                                </a>
- <!-- -----------------------   foreach문 사용하여  반복 끝--------------------------------------- --> 	                               
- <!-- -----------------------   위의 foreach문 완성시 삭제 부분 시작--------------------------------------- --> 	                               
-                                <a href="reviewboard.html">
-                                    <div class="inbox-item">
-                                        <p class="inbox-item-author">종로</p>
-                                        <p class="inbox-item-text">스테이크의 새로운 맛을 보았습니다. 많이 파세요.</p>
-                                        <p class="inbox-item-date">2017/04/17 13:34 PM</p>
-                                    </div>
-                                </a>
-                                <a href="reviewboard.html">
-                                    <div class="inbox-item">
-                                        <p class="inbox-item-author">구로1동</p>
-                                        <p class="inbox-item-text">강추합니다. 돈이 절대 아깝지 않아요.</p>
-                                        <p class="inbox-item-date">2017/04/13 13:17 PM</p>
-                                    </div>
-                                </a>
-                                <a href="reviewboard.html">
-                                    <div class="inbox-item">
-                                        <p class="inbox-item-author">대학로</p>
-                                        <p class="inbox-item-text">고기가 약간 푸석푸석한 느낌이지만 소스가 깊숙이 들어가 있어 맛있습니다. 잘 먹었습니다.</p>
-                                        <p class="inbox-item-date">2017/04/02 12:20 PM</p>
-                                    </div>
-                                </a>
-                                <a href="reviewboard.html">
-                                    <div class="inbox-item">
-                                        <p class="inbox-item-author">이태원</p>
-                                        <p class="inbox-item-text">Oh!!! good. its fantastic tasty!!! and chef is handsome!!!</p>
-                                        <p class="inbox-item-date">2017/03/29 10:15 AM</p>
-                                    </div>
-                                </a>
-<!-- -----------------------   위의 foreach문 완성시 삭제 부분 끝--------------------------------------- --> 	                                       
-                                
+                              	</c:forEach>
+ <!-- -----------------------   foreach문 사용하여  반복 끝--------------------------------------- --> 
                             </div>
                         </div>
                     </div><!-- end col -->
@@ -540,9 +508,7 @@
 
 	<script>
 	$(document).ready(function(){
-		//$("#startBtn").click(function(){
-			
-		//});
+		
 	});
 	</script>
 </html>

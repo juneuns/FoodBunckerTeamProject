@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- vo alias : "cmainVO" -->
+<mapper namespace="foodbuncker.CMainData">
+
+<select id="selectOneTReview" parameterType="int" resultType="cmainVO">
+	SELECT
+		b_body AS REVIEWBODY,
+		b_date AS REVIEWTIME,
+		p_placename AS PNAME
+	FROM
+		(SELECT
+			b_body,
+			b_date,
+			oc_p_no
+		FROM
+			(SELECT
+				b_body,
+				b_date,
+				b_t_no
+			FROM
+				board
+			WHERE
+				b_t_no = #{tno}
+			AND
+				b_isshow = 'Y'
+			ORDER BY
+				b_no),
+			openclose
+		WHERE
+			oc_t_no = b_t_no
+		AND
+			to_date(oc_open,'YYYY/MM/DD') like to_date(b_date,'YYYY/MM/DD')),
+		place
+	WHERE
+		p_no = oc_p_no
+	ORDER BY
+		b_date 
+	DESC
+	 
+</select>
+
+</mapper>
