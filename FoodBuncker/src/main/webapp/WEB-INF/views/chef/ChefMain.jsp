@@ -341,7 +341,7 @@
 
 				<!-- 후기 리스트 -->
                 <div class="row">
-                    <div class="col-lg-4">
+                    <div class="col-lg-4" id="review">
                         <div class="card-box">
                             <h4 class="header-title m-t-0 m-b-30">후기</h4>
                             <div class="inbox-widget nicescroll" style="height: 315px;">
@@ -353,7 +353,27 @@
                                         <p class="inbox-item-date">${data.reviewTime }</p>
                                     </div>
                               	</c:forEach>
+                              	
  <!-- -----------------------   foreach문 사용하여  반복 끝--------------------------------------- --> 
+                            </div>
+                            <div class="text-center">
+                            	<ul class="pagination">
+                            		<c:if test="${PINFO.startPage eq 1}">
+                            			<li></li>
+                            		</c:if>
+                            		<c:if test="${PINFO.startPage ne 1}">
+										<li><a href="">&laquo;</a>
+									</c:if>
+									<c:forEach var="page" begin="${PINFO.startPage}" end="${PINFO.endPage}">
+										<li><a href="">${page}</a></li>
+									</c:forEach>
+									<c:if test="${PINFO.endPage eq PINFO.totalPage}">
+										<li></li>
+									</c:if>			
+									<c:if test="${PINFO.endPage ne PINFO.totalPage}">
+										<li><a href="">&raquo;</a>
+									</c:if>	
+                            	</ul>
                             </div>
                         </div>
                     </div><!-- end col -->

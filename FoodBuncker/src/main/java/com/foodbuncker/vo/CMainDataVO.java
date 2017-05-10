@@ -12,7 +12,7 @@ public class CMainDataVO {
 	int tno;
 	String tname;
 	String reviewBody;
-	LocalDateTime reviewTime;
+	LocalDate reviewTime;
 	public String getPname() {
 		return pname;
 	}
@@ -43,11 +43,11 @@ public class CMainDataVO {
 	public void setReviewBody(String reviewBody) {
 		this.reviewBody = reviewBody;
 	}
-	public LocalDateTime getReviewTime() {
+	public LocalDate getReviewTime() {
 		return reviewTime;
 	}
 	public void setReviewTime(Date reviewTime) {
-		this.reviewTime = LocalDateTime.ofInstant(reviewTime.toInstant(), ZoneId.systemDefault());
+		this.reviewTime = LocalDate.from(LocalDateTime.ofInstant(reviewTime.toInstant(), ZoneId.systemDefault()));
 	}
 	
 	

@@ -15,6 +15,7 @@
           <typeAlias alias="cregVO" type="com.foodbuncker.vo.CRegLoginVO"/>
           <typeAlias alias="pmainVO" type="com.foodbuncker.vo.PMainViewVO"/>
           <typeAlias alias="pmenuVO" type="com.foodbuncker.vo.PMenuSearchVO"/>
+          <typeAlias alias="cmainVO" type="com.foodbuncker.vo.CMainDataVO"/>
           
      </typeAliases>
      <!-- 질의 명령을 지정한 xml 파일(우리가 말하는 SQL 파일)의 경로와 파일의 이름을 등록하는 부분이다.-->
@@ -25,5 +26,6 @@
      	<mapper resource="/com/foodbuncker/sql/CRegLoginSQL.xml" />
      	<mapper resource="/com/foodbuncker/sql/PMainViewSQL.xml" />
      	<mapper resource="/com/foodbuncker/sql/PMenuSearchSQL.xml" />
+     	<mapper resource="/com/foodbuncker/sql/CMainDataSQL.xml" />
      </mappers>
 </configuration>
