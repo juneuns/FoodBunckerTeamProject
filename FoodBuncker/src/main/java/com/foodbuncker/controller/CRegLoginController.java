@@ -365,13 +365,11 @@ public class CRegLoginController {
 	@RequestMapping("/chef/MenuModify.food")
 	public ModelAndView menuModify(ModelAndView mv, CRegLoginVO cregVO, HttpSession session){
 		// 할일
-		//		데이터 받고
+		//		데이터 만들어서
 		cregVO = cregLoginService.menuModifySrvc(cregVO, session);
-		// 		데이터 만들고
-		ArrayList list = cregVO.list ;
 		// 		뷰에거 넘겨주자
 		mv.addObject("DATA", cregVO);
-		mv.addObject("LIST", list);
+		mv.addObject("LIST", cregVO.list);
 		mv.setViewName("chef/MenuModify");
 		return mv ;
 	}

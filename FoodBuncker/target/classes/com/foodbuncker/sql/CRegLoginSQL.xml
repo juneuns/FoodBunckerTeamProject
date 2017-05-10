@@ -52,12 +52,12 @@
 	<!-- 로그인 정보 질의 명령 -->
 	<select id="selectLoginInfo" resultType="cregVO" parameterType="cregVO">
 		SELECT
-			T_NO AS NO, T_CHEF AS CHEF, T_NAME AS NAME, T_PHONE AS PHONE, T_EMAIL AS EMAIL
+			T_NO AS NO, T_CHEF AS CHEF, T_NAME AS NAME, T_PHONE AS PHONE, T_EMAIL AS EMAIL, t_isShow AS isShow
 		FROM
 			TruckInfo
 		WHERE
 			 T_ID = #{id}
-			 AND T_isShow ='Y'
+			 AND T_isShow IN('Y', 'S', 'T', 'R')
 	</select>
 	
 	<!--회원 기본 정보 질의 명령 -->
@@ -106,9 +106,23 @@
 	</select>
 	
 	<!-- 등록회원 메뉴 가저오기 전담 질의 명령 -->
+	<select id="selectTImgSql" resultType="cregVO" parameterType="cregVO">
+		SELECT
+			Ti_NO AS TINO, TI_SAVENAME AS mImgName, TI_IMGBODY AS imgbody, TI_GRADE AS TIGRADE
+		FROM
+			TruckImage
+		WHERE
+			 TI_isShow ='Y'
+			 AND TI_GRADE = #{tigrade}
+			 AND TI_T_NO = #{no}
+		ORDER BY
+			TI_NO DESC
+	</select>
+	
+	<!-- 등록회원 메뉴 가저오기 전담 질의 명령 -->
 	<select id="selectMenuSql" resultType="cregVO" parameterType="cregVO">
 		SELECT
-			M_NO AS mNo, M_NAME AS mmenuName,M_PRICE AS mmenuPrice, M_BODY AS imgbody, M_SAVENAME AS sname, M_KEYWORD AS keyword
+			M_NO AS mNo, M_NAME AS mmenuName, M_PRICE AS mmenuPrice, M_BODY AS mmenuComment, M_SAVENAME AS sname, M_KEYWORD AS keyword
 		FROM
 			Menu
 		WHERE

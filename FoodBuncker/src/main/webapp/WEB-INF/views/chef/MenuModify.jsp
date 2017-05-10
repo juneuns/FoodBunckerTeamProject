@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
@@ -122,7 +122,7 @@
                     <div class="col-sm-12">
                         <div class="card-box">
 													<h4 class="header-title m-t-0 m-b-30">메인메뉴(1895X1000)</h4>
-                            <input type="file" class="dropify" data-height="300" data-default-file="../image/${DATA.mmenuImgName}"/>
+                            <input type="file" class="dropify" data-height="300" data-default-file="../image/${DATA.mImgName}"/>
 							<div class="row">
 								<div class="form-group">
 									<label class="col-sm-5 control-label">주메뉴이름</label>
@@ -153,35 +153,35 @@
                     </div><!-- end col -->
                 </div>
                 <!-- end row -->
-
+				<c:forEach var="data" items="${LIST}">
 				 <div class="row">
                     <div class="col-sm-12">
                         <div class="card-box">
 							<h4 class="header-title m-t-0 m-b-30">서브메뉴(300X300)</h4>
-                            <input type="file" class="dropify" data-height="200" data-default-file="../image/${DATA.mImgName}"/>
+                            <input type="file" class="dropify" data-height="200" data-default-file="../image/${data.sname}"/>
 							<div class="row">
 								<div class="form-group">
 									<label class="col-sm-5 control-label">메뉴이름</label>
 									<div class="col-sm-7">
-										<a href="#" id="smenuName1" data-type="text" data-pk="1">Steak</a>
+										<a href="#" id="${data.mNo}mName" data-type="text" data-pk="1">${data.mmenuName}</a>
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-sm-5 control-label">메뉴가격(원)</label>
 								    <div class="col-sm-7">
-										<a href="#" id="smenuPrice1" data-type="text" data-pk="1">9000</a>
+										<a href="#" id="${data.mNo}price" data-type="text" data-pk="1">${data.mmenuPrice}</a>
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-sm-5 control-label">메뉴설명</label>
 									<div class="col-sm-7">
-										<a href="#" id="smenuComment1" data-type="text" data-pk="1">1++의 살치살에 특제 소스를 덮은 스테이크</a>
+										<a href="#" id="${data.mNo}imgbody" data-type="text" data-pk="1">${data.mmenuComment}</a>
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-sm-5 control-label">검색키워드</label>
 									<div class="col-sm-7">
-										<a href="#" id="smenukeyword1" data-type="text" data-pk="1">소고기;숯불;스테이크;시카고;푸드트럭</a>
+										<a href="#" id="${data.mNo}keyword" data-type="text" data-pk="1">${data.keyord}</a>
 									</div>
 								</div>
 							</div>
@@ -189,7 +189,46 @@
                     </div><!-- end col -->
                 </div>
                 <!-- end row -->
-
+              </c:forEach>
+              
+              
+              
+				
+				 <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card-box">
+							<h4 class="header-title m-t-0 m-b-30">서브메뉴(300X300)</h4>
+                            <input type="file" class="dropify" data-height="200" data-default-file="../image/"/>
+							<div class="row">
+								<div class="form-group">
+									<label class="col-sm-5 control-label">메뉴이름</label>
+									<div class="col-sm-7">
+										<a href="#" id="" data-type="text" data-pk="1"></a>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-5 control-label">메뉴가격(원)</label>
+								    <div class="col-sm-7">
+										<a href="#" id="" data-type="text" data-pk="1"></a>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-5 control-label">메뉴설명</label>
+									<div class="col-sm-7">
+										<a href="#" id="" data-type="text" data-pk="1"></a>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-5 control-label">검색키워드</label>
+									<div class="col-sm-7">
+										<a href="#" id="" data-type="text" data-pk="1"></a>
+									</div>
+								</div>
+							</div>
+                        </div>
+                    </div><!-- end col -->
+                </div>
+                <!-- end row -->
 			</form>
                 <!-- Footer -->
                 <footer class="footer text-right">
