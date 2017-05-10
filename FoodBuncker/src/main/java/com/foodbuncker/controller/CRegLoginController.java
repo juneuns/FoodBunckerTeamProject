@@ -23,34 +23,28 @@ public class CRegLoginController {
 	@Autowired
 	public CRegLoginService cregLoginService;
 	
+	/*
+	 * 로그인 폼 보여주기 전담 컨트롤러 함수
+	 */
 	@RequestMapping("/chef/LoginForm.food")
-	public ModelAndView loginForm(ModelAndView mv, HttpSession session){
+	public ModelAndView loginForm(ModelAndView mv, HttpSession session, CRegLoginVO cregVO){
 		// 뷰만 넘겨준다.
 		
-		boolean isLogin = false ;
+		// 세션을 조회하자.
+		cregVO = cregLoginService.sessionSearchSrvc(session, cregVO);
+
+		// 로그인 시도를 했는지 확인하는 변수
 		boolean status = true ;
-		try{
-			isLogin = (boolean) session.getAttribute("isLogin");
-		}
-		catch(Exception e){}
+		
 		try{
 			status = (boolean) session.getAttribute("STATUS");
 		}
 		catch(Exception e){}
 		
-		int tno ;
-		try{
-			tno = (int) session.getAttribute("UTNO");
-		}catch(Exception e){
-			tno = 0 ;
-		}
-		if (isLogin || tno > 0 ){
+		if (cregVO.no > 0 ){
 			// 이미 로그인 처리가 된 회원은 해당 뷰로 다시 보내자.
-			CRegLoginVO cregVO = new CRegLoginVO();
-			cregVO.cnt = 1 ;
+			cregVO.cnt = 1 ;	// 로그인 처리가 됬다는 말은 회원이 존재한다는 말...
 			cregVO.id = (String) session.getAttribute("UID");
-			cregVO.no = tno ;
-			cregLoginService.sessionSettingSrvc(session, cregVO);
 			
 			RedirectView rv = new RedirectView();
 			rv.setUrl("../chef/RedirectProc.food");
@@ -67,14 +61,23 @@ public class CRegLoginController {
 		return mv;
 	}
 
+	/*
+	 * 로그인 요청 전담 처리 컨트롤러 함수
+	 */
 	@RequestMapping("/chef/LoginProc.food")
 	public ModelAndView loginProc(ModelAndView mv, HttpSession session, CRegLoginVO cregVO){
+
+		System.out.println("##################### login proc cregVO.cnt 1 : " + cregVO.cnt);
+		System.out.println("##################### login proc cregVO.id 1 : " + cregVO.id);
 		// 정보에 맞는 회원이 있는지 알아본다.
 		int cnt = cregLoginService.idCntSrvc(session, cregVO);
 		cregVO.cnt = cnt ;
+		System.out.println("##################### login proc cregVO.cnt 2 : " + cregVO.cnt);
 		RedirectView rv = new RedirectView();
 		if (cnt == 1){
 			// 회원 정보가 있는 경우 세션에 처리해준다.
+			cregVO.cnt = cnt ;
+			session.setAttribute("CNT", cnt);
 			cregLoginService.sessionSettingSrvc(session, cregVO);
 			
 			// 뷰를 부르자.
@@ -133,6 +136,7 @@ public class CRegLoginController {
 		//		1. 회원정보만 입력된 상태.. 다시 입력 폼으로 돌아가야 한다.
 		if(tabNo == 1 || tabNo == 2 ){
 //			mv.setViewName("chef/RegForm");
+			rv.addStaticAttribute("tabNo", tabNo);
 			rv.setUrl("../chef/RegForm.food");
 //			System.out.println("##################### RedirectView 1 & 2 : ");
 			mv.setView(rv);
@@ -140,6 +144,7 @@ public class CRegLoginController {
 		//	2. 메인 메뉴등록까지 완료된 상태..
 
 //			System.out.println("##################### RedirectView 3 : ");
+			rv.addStaticAttribute("tabNo", tabNo);
 			rv.setUrl("../chef/RegConf.food");
 			mv.setView(rv);
 		}
@@ -153,43 +158,28 @@ public class CRegLoginController {
 	}
 	
 	@RequestMapping("/chef/RegForm.food")
-	public ModelAndView regForm(ModelAndView mv, CRegLoginVO cregVO, HttpSession session, HttpServletRequest req ){
+	public ModelAndView regForm(ModelAndView mv, CRegLoginVO cregVO, HttpSession session){
 		
-		int tabNo ;
-		System.out.println("regForm cregVO.tabNo : " + cregVO.tabNo);
 		
 		try{
-//			tabNo = cregVO.tabNo;
-			String stabNo = (String) req.getParameter("tabNo");
-			tabNo = Integer.parseInt(stabNo);
+			cregVO.tabNo = (int) session.getAttribute("tabNo");
 		}
 		catch(Exception e){
-			tabNo = 0 ;
+			cregVO.tabNo = 0 ;
 		}
-		
-
-		if(tabNo == 0){
-			try{
-				tabNo = (int) session.getAttribute("tabNo");
-				}
-				catch(Exception e){
-					tabNo = 0 ;
-				}
-		}
-		
-		System.out.println("regForm tabNo : " + tabNo);
-		session.setAttribute("tabNo", tabNo);
+		System.out.println("regForm cregVO.tabNo : " + cregVO.tabNo);
+		session.setAttribute("tabNo", cregVO.tabNo);
 		// 뷰를 부르자.
-		RedirectView rv = new RedirectView();
-		if( tabNo == 3){
-			rv.setUrl("../chef/RegConf.food");
-			mv.setView(rv);
-			
+		if (cregVO.tabNo < 3){
+			mv.addObject("tabNo", cregVO.tabNo);
+			mv.addObject("DATA", cregVO);
+			mv.setViewName("chef/RegForm");
 		}
-		System.out.println("regForm session tabNo : " + tabNo);
-		mv.addObject("tabNo", tabNo);
-		mv.addObject("DATA", cregVO);
-		mv.setViewName("chef/RegForm");
+		else{
+			RedirectView rv = new RedirectView();
+			rv.setUrl("../chef/RedirectProc.food");
+			mv.setView(rv);
+		}
 		return mv;
 	}
 	
@@ -217,13 +207,9 @@ public class CRegLoginController {
 				System.out.println("############ TempsaveControll tabNo 0-1 : " + tabNo );
 			}
 			
-//			rv.setUrl("../chef/RegForm.food");
 			System.out.println("############ TempsaveControll tabNo 0-2 : " + tabNo );
-//			rv.addStaticAttribute("tabNo", cregVO.tabNo);
-//			rv.addStaticAttribute("DATA", cregVO);
-//			mv.setView(rv);
+//			rv.setUrl("../chef/LoginForm.food");
 			mv.addObject("tabNo", tabNo);
-			mv.addObject("DATA", cregVO);
 			mv.setViewName("chef/RegForm");
 		}
 		else if(tabNo == 1){
@@ -232,6 +218,7 @@ public class CRegLoginController {
 			cregVO.chefImgName = chefImg ;
 			cregVO.truckImgName = truckImg ;
 			cregVO.no = (int) session.getAttribute("UTNO");
+			
 			// 데이터베이스에 기록하자.
 			try {
 				cregLoginService.cRegInfoSrvc(session, cregVO);
@@ -239,14 +226,10 @@ public class CRegLoginController {
 			tabNo = (int) session.getAttribute("tabNo");
 			System.out.println("############ TempsaveControll tabNo 1 : " + tabNo );
 			
-			rv.setUrl("../chef/RegForm.food");
-//			mv.addObject("tabNo", cregVO.tabNo);
-			mv.addObject("DATA", cregVO);
-//			rv.addStaticAttribute("tabNo", cregVO.tabNo);
-//			rv.addStaticAttribute("DATA", cregVO);
-//			mv.setView(rv);
 			mv.addObject("tabNo", tabNo);
 			mv.setViewName("chef/RegForm");
+//			rv.setUrl("../chef/LoginForm.food");
+//			mv.setView(rv);
 		}
 		else if(tabNo == 2){
 			System.out.println("############ 11111111111111 #########");
@@ -270,9 +253,7 @@ public class CRegLoginController {
 //			mv.addObject("tabNo", cregVO.tabNo);
 //			mv.addObject("DATA", cregVO);
 //				mv.setViewName("chef/RegForm");
-			rv.setUrl("../chef/RedirectProc.food");
-			rv.addStaticAttribute("tabNo", cregVO.tabNo);
-			rv.addStaticAttribute("DATA", cregVO);
+			rv.setUrl("../chef/LoginForm.food");
 			mv.setView(rv);
 		}
 

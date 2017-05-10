@@ -111,7 +111,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="btn-group pull-right m-t-15">
-                            <button type="button" class="btn btn-custom dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="false">저장 <span class="m-l-5"><i class="fa fa-cog"></i></span></button>
+                            <button type="button" class="btn btn-custom dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="false" id="sBtn" name="sBtn">저장 <span class="m-l-5"><i class="fa fa-cog"></i></span></button>
                         </div>
                         <h4 class="page-title">메뉴 등록</h4>
                     </div>
@@ -122,7 +122,7 @@
                     <div class="col-sm-12">
                         <div class="card-box">
 													<h4 class="header-title m-t-0 m-b-30">메인메뉴(1895X1000)</h4>
-                            <input type="file" class="dropify" data-height="300" data-default-file="../image/${DATA.mImgName}"/>
+                            <input type="file" class="dropify" id="mmenuImg" name="mmenuImg" data-height="300" data-default-file="../image/${DATA.mImgName}"/>
 							<div class="row">
 								<div class="form-group">
 									<label class="col-sm-5 control-label">주메뉴이름</label>
@@ -320,6 +320,13 @@
 			$('#smenuPrice4').editable({mode: 'inline'});
 			$('#smenuComment4').editable({mode: 'inline'});
 			$('#smenukeyword4').editable({mode: 'inline'});
+			
+			
+			$('#sBtn').click(function(){
+				alert($('#mmenuImg').text());
+			});
+			
+			
 
 			$('#basicwizard').bootstrapWizard({'tabClass': 'nav nav-tabs navtab-wizard nav-justified bg-muted'});
 
@@ -346,6 +353,10 @@
 		});
 		
 		</script>
-
+<script type="text/javascript">
+	$(document).ready(function(){
+		
+	});
+</script>
     </body>
 </html>

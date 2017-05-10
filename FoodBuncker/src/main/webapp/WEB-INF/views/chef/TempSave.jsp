@@ -299,23 +299,23 @@
 				$('#mPrice').val($('#tmmenuPrice').text());
 				$('#mmenuComment').val($('#tmmenuComment').text());
 
-				alert("1 : " + $('#phone').val());
+				/* alert("1 : " + $('#phone').val()); */
 				var tk1 = $('#keyword1').text();
 				var tk2 = $('#keyword2').text();
 				var tk3 = $('#keyword3').text();
 				var tk4 = $('#keyword4').text();
 				var tk5 = $('#keyword5').text();
-				alert("2 : " + $('#phone').val());
+				/* alert("2 : " + $('#phone').val()); */
 				
 				/* '""#oldChefImg').val() = ${DATA.chefImgName}; */
-				alert("3 : " + $('#phone').val());
+				/* alert("3 : " + $('#phone').val()); */
 				/* '""#oldTruckImg').val() = ${DATA.truckImgName};
 				$('#oldMenuImg').val() = ${DATA.mmenuImgName}; */
 
 				$('#keyword').val('#' + tk1 + '#' + tk2 + '#' + tk3 + '#' + tk4 + '#' + tk5) ;
-				
+				/* 
 				alert($('#oldChefImg').val());
-				alert("4 : " + $('#phone').val());
+				alert("4 : " + $('#phone').val()); */
 				
 				$('#frm').attr("action", "../chef/RegProc.food").submit();
 			});
