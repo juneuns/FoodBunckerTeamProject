@@ -4415,9 +4415,31 @@ public class CreateWeatherRecord4 {
 				"insert into weatherrecord values	(to_date(	'	2016-12-30 20:00	','YYYY-MM-DD HH24:MI'),	-2.2	,	0	,	49	)",			
 				"insert into weatherrecord values	(to_date(	'	2016-12-30 21:00	','YYYY-MM-DD HH24:MI'),	-2.6	,	0	,	54	)",			
 				"insert into weatherrecord values	(to_date(	'	2016-12-30 22:00	','YYYY-MM-DD HH24:MI'),	-2.7	,	0	,	56	)",			
-				"insert into weatherrecord values	(to_date(	'	2016-12-30 23:00	','YYYY-MM-DD HH24:MI'),	-2.9	,	0	,	56	)"		
-
-				
+				"insert into weatherrecord values	(to_date(	'	2016-12-30 23:00	','YYYY-MM-DD HH24:MI'),	-2.9	,	0	,	56	)",
+				"insert into weatherrecord values	(to_date(	'	2016-12-31 0:00	','YYYY-MM-DD HH24:MI'),	-7.2	,	0	,	57	)",			
+				"insert into weatherrecord values	(to_date(	'	2016-12-31 1:00	','YYYY-MM-DD HH24:MI'),	-7.7	,	0	,	57	)",			
+				"insert into weatherrecord values	(to_date(	'	2016-12-31 2:00	','YYYY-MM-DD HH24:MI'),	-8	,	0	,	57	)",			
+				"insert into weatherrecord values	(to_date(	'	2016-12-31 3:00	','YYYY-MM-DD HH24:MI'),	-8.1	,	0	,	55	)",			
+				"insert into weatherrecord values	(to_date(	'	2016-12-31 4:00	','YYYY-MM-DD HH24:MI'),	-8.5	,	0	,	62	)",			
+				"insert into weatherrecord values	(to_date(	'	2016-12-31 5:00	','YYYY-MM-DD HH24:MI'),	-8.6	,	0	,	56	)",			
+				"insert into weatherrecord values	(to_date(	'	2016-12-31 6:00	','YYYY-MM-DD HH24:MI'),	-9	,	0	,	60	)",			
+				"insert into weatherrecord values	(to_date(	'	2016-12-31 7:00	','YYYY-MM-DD HH24:MI'),	-8.9	,	0	,	59	)",			
+				"insert into weatherrecord values	(to_date(	'	2016-12-31 8:00	','YYYY-MM-DD HH24:MI'),	-8.7	,	0	,	58	)",			
+				"insert into weatherrecord values	(to_date(	'	2016-12-31 9:00	','YYYY-MM-DD HH24:MI'),	-7.8	,	0	,	56	)",			
+				"insert into weatherrecord values	(to_date(	'	2016-12-31 10:00	','YYYY-MM-DD HH24:MI'),	-4.6	,	0	,	47	)",			
+				"insert into weatherrecord values	(to_date(	'	2016-12-31 11:00	','YYYY-MM-DD HH24:MI'),	-2.9	,	0	,	39	)",			
+				"insert into weatherrecord values	(to_date(	'	2016-12-31 12:00	','YYYY-MM-DD HH24:MI'),	-0.4	,	0	,	32	)",			
+				"insert into weatherrecord values	(to_date(	'	2016-12-31 13:00	','YYYY-MM-DD HH24:MI'),	-0.2	,	0	,	31	)",			
+				"insert into weatherrecord values	(to_date(	'	2016-12-31 14:00	','YYYY-MM-DD HH24:MI'),	0.6	,	0	,	34	)",			
+				"insert into weatherrecord values	(to_date(	'	2016-12-31 15:00	','YYYY-MM-DD HH24:MI'),	1	,	0	,	39	)",			
+				"insert into weatherrecord values	(to_date(	'	2016-12-31 16:00	','YYYY-MM-DD HH24:MI'),	0.4	,	0	,	42	)",			
+				"insert into weatherrecord values	(to_date(	'	2016-12-31 17:00	','YYYY-MM-DD HH24:MI'),	0.1	,	0	,	46	)",			
+				"insert into weatherrecord values	(to_date(	'	2016-12-31 18:00	','YYYY-MM-DD HH24:MI'),	-0.9	,	0	,	53	)",			
+				"insert into weatherrecord values	(to_date(	'	2016-12-31 19:00	','YYYY-MM-DD HH24:MI'),	-1.6	,	0	,	51	)",			
+				"insert into weatherrecord values	(to_date(	'	2016-12-31 20:00	','YYYY-MM-DD HH24:MI'),	-2.2	,	0	,	49	)",			
+				"insert into weatherrecord values	(to_date(	'	2016-12-31 21:00	','YYYY-MM-DD HH24:MI'),	-2.6	,	0	,	54	)",			
+				"insert into weatherrecord values	(to_date(	'	2016-12-31 22:00	','YYYY-MM-DD HH24:MI'),	-2.7	,	0	,	56	)",			
+				"insert into weatherrecord values	(to_date(	'	2016-12-31 23:00	','YYYY-MM-DD HH24:MI'),	-2.9	,	0	,	56	)"
 		};
 		Arrays.asList(sql).stream().forEach(n->{
 			try {
