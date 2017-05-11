@@ -34,7 +34,10 @@ public class PMainViewController {
 	public ModelAndView detailView(ModelAndView mv, HttpServletRequest req){
 		String strtno = req.getParameter("tno");
 		int tno = Integer.parseInt(strtno);
+		String strPage = req.getParameter("nowPage");
+		int nowPage = pmvService.changePage(strPage);
 	
+		System.out.println(nowPage);
 		ArrayList list = pmvService.selectMenuView(tno);
 		ArrayList list2 = pmvService.selectReviewView(tno);
 		ArrayList clist = pmvService.selectChef(tno);
@@ -45,7 +48,6 @@ public class PMainViewController {
 		int sell = pmvService.selectSellMenu(tno);
 		int cus = pmvService.selectCustomer(tno);
 		int place = pmvService.selectPlace(tno);
-		
 		
 		mv.addObject("TNO", tno);
 		mv.addObject("LIST", list);
@@ -58,7 +60,7 @@ public class PMainViewController {
 		mv.addObject("SELL", sell);
 		mv.addObject("CUS", cus);
 		mv.addObject("PLACE", place);
-		
+		mv.addObject("NOWPAGE", nowPage);
 		mv.setViewName("/person/DetailView");
 		return mv;
 	}

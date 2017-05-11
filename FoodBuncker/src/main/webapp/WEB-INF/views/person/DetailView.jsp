@@ -311,11 +311,24 @@
 		</div>
 	</div>
 <script>
-	var tno = ${TNO};
+	function morePage(nowPage) {
+		$.ajax({
+			data : "temp=" + new Date() + "&tno=${TNO}" + "&nowPage=" + nowPage,
+			dataType : "html",
+			error : function(){
+				alert("에러");
+			},
+			success : function(data){
+				$("#target").html(data);
+			},
+			type : "GET",
+			url : "../person/moreReview.food"
+		});
+	}
 	$(document).ready(function(){
         $("#mBtn").click(function(){
 			$.ajax({
-				data : "temp=" + new Date() + "&tno=" + tno,
+				data : "temp=" + new Date() + "&tno=${TNO}",
 				dataType : "html",
 				error : function(){
 					alert("에러");
