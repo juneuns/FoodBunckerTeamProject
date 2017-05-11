@@ -158,7 +158,7 @@ public class PMenuSearchService {
 				HashMap map = dao.selectSearchRecord(word);
 				int recordNo = Integer.parseInt(String.valueOf(map.get("NO")));
 				String record = (String)map.get("RECORD");
-				int pos = record.indexOf(","+no);
+				int pos = record.indexOf(","+no+":");
 				if(pos == -1){
 					record = record+","+no+":1";
 				}else{
@@ -167,7 +167,7 @@ public class PMenuSearchService {
 						String preResult = record.substring(0,pos+1);
 						String midResult = record.substring(pos+1);
 						String[] temp = midResult.split(":");
-						System.out.println("record : "+record+"  temp[0] : "+temp[0]+"  temp[1] : "+temp[1]);
+	//System.out.println("record : "+record+"  temp[0] : "+temp[0]+"  temp[1] : "+temp[1]);
 						int intTemp = Integer.parseInt(temp[1]);
 						intTemp = intTemp+1;
 						temp[1] = String.valueOf(intTemp);

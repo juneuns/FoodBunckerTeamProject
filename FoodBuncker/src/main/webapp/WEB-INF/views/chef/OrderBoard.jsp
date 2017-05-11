@@ -67,7 +67,7 @@
                         <!-- Navigation Menu-->
                         <ul class="navigation-menu">
                             <li>
-                                <a href="../chef/Main.food"><i class="zmdi zmdi-view-dashboard"></i> <span> MainPage </span> </a>
+                                <a href="../chef/ChefMain.food"><i class="zmdi zmdi-view-dashboard"></i> <span> MainPage </span> </a>
                             </li>
                             <li class="has-submenu">
                                 <a href="../chef/PlanModify.food"><i class="zmdi zmdi-invert-colors"></i> <span> 일정계획입력 및 수정 </span> </a>                                

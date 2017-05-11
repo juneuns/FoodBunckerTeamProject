@@ -231,7 +231,7 @@
 	<!-- 트럭별 영업장소 수 불러오기 -->
 	<select id="selectPlace" resultType="int" parameterType="int">
 		SELECT
-			COUNT(PP_P_NO)
+			COUNT(DISTINCT PP_P_NO)
 		FROM
 			PLAN INNER JOIN PLACE
 		ON
@@ -261,9 +261,9 @@
 	<!-- 총 서울내 영업장소 수 -->
 	<select id="selectPlaceTotal" resultType="int">
 		SELECT 
-			COUNT(PP_P_NO)
+			COUNT(P_NO)
 		FROM
-			PLAN
+			PLACE
 	</select>
 	
 	<!-- 가입된 사업주 수-->
