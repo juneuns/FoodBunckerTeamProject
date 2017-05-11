@@ -15,4 +15,12 @@ public class CMainDataDAO {
 	public ArrayList<CMainDataVO> selectOneTReview(int tno){
 		return (ArrayList) sqlSession.selectList("foodbuncker.CMainData.selectOneTReview",tno);
 	}
+	
+	public int selectCount(int tno){
+		return sqlSession.selectOne("foodbuncker.CMainData.selectCount",tno);
+	}
+	
+	public ArrayList<CMainDataVO> selectOneTAllReview(HashMap map){
+		return (ArrayList)sqlSession.selectList("foodbuncker.CMainData.selectOneTAllReview",map);
+	}
 }

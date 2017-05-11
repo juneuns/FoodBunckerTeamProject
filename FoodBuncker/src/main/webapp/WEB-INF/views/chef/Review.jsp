@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"   pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
@@ -67,14 +68,14 @@
                         <!-- Navigation Menu-->
                         <ul class="navigation-menu">
                             <li>
-                                <a href="../chef/Main.food"><i class="zmdi zmdi-view-dashboard"></i> <span> MainPage </span> </a>
+                                <a href="../chef/ChefMain.food?tno=${TNO }"><i class="zmdi zmdi-view-dashboard"></i> <span> MainPage </span> </a>
                             </li>
                             <li class="has-submenu">
-                                <a href="../chef/PlanModify.food"><i class="zmdi zmdi-invert-colors"></i> <span> 일정계획입력 및 수정 </span> </a>                                
+                                <a href="../chef/PlanModify.food?tno=${TNO }"><i class="zmdi zmdi-invert-colors"></i> <span> 일정계획입력 및 수정 </span> </a>                                
                             </li>
 
                             <li class="has-submenu">
-                                <a href="../chef/Review.food"><i class="zmdi zmdi-collection-text"></i><span>후기 및 답변달기 </span> </a>                                
+                                <a href="../chef/Review.food?tno=${TNO }"><i class="zmdi zmdi-collection-text"></i><span>후기 및 답변달기 </span> </a>                                
                             </li>
 
                             <li class="has-submenu">
@@ -84,13 +85,13 @@
                             <li class="has-submenu">
                                 <a href="#"><i class="zmdi zmdi-chart"></i><span> 메뉴 및 사진 등록 </span> </a>
                                 <ul class="submenu">
-                                    <li><a href="../chef/MenuModify.food">메뉴 등록 및 수정</a></li>
-                                    <li><a href="../chef/PhotoUpload.food">기타 사진 등록</a></li>
+                                    <li><a href="../chef/MenuModify.food?tno=${TNO }">메뉴 등록 및 수정</a></li>
+                                    <li><a href="../chef/PhotoUpload.food?tno=${TNO }">기타 사진 등록</a></li>
                                 </ul>
                             </li>
 
                             <li class="has-submenu">
-                                <a href="../chef/InfoModify.food"><i class="zmdi zmdi-collection-item"></i><span> 개인정보수정 </span> </a>                                
+                                <a href="../chef/InfoModify.food?tno=${TNO }"><i class="zmdi zmdi-collection-item"></i><span> 개인정보수정 </span> </a>                                
                             </li>
 
                             <li class="has-submenu">
@@ -126,28 +127,32 @@
                                 </thead>
                                 <tbody>
                                 
-<!-- -----------------------    foreach문으로 반복 시작--------------------------------------- --> 	                                       
+<!-- -----------------------    foreach문으로 반복 시작--------------------------------------- --> 
+								<c:forEach var="data" items="${LIST }">                                       
                                     <tr>
-                                        <th scope="row">1</th>
-                                        <td>대학로</td>
-                                        <td>국내 패스트 푸드에서 파는 햄버거와는 질적인 차이가 있습니다. 직접 만든 빵은 부드럽고 야채는 신선하여 그 모양을 유지하고 아삭아삭 소리가 납니다. 정말 맛있어요.</td>
-                                        <td>2017/04/22</td>
+                                        <th scope="row">${data.rno }</th>
+                                        <td>${data.pname }</td>
+                                        <td>${data.reviewBody }</td>
+                                        <td>${data.reviewTime }</td>
                                     </tr>
-<!-- -----------------------   위의 foreach문으로 반복 끝--------------------------------------- --> 	
-<!-- -----------------------   위의 foreach문 완성시 삭제 부분 시작--------------------------------------- --> 	                                                  
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>종로</td>
-                                        <td>이런 고급스러운 요리를 쉽게 만날 수 있다는 것이 행복합니다. 쉐프님의 손길 하나하나가 정성이 많이 들어 있네요.</td>
-                                        <td>2017/04/21</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>보라매공원</td>
-                                        <td>이제 바다 요리를 먹으러 바다까지 갈 필요가 없네요. 쉐프님이 직접 재료를 매일마다 골라온다고 합니다. 직접 눈으로 확인해 보세요. 강추합니다.</td>
-                                        <td>2017/04/20</td>
-                                    </tr>
-<!-- -----------------------   위의 foreach문 완성시 삭제 부분 끝--------------------------------------- --> 	                                           
+                              	</c:forEach>	
+<!-- -----------------------   위의 foreach문으로 반복 끝--------------------------------------- --> 
+								<div class="text-center">
+									<ul class="pagination">
+										<c:if test="${PINFO.startPage ne 1}">
+											<li><a href="../chef/Review.food?nowPage=${PINFO.startPage - 1}&tno=${TNO}">&laquo;</a></li>
+										</c:if>
+										<c:forEach var="page" begin="${PINFO.startPage}" end="${PINFO.endPage}">
+										<li>
+											<a href="../chef/Review.food?nowPage=${page}&tno=${TNO}">${page}</a>
+										</li>
+										</c:forEach>
+										<c:if test="${PINFO.endPage ne PINFO.totalPage}">
+											<li><a href="../chef/Review.food?nowPage=${PINFO.endPage + 1}&tno=${TNO}">&raquo;</a></li>
+										</c:if>	
+									</ul>
+								</div>	
+
                                 </tbody>
                             </table>
                         </div>

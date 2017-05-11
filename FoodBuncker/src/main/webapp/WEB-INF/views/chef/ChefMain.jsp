@@ -69,14 +69,14 @@
                         <!-- Navigation Menu-->
                         <ul class="navigation-menu">
                             <li>
-                                <a href="../chef/Main.food"><i class="zmdi zmdi-view-dashboard"></i> <span> MainPage </span> </a>
+                                <a href="../chef/Main.food?tno=${TNO }"><i class="zmdi zmdi-view-dashboard"></i> <span> MainPage </span> </a>
                             </li>
                             <li class="has-submenu">
-                                <a href="../chef/PlanModify.food"><i class="zmdi zmdi-invert-colors"></i> <span> 일정계획입력 및 수정 </span> </a>                                
+                                <a href="../chef/PlanModify.food?tno=${TNO }"><i class="zmdi zmdi-invert-colors"></i> <span> 일정계획입력 및 수정 </span> </a>                                
                             </li>
 
                             <li class="has-submenu">
-                                <a href="../chef/Review.food"><i class="zmdi zmdi-collection-text"></i><span>후기 및 답변달기 </span> </a>                                
+                                <a href="../chef/Review.food?tno=${TNO }"><i class="zmdi zmdi-collection-text"></i><span>후기 및 답변달기 </span> </a>                                
                             </li>
 
                             <li class="has-submenu">
@@ -86,13 +86,13 @@
                             <li class="has-submenu">
                                 <a href="#"><i class="zmdi zmdi-chart"></i><span> 메뉴 및 사진 등록 </span> </a>
                                 <ul class="submenu">
-                                    <li><a href="../chef/MenuModify.food">메뉴 등록 및 수정</a></li>
-                                    <li><a href="../chef/PhotoUpload.food">기타 사진 등록</a></li>
+                                    <li><a href="../chef/MenuModify.food?tno=${TNO }">메뉴 등록 및 수정</a></li>
+                                    <li><a href="../chef/PhotoUpload.food?tno=${TNO }">기타 사진 등록</a></li>
                                 </ul>
                             </li>
 
                             <li class="has-submenu">
-                                <a href="../chef/InfoModify.food"><i class="zmdi zmdi-collection-item"></i><span> 개인정보수정 </span> </a>                                
+                                <a href="../chef/InfoModify.food?tno=${TNO }"><i class="zmdi zmdi-collection-item"></i><span> 개인정보수정 </span> </a>                                
                             </li>
 
                             <li class="has-submenu">
@@ -114,7 +114,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="btn-group pull-right m-t-15">
-                           <a href="../chef/OrderBoard.food"><button type="button" class="btn btn-danger waves-effect w-md waves-light m-b-5" aria-expanded="false" id="startBtn">Order Board <span class="m-l-5"><i class="dripicons-cutlery"></i></span></button></a>
+                           <a href="../chef/OrderBoard.food?tno=${TNO }"><button type="button" class="btn btn-danger waves-effect w-md waves-light m-b-5" aria-expanded="false" id="startBtn">Order Board <span class="m-l-5"><i class="dripicons-cutlery"></i></span></button></a>
                         </div>
                         <h4 class="page-title">Dashboard</h4>
                     </div>
