@@ -9,34 +9,34 @@
 </head>
 <body>
 	<%-- 후기내용 출력 --%>
-	<table boarder="1" align="left" width="1000">
+	<table boarder="1" align="center" width="1200">
 		<c:forEach var="data" items="${TRLIST}">
 		<tr>
-			<td>	${data.body}</td>			
-			<td>${data.showdate}</td>			
+			<td width="85%" align="left">${data.body}</td>			
+			<td width="15%" align="right">${data.showdate}</td>			
 		</tr>
 		</c:forEach>
 	</table>
 	
 	<%-- 페이지 이동 기능 --%>
-	<table width="1000" border="1" align="center">
+	<table width="1200" border="1" align="center">
 		<tr>
 			<td align="center">
 			<c:if test="${PINFO.startPage eq 1}">
 				[이전]
 			</c:if>
 			<c:if test="${PINFO.startPage ne 1}">
-				<a href="../person/moreReview.food?nowPage=${PINFO.startPage - 1}&tno=${TNO}">[이전]</a>
+				<a class="target" href="JavaScript:morePage(${PINFO.startPage - 1})">[이전]</a>
 			</c:if>
 			<c:forEach var="page" begin="${PINFO.startPage}" 
 										end="${PINFO.endPage}">
-					<a href="../person/moreReview.food?nowPage=${page}&tno=${TNO}">[ ${page} ]</a>
+					<a class="target" href="JavaScript:morePage(${page})">[ ${page} ]</a>
 			</c:forEach>
 			<c:if test="${PINFO.endPage eq PINFO.totalPage}">
 				[다음]
 			</c:if>			
 			<c:if test="${PINFO.endPage ne PINFO.totalPage}">
-				<a href="../person/moreReview.food?nowPage=${PINFO.endPage + 1}&tno=${TNO}">[다음]</a>
+				<a class="target" href="JavaScript:morePage(${PINFO.endPage + 1})">[다음]</a>
 			</c:if>			
 			</td>
 		</tr>
