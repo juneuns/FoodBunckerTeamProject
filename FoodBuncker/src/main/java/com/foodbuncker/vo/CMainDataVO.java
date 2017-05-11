@@ -13,6 +13,8 @@ public class CMainDataVO {
 	String tname;
 	String reviewBody;
 	LocalDate reviewTime;
+	int rno;
+	
 	public String getPname() {
 		return pname;
 	}
@@ -48,6 +50,12 @@ public class CMainDataVO {
 	}
 	public void setReviewTime(Date reviewTime) {
 		this.reviewTime = LocalDate.from(LocalDateTime.ofInstant(reviewTime.toInstant(), ZoneId.systemDefault()));
+	}
+	public int getRno() {
+		return rno;
+	}
+	public void setRno(int rno) {
+		this.rno = rno;
 	}
 	
 	

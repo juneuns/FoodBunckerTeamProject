@@ -30,15 +30,16 @@ public class CMainDataController {
 				tno = Integer.parseInt(strTno);
 				session.setAttribute("UTNO", tno);
 			}catch(Exception e1){
-//				RedirectView rv = new RedirectView();
-//				rv.setUrl("../chef/LoginForm.food");
-//				mv.setView(rv);
-//				return mv;
+				RedirectView rv = new RedirectView();
+				rv.setUrl("../chef/LoginForm.food");
+				mv.setView(rv);
+				return mv;
 			}
 		}
 		
 		
 		ArrayList<CMainDataVO> reviewList = service.selectOneTReview(tno);
+		mv.addObject("TNO",tno);
 		mv.addObject("REVIEWLIST",reviewList);
 		mv.setViewName("chef/ChefMain");
 		return mv;
@@ -49,5 +50,33 @@ public class CMainDataController {
 		return mv;
 	}
 	
+	@RequestMapping("/chef/Review.food")
+	public ModelAndView review(ModelAndView mv, HttpServletRequest req, HttpSession session){
+		int tno = 1;
+		try{
+			tno = (int)session.getAttribute("UTNO");
+		}catch(Exception e){
+			String strTno = req.getParameter("tno");
+			try{
+				tno = Integer.parseInt(strTno);
+				session.setAttribute("UTNO", tno);
+			}catch(Exception e1){
+				RedirectView rv = new RedirectView();
+				rv.setUrl("../chef/LoginForm.food");
+				mv.setView(rv);
+				return mv;
+			}
+		}
+		String strPage = req.getParameter("nowPage");
+		int nowPage = service.changePage(strPage);
+		PageUtil pInfo = service.pageInfo(nowPage,tno);
+		
+		ArrayList<CMainDataVO> list = service.selectOneTALLReview(pInfo, tno);
+		mv.addObject("TNO",tno);
+		mv.addObject("LIST",list);
+		mv.addObject("PINFO",pInfo);
+		mv.setViewName("/chef/Review");
+		return mv;
+	}
 	
 }

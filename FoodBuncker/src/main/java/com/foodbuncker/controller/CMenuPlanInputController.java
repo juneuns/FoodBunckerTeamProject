@@ -17,12 +17,6 @@ public class CMenuPlanInputController {
 	@Autowired
 	CMenuPlanInputService service;
 	
-	@RequestMapping("/chef/Main.food")
-	public ModelAndView chefMainView(ModelAndView mv){
-		mv.setViewName("chef/ChefMain");
-		return mv;
-	}
-	
 	@RequestMapping("/chef/PlanModify.food")
 	public ModelAndView planModify(ModelAndView mv,HttpSession session){
 		int tno = (int)session.getAttribute("UTNO");

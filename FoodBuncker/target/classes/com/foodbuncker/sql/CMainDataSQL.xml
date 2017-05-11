@@ -57,4 +57,54 @@
 		b_isshow = 'Y'
 </select>
 
+<select id="selectOneTAllReview" parameterType="hashmap" resultType="cmainVO">
+	<![CDATA[
+	SELECT
+		*
+	FROM
+		(SELECT
+			rownum AS RNO,
+			a.*
+		FROM
+			(SELECT
+				b_body AS REVIEWBODY,
+				b_date AS REVIEWTIME,
+				p_placename AS PNAME
+			FROM
+				(SELECT
+					b_body,
+					b_date,
+					oc_p_no
+				FROM
+					(SELECT
+						b_body,
+						b_date,
+						b_t_no
+					FROM
+						board
+					WHERE
+						b_t_no = #{tno}
+					AND
+						b_isshow = 'Y'
+					ORDER BY
+						b_no),
+					openclose
+				WHERE
+					oc_t_no = b_t_no
+				AND
+					to_date(oc_open,'YYYY/MM/DD') like to_date(b_date,'YYYY/MM/DD')),
+					place
+				WHERE
+					rownum <= #{end}
+				AND
+					p_no = oc_p_no
+				ORDER BY
+					b_date 
+				DESC) a)
+		WHERE
+			RNO BETWEEN #{start} AND #{end}
+		
+		]]>
+</select>
+
 </mapper>
