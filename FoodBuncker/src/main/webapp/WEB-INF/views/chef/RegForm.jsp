@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -40,15 +40,14 @@
 
 	$(document).ready(function(){
 		/* alert("이건 나와라!!!"); */
-		/* alert("tabNo : " + ${tabNo}); */
-		var clkTab = ${tabNo} ;
+		var clkTab = ${tabNo};
 		if(${tabNo} == '' || ${tabNo} == 0 ){
-			alert("0 tabNo : " + ${tabNo});
+			/* alert("0 tabNo : " + ${tabNo}); */
 			clkTab = 0 ;
-		}
+		};
 		if(${tabNo} != '' || ${tabNo} != 0){
 			clkTab = ${tabNo};
-		}
+		};
 		
 		$("#chefM").click(function(){
 			clkTab = 1 ;
@@ -57,7 +56,9 @@
 			clkTab = 2 ;
 		});
 		
-		/* alert(clkTab); */
+		/* alert( "clkTab : " + clkTab); */
+		
+		alert("tabNo : " + ${tabNo});
 		if(clkTab == 0){
 			$("#sBtn").click(function(){
 				// 무결성 검사하기
@@ -73,17 +74,19 @@
 				var tid = $("#id").val();
 				var tpw = $("#pw").val();
 				var trpw = $("#rpw").val();
-				
+
+				alert(tphone);
 				if(tpw != trpw){
 					$("#rpw").val('');
 					alert("비밀번호를 확인하세요!");
-				}
+				};
 				
 				if( tcName != '' && tname != '' && tnumber != '' && tphone != '' && temail != '' && topenDate != '' && tid != '' && tpw != '' && tpw == trpw){
 					// 모든 사항이 입력된 경우 폼의 내용을 보내자.
-					$("#tabNo").val(clkTab);
-					/* alert("이건 나와야지..."); */
+					/* $("#tabNo").val(clkTab); */
+					alert("버튼 클릭 이건 나와야지...");
 					$("#ffrm").attr("action", "../chef/TempSave.food").submit();
+					alert("버튼 클릭 이건 또 나와야지...");
 				};
 				
 			});
@@ -103,12 +106,11 @@
 				var ttruckComt = $("#truckComment").val();
 				
 				
-				alert(tchefComt);
+				/* alert(tchefComt); */
 				if(tchefImg != "" && tchefComt != "" && ttruckImg != "" && ttruckComt != ""){
 				/* if(tchefComt != '' && ttruckComt != ''){ */
 					// 모든 사항이 입력된 경우 폼의 내용을 보내자.
 					/* alert(tchefComt); */
-					$(".tabNo").val(clkTab);
 					$("#sfrm").attr("action", "../chef/TempSave.food").submit();
 				};
 				
@@ -117,6 +119,7 @@
 		
 		if(clkTab == 2){
 			$("#sBtn").click(function(){
+
 				// 무결성 검사하기
 				var tmmenuImg = $("#mmenuImg").val();
 				var tmmenuName = $("#mmenuName").val();
@@ -125,14 +128,16 @@
 				var tkeyword = "#" + $("#keyword1").val() + "#" + $("#keyword2").val() + "#" + $("#keyword3").val() + "#" + $("#keyword4").val() + "#" + $("#keyword5").val();
 				$("#keyword").val(tkeyword);
 					/* alert(tkeyword); */
+					/* alert(tmmenuImg); */
 				
-				/* if( tmmenuName != '' && tmmenuPrice != '' && tmmenuComment != '' && tkeyword != ''){ */
- 				if(tmmenuImg != "" && tmmenuName != "" && tmmenuPrice != "" && tmmenuComment != "" && tkeyword != ""){
+//				if( tmmenuName != '' && tmmenuPrice != '' && tmmenuComment != '' && tkeyword != ''){
+					/* alert("tmmenuImg" + tmmenuImg); */
+				if(tmmenuImg != "" && tmmenuName != "" && tmmenuPrice != "" && tmmenuComment != "" && tkeyword != ""){
 					// 모든 사항이 입력된 경우 폼의 내용을 보내자.
-					$(".tabNo").val(clkTab);
+					alert(1);
 					$("#tfrm").attr("action", "../chef/TempSave.food").submit();
-				};
-				
+//					$(location).attr("href", "../chef/TempSave.food");
+				}
 			});
  		};
 });
@@ -143,7 +148,7 @@
 	<div class="clearfix"></div>
 	<div class="wrapper-page">
 		<div class="text-center">
-			<a href="../person/MainWindow.food" class="logo"><span>Food<span>Buncker</span></span></a>
+				<a href="../person/MainWindow.food" class="logo"><span>Food<span>Buncker</span></span></a>
 			<h5 class="text-muted m-t-0 font-600">회원가입</h5>
 		</div>
  <!-- PROGRESSBAR WIZARD -->				
@@ -174,9 +179,9 @@
 							<div class="row">
 							
 							
-					<form method="POST" action="" id="ffrm" name="ffrm">
+					<form method="POST" action="" id="ffrm" name="ffrm" >
 							
-								<input type="hidden" id="tabNo" name="tabNo" />
+								<!-- <input type="hidden" id="tabNo" name="tabNo" /> -->
 								<div class="form-group clearfix">
 									<label class="col-md-4 control-label " for="chef">사업주 이름</label>
 									<div class="col-md-8">
@@ -187,41 +192,41 @@
 								<div class="form-group clearfix">
 									<label class="col-md-4 control-label " for="name">상호명(트럭명)</label>
 									<div class="col-md-8">
-										<input class="form-control required" id="name" name="name" type="text"required="" />
+										<input class="form-control required" id="name" name="name" type="text" required="" />
 									</div>
 								</div>
 								
 								<div class="form-group clearfix">
 									<label class="col-md-4 control-label " for="num">사업자번호</label>
 									<div class="col-md-8">
-										<input class="form-control required" id="num" name="num" type="text"required="" />
+										<input class="form-control required" id="num" name="num" type="text" required="" />
 									</div>
 								</div>
 								<div class="form-group clearfix">
 									<label class="col-md-4 control-label " for="phone">전화번호</label>
 									<div class="col-md-8">
-										<input class="form-control required" id="phone" name="phone" type="text"required="" />
+										<input class="form-control required" id="phone" name="phone" type="text" required="" />
 									</div>
 								</div>
 								
 								<div class="form-group clearfix">
 									<label class="col-md-4 control-label " for="email">이메일주소</label>
 									<div class="col-md-8">
-										<input class="form-control required" id="email" name="email" type="text"required="" />
+										<input class="form-control required" id="email" name="email" type="text" required="" />
 									</div>
 								</div>
 								
 										<div class="form-group clearfix">
 											<label class="col-md-4 control-label " for="open">개업일</label>
 											<div class="col-md-8">
-												<input class="form-control required" id="open" name="open" type="text"required="" />
+												<input class="form-control required" id="open" name="open" type="text" required="" />
 											</div>
 										</div>
 										
 										<div class="form-group clearfix">
 											<label class="col-md-4 control-label " for="id">아이디(로그인시 사용)</label>
 											<div class="col-md-8">
-												<input class="form-control required" id="id" name="id" type="text"required="" />
+												<input class="form-control required" id="id" name="id" type="text" required="" />
 											</div>
 										</div>
 										
@@ -248,7 +253,6 @@
 									<div class="row">
 									
 								<form method="POST" action="" id="sfrm" enctype="multipart/form-data">
-											<input type="hidden" class="tabNo" name="tabNo" />
 											<div>
 												<h4 class="header-title m-t-0 m-b-30">쉐프사진등록</h4>
 												<h6 class="m-b-30">1895X1000pixel</h6>
@@ -289,14 +293,13 @@
 											<div class="form-group clearfix">
 												<div class="col-lg-12">
 												
-												<form method="POST" action="" id="tfrm" enctype="multipart/form-data">
-													<input type="hidden" class="tabNo" name="tabNo" />
+	<form method="POST" id="tfrm" encType="multipart/form-data">
 													<div>
 														<h4 class="header-title m-t-0 m-b-30">주메뉴사진등록</h4>
 														<h6 class="m-b-30">1895X1000pixel</h6>
 														<input type="file" class="dropify" id="mmenuImg" name="mmenuImg" data-height="300" />
 													</div>
-													
+
 													<div class="form-group clearfix">
 														<label class="col-lg-2 control-label" for="mmenuName"> 주메뉴이름</label>
 														<div class="col-lg-10">
@@ -310,14 +313,14 @@
 															<input id="mmenuPrice" name="mmenuPrice" type="text" class="required form-control">
 														</div>
 													</div>
-													
+	
 													<div class="form-group clearfix">
 														<label class="col-lg-2 control-label" for="mmenuComment"> 주메뉴한마디</label>
 														<div class="col-lg-10">
 															<input id="mmenuComment" name="mmenuComment" type="text" class="required form-control">
 														</div>
 													</div>
-													
+
 													<div class="form-group clearfix">
 														<input type="hidden" id="keyword" name="keyword">
 														<label class="col-lg-2 control-label" for="keyword1"> 검색키워드1</label>
@@ -325,6 +328,7 @@
 															<input id="keyword1" name="keyword1" type="text" class="required form-control">
 														</div>
 													</div>
+													
 													
 													<div class="form-group clearfix">
 														<label class="col-lg-2 control-label" for="keyword2"> 검색키워드2</label>
@@ -347,13 +351,16 @@
 														</div>
 													</div>
 													
+	
+
 													<div class="form-group clearfix">
 														<label class="col-lg-2 control-label" for="keyword5"> 검색키워드5</label>
 														<div class="col-lg-10">
 															<input id="keyword5" name="keyword5" type="text" class="required form-control">
 														</div>
 													</div>
-											</form>
+													
+	</form>
 												</div>
 											</div>
 										</div>
@@ -363,7 +370,8 @@
 									<ul class="pager m-b-0 wizard">
 										<!-- <li class="previous first" style="display:none;"><a href="#">First</a></li> -->
 										<!-- <li class="previous"><a href="" class="btn btn-primary waves-effect waves-light" id="pBtn">Previous</a></li> -->
-										<li class="msave"><a href="" class="btn btn-primary waves-effect waves-light" id="sBtn">중간저장</a></li>
+										<li class="msave"><a href="#" class="btn btn-primary waves-effect waves-light" id="sBtn">중간저장</a></li>
+										
 										<!-- <li class="next last" style="display:none;"><a href="#">Last</a></li> -->
 										<!-- <li class="next"><a href="" class="btn btn-primary waves-effect waves-light" id="nBtn">Next</a></li> -->
 									</ul>

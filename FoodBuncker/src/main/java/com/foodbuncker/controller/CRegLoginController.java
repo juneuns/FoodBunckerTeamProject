@@ -5,6 +5,7 @@ package com.foodbuncker.controller;
 
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -50,7 +51,7 @@ public class CRegLoginController {
 			rv.setUrl("../chef/RedirectProc.food");
 			mv.setView(rv);
 		}
-		else{
+		else {
 			// 로그인 처리가 안된 상태면 로그인 폼으로 보낸다.
 			// 문자열 표시 파라메터도 같이 보낸다.
 			mv.addObject("STATUS", status);
@@ -94,15 +95,18 @@ public class CRegLoginController {
 			System.out.println("##################### RedirectView tabNo : " + tabNo);
 			//		1. 회원정보만 입력된 상태.. 다시 입력 폼으로 돌아가야 한다.
 			if(tabNo == 1 || tabNo == 2 ){
+				rv.addStaticAttribute("tabNo", tabNo);
 				rv.setUrl("../chef/RegForm.food");
 				System.out.println("##################### RedirectView 1 & 2 : ");
 			}else if(tabNo == 3){
 			//	2. 메인 메뉴등록까지 완료된 상태..
 
 				System.out.println("##################### RedirectView 3 : ");
+				rv.addStaticAttribute("tabNo", tabNo);
 				rv.setUrl("../chef/RegConf.food");
 			}  else if(tabNo == 4){
 			//	3. 모든 등록 절차가 완료된 상태...
+				rv.addStaticAttribute("tabNo", tabNo);
 				rv.setUrl("../chef/ChefMain.food");
 			}
 			mv.setView(rv);
@@ -160,7 +164,6 @@ public class CRegLoginController {
 	@RequestMapping("/chef/RegForm.food")
 	public ModelAndView regForm(ModelAndView mv, CRegLoginVO cregVO, HttpSession session){
 		
-		
 		try{
 			cregVO.tabNo = (int) session.getAttribute("tabNo");
 		}
@@ -186,6 +189,7 @@ public class CRegLoginController {
 	@RequestMapping("/chef/TempSave.food")
 	public ModelAndView tempSave(ModelAndView mv, CRegLoginVO cregVO, HttpSession session){
 
+		System.out.println("############ TempsaveControll chef 0-001 : " + cregVO.chef );
 		RedirectView rv = new RedirectView();
 		int tabNo = (int) session.getAttribute("tabNo");
 		System.out.println("Tempsave tabNo : " + tabNo);
@@ -202,7 +206,6 @@ public class CRegLoginController {
 			if (cnt == 1){
 				// 회원 정보가 있는 경우 세션에 저장해준다.
 				System.out.println("############ TempsaveControll tabNo 0-0 : " + tabNo );
-				cregLoginService.sessionSettingSrvc(session, cregVO);
 				tabNo = (int) session.getAttribute("tabNo");
 				System.out.println("############ TempsaveControll tabNo 0-1 : " + tabNo );
 			}
@@ -306,10 +309,10 @@ public class CRegLoginController {
 		int no = (int) session.getAttribute("UTNO");
 		cregVO.no = no ;
 
-		System.out.println("@@@@@@@@@@@@@@@@  Session VO NO  : " + cregVO.no);
+//		System.out.println("@@@@@@@@@@@@@@@@  Session VO NO  : " + cregVO.no);
 		CRegLoginVO data = cregLoginService.memberinfoSrvc(cregVO);
 		
-		System.out.println("@@@@@@@@@@@@@@@@  INfoModify  chef : " + data.chef);
+//		System.out.println("@@@@@@@@@@@@@@@@  INfoModify  chef : " + data.chef);
 		mv.addObject("DATA", data);
 		mv.setViewName("chef/InfoModify");
 		return mv;
@@ -323,16 +326,16 @@ public class CRegLoginController {
 		
 		cregVO.no = (int) session.getAttribute("UTNO");
 
-		System.out.println("################## modifyProc 작업 확인  phone number : " + cregVO.phone);
+//		System.out.println("################## modifyProc 작업 확인  phone number : " + cregVO.phone);
 		
 		// 회원 정보 수정해주고
 		// 데이터 가져오자.
 		CRegLoginVO data = cregLoginService.infoModifyProcSrvc(cregVO);
-		System.out.println("################## modifyProc Update 성공 #######################");
+//		System.out.println("################## modifyProc Update 성공 #######################");
 		
-		System.out.println("################## modifyProc 작업 확인  data.no : " + data.no);
+//		System.out.println("################## modifyProc 작업 확인  data.no : " + data.no);
 		// 데이터는 뷰에게 전달해 준다.
-		mv.addObject("DATA", data);
+//		mv.addObject("DATA", data);
 		mv.setViewName("/chef/InfoModify");
 		return mv;
 	}
@@ -363,4 +366,42 @@ public class CRegLoginController {
 		return mv ;
 	}
 	
+	
+	/*
+	 * 일반사진 등록 전담 컨트롤러
+	 */
+	@RequestMapping("/chef/PhotoUpload.food")
+	public ModelAndView photoUpload(ModelAndView mv, CRegLoginVO cregVO, HttpSession session){
+		// 할일 
+		// 	데이터 만들고
+
+		CRegLoginVO data = cregLoginService.photoUploadSrvc(cregVO, session);
+		
+		CRegLoginVO data1 = new CRegLoginVO();
+		CRegLoginVO data2 = new CRegLoginVO();
+		
+		ArrayList list1 = (ArrayList) data.list1 ;
+
+		Iterator itor = list1.iterator();
+		while(itor.hasNext()){
+			data1 = (CRegLoginVO) itor.next();
+		}
+		System.out.println("list1 내용 data1.mImgName : " + data1.mImgName);
+		
+		ArrayList list2 = (ArrayList) data.list2 ;
+		System.out.println("list size : " + list2.size());
+		
+		Iterator itor2 = list2.iterator();
+		while(itor2.hasNext()){
+			data2 = (CRegLoginVO) itor2.next();
+		}
+		System.out.println("list2 내용 data2.mImgName : " + data2.mImgName);
+		ArrayList list = data.list ;
+		
+		mv.addObject("TDATA", data1);
+		mv.addObject("CDATA", data2);
+		mv.addObject("LIST", list);
+		mv.setViewName("chef/PhotoUpload");
+		return mv;
+	}
 }
