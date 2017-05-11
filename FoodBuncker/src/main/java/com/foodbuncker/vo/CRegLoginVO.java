@@ -24,7 +24,7 @@ public class CRegLoginVO {
 	public String imgbody;
 	public int tigrade;
 	public int tabNo;
-	public String isShow;
+	public String isShow;   // truckInfo table의 경우 N, S,T,R,Y 로 구분한다.
 	
 	public MultipartFile chefImg;
 	public String chefImgName;

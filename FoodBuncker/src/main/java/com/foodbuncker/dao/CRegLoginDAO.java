@@ -121,6 +121,14 @@ public class CRegLoginDAO {
 	}
 	
 	/*
+	 * 회원정보 isShow 업데이트 질의 명령 전담함수
+	 */
+	public void updateMemberisShow(CRegLoginVO cregVO){
+		sqlSession.update("foodbuncker.CRegLogin.updateMemberisShow", cregVO);
+		return ;
+	}
+	
+	/*
 	 * 기존 트럭이미지 isShow 업데이트 질의 명령 처리 전담함수
 	 */
 	public void updateTImgIsShowDAO(CRegLoginVO cregVO){

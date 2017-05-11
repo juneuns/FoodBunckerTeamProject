@@ -40,7 +40,7 @@
 
 	$(document).ready(function(){
 		/* alert("이건 나와라!!!"); */
-		alert("tabNo : " + ${tabNo});
+		/* alert("tabNo : " + ${tabNo}); */
 		var clkTab = ${tabNo} ;
 		if(${tabNo} == '' || ${tabNo} == 0 ){
 			alert("0 tabNo : " + ${tabNo});
@@ -82,7 +82,7 @@
 				if( tcName != '' && tname != '' && tnumber != '' && tphone != '' && temail != '' && topenDate != '' && tid != '' && tpw != '' && tpw == trpw){
 					// 모든 사항이 입력된 경우 폼의 내용을 보내자.
 					$("#tabNo").val(clkTab);
-					alert("이건 나와야지...");
+					/* alert("이건 나와야지..."); */
 					$("#ffrm").attr("action", "../chef/TempSave.food").submit();
 				};
 				
@@ -92,12 +92,12 @@
 		if(clkTab == 1){
 			$("#sBtn").click(function(){
 				// 무결성 검사하기
-				alert("fileupload");
+				/* alert("fileupload"); */
 				var tchefImg = $("#chefImg").val();
 				if(tchefImg==''){
 					return;
 				};
-				alert(tchefImg);
+				/* alert(tchefImg); */
 				var tchefComt = $("#chefComment").val();
 				var ttruckImg = $("#truckImg").val();
 				var ttruckComt = $("#truckComment").val();
@@ -107,7 +107,7 @@
 				if(tchefImg != "" && tchefComt != "" && ttruckImg != "" && ttruckComt != ""){
 				/* if(tchefComt != '' && ttruckComt != ''){ */
 					// 모든 사항이 입력된 경우 폼의 내용을 보내자.
-					alert(tchefComt);
+					/* alert(tchefComt); */
 					$(".tabNo").val(clkTab);
 					$("#sfrm").attr("action", "../chef/TempSave.food").submit();
 				};
@@ -124,7 +124,7 @@
 				var tmmenuComment = $("#mmenuComment").val();
 				var tkeyword = "#" + $("#keyword1").val() + "#" + $("#keyword2").val() + "#" + $("#keyword3").val() + "#" + $("#keyword4").val() + "#" + $("#keyword5").val();
 				$("#keyword").val(tkeyword);
-					alert(tkeyword);
+					/* alert(tkeyword); */
 				
 				/* if( tmmenuName != '' && tmmenuPrice != '' && tmmenuComment != '' && tkeyword != ''){ */
  				if(tmmenuImg != "" && tmmenuName != "" && tmmenuPrice != "" && tmmenuComment != "" && tkeyword != ""){
@@ -319,7 +319,7 @@
 													</div>
 													
 													<div class="form-group clearfix">
-														<input type="hidden" id="keyword" name="keyword" />
+														<input type="hidden" id="keyword" name="keyword">
 														<label class="col-lg-2 control-label" for="keyword1"> 검색키워드1</label>
 														<div class="col-lg-10">
 															<input id="keyword1" name="keyword1" type="text" class="required form-control">

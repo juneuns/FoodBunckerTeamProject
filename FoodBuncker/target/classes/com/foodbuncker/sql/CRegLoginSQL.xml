@@ -13,7 +13,7 @@
 		WHERE
 			 T_ID = #{id}
 			 AND T_PASSWORD = #{pw}
-			 AND T_isShow = 'Y'
+			 AND T_isShow IN('Y', 'S', 'T', 'R')
 	</select>
 	
 	<!-- 회원 번호 질의 명령 -->
@@ -24,7 +24,7 @@
 			TruckInfo
 		WHERE
 			 T_ID = #{id}
-			 AND T_isShow = 'Y'
+			 AND T_isShow IN('Y', 'S', 'T', 'R')
 	</select>
 	
 	<!-- 트럭이미지 테이블 회원 정보 유무 질의 명령 -->
@@ -52,7 +52,7 @@
 	<!-- 로그인 정보 질의 명령 -->
 	<select id="selectLoginInfo" resultType="cregVO" parameterType="cregVO">
 		SELECT
-			T_NO AS NO, T_CHEF AS CHEF, T_NAME AS NAME, T_PHONE AS PHONE, T_EMAIL AS EMAIL, t_isShow AS isShow
+			T_NO AS NO, T_ID AS ID, T_CHEF AS CHEF, T_NAME AS NAME, T_PHONE AS PHONE, T_EMAIL AS EMAIL, t_isShow AS isShow
 		FROM
 			TruckInfo
 		WHERE
@@ -60,7 +60,7 @@
 			 AND T_isShow IN('Y', 'S', 'T', 'R')
 	</select>
 	
-	<!--회원 기본 정보 질의 명령 -->
+	<!--등록 완료된 활성 회원 기본 정보 질의 명령 -->
 	<select id="selectMemberInfo" resultType="cregVO" parameterType="int">
 		SELECT
 			T_NO AS no, T_CHEF AS CHEF, T_NAME AS NAME, T_NUM AS NUM, T_PHONE AS PHONE, T_EMAIL AS EMAIL, T_ID AS ID, T_OPEN AS OPEN
@@ -100,7 +100,7 @@
 			GROUP BY
 				TI_T_NO) TT
 		WHERE
-			T.T_ISSHOW = 'Y'
+			T.T_ISSHOW IN('Y', 'S', 'T', 'R')
 			AND T.T_NO = #{no}
 			AND T.T_NO=TT.T_NO
 	</select>
@@ -108,7 +108,7 @@
 	<!-- 등록회원 메뉴 가저오기 전담 질의 명령 -->
 	<select id="selectTImgSql" resultType="cregVO" parameterType="cregVO">
 		SELECT
-			Ti_NO AS TINO, TI_SAVENAME AS mImgName, TI_IMGBODY AS imgbody, TI_GRADE AS TIGRADE
+			TI_T_NO AS NO, Ti_NO AS TINO, TI_SAVENAME AS mImgName, TI_IMGBODY AS imgbody, TI_GRADE AS TIGRADE
 		FROM
 			TruckImage
 		WHERE
@@ -179,6 +179,16 @@
 		SET
 			T_PHONE=#{phone},
 			T_EMAIL=#{email}
+		WHERE
+			T_NO=#{no}
+	</update>
+	
+	<!-- 회원정보 회원 단계 업데이트 질의 명령 -->
+	<update id="updateMemberisShow" parameterType="cregVO">
+		UPDATE
+			TruckInfo
+		SET
+			T_isShow=#{isShow}
 		WHERE
 			T_NO=#{no}
 	</update>
