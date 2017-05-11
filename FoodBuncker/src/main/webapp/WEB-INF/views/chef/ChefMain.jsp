@@ -267,22 +267,7 @@
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="card-box">
-                            <div class="dropdown pull-right">
-                                <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown"
-                                   aria-expanded="false">
-                                    <i class="zmdi zmdi-more-vert"></i>
-                                </a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="#">Action</a></li>
-                                    <li><a href="#">Another action</a></li>
-                                    <li><a href="#">Something else here</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="#">Separated link</a></li>
-                                </ul>
-                            </div>
-
-                            <h4 class="header-title m-t-0">Daily Sales</h4>
-
+                            <h4 class="header-title m-t-0">메뉴별 판매비중</h4>
                             <div class="widget-chart text-center">
                                 <div id="morris-donut-example" style="height: 245px;"></div>
                                 <ul class="list-inline chart-detail-list m-b-0">
@@ -299,40 +284,14 @@
 
                     <div class="col-lg-4">
                         <div class="card-box">
-                            <div class="dropdown pull-right">
-                                <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown"
-                                   aria-expanded="false">
-                                    <i class="zmdi zmdi-more-vert"></i>
-                                </a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="#">Action</a></li>
-                                    <li><a href="#">Another action</a></li>
-                                    <li><a href="#">Something else here</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="#">Separated link</a></li>
-                                </ul>
-                            </div>
-                            <h4 class="header-title m-t-0">Statistics</h4>
+                            <h4 class="header-title m-t-0">장소별 판매현황</h4>
                             <div id="morris-bar-example" style="height: 280px;"></div>
                         </div>
                     </div><!-- end col -->
 
                     <div class="col-lg-4">
                         <div class="card-box">
-                            <div class="dropdown pull-right">
-                                <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown"
-                                   aria-expanded="false">
-                                    <i class="zmdi zmdi-more-vert"></i>
-                                </a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="#">Action</a></li>
-                                    <li><a href="#">Another action</a></li>
-                                    <li><a href="#">Something else here</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="#">Separated link</a></li>
-                                </ul>
-                            </div>
-                            <h4 class="header-title m-t-0">Total Revenue</h4>
+                            <h4 class="header-title m-t-0">일자별 판매현황</h4>
                             <div id="morris-line-example" style="height: 280px;"></div>
                         </div>
                     </div><!-- end col -->
@@ -376,7 +335,7 @@
                                 </ul>
                             </div>
 
-                            <h4 class="header-title m-t-0 m-b-30">Latest Projects</h4>
+                            <h4 class="header-title m-t-0 m-b-30">장소별 예상매출(2017-05-15)</h4>
 
                             <div class="table-responsive">
                                 <table class="table">
