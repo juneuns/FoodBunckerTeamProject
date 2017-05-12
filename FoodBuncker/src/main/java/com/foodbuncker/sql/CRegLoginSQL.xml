@@ -76,7 +76,7 @@
 			T.T_NO NO, T.T_CHEF CHEF, T.T_NAME NAME, T.T_NUM NUM, 
 			T.T_PHONE PHONE, T.T_EMAIL EMAIL, T.T_OPEN OPEN, T.T_ID ID,
 			TT.chefImgName chefImgName, TT.chefComment chefComment, TT.truckImgName truckImgName, 
-			TT.truckComment truckComment, TT.mmenuImgName mmenuImgName, TT.mmenuComment mmenuComment, TT.mmenuName mmenuName, TT.mmenuPrice mmenuPrice, TT.keyword keyword
+			TT.truckComment truckComment, TT.mmenuImgName mmenuImgName, TT.mmenuComment mmenuComment, TT.mmenuName mmenuName, TT.mmenuPrice mmenuPrice, TT.mkeyword keyword
 		FROM
 			TRUCKINFO T,
 			(SELECT 
@@ -89,7 +89,7 @@
 				(select TI_IMGBODY from TruckImage where ti_grade = 3 and ti_isshow = 'Y' and ti_t_no = #{no}) mmenuComment,
 				(select M_NAME from Menu where m_GRADE = 'M' and M_isShow = 'Y' and M_T_NO = #{no}) mmenuName,
 				(select M_Price from Menu where m_GRADE = 'M' and M_isShow = 'Y' and M_T_NO = #{no}) mmenuPrice,
-				(select M_KEYWORD from Menu where m_GRADE = 'M' and M_isShow = 'Y' and M_T_NO = #{no}) keyword
+				(select M_KEYWORD from Menu where m_GRADE = 'M' and M_isShow = 'Y' and M_T_NO = #{no}) mkeyword
 			FROM 
 				TruckImage Ti, Menu M
 			WHERE 

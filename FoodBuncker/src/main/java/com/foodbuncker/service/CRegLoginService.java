@@ -128,7 +128,7 @@ public class CRegLoginService {
 			int cnt = cregLoginDAO.cLoginProcDAO(cregVO);
 			cregVO = cregLoginDAO.selectInfoDAO(cregVO);
 			cregVO.cnt = cnt ;
-			cregVO.isShow = "T";
+			cregVO.isShow = "S";
 			cregVO.no = (int) session.getAttribute("UTNO");
 			cregLoginDAO.updateMemberisShow(cregVO);
 			System.out.println("############# infosrvc cnt 0 : " + cregVO.cnt);
@@ -155,7 +155,7 @@ public class CRegLoginService {
 			
 			int tmp = cregLoginDAO.selectTImgCNTDAO(cregVO);
 			System.out.println("############# infosrvc 1  img cnt : " + tmp);
-			cregVO.isShow = "R";
+			cregVO.isShow = "T";
 			cregVO.no = (int) session.getAttribute("UTNO");
 			cregLoginDAO.updateMemberisShow(cregVO);
 //			if(tmp > 0){
@@ -175,7 +175,7 @@ public class CRegLoginService {
 			
 			System.out.println("############# tabNo" + tabNo);
 			int tmp = cregLoginDAO.selectMImgCNTDAO(cregVO);
-			cregVO.isShow = "Y";
+			cregVO.isShow = "R";
 			cregVO.no = (int) session.getAttribute("UTNO");
 			cregLoginDAO.updateMemberisShow(cregVO);
 //			if(tmp > 0){
@@ -417,7 +417,7 @@ public class CRegLoginService {
 	 * 회원 기본 정보 가저오기 전담 서비스 함수
 	 */
 	public CRegLoginVO memberinfoSrvc(CRegLoginVO cregVO){
-		System.out.println("@@@@@@@@@@@@@@@@  mod srvc VO NO  : " + cregVO.no);
+//		System.out.println("@@@@@@@@@@@@@@@@  mod srvc VO NO  : " + cregVO.no);
 		
 		return cregLoginDAO.selectMemberInfoDAO(cregVO.no);
 	}
@@ -426,9 +426,9 @@ public class CRegLoginService {
 	 * 회원 기본 정보 수정 서비스 함수
 	 */
 	public CRegLoginVO infoModifyProcSrvc(CRegLoginVO cregVO){
-		System.out.println("##################### InfoModservice dao before NO : " + cregVO.no);
+//		System.out.println("##################### InfoModservice dao before NO : " + cregVO.no);
 		cregLoginDAO.updateModifyTInfo(cregVO);
-		System.out.println("##################### InfoModservice dao after NO : " + cregVO.no);
+//		System.out.println("##################### InfoModservice dao after NO : " + cregVO.no);
 		
 		
 		return cregLoginDAO.selectMemberInfoDAO(cregVO.no);
@@ -460,14 +460,41 @@ public class CRegLoginService {
 		cregVO.mmenuComment = vo2.mmenuComment ;
 		cregVO.sname = vo2.sname ;
 		cregVO.keyword = vo2.keyword ;
-		System.out.println("&&&&&&&&&&&&&&&&&& 메인메뉴 받기 완료");
-		System.out.println("&&&&&&&&&&&&&&&&&& 메인메뉴 받기 확인  price : " + cregVO.mmenuPrice);
+//		System.out.println("&&&&&&&&&&&&&&&&&& 메인메뉴 받기 완료");
+//		System.out.println("&&&&&&&&&&&&&&&&&& 메인메뉴 받기 확인  price : " + cregVO.mmenuPrice);
 		
 		// 서브 메뉴 가져오자...
 		cregVO.mmenugrade = "S" ;
 		cregVO.list = (ArrayList) cregLoginDAO.selectMenuDAO(cregVO);
-		System.out.println("&&&&&&&&&&&&&&&&&& 서브메뉴 받기 완료");
+//		System.out.println("&&&&&&&&&&&&&&&&&& 서브메뉴 받기 완료");
 		
 		return cregVO;
+	}
+	
+	/*
+	 * 기타사진 등록보기 뷰 사진 가져오기 전담 서비스함수
+	 */
+	public CRegLoginVO photoUploadSrvc(CRegLoginVO cregVO, HttpSession session){
+		cregVO.no = (int) session.getAttribute("UTNO");
+		
+		System.out.println("photouploadSRVC 1  utno : " + cregVO.no);
+		
+		// 트럭 이미지 받자...
+		CRegLoginVO data = new CRegLoginVO();
+		data.no = cregVO.no ;
+		cregVO.tigrade = 1 ;
+		data.list1 = (ArrayList) cregLoginDAO.selectTImgDAO(cregVO);
+		
+		System.out.println("photouploadSRVC 2  tiGrade : " + cregVO.tigrade);
+		
+		// 쉐프 이미지 받자.
+		cregVO.tigrade = 2 ;
+		data.list2 = (ArrayList) cregLoginDAO.selectTImgDAO(cregVO);
+		
+		// 기타사진 받자...
+		cregVO.tigrade = 4 ;
+		data.list = (ArrayList) cregLoginDAO.selectTImgDAO(cregVO);
+		
+		return data;
 	}
 }

@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
@@ -44,7 +44,7 @@
 
 					<!-- LOGO -->
                     <div class="topbar-left">
-                        <a href="index.html" class="logo"><span>Food<span>Buncker</span></span></a>
+                        <a href="../person/MainWindow.food" class="logo"><span>Food<span>Buncker</span></span></a>
                     </div>
                     <!-- End Logo container-->
                     <div class="menu-extras">                        
@@ -122,12 +122,12 @@
                     <div class="col-sm-12">
                         <div class="card-box">
 							<h4 class="header-title m-t-0 m-b-30">쉐프사진(1895X1000)</h4>
-                            <input type="file" class="dropify" data-height="300" data-default-file="../resources/img/detailviewchef.jpg"/>
+                            <input type="file" class="dropify" data-height="300" data-default-file="../image/${CDATA.mImgName}"/>
 							<div class="row">
 								<div class="form-group">
 									<label class="col-sm-5 control-label">쉐프한마디</label>
 									<div class="col-sm-7">
-										<a href="#" id="chefComment" data-type="text" data-pk="1">최고의 맛을 보여 드리겠습니다.</a>
+										<a href="#" id="chefComment" data-type="text" data-pk="1">${CDATA.imgbody}</a>
 									</div>
 								</div>
 							</div>
@@ -140,18 +140,18 @@
                     <div class="col-sm-12">
                         <div class="card-box">
 							<h4 class="header-title m-t-0 m-b-30">트럭사진(1895X1000)</h4>
-                            <input type="file" class="dropify" data-height="300" data-default-file="../resources/img/detailviewtruck.jpg"/>
+                            <input type="file" class="dropify" data-height="300" data-default-file="../image/${TDATA.mImgName}"/>
 							<div class="row">
 								<div class="form-group">
 									<label class="col-sm-5 control-label">트럭설명</label>
 									<div class="col-sm-7">
-										<a href="#" id="truckComment" data-type="text" data-pk="1">어디서든 최고의 요리를 조리할 수 있는 트럭</a>
+										<a href="#" id="truckComment" data-type="text" data-pk="1">${TDATA.imgbody}</a>
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-sm-5 control-label">검색키워드</label>
 									<div class="col-sm-7">
-										<a href="#" id="truckkeyword" data-type="text" data-pk="1">소고기;숯불;스테이크;시카고;푸드트럭</a>
+										<a href="#" id="keyword" data-type="text" data-pk="1">${TDATA.keyword}</a>
 									</div>
 								</div>
 							</div>
@@ -160,96 +160,26 @@
                 </div>
                 <!-- end row -->
 
+
+<c:forEach var="data" items="${LIST}">
 				<div class="row">
                     <div class="col-sm-12">
                         <div class="card-box">
 							<h4 class="header-title m-t-0 m-b-30">기타사진(1895X1000)</h4>
-                            <input type="file" class="dropify" data-height="300" data-default-file=""/>
+                            <input type="file" class="dropify" data-height="300" data-default-file="../image/${data.mImgName}"/>
 							<div class="row">
 								<div class="form-group">
 									<label class="col-sm-5 control-label">사진설명(일시,장소 등)</label>
 									<div class="col-sm-7">
-										<a href="#" id="photoComment1" data-type="text" data-pk="1"></a>
+										<a href="#" id="${data.no}photoComment" data-type="text" data-pk="1">${data.imgbody}</a>
 									</div>
 								</div>
 							</div>
                         </div>
                     </div><!-- end col -->
                 </div>
+</c:forEach>
                 <!-- end row -->
-
-				<div class="row">
-                    <div class="col-sm-12">
-                        <div class="card-box">
-							<h4 class="header-title m-t-0 m-b-30">기타사진(1895X1000)</h4>
-                            <input type="file" class="dropify" data-height="300" data-default-file=""/>
-							<div class="row">
-								<div class="form-group">
-									<label class="col-sm-5 control-label">사진설명(일시,장소 등)</label>
-									<div class="col-sm-7">
-										<a href="#" id="photoComment2" data-type="text" data-pk="1"></a>
-									</div>
-								</div>
-							</div>
-                        </div>
-                    </div><!-- end col -->
-                </div>
-                <!-- end row -->
-
-				<div class="row">
-                    <div class="col-sm-12">
-                        <div class="card-box">
-							<h4 class="header-title m-t-0 m-b-30">기타사진(1895X1000)</h4>
-                            <input type="file" class="dropify" data-height="300" data-default-file=""/>
-							<div class="row">
-								<div class="form-group">
-									<label class="col-sm-5 control-label">사진설명(일시,장소 등)</label>
-									<div class="col-sm-7">
-										<a href="#" id="photoComment3" data-type="text" data-pk="1"></a>
-									</div>
-								</div>
-							</div>
-                        </div>
-                    </div><!-- end col -->
-                </div>
-                <!-- end row -->
-
-				<div class="row">
-                    <div class="col-sm-12">
-                        <div class="card-box">
-							<h4 class="header-title m-t-0 m-b-30">기타사진(1895X1000)</h4>
-                            <input type="file" class="dropify" data-height="300" data-default-file=""/>
-							<div class="row">
-								<div class="form-group">
-									<label class="col-sm-5 control-label">사진설명(일시,장소 등)</label>
-									<div class="col-sm-7">
-										<a href="#" id="photoComment4" data-type="text" data-pk="1"></a>
-									</div>
-								</div>
-							</div>
-                        </div>
-                    </div><!-- end col -->
-                </div>
-                <!-- end row -->
-
-				<div class="row">
-                    <div class="col-sm-12">
-                        <div class="card-box">
-							<h4 class="header-title m-t-0 m-b-30">기타사진(1895X1000)</h4>
-                            <input type="file" class="dropify" data-height="300" data-default-file=""/>
-							<div class="row">
-								<div class="form-group">
-									<label class="col-sm-5 control-label">사진설명(일시,장소 등)</label>
-									<div class="col-sm-7">
-										<a href="#" id="photoComment5" data-type="text" data-pk="1"></a>
-									</div>
-								</div>
-							</div>
-                        </div>
-                    </div><!-- end col -->
-                </div>
-                <!-- end row -->
-
 				<div class="row">
                     <div class="col-sm-12">
                         <div class="card-box">
@@ -328,7 +258,7 @@
 		$(document).ready(function(){
 			$('#chefComment').editable({mode: 'inline'});
 			$('#truckComment').editable({mode: 'inline'});
-			$('#truckkeyword').editable({mode: 'inline'});
+			$('#keyword').editable({mode: 'inline'});
 			$('#photoComment1').editable({mode: 'inline'});
 			$('#photoComment2').editable({mode: 'inline'});
 			$('#photoComment3').editable({mode: 'inline'});

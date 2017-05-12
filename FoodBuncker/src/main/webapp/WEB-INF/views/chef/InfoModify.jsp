@@ -43,7 +43,7 @@
         <div class="clearfix"></div>
         <div class="wrapper-page">
             <div class="text-center">
-                <a href="index.html" class="logo"><span>Food<span>Buncker</span></span></a>
+                <a href="../person/MainWindow.food" class="logo"><span>Food<span>Buncker</span></span></a>
                 <h5 class="text-muted m-t-0 font-600">개인정보수정</h5>
             </div>
 				</div>
@@ -111,9 +111,9 @@
 									<input type="hidden" id="email" name="email">	
 								</form>
 								<div class="btn-group btn-group-justified m-b-10">
-                                <a class="btn btn-danger waves-effect waves-light" id="cBtn" role="button" href="#">보류</a>
+                                <!-- <a class="btn btn-danger waves-effect waves-light" id="cBtn" role="button" href="#">보류</a> -->
+                                <a class="btn btn-warning waves-effect waves-light" role="button" id="mBtn" >Chef Main</a>
                                 <a class="btn btn-primary waves-effect waves-light" role="button" id="finalReg">최종수정</a>
-                                <a class="btn btn-warning waves-effect waves-light" role="button" >CHef Main</a>
                             </div>
 							</div><!-- end col -->
 						</div><!-- end row -->
@@ -162,20 +162,20 @@
 			$('#finalReg').click(function(){
 				alert("수정된 정보가 저장되었습니다.");
 				
-				/* var tp = $('#tphone').text();
+				var tp = $('#tphone').text();
 				$('#phone').val(tp);
 				var tmail = $('#temail').text();
 				$('#email').val(tmail);
-				alert($('#phone').val()); */
+				/* alert($('#phone').val()); */
 				
-				/* $("#frm").attr("action", "../chef/InfoModifyProc.food").submit(); */
-				$(location).attr("href","../FoodBuncker/ChefMain.food");
+				$("#frm").attr("action", "../chef/InfoModifyProc.food").submit();
+				/* $(location).attr("href","../FoodBuncker/chef/ChefMain.food"); */
 			});
 
-			$('#cBtn').click(function(){
-				alert("수정된 내용이 저장되지 않았습니다.쉐프 메인 페이지로 이동합니다.");
+			$('#mBtn').click(function(){
+				/* alert("수정된 내용이 저장되지 않았습니다.쉐프 메인 페이지로 이동합니다."); */
 				
-				$(location).attr("href","chefmain.html");
+				$(location).attr("href","../chef/ChefMain.food");
 			}); 
 
 			$('#basicwizard').bootstrapWizard({'tabClass': 'nav nav-tabs navtab-wizard nav-justified bg-muted'});

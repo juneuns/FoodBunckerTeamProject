@@ -45,7 +45,7 @@
         <div class="clearfix"></div>
         <div class="wrapper-page">
             <div class="text-center">
-                <a href="index.html" class="logo"><span>Food<span>Buncker</span></span></a>
+                <a href="../person/MainWindow.food" class="logo"><span>Food<span>Buncker</span></span></a>
                 <h5 class="text-muted m-t-0 font-600">회원가입내용확인</h5>
             </div>
 		</div>
@@ -317,8 +317,8 @@
 				alert($('#oldChefImg').val());
 				alert("4 : " + $('#phone').val()); */
 				
-				/* $('#frm').attr("action", "../chef/RegProc.food").submit(); */
-				$(location).attr("href","../chef/ChefMain.food");
+				$('#frm').attr("action", "../chef/RegProc.food").submit();
+				/* $(location).attr("href","../chef/ChefMain.food"); */
 			});
 
 			$('#cBtn').click(function(){
