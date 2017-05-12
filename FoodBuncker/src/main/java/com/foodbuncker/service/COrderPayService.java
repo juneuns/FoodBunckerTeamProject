@@ -107,5 +107,60 @@ public class COrderPayService {
 		}catch(Exception e){}
 		return dao.selectOneTMenu(tno);
 	}
+	
+	/*
+	 * 주문 insert
+	 */
+	public void insertOrderInput(String[] mArray, String[] pArray, String[] eaArray, int tno, String[] mno){
+		boolean result = true;
+		for(int i=0; i < mArray.length; i++){
+			if(!(eaArray[i].equals(0))){
+			COrderPayVO data = new COrderPayVO();
+				data.name = mArray[i];
+				data.aprice = pArray[i];
+				int iea = Integer.parseInt(eaArray[i]);
+				data.ea = iea;
+				data.tno = tno;
+				int imno = Integer.parseInt(mno[i]);
+				data.amno = imno;
+				if(result == true){
+					dao.insertOrderInput(data);
+					result = false;
+				}
+				if(!(iea == 0)){
+					dao.insertOrderInputTwo(data);
+				}
+			}
+		}
+	}
+	
+	/*
+	 * pno change
+	 */
+	public int pnoChange(String strpno){
+		int pno = 0;
+		try {
+			pno = Integer.parseInt(strpno);
+		} catch (Exception e) {
+			System.out.println("pno 예외 발생이욤");
+			pno = 1;
+		}
+		return pno;
+	}
 
+	/*
+	 * tno change
+	 */
+	public int tnoChange(String strtno){
+		int pno = 0;
+		try {
+			pno = Integer.parseInt(strtno);
+		} catch (Exception e) {
+			System.out.println("tno 예외 발생이욤");
+			pno = 1;
+		}
+		return pno;
+	}
+	
+	
 }

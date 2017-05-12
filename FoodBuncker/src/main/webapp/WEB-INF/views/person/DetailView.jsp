@@ -140,12 +140,12 @@
 					<c:forEach var="data" items="${MMLIST}">
 					<div class="img">
 						<img src="../image/${data.sname}"
-							alt="1895X1000 About the image" height="190px" width="395px">
+							alt="1895X1000 About the image">
 					</div>
 
 					<div class="align">
 						<h3>Main Menu - ${data.mname}</h3>
-						<p>${data.body}</p>
+						<p>${data.imgbody}</p>
 					</div>
 					</c:forEach>
 				</div>
@@ -215,7 +215,8 @@
 				<h4>${data.mname}</h4>
 				<p>${data.body}</p>
 				<p>${data.price}원</p>
-				<a href="#"><i class="fa fa-twitter"></i></a> </figcaption> </figure>
+				</figcaption>
+				</figure>
 			</div>
 			</c:forEach>
 			<!-- -----------------------  foreach문으로 끝---------------------------------------- -->

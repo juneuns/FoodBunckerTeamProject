@@ -1,6 +1,7 @@
 package com.foodbuncker.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -13,6 +14,9 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import com.foodbuncker.service.COrderPayService;
 import com.foodbuncker.vo.COrderPayVO;
+import com.sun.javafx.event.RedirectedEvent;
+
+import oracle.sql.ARRAY;
 
 @Controller
 public class COrderPayController {
@@ -101,8 +105,47 @@ public class COrderPayController {
 	public ModelAndView orderInputForm(ModelAndView mv, HttpServletRequest req){
 		String strTno = req.getParameter("tno");
 		ArrayList<COrderPayVO> list = service.selectOneTMenu(strTno);
+		int tno = service.tnoChange(strTno);
+		String strpno = req.getParameter("pno");
+		int pno = service.pnoChange(strpno);
+		
+		mv.addObject("TNO", tno);
+		mv.addObject("PNO", pno);
 		mv.addObject("LIST",list);
 		mv.setViewName("/chef/OrderInput");
 		return mv;
 	}
+	
+	@RequestMapping("/chef/OrderInputProc.food")
+	public ModelAndView orderInputProc(ModelAndView mv, HttpServletRequest req, HttpSession session){
+		String  stno = req.getParameter("tno");
+		int tno = service.tnoChange(stno);
+		String  spno = req.getParameter("pno");
+		int pno = service.pnoChange(spno);
+		
+		String[] mName = req.getParameterValues("mName");
+		String[] price = req.getParameterValues("price");
+		String[] ea = req.getParameterValues("mnum");
+		String[] mno = req.getParameterValues("amno");
+		
+		service.insertOrderInput(mName, price, ea, tno, mno);
+		
+		RedirectView rv = new RedirectView();
+		rv.addStaticAttribute("TNO", tno);
+		rv.addStaticAttribute("PNO", pno);
+		rv.addStaticAttribute("MNAME", mName);
+		rv.addStaticAttribute("PRICE", price);
+		rv.addStaticAttribute("EA", ea);
+		rv.addStaticAttribute("MNO", mno);
+		if(!(session.getAttribute("UTNO") == null)){
+			rv.setUrl("../chef/OrderBoard.food");
+			mv.setView(rv);
+		}
+		else{
+			rv.setUrl("../person/userView.food");
+			mv.setView(rv);
+		}
+		return mv;
+	}
+	
 }

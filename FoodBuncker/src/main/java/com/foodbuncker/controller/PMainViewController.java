@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.foodbuncker.service.PMainViewService;
 import com.foodbuncker.util.PageUtil;
@@ -137,4 +138,58 @@ public class PMainViewController {
 		return mv;
 	}
 	
+	@RequestMapping("/person/userView.food")
+	public ModelAndView userMainView(ModelAndView mv, HttpServletRequest req){
+		String strtno = req.getParameter("tno");
+		int tno = pmvService.tnoChange(strtno);
+		String strpno = req.getParameter("pno");
+		int pno = pmvService.pnoChange(strpno);
+		
+		mv.addObject("TNO", tno);
+		mv.addObject("PNO", pno);
+		mv.setViewName("/person/UserView");
+		return mv;
+	}
+	
+	@RequestMapping("/person/reveiwForm.food")
+	public ModelAndView reveiwForm(ModelAndView mv, HttpServletRequest req){
+		String strtno = req.getParameter("tno");
+		int tno = Integer.parseInt(strtno);
+		String strpno = req.getParameter("pno");
+		int pno = Integer.parseInt(strpno);
+		
+		mv.addObject("TNO", tno);
+		mv.addObject("PNO", pno);
+		mv.setViewName("/person/reveiwForm");
+		return mv;
+	}
+	
+	@RequestMapping("/person/reviewProc.food")
+	public ModelAndView reveiwProc(ModelAndView mv, HttpServletRequest req){
+		String strtno = req.getParameter("tno");
+		int tno = Integer.parseInt(strtno);
+		String strpno = req.getParameter("pno");
+		int pno = 0;
+		try {
+			pno = Integer.parseInt(strpno);
+		} catch (Exception e) {
+			pno = 1;
+		}
+		 
+		String body = req.getParameter("body");
+		
+		pmvService.insertReview(tno, body);
+		
+//		RedirectView rv = new RedirectView();
+//		rv.addStaticAttribute("TNO", tno);
+//		rv.addStaticAttribute("PNO", pno);
+//		rv.setUrl("../person/UserView.food");
+//		mv.setView(rv);
+//		return mv;
+		
+		mv.addObject("TNO", tno);
+		mv.addObject("PNO", pno);
+		mv.setViewName("/person/UserView");
+		return mv;
+	}
 }

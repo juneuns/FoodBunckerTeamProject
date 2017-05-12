@@ -65,8 +65,8 @@
 
         <!-- SECTION 1 - HERO TITLE -->
        
-            <div class="container">
-                <div class="row">
+            <div class="container" align="center">
+                <div class="row" align="center">
                     <h2>주문 입력</h2><br>
                     <h5>메뉴의 주문 숫자를 입력 확인 후 주문 버튼을 눌러주세요.</h5>
                 </div><!-- // .row -->
@@ -76,36 +76,43 @@
 
         <!-- SECTION 2 - GALLERY -->
         <section class="gallery space">
-            <div class="container">
+            <div class="container" align="center">
             
 <!-- -----------------------   foreach문으로 1단 반복, 총 사진 갯수 알아내어 반복 횟수 정해야 함--------------------------------------- -->             
-                <div class="row">
-                <form id="frm">
+                <div class="row" align="center">
+                
+                <form method="POST" action="" id="frm">	
 <!-- -----------------------  foreach문으로 1단 1열 반복-------------------------------------- -->                 
-                    
+                    <input type="hidden" name="tno" value="${TNO}">
+                    <input type="hidden" name="pno" value="${PNO}">
                     <div class="col-sm-6" align="center">
-                    <c:forEach var="data" items="${LIST}">
-                        <div class="card-box ">
+                    <c:forEach var="data" items="${LIST}" varStatus="st">
+                		<input type="hidden" name="mName" value="${data.mName}">
+                		<input type="hidden" name="price" value="${data.price}">
+                		<input type="hidden" name="amno" value="${data.mno}">
+                		
+                        <div class="card-box" align="center">
                             <img src="../image/${data.savename}">
-                            <div class="caption">
+                            <div class="caption" align="center" >
                                 <div class="align">
                                     <h5>${data.mName}</h5><br>
-                                    <h5>${data.price }원</h5>
+                                    <h5>${data.price}원</h5>
                                 </div>
-                                <div class="row">
+                                <div class="row" align="center">
                                 	<div class="col-md-6" align="center">
-                                    	<div class="p-20">
-                                    		<div class="form-group">
-                                               	<label class="control-label">주문수량</label>
-                                               	<input id="mnum" type="text" value="0" name="mnum" data-bts-min="0" data-bts-max="100" data-bts-init-val="" data-bts-step="1" data-bts-decimal="0" data-bts-step-interval="100" data-bts-force-step-divisibility="round" data-bts-step-interval-delay="500" data-bts-prefix="" data-bts-postfix="" data-bts-prefix-extra-class="" data-bts-postfix-extra-class="" data-bts-booster="true" data-bts-boostat="10" data-bts-max-boosted-step="false" data-bts-mousewheel="true" data-bts-button-down-class="btn btn-default" data-bts-button-up-class="btn btn-default"/>
+                                    	<div class="p-20" align="center">
+                                    		<div class="form-group" align="center">
+                                               	<label class="control-label" align="center">주문수량</label>
+                                               	<input type="text" value="0" name="mnum" data-bts-min="0" data-bts-max="100" data-bts-init-val="" data-bts-step="1" data-bts-decimal="0" data-bts-step-interval="100" data-bts-force-step-divisibility="round" data-bts-step-interval-delay="500" data-bts-prefix="" data-bts-postfix="" data-bts-prefix-extra-class="" data-bts-postfix-extra-class="" data-bts-booster="true" data-bts-boostat="10" data-bts-max-boosted-step="false" data-bts-mousewheel="true" data-bts-button-down-class="btn btn-default" data-bts-button-up-class="btn btn-default"/>
                                            	</div>
                                     	</div>
                                 	</div>    
                             	</div>
                         	</div>
                     	</div>
+                  		
                     </c:forEach>
-                   </form>
+                </form>  		
                     <div class="row" id="loadmore">
                     </div>
                 <div class="row">
@@ -136,18 +143,17 @@
             r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
             ga('create','UA-XXXXX-X','auto');ga('send','pageview');
         </script>
-        <script>
-			$(document).ready(function(){
-				$("#lBtn").click(function(){
-					
-				});
-				$("input[name='mnum']").TouchSpin({
-	                buttondown_class: "btn btn-primary",
-	                buttonup_class: "btn btn-primary"
-	            });
-
-			});
-	
+<script>
+	$(document).ready(function(){
+		$("#lBtn").click(function(){
+			$("#frm").attr("action", "../chef/OrderInputProc.food").submit();
+		});
+		
+		$("input[name='mnum']").TouchSpin({
+               buttondown_class: "btn btn-primary",
+               buttonup_class: "btn btn-primary"
+           });
+		});
 </script> 
     </body>
 </html>
