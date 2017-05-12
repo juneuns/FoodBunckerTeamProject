@@ -20,7 +20,7 @@ public class CreateTable {
 						+ "T_OPEN VARCHAR2(50) NOT NULL, "
 						+ "T_EMAIL VARCHAR2(50) NOT NULL, "
 						+ "T_NUM VARCHAR2(20) NOT NULL, "
-						+ "T_ID VARCHAR2(20) unique NOT NULL, "
+						+ "T_ID VARCHAR2(20) NOT NULL, "
 						+ "T_PASSWORD VARCHAR2(20) NOT NULL, "
 //						+ "T_KEYWORD VARCHAR2(200) NOT NULL, "
 //						+ "T_BODY VARCHAR2(2000) NOT NULL, "
