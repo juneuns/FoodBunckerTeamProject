@@ -100,7 +100,17 @@ public class InsertMOrderMenu {
 									while(hourSum >= insertHourSum && now.isBefore(hourEnd) ){
 				//System.out.println("now : "+now+" hourSum : "+hourSum+"  insertHourSum : "+insertHourSum);
 										//if(now.isAfter(hourEnd))break;
-										
+										if(vo.rain > 100.0){
+											hourSum = (int)(hourSum * 0.2 * getFactor()/1000)*1000;
+										}else if(vo.rain > 50.0){
+											hourSum = (int)(hourSum * 0.4 * getFactor()/1000)*1000;
+										}else if(vo.rain > 30.0){
+											hourSum = (int)(hourSum * 0.6 * getFactor()/1000)*1000;
+										}else if(vo.rain > 10.0){
+											hourSum = (int)(hourSum * 0.7 * getFactor()/1000)*1000;
+										}else if(vo.rain > 5.0){
+											hourSum = (int)(hourSum * 0.8 * getFactor()/1000)*1000;
+										}
 										String gender = "M";
 										if((vo.manRatio/100)<Math.random()){
 											gender = "F";

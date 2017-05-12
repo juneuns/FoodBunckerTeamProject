@@ -47,7 +47,7 @@ public class InsertMenu {
 				
 				"INSERT INTO Menu VALUES((SELECT NVL(MAX(M_No), 0) + 1 FROM Menu), 7, '섬버거', 10000,'수제 와퍼, 빵, 데친 야채를 넣은 최고의 수제버거', 'truck07_m_01.jpg', 'M','#햄버거#와퍼#섬버거#수제', 'Y')",
 				"INSERT INTO Menu VALUES((SELECT NVL(MAX(M_No), 0) + 1 FROM Menu), 7, '미니버거', 6000,'크기를 줄여 칼로리가 적은 다이어트 버거', 'truck07_m_02.jpg', 'S','#햄버거#와퍼#섬버거#수제#다이어트', 'Y')",
-				"INSERT INTO Menu VALUES((SELECT NVL(MAX(M_No), 0) + 1 FROM Menu), 7, '토마토피자', 8000,'싱싱한 토마토를 갈아 소고기 와퍼와 조화를 이룬 버거', 'truck07_m_03.jpg', 'S','#햄버거#와퍼#섬버거#수제#토마토', 'Y')",
+				"INSERT INTO Menu VALUES((SELECT NVL(MAX(M_No), 0) + 1 FROM Menu), 7, '토마토피자버거', 8000,'싱싱한 토마토를 갈아 소고기 와퍼와 조화를 이룬 버거', 'truck07_m_03.jpg', 'S','#햄버거#와퍼#섬버거#수제#토마토', 'Y')",
 				"INSERT INTO Menu VALUES((SELECT NVL(MAX(M_No), 0) + 1 FROM Menu), 7, '빅버거', 13000,'소고기 와퍼와 불고기 와퍼를 함께 넣은 정말 큰 버거', 'truck07_m_04.jpg', 'S','#햄버거#와퍼#섬버거#수제#빅버거', 'Y')",
 				"INSERT INTO Menu VALUES((SELECT NVL(MAX(M_No), 0) + 1 FROM Menu), 7, '한우 버거', 13000,'1++등급 한우 살치살 100%로 만든 고급 버거', 'truck07_m_04.jpg', 'S','#햄버거#와퍼#섬버거#수제#소고기', 'Y')",
 				

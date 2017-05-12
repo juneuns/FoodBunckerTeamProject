@@ -48,8 +48,8 @@ public class InsertTruckImg {
 				"INSERT INTO TRUCKIMAGE VALUES((SELECT NVL(MAX(TI_No), 0) + 1 FROM TruckImage), 2, 'truck02_t_05.jpg', '2016/4/20 대학로에서', 4, 'Y')",
 				"INSERT INTO TRUCKIMAGE VALUES((SELECT NVL(MAX(TI_No), 0) + 1 FROM TruckImage), 3, 'truck03_t_02.jpg', '2016/8/10 보라매공원', 4, 'Y')",
 				"INSERT INTO TRUCKIMAGE VALUES((SELECT NVL(MAX(TI_No), 0) + 1 FROM TruckImage), 3, 'truck03_t_03.jpg', '2016/8/10 보라매공원', 4, 'Y')",
-				"INSERT INTO TRUCKIMAGE VALUES((SELECT NVL(MAX(TI_No), 0) + 1 FROM TruckImage), 4, 'truck03_t_04.jpg', '2016/8/10 보라매공원', 4, 'Y')",
-				"INSERT INTO TRUCKIMAGE VALUES((SELECT NVL(MAX(TI_No), 0) + 1 FROM TruckImage), 2, 'truck04_t_02.jpg', '2017/3/29 잠실', 4, 'Y')",
+				"INSERT INTO TRUCKIMAGE VALUES((SELECT NVL(MAX(TI_No), 0) + 1 FROM TruckImage), 3, 'truck03_t_04.jpg', '2016/8/10 보라매공원', 4, 'Y')",
+				"INSERT INTO TRUCKIMAGE VALUES((SELECT NVL(MAX(TI_No), 0) + 1 FROM TruckImage), 4, 'truck04_t_02.jpg', '2017/3/29 잠실', 4, 'Y')",
 		};
 
 		MyJDBC db = null;
