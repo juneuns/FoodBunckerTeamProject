@@ -257,5 +257,44 @@ public class PMainViewService {
 		return pmvDAO.selectImage(map);
 	}
 	
+	/*
+	 * 리뷰 입력하기 질의 실행 함수
+	 */
+	public void insertReview(int tno, String body){
+		PMainViewVO data = new PMainViewVO();
+		System.out.println(tno);
+		System.out.println(body);
+		System.out.println("-------");
+		data.tno = tno;
+		data.body = body;
+		pmvDAO.insertReview(data);
+	}
 	
+	/*
+	 * pno change
+	 */
+	public int pnoChange(String strpno){
+		int pno = 0;
+		try {
+			pno = Integer.parseInt(strpno);
+		} catch (Exception e) {
+			System.out.println("pno 예외 발생이욤");
+			pno = 1;
+		}
+		return pno;
+	}
+
+	/*
+	 * tno change
+	 */
+	public int tnoChange(String strtno){
+		int pno = 0;
+		try {
+			pno = Integer.parseInt(strtno);
+		} catch (Exception e) {
+			System.out.println("tno 예외 발생이욤");
+			pno = 1;
+		}
+		return pno;
+	}
 }

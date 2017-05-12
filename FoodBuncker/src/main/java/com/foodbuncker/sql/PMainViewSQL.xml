@@ -124,7 +124,7 @@
 		WHERE 
 			TI_ISSHOW = 'Y'
 		AND
-			TI_GRADE = 3
+			TI_GRADE = 4
 		AND
 			TI_T_NO = #{tno}
 	</select>
@@ -155,6 +155,7 @@
 	
 	<!-- 푸드트럭별 메인메뉴 가져오기 -->
 	<select id="selectMainMenu" resultType="pmainVO" parameterType="int">
+		<!-- 
 		SELECT 
 			M_NO AS MNO,
 			M_T_NO AS MTNO,
@@ -171,6 +172,21 @@
 			M_GRADE = 'M'
 		AND
 			M_T_NO = #{tno}
+		 -->	
+		SELECT
+			TI_NO AS TINO,
+			TI_T_NO AS TNO,
+			TI_SAVENAME AS SNAME,
+			TI_IMGBODY AS IMGBODY,
+			TI_GRADE AS GRADE
+		FROM
+			TRUCKIMAGE	
+		WHERE 
+			TI_ISSHOW = 'Y'
+		AND
+			TI_GRADE = 3
+		AND
+			TI_T_NO = #{tno} 
 	</select>
 	
 	<!-- 푸드트럭별  후기 가져오기 -->
@@ -196,7 +212,7 @@
 			B_NO DESC
 	</select>
 	
-	<!-- 총 운행거리 불러오기 -->
+	<!-- 트럭별 운행거리 불러오기 -->
 	<select id="selectKM" resultType="int" parameterType="int">
 		SELECT
 			SUM(RG_RANGE)
@@ -335,5 +351,13 @@
 		WHERE
 			RNO BETWEEN #{start} AND #{end}
 	</select>	
+	
+	<!-- 후기 입력하기 -->
+	<insert id="insertReview" parameterType="pmainVO">
+		INSERT INTO BOARD VALUES(
+			(SELECT NVL(MAX(B_NO), 0) + 1 FROM BOARD),
+			#{tno}, #{body}, SYSDATE, 'Y'
+		)
+	</insert>
 	
 </mapper>

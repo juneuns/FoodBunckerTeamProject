@@ -153,4 +153,15 @@ public class PMainViewDAO {
 	public ArrayList selectImage(HashMap map){
 		return (ArrayList) sqlSession.selectList("foodbuncker.PMainView.selectImage", map);
 	}
+	
+	/*
+	 * 후기 입력하기 질의 실행 함수
+	 */
+	public void insertReview(PMainViewVO data){
+		System.out.println(data.tno);
+		System.out.println(data.body);
+		sqlSession.update("foodbuncker.PMainView.insertReview", data);
+
+		System.out.println(data.body);
+	}
 }

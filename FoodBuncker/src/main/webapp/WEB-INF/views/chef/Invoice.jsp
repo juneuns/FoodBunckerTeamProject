@@ -139,8 +139,8 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="pull-right m-t-30">
-                                            <p><strong>주문시간: </strong> ${ORDERINFO.orderTime }</p>
-                                            <p class="m-t-10"><strong>주문번호: </strong> ${ORDERINFO.ono }</p>
+                                            <p><strong>주문시간 - </strong> ${ORDERINFO.showdate}</p>
+                                            <p class="m-t-10"><strong>주문번호 - </strong> ${ORDERINFO.ono }</p>
                                         </div>
                                     </div><!-- end col -->
                                 </div>

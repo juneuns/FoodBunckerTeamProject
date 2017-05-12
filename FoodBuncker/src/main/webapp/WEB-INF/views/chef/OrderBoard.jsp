@@ -135,20 +135,20 @@
  <!-- -----------------------    foreach문으로 반복 시작------------------------------------------------- --> 	                                  
                    		<c:forEach var="data" items="${ORDERLIST }">
                    			<article class="pricing-column col-lg-3 col-sm-6" >
-                   			<c:if test="${data.orderTime  ne data.payTime }">
+                   			<c:if test="${data.otime  ne data.ptime }">
                    				<div class="ribbon"><span>조리중</span></div>
                    			</c:if>
                                 <div class="inner-box card-box" style="height:500px;">
                                     <div class="plan-header text-center">
                                         <h3 class="plan-title">주문No</h3>
                                         <h2 class="plan-price">${data.ono }</h2>
-                                        <div class="plan-duration">주문시간 ${data.orderTime }</div>
+                                        <div class="plan-duration">주문시간 ${data.showdate}</div>
                                     </div>
 									<div class="text-center">
-									<c:if test="${data.orderTime  eq data.payTime }">
+									<c:if test="${data.otime  eq data.ptime }">
                                         <a href="../chef/Invoice.food?ono=${data.ono }" class="btn btn-success btn-bordred btn-rounded waves-effect waves-light">결제</a>
                                  	</c:if>
-                                 	<c:if test="${data.orderTime ne data.payTime }">
+                                 	<c:if test="${data.otime ne data.ptime }">
                                         <a href="../chef/CookEndProc.food?ono=${data.ono }&tno=${data.tno}" class="btn btn-primary btn-bordred btn-rounded waves-effect waves-light">완료입력</a>
                                  	</c:if>
                                     </div>
