@@ -197,7 +197,7 @@
 
 				 <div class="row">
                     <div class="col-sm-12">
-		<form method="POST" id="#" class="form-horizontal" id="morefrm" name="morefrm" encType="multipart/form-data">	
+		<form method="POST" class="form-horizontal" id="morefrm" name="morefrm" encType="multipart/form-data">	
                         
                         <div class="card-box">
 							<h4 class="header-title m-t-0 m-b-30">서브메뉴 추가(300X300)</h4>
