@@ -96,7 +96,7 @@ public class CRegLoginService {
 			session.setAttribute("tabNo", tabNo);
 		}
 		
-		System.out.println(session.getAttribute("sessionset   tabNo : " + tabNo));
+		System.out.println("sessionSetting service tabNo : " + session.getAttribute("sessionset   tabNo : " + tabNo));
 		return ;
 	}
 	
@@ -121,20 +121,20 @@ public class CRegLoginService {
 			tabNo = (int) session.getAttribute("tabNo");
 		}
 		catch(Exception e){}
-		CRegLoginVO data = new CRegLoginVO();
+//		CRegLoginVO data = new CRegLoginVO();
 		cregVO.tabNo = tabNo ;
 		if(cregVO.tabNo == 0){
 			cregLoginDAO.insertTInfoDAO(cregVO);
 			int cnt = cregLoginDAO.cLoginProcDAO(cregVO);
 			cregVO = cregLoginDAO.selectInfoDAO(cregVO);
 			cregVO.cnt = cnt ;
-			cregVO.isShow = "S";
-			cregVO.no = (int) session.getAttribute("UTNO");
 			cregLoginDAO.updateMemberisShow(cregVO);
 			System.out.println("############# infosrvc cnt 0 : " + cregVO.cnt);
 //			if(cnt > 0 ){
 				tabNo = 1 ;
 				session.setAttribute("tabNo", tabNo );
+				session.setAttribute("UID", cregVO.id);
+				session.setAttribute("UTNO", cregVO.no);
 				System.out.println("############# infosrvc tabNo0 : " + tabNo);
 				System.out.println("############# infosrvc session tabNo0 : " + session.getAttribute("tabNo"));
 //			}
@@ -470,6 +470,17 @@ public class CRegLoginService {
 		
 		return cregVO;
 	}
+
+	/*
+	 * 메뉴 등록 요청 처리 서비스 함수..
+	 */
+	public void menuModProcSrvc(CRegLoginVO cregVO){
+		cregLoginDAO.insertMMenuDAO(cregVO);
+		System.out.println("############   service insert menu complete #############");
+		
+		return ;
+	}
+	
 	
 	/*
 	 * 기타사진 등록보기 뷰 사진 가져오기 전담 서비스함수
@@ -497,4 +508,29 @@ public class CRegLoginService {
 		
 		return data;
 	}
+	
+	/*
+	 * 기타사진 등록보기 등록 전담 서비스함수
+	 */
+	public void photoUpProcSrvc(CRegLoginVO cregVO, HttpSession session){
+		System.out.println("photouploadSRVC 1  utno : " + session.getAttribute("UTNO"));
+		CRegLoginVO data = new CRegLoginVO();
+		// 트럭 이미지 넣자...
+		try{
+			String truckImg = uploadProc(cregVO.truckImg, session);
+			cregVO.sname = truckImg ;
+			cregVO.no = (int) session.getAttribute("UTNO");
+			System.out.println("############   service 기타이미지 업로드 sname #############" + cregVO.sname);
+			cregVO.tigrade = 4 ;
+
+			System.out.println("############   service 기타이미지 업로드 imgbody #############" + cregVO.imgbody);
+		}catch(Exception e){System.out.println("******파일 이름 가져오기 에러!");}
+		
+		cregLoginDAO.insertTImgDAO(cregVO);
+		System.out.println("************ 기타사진 업로드 완료 ");		
+		return ;
+	}
+	
+	
+	
 }

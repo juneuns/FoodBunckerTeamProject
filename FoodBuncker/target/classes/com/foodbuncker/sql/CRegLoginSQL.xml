@@ -152,7 +152,8 @@
 	<insert id="insertMMenu" parameterType="cregVO">
 		INSERT INTO
 			Menu
-		VALUES((SELECT NVL(MAX(M_No), 0) + 1 FROM Menu), #{no}, #{mmenuName}, #{mmenuPrice}, #{mmenuComment}, #{mmenuImgName}, #{mmenugrade}, #{keyword}, 'Y')
+		VALUES((SELECT NVL(MAX(M_No), 0) + 1 FROM Menu),
+		#{no}, #{mmenuName}, #{mmenuPrice}, #{mmenuComment}, #{mmenuImgName}, #{mmenugrade}, #{keyword}, 'Y')
 	</insert>
 	
 	<!-- 회원정보 회원 등록 단계 업데이트 질의 명령 -->
