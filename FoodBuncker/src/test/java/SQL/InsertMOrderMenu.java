@@ -76,6 +76,12 @@ public class InsertMOrderMenu {
 			LocalDateTime monthend = LocalDateTime.of(2015, 1,31,22,0);
 			LocalDateTime yearEnd = LocalDateTime.of(2015, 12,31,22,0);
 			LocalDateTime now = start;
+			
+			int[] numFactor = new int[menuInfoList.size()];
+			for(int m = 0 ; m < menuInfoList.size() ; m++){
+				numFactor[m] = (int)(Math.random()*4+1);
+			}
+			
 			 
 			while(now.isBefore((LocalDateTime.of(2017, 5,14,22,0)))){
 			while(now.isBefore(yearEnd) && now.isBefore((LocalDateTime.of(2017, 5,14,22,0)))){// 1년 
@@ -149,8 +155,8 @@ public class InsertMOrderMenu {
 										}
 										
 										int menuNum = menuInfoList.size();
-										for(int k = 0 ; k < menuNum ; k++){
-											int count = (int)(Math.random()*3);
+										for(int k = 0 ; k < menuNum ; k++){		
+											int count = (int)(Math.random()*numFactor[k]);
 											if(count == 0) continue;
 											sql = "insert into ordermenu values((select nvl(max(om_no),0)+1 from ordermenu),(select nvl(max(o_no),0) from morder),"+menuInfoList.get(k).mno+","+count+")";
 			//System.out.println("k : "+k+" mno : "+menuInfoList.get(k).mno);

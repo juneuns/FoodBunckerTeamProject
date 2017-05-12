@@ -107,4 +107,19 @@
 		]]>
 </select>
 
+<select id="selectMenuCountRatio" parameterType="int" resultType="cmainVO">
+	SELECT
+		m_name AS MNAME, 
+		round(ratio_to_report(sum(om_num)) over(partition by grouping_id(m_name))*100,2) as RATIO 
+	FROM
+		menu,
+		ordermenu 
+	WHERE
+		m_t_no=#{tno} 
+	AND 
+		m_no=om_m_no 
+	GROUP BY
+		m_name 
+</select>
+
 </mapper>

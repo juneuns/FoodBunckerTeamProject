@@ -39,8 +39,10 @@ public class CMainDataController {
 		
 		
 		ArrayList<CMainDataVO> reviewList = service.selectOneTReview(tno);
+		ArrayList<CMainDataVO> menuCountRatio = service.selectMenuCountRatio(tno);
 		mv.addObject("TNO",tno);
 		mv.addObject("REVIEWLIST",reviewList);
+		mv.addObject("MENUCOUNTRATIO",menuCountRatio);
 		mv.setViewName("chef/ChefMain");
 		return mv;
 	}

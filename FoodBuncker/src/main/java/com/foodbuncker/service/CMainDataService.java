@@ -44,4 +44,8 @@ public class CMainDataService {
 		
 		return dao.selectOneTAllReview(map);
 	}
+	
+	public ArrayList<CMainDataVO> selectMenuCountRatio(int tno){
+		return dao.selectMenuCountRatio(tno);
+	}
 }

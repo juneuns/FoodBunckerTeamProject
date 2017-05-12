@@ -23,4 +23,8 @@ public class CMainDataDAO {
 	public ArrayList<CMainDataVO> selectOneTAllReview(HashMap map){
 		return (ArrayList)sqlSession.selectList("foodbuncker.CMainData.selectOneTAllReview",map);
 	}
+	
+	public ArrayList<CMainDataVO> selectMenuCountRatio(int tno){
+		return (ArrayList)sqlSession.selectList("foodbuncker.CMainData.selectMenuCountRatio",tno);
+	}
 }

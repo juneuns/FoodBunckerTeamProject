@@ -459,7 +459,7 @@
 		<script src="../resources/assets/plugins/raphael/raphael-min.js"></script>
 
         <!-- Dashboard init -->
-        <script src="../resources/assets/pages/jquery.dashboard.js"></script>
+      <!--   <script src="../resources/assets/pages/jquery.dashboard.js"></script>   -->
 
         <!-- App js -->
         <script src="../resources/assets/js/jquery.core.js"></script>
@@ -469,7 +469,82 @@
 
 	<script>
 	$(document).ready(function(){
-		
+		var colorarr = ["#349D4B","#818e2f","#9ed98c", "#dfd79f", "#e9c9be","#cab3e6","#b3bee6","#989add","#9f5ec9","#934bc3","#4051bf","#201849","#58281d"]
+		var $barData  = [
+            { y: '2010', a: 75 },
+            { y: '2011', a: 42 },
+            { y: '2012', a: 75 },
+            { y: '2013', a: 38 },
+            { y: '2014', a: 19 },
+            { y: '2015', a: 93 }
+        ];
+        createBarChart('morris-bar-example', $barData, 'y', ['a'], ['Statistics'], [colorarr[7]]);
+
+        //create line chart
+        var $data  = [
+            { y: '2008', a: 50, b: 0 },
+            { y: '2009', a: 75, b: 50 },
+            { y: '2010', a: 30, b: 80 },
+            { y: '2011', a: 50, b: 50 },
+            { y: '2012', a: 75, b: 10 },
+            { y: '2013', a: 50, b: 40 },
+            { y: '2014', a: 75, b: 50 },
+            { y: '2015', a: 100, b: 70 }
+          ];
+        createLineChart('morris-line-example', $data, 'y', ['a','b'], ['Series A','Series B'],['0.9'],[colorarr[4]],[colorarr[0]], [colorarr[1],colorarr[2]]);
+
+        //creating donut chart
+        var $donutData = [
+                {label: "Download Sales", value: 12},
+                {label: "In-Store Sales", value: 30},
+                {label: "Mail-Order Sales", value: 20}
+            ];
+        createDonutChart('morris-donut-example', $donutData, [colorarr[1],colorarr[2],colorarr[3]]);
 	});
+	var createBarChart  = function(element, data, xkey, ykeys, labels, lineColors) {
+	        Morris.Bar({
+	            element: element,
+	            data: data,
+	            xkey: xkey,
+	            ykeys: ykeys,
+	            labels: labels,
+	            hideHover: 'auto',
+	            resize: true, //defaulted to true
+	            gridLineColor: '#eeeeee',
+	            barSizeRatio: 0.2,
+	            barColors: lineColors
+	        });
+	    };
+	 
+	var createLineChart = function(element, data, xkey, ykeys, labels, opacity, Pfillcolor, Pstockcolor, lineColors) {
+	        Morris.Line({
+	          element: element,
+	          data: data,
+	          xkey: xkey,
+	          ykeys: ykeys,
+	          labels: labels,
+	          fillOpacity: opacity,
+	          pointFillColors: Pfillcolor,
+	          pointStrokeColors: Pstockcolor,
+	          behaveLikeLine: true,
+	          gridLineColor: '#eef0f2',
+	          hideHover: 'auto',
+	          resize: true, //defaulted to true
+	          pointSize: 0,
+	          lineColors: lineColors
+	        });
+	};
+	
+	
+	var createDonutChart = function(element, data, colors) {
+        Morris.Donut({
+            element: element,
+            data: data,
+            resize: true, //defaulted to true
+            colors: colors
+        });
+    };
+
+
 	</script>
 </html>

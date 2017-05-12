@@ -14,6 +14,7 @@ public class CMainDataVO {
 	String reviewBody;
 	LocalDate reviewTime;
 	int rno;
+	float ratio;
 	
 	public String getPname() {
 		return pname;
@@ -57,7 +58,10 @@ public class CMainDataVO {
 	public void setRno(int rno) {
 		this.rno = rno;
 	}
-	
-	
-
+	public float getRatio() {
+		return ratio;
+	}
+	public void setRatio(float ratio) {
+		this.ratio = ratio;
+	}
 }
