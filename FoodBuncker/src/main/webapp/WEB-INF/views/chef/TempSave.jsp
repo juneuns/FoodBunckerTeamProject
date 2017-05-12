@@ -221,8 +221,8 @@
 									
 								</form>
 								<div class="btn-group btn-group-justified m-b-10">
-                   <a class="btn btn-warning waves-effect waves-light" role="button" href="../person/MainWindow.food">Home</a>
-                   <a class="btn btn-primary waves-effect waves-light" role="button" id="finalReg" >최종가입</a>
+                   <a class="btn btn-warning waves-effect waves-light" role="button" href="../person/MainWindow.food" id="hBtn">Home</a>
+                   <a class="btn btn-primary waves-effect waves-light" role="button" id="finalReg" href="#">최종가입</a>
                   <!-- <a class="btn btn-danger waves-effect waves-light" id="cBtn" role="button" href="#">보류</a> -->
                </div>
 							</div><!-- end col -->
@@ -321,11 +321,16 @@
 				/* $(location).attr("href","../chef/ChefMain.food"); */
 			});
 
-			$('#cBtn').click(function(){
-				alert("수정된 내용이 저장되지 않았습니다.회원가입 페이지로 이동합니다.");
-				$(location).attr("href","../chef/RegForm.food");
-			});
+/* 			$('#hBtn').click(function(){
+				
+				$(location).attr("href","../person/MainWindow.food");
+			}); */
 
+/* 			$('#cBtn').click(function(){
+				alert("수정된 내용이 저장되지 않았습니다.회원가입 페이지로 이동합니다.");
+				$(location).attr("href","../person/MainWindow.food");
+			});
+ */
 			$('#basicwizard').bootstrapWizard({'tabClass': 'nav nav-tabs navtab-wizard nav-justified bg-muted'});
 
                 $('#progressbarwizard').bootstrapWizard({onTabShow: function(tab, navigation, index) {

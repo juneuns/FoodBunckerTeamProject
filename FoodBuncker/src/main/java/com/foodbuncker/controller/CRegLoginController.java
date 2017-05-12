@@ -30,7 +30,8 @@ public class CRegLoginController {
 	@RequestMapping("/chef/LoginForm.food")
 	public ModelAndView loginForm(ModelAndView mv, HttpSession session, CRegLoginVO cregVO){
 		// 뷰만 넘겨준다.
-		
+
+//		System.out.println("##################### LoginTest  : ");
 		// 세션을 조회하자.
 		cregVO = cregLoginService.sessionSearchSrvc(session, cregVO);
 
@@ -196,6 +197,8 @@ public class CRegLoginController {
 		if(tabNo == 0){
 			try {
 				cregLoginService.cRegInfoSrvc(session, cregVO);
+				tabNo = 1 ;
+				session.setAttribute("tabNo", tabNo);
 			} catch (Exception e) {}
 			
 			// 정보가 등록 되었으면 로그인 처리도 해줘야 한다.
@@ -203,23 +206,26 @@ public class CRegLoginController {
 			int cnt = cregLoginService.idCntSrvc(session, cregVO);
 			System.out.println("############ TempsaveControll tabNo 0-088 : " + tabNo );
 			cregVO.cnt = cnt ;
-			if (cnt == 1){
-				// 회원 정보가 있는 경우 세션에 저장해준다.
-				System.out.println("############ TempsaveControll tabNo 0-0 : " + tabNo );
-				tabNo = (int) session.getAttribute("tabNo");
-				System.out.println("############ TempsaveControll tabNo 0-1 : " + tabNo );
-			}
+//			if (cnt == 1){
+//				// 회원 정보가 있는 경우 세션에 저장해준다.
+//				System.out.println("############ TempsaveControll tabNo 0-0 : " + tabNo );
+//				tabNo = (int) session.getAttribute("tabNo");
+//				System.out.println("############ TempsaveControll tabNo 0-1 : " + tabNo );
+//			}
 			
 			System.out.println("############ TempsaveControll tabNo 0-2 : " + tabNo );
-//			rv.setUrl("../chef/LoginForm.food");
+//			rv.addStaticAttribute("tabNo", tabNo);
+//			rv.setUrl("../chef/RegForm.food");
 			mv.addObject("tabNo", tabNo);
 			mv.setViewName("chef/RegForm");
 		}
 		else if(tabNo == 1){
+			try{
 			String chefImg = cregLoginService.uploadProc(cregVO.chefImg, session);
 			String truckImg = cregLoginService.uploadProc(cregVO.truckImg, session);
 			cregVO.chefImgName = chefImg ;
 			cregVO.truckImgName = truckImg ;
+			}catch(Exception e){System.out.println("******파일 이름 가져오기 에러!");}
 			cregVO.no = (int) session.getAttribute("UTNO");
 			
 			// 데이터베이스에 기록하자.
@@ -242,11 +248,8 @@ public class CRegLoginController {
 			cregVO.mmenuImgName = mmenuImg ;
 			cregVO.no = (int) session.getAttribute("UTNO");
 			
-			System.out.println("############ 22222222222222 #########");
-			System.out.println("############ TempsaveControll mmenuImgName" + cregVO.mmenuName );
-			System.out.println("############ TempsaveControll NO : " + cregVO.no );
-			System.out.println("############ TempsaveControll id : " + cregVO.id );
-			System.out.println("############ TempsaveControll menucomnet : " + cregVO.mmenuComment );
+//			System.out.println("############ 22222222222222 #########");
+//			System.out.println("############ TempsaveControll menucomnet : " + cregVO.mmenuComment );
 			
 			// 데이터베이스에 기록하자.
 			try {
@@ -256,7 +259,7 @@ public class CRegLoginController {
 //			mv.addObject("tabNo", cregVO.tabNo);
 //			mv.addObject("DATA", cregVO);
 //				mv.setViewName("chef/RegForm");
-			rv.setUrl("../chef/LoginForm.food");
+			rv.setUrl("../chef/RegForm.food");
 			mv.setView(rv);
 		}
 
@@ -306,7 +309,16 @@ public class CRegLoginController {
 	 */
 	@RequestMapping("/chef/InfoModify.food")
 	public ModelAndView infoModify(ModelAndView mv, CRegLoginVO cregVO, HttpSession session){
-		int no = (int) session.getAttribute("UTNO");
+		int no = 0 ;
+		try{
+			no = (int) session.getAttribute("UTNO");
+		}catch(Exception e){
+			RedirectView rv = new RedirectView();
+			rv.setUrl("../person/MainWindow.food");
+			mv.setView(rv);
+			return mv;
+			
+		}
 		cregVO.no = no ;
 
 //		System.out.println("@@@@@@@@@@@@@@@@  Session VO NO  : " + cregVO.no);
@@ -335,34 +347,59 @@ public class CRegLoginController {
 		
 //		System.out.println("################## modifyProc 작업 확인  data.no : " + data.no);
 		// 데이터는 뷰에게 전달해 준다.
-//		mv.addObject("DATA", data);
+		mv.addObject("DATA", data);
 		mv.setViewName("/chef/InfoModify");
 		return mv;
 	}
-	
 
-//	@RequestMapping("/chef/ChefMain.food")
-//	public ModelAndView chefMain(ModelAndView mv, HttpSession session){
-//		
-//		int no = (int) session.getAttribute("UTNO");
-//		
-//		mv.addObject("TNO", no);
-//		mv.setViewName("/chef/ChefMain");
-//		return mv;
-//	}
 	
 	/*
-	 * 메뉴 등록하면 보여주기 
+	 * 메뉴 등록화면 보여주기 요청 처리..
 	 */
 	@RequestMapping("/chef/MenuModify.food")
 	public ModelAndView menuModify(ModelAndView mv, CRegLoginVO cregVO, HttpSession session){
 		// 할일
 		//		데이터 만들어서
-		cregVO = cregLoginService.menuModifySrvc(cregVO, session);
-		// 		뷰에거 넘겨주자
-		mv.addObject("DATA", cregVO);
-		mv.addObject("LIST", cregVO.list);
-		mv.setViewName("chef/MenuModify");
+		try{
+			cregVO = cregLoginService.menuModifySrvc(cregVO, session);
+			// 		뷰에거 넘겨주자
+			mv.addObject("DATA", cregVO);
+			mv.addObject("LIST", cregVO.list);
+			mv.setViewName("chef/MenuModify");
+			
+		}catch(Exception e){
+			RedirectView rv = new RedirectView();
+			rv.setUrl("../person/MainWindow.food");
+			mv.setView(rv);
+		}
+		return mv ;
+	}
+	
+	/*
+	 * 메뉴 등록 요청 처리..
+	 */
+	@RequestMapping("/chef/MenuModProc.food")
+	public ModelAndView menuModProc(ModelAndView mv, CRegLoginVO cregVO, HttpSession session){
+		
+		// 할일
+		//		데이터 넣어주고...
+		try{
+			String mmenuImg = cregLoginService.uploadProc(cregVO.mmenuImg, session);
+			cregVO.mmenuImgName = mmenuImg ;
+			cregVO.mmenugrade = "S" ;
+			cregVO.no = (int) session.getAttribute("UTNO");
+
+			System.out.println("############   controller menu sname #############" + cregVO.mmenuImgName);
+		}catch(Exception e){System.out.println("******파일 이름 가져오기 에러!");}
+		cregLoginService.menuModProcSrvc(cregVO);
+		// 		뷰 호출...
+		System.out.println("******메뉴 디비 저장 완료...");
+		
+		RedirectView rv = new RedirectView();
+		rv.setUrl("../chef/MenuModify.food");
+		mv.setView(rv);
+		
+//		mv.setViewName("chef/MenuModify");
 		return mv ;
 	}
 	
@@ -402,6 +439,24 @@ public class CRegLoginController {
 		mv.addObject("CDATA", data2);
 		mv.addObject("LIST", list);
 		mv.setViewName("chef/PhotoUpload");
+		return mv;
+	}
+	
+	/*
+	 * 일반사진 등록 요청 전담 컨트롤러
+	 */
+	@RequestMapping("/chef/PhotoUploadProc.food")
+	public ModelAndView photoUploadProc(ModelAndView mv, CRegLoginVO cregVO, HttpSession session){
+		// 할일 
+		// 	데이터 만들고
+		
+		cregLoginService.photoUpProcSrvc(cregVO, session);
+		// 		뷰 호출...
+		System.out.println("******메뉴 디비 저장 완료...");
+		
+		RedirectView rv = new RedirectView();
+		rv.setUrl("../chef/PhotoUpload.food");
+		mv.setView(rv);
 		return mv;
 	}
 }

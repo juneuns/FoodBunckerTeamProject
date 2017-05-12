@@ -117,16 +117,17 @@
                     </div>
                 </div>
 
-			<form action="#" class="form-horizontal">
+
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="card-box">
 							<h4 class="header-title m-t-0 m-b-30">쉐프사진(1895X1000)</h4>
                             <input type="file" class="dropify" data-height="300" data-default-file="../image/${CDATA.mImgName}"/>
+                            <p></p>
 							<div class="row">
-								<div class="form-group">
-									<label class="col-sm-5 control-label">쉐프한마디</label>
-									<div class="col-sm-7">
+								<div class="form-group clearfix">
+									<label class="col-lg-12 control-label" style="text-align:center;">쉐프한마디</label>
+									<div class="col-sm-12" style="text-align:center;">
 										<a href="#" id="chefComment" data-type="text" data-pk="1">${CDATA.imgbody}</a>
 									</div>
 								</div>
@@ -141,19 +142,20 @@
                         <div class="card-box">
 							<h4 class="header-title m-t-0 m-b-30">트럭사진(1895X1000)</h4>
                             <input type="file" class="dropify" data-height="300" data-default-file="../image/${TDATA.mImgName}"/>
+                            <p></p>
 							<div class="row">
-								<div class="form-group">
-									<label class="col-sm-5 control-label">트럭설명</label>
-									<div class="col-sm-7">
+								<div class="form-group clearfix">
+									<label class="col-lg-12 control-label" style="text-align:center;">트럭설명</label>
+									<div class="col-sm-12" style="text-align:center;">
 										<a href="#" id="truckComment" data-type="text" data-pk="1">${TDATA.imgbody}</a>
 									</div>
 								</div>
-								<div class="form-group">
+								<%-- <div class="form-group">
 									<label class="col-sm-5 control-label">검색키워드</label>
 									<div class="col-sm-7">
 										<a href="#" id="keyword" data-type="text" data-pk="1">${TDATA.keyword}</a>
 									</div>
-								</div>
+								</div> --%>
 							</div>
                         </div>
                     </div><!-- end col -->
@@ -161,45 +163,63 @@
                 <!-- end row -->
 
 
-<c:forEach var="data" items="${LIST}">
+
+				<div class="row">
+                    <div class="col-sm-12">
+                        <div class="card-box">
+								<h4 class="header-title m-t-0 m-b-30">기타사진(1895X1000)</h4>
+								<hr>
+                        	<c:forEach var="data" items="${LIST}">
+	                            <input type="file" class="dropify" data-height="300" data-default-file="../image/${data.mImgName}"/>
+	                            <p></p>
+								<div class="row">
+									<div class="form-group clearfix" style="text-align:center;">
+										<!-- <label class="col-lg-4 control-label">사진설명</label> -->
+										<div class="col-sm-12">
+											<a href="#" id="${data.no}photoComment" data-type="text" data-pk="1">${data.imgbody}</a>
+										</div>
+									</div>
+								</div>
+								<hr>
+							</c:forEach>
+							
+                        </div>
+                    </div><!-- end col -->
+                </div>
+
+                <!-- end row -->
+
+			<form method="POST" action="" class="form-horizontal" id="efrm" name="efrm" encType="multipart/form-data">
 				<div class="row">
                     <div class="col-sm-12">
                         <div class="card-box">
 							<h4 class="header-title m-t-0 m-b-30">기타사진(1895X1000)</h4>
-                            <input type="file" class="dropify" data-height="300" data-default-file="../image/${data.mImgName}"/>
+                            <input type="file" id="truckImg" name="truckImg" class="dropify" data-height="300" >
+                            <p></p>
 							<div class="row">
-								<div class="form-group">
-									<label class="col-sm-5 control-label">사진설명(일시,장소 등)</label>
+								<div>
+								<div class="form-group clearfix">
+									<label class="col-lg-3 control-label">사진 설명</label>
 									<div class="col-sm-7">
-										<a href="#" id="${data.no}photoComment" data-type="text" data-pk="1">${data.imgbody}</a>
+										<input type="text" id="imgbody" name="imgbody" class="required form-control" placeholder="장소/시간/설명 등을 입력해주세요!"></input>
 									</div>
 								</div>
-							</div>
-                        </div>
-                    </div><!-- end col -->
-                </div>
-</c:forEach>
-                <!-- end row -->
-				<div class="row">
-                    <div class="col-sm-12">
-                        <div class="card-box">
-							<h4 class="header-title m-t-0 m-b-30">기타사진(1895X1000)</h4>
-                            <input type="file" class="dropify" data-height="300" data-default-file=""/>
-							<div class="row">
-								<div class="form-group">
-									<label class="col-sm-5 control-label">사진설명(일시,장소 등)</label>
-									<div class="col-sm-7">
-										<a href="#" id="photoComment6" data-type="text" data-pk="1"></a>
-									</div>
 								</div>
 							</div>
+							<div style="text-align:center;">
+							<div class="row btn-group">
+                       			<button type="button" href="#" id="sBtn" class="btn btn-custom dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="false">저장 <span class="m-l-5"><i class="fa fa-cog"></i></span></button>
+                    		</div>
+                    		</div>
                         </div>
+                       
+                   	
                     </div><!-- end col -->
                 </div>
+                
                 <!-- end row -->
-
-				
 			</form>
+			
                 <!-- Footer -->
                 <footer class="footer text-right">
                     <div class="container">
@@ -259,13 +279,24 @@
 			$('#chefComment').editable({mode: 'inline'});
 			$('#truckComment').editable({mode: 'inline'});
 			$('#keyword').editable({mode: 'inline'});
-			$('#photoComment1').editable({mode: 'inline'});
+			/* $('#photoComment1').editable({mode: 'inline'});
 			$('#photoComment2').editable({mode: 'inline'});
 			$('#photoComment3').editable({mode: 'inline'});
 			$('#photoComment4').editable({mode: 'inline'});
 			$('#photoComment5').editable({mode: 'inline'});
-			$('#photoComment6').editable({mode: 'inline'});
+			$('#photoComment6').editable({mode: 'inline'}); */
 			
+			
+			$('#sBtn').click(function(){
+				
+				var txt = $("#imgbody").val();
+				if(txt == ""){
+					alert("사진 설명을 입력하세요!");
+					return;
+				};
+				
+				$('#efrm').attr("action", "../chef/PhotoUploadProc.food").submit();
+			});
 
 			$('#basicwizard').bootstrapWizard({'tabClass': 'nav nav-tabs navtab-wizard nav-justified bg-muted'});
 

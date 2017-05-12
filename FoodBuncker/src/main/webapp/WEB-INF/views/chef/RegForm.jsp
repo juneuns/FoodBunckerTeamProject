@@ -40,6 +40,7 @@
 
 	$(document).ready(function(){
 		/* alert("이건 나와라!!!"); */
+		/* alert("tabNo : " + ${tabNo}); */
 		var clkTab = ${tabNo};
 		if(${tabNo} == '' || ${tabNo} == 0 ){
 			/* alert("0 tabNo : " + ${tabNo}); */
@@ -55,10 +56,7 @@
 		$("#menuM").click(function(){
 			clkTab = 2 ;
 		});
-		
-		/* alert( "clkTab : " + clkTab); */
-		
-		alert("tabNo : " + ${tabNo});
+
 		if(clkTab == 0){
 			$("#sBtn").click(function(){
 				// 무결성 검사하기
@@ -75,7 +73,6 @@
 				var tpw = $("#pw").val();
 				var trpw = $("#rpw").val();
 
-				alert(tphone);
 				if(tpw != trpw){
 					$("#rpw").val('');
 					alert("비밀번호를 확인하세요!");
@@ -84,9 +81,9 @@
 				if( tcName != '' && tname != '' && tnumber != '' && tphone != '' && temail != '' && topenDate != '' && tid != '' && tpw != '' && tpw == trpw){
 					// 모든 사항이 입력된 경우 폼의 내용을 보내자.
 					/* $("#tabNo").val(clkTab); */
-					alert("버튼 클릭 이건 나와야지...");
+					/* alert("버튼 클릭 이건 나와야지..."); */
 					$("#ffrm").attr("action", "../chef/TempSave.food").submit();
-					alert("버튼 클릭 이건 또 나와야지...");
+					/* alert("버튼 클릭 이건 또 나와야지..."); */
 				};
 				
 			});
@@ -134,7 +131,6 @@
 					/* alert("tmmenuImg" + tmmenuImg); */
 				if(tmmenuImg != "" && tmmenuName != "" && tmmenuPrice != "" && tmmenuComment != "" && tkeyword != ""){
 					// 모든 사항이 입력된 경우 폼의 내용을 보내자.
-					alert(1);
 					$("#tfrm").attr("action", "../chef/TempSave.food").submit();
 //					$(location).attr("href", "../chef/TempSave.food");
 				}
@@ -255,30 +251,32 @@
 								<form method="POST" action="" id="sfrm" enctype="multipart/form-data">
 											<div>
 												<h4 class="header-title m-t-0 m-b-30">쉐프사진등록</h4>
-												<h6 class="m-b-30">1895X1000pixel</h6>
+												<h6 class="m-b-30" style="margin-top:-25px;"> ( 1895X1000pixel )</h6>
 												<input type="file" class="dropify" name="chefImg" id="chefImg" data-height="300" required />
 											</div>
 											
 											<p> </p>
 											
 											<div class="form-group clearfix">
-												<label class="col-lg-4 control-label" for="chefComment"> 쉐프의 한마디</label>
-												<div class="col-lg-8">
+												<label class="col-lg-12 control-label" for="chefComment"> 쉐프의 한마디</label>
+												<div class="col-lg-12">
 													<input id="chefComment" name="chefComment" type="text" class="required form-control" required />
 												</div>
 											</div>
+											
+											<br><br>
 
 											<div>
 												<h4 class="header-title m-t-0 m-b-30">트럭사진등록</h4>
-												<h6 class="m-b-30">1895X1000pixel</h6>
+												<h6 class="m-b-30" style="margin-top:-25px;"> ( 1895X1000pixel )</h6>
 												<input type="file" class="dropify" name="truckImg" id="truckImg" data-height="300"  required />
 											</div>
 											
 											<p> </p>
 											
 											<div class="form-group clearfix">
-												<label class="col-lg-4 control-label " for="truckComment"> 트럭 설명 </label>
-												<div class="col-lg-8">
+												<label class="col-lg-12 control-label " for="truckComment"> 트럭 설명 </label>
+												<div class="col-lg-12">
 													<input id="truckComment" name="truckComment" type="text" class="required form-control"  required />
 												</div>
 											</div>
@@ -296,57 +294,59 @@
 	<form method="POST" id="tfrm" encType="multipart/form-data">
 													<div>
 														<h4 class="header-title m-t-0 m-b-30">주메뉴사진등록</h4>
-														<h6 class="m-b-30">1895X1000pixel</h6>
+														<h6 class="m-b-30" style="margin-top:-25px;"> ( 1895X1000pixel )</h6>
 														<input type="file" class="dropify" id="mmenuImg" name="mmenuImg" data-height="300" />
 													</div>
+													
+													<br>
 
 													<div class="form-group clearfix">
-														<label class="col-lg-2 control-label" for="mmenuName"> 주메뉴이름</label>
-														<div class="col-lg-10">
+														<label class="col-lg-4 control-label" for="mmenuName"> 주메뉴이름</label>
+														<div class="col-lg-8">
 															<input id="mmenuName" name="mmenuName" type="text" class="required form-control">
 														</div>
 													</div>
 													
 													<div class="form-group clearfix">
-														<label class="col-lg-2 control-label" for="mmenuPrice"> 주메뉴가격(원)</label>
-														<div class="col-lg-10">
+														<label class="col-lg-4 control-label" for="mmenuPrice"> 주메뉴가격(원)</label>
+														<div class="col-lg-8">
 															<input id="mmenuPrice" name="mmenuPrice" type="text" class="required form-control">
 														</div>
 													</div>
 	
 													<div class="form-group clearfix">
-														<label class="col-lg-2 control-label" for="mmenuComment"> 주메뉴한마디</label>
-														<div class="col-lg-10">
+														<label class="col-lg-4 control-label" for="mmenuComment"> 주메뉴한마디</label>
+														<div class="col-lg-8">
 															<input id="mmenuComment" name="mmenuComment" type="text" class="required form-control">
 														</div>
 													</div>
 
 													<div class="form-group clearfix">
 														<input type="hidden" id="keyword" name="keyword">
-														<label class="col-lg-2 control-label" for="keyword1"> 검색키워드1</label>
-														<div class="col-lg-10">
+														<label class="col-lg-4 control-label" for="keyword1"> 검색키워드1</label>
+														<div class="col-lg-8">
 															<input id="keyword1" name="keyword1" type="text" class="required form-control">
 														</div>
 													</div>
 													
 													
 													<div class="form-group clearfix">
-														<label class="col-lg-2 control-label" for="keyword2"> 검색키워드2</label>
-														<div class="col-lg-10">
+														<label class="col-lg-4 control-label" for="keyword2"> 검색키워드2</label>
+														<div class="col-lg-8">
 															<input id="keyword2" name="keyword2" type="text" class="required form-control">
 														</div>
 													</div>
 													
 													<div class="form-group clearfix">
-														<label class="col-lg-2 control-label" for="keyword3"> 검색키워드3</label>
-														<div class="col-lg-10">
+														<label class="col-lg-4 control-label" for="keyword3"> 검색키워드3</label>
+														<div class="col-lg-8">
 															<input id="keyword3" name="keyword3" type="text" class="required form-control">
 														</div>
 													</div>
 													
 													<div class="form-group clearfix">
-														<label class="col-lg-2 control-label" for="keyword4"> 검색키워드4</label>
-														<div class="col-lg-10">
+														<label class="col-lg-4 control-label" for="keyword4"> 검색키워드4</label>
+														<div class="col-lg-8">
 															<input id="keyword4" name="keyword4" type="text" class="required form-control">
 														</div>
 													</div>
@@ -354,8 +354,8 @@
 	
 
 													<div class="form-group clearfix">
-														<label class="col-lg-2 control-label" for="keyword5"> 검색키워드5</label>
-														<div class="col-lg-10">
+														<label class="col-lg-4 control-label" for="keyword5"> 검색키워드5</label>
+														<div class="col-lg-8">
 															<input id="keyword5" name="keyword5" type="text" class="required form-control">
 														</div>
 													</div>
