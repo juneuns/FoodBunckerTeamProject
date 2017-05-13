@@ -40,9 +40,17 @@ public class CMainDataController {
 		
 		ArrayList<CMainDataVO> reviewList = service.selectOneTReview(tno);
 		ArrayList<CMainDataVO> menuCountRatio = service.selectMenuCountRatio(tno);
+		ArrayList<CMainDataVO> weekSaleRatio = service.selectWeekSaleRatio(tno);
+		ArrayList<CMainDataVO> genderSaleRatio = service.selectGenderSaleRatio(tno);
+		ArrayList<CMainDataVO> ageSaleRatio = service.selectAgeSaleRatio(tno);
+		String[] colorCode = service.getColorCode();
 		mv.addObject("TNO",tno);
 		mv.addObject("REVIEWLIST",reviewList);
 		mv.addObject("MENUCOUNTRATIO",menuCountRatio);
+		mv.addObject("WEEKSALERATIO",weekSaleRatio);
+		mv.addObject("GENDERSALERATIO",genderSaleRatio);
+		mv.addObject("AGESALERATIO",ageSaleRatio);
+		mv.addObject("COLORCODE",colorCode);
 		mv.setViewName("chef/ChefMain");
 		return mv;
 	}

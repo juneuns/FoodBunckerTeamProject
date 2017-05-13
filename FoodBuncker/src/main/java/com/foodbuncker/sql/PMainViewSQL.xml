@@ -124,8 +124,6 @@
 		WHERE 
 			TI_ISSHOW = 'Y'
 		AND
-			TI_GRADE = 4
-		AND
 			TI_T_NO = #{tno}
 	</select>
 		

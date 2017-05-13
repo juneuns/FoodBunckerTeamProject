@@ -48,4 +48,21 @@ public class CMainDataService {
 	public ArrayList<CMainDataVO> selectMenuCountRatio(int tno){
 		return dao.selectMenuCountRatio(tno);
 	}
+	
+	public ArrayList<CMainDataVO> selectWeekSaleRatio(int tno){
+		return dao.selectWeekSaleRatio(tno);
+	}
+	
+	public ArrayList<CMainDataVO> selectGenderSaleRatio(int tno){
+		return dao.selectGenderSaleRatio(tno);
+	}
+	
+	public ArrayList<CMainDataVO> selectAgeSaleRatio(int tno){
+		return dao.selectAgeSaleRatio(tno);
+	}
+	
+	public String[] getColorCode(){
+		String[] colorCode = {"#349D4B","#818e2f","#9ed98c", "#dfd79f", "#e9c9be","#cab3e6","#b3bee6","#989add","#9f5ec9","#934bc3","#4051bf","#201849","#58281d"};
+		return colorCode;
+	}
 }

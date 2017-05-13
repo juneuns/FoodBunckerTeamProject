@@ -122,6 +122,7 @@
 
 
                  <div class="row">
+                 
                      <div class="col-lg-3 col-md-6">
                          <div class="card-box">
                              <div class="dropdown pull-right">
@@ -130,33 +131,31 @@
                                      <i class="zmdi zmdi-more-vert"></i>
                                  </a>
                                  <ul class="dropdown-menu" role="menu">
-                                     <li><a href="#">Action</a></li>
-                                     <li><a href="#">Another action</a></li>
-                                     <li><a href="#">Something else here</a></li>
-                                     <li class="divider"></li>
-                                     <li><a href="#">Separated link</a></li>
+                                     <li>연평균매출액:</li>
                                  </ul>
                              </div>
 
-                             <h4 class="header-title m-t-0 m-b-30">Total Revenue</h4>
+                             <h4 class="header-title m-t-0 m-b-30">연평균 대비 현재 매출현황</h4>
 
-                             <div class="widget-chart-1">
-                                 <div class="widget-chart-box-1">
-                                     <input data-plugin="knob" data-width="80" data-height="80" data-fgColor="#f05050 "
-                                            data-bgColor="#F9B9B9" value="58"
-                                            data-skin="tron" data-angleOffset="180" data-readOnly=true
-                                            data-thickness=".15"/>
+                             <div class="widget-box-2">
+                                 <div class="widget-detail-2">
+                                     <span class="badge badge-danger pull-left m-t-20">120% <i
+                                             class="zmdi zmdi-trending-up"></i> </span>
+                                     <h2 class="m-b-0"> 8451 </h2>
+                                     <p class="text-muted m-b-25">2017년 매출</p>
                                  </div>
-
-                                 <div class="widget-detail-1">
-                                     <h2 class="p-t-10 m-b-0"> 256 </h2>
-                                     <p class="text-muted">Revenue today</p>
+                                 <div class="progress progress-bar-danger-alt progress-sm m-b-0">
+                                     <div class="progress-bar progress-bar-danger" role="progressbar"
+                                          aria-valuenow="77" aria-valuemin="0" aria-valuemax="100"
+                                          style="width: 120%;">
+                                         <span class="sr-only">77% Complete</span>
+                                     </div>
                                  </div>
                              </div>
                          </div>
                      </div><!-- end col -->
-
-                     <div class="col-lg-3 col-md-6">
+                     
+                      <div class="col-lg-3 col-md-6">
                          <div class="card-box">
                              <div class="dropdown pull-right">
                                  <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown"
@@ -164,27 +163,55 @@
                                      <i class="zmdi zmdi-more-vert"></i>
                                  </a>
                                  <ul class="dropdown-menu" role="menu">
-                                     <li><a href="#">Action</a></li>
-                                     <li><a href="#">Another action</a></li>
-                                     <li><a href="#">Something else here</a></li>
-                                     <li class="divider"></li>
-                                     <li><a href="#">Separated link</a></li>
+                                     <li>월평균매출액</li>
                                  </ul>
                              </div>
 
-                             <h4 class="header-title m-t-0 m-b-30">Sales Analytics</h4>
+                             <h4 class="header-title m-t-0 m-b-30">월평균대비 매출현황</h4>
 
                              <div class="widget-box-2">
                                  <div class="widget-detail-2">
-                                     <span class="badge badge-success pull-left m-t-20">32% <i
+                                     <span class="badge badge-success pull-left m-t-20">120% <i
                                              class="zmdi zmdi-trending-up"></i> </span>
                                      <h2 class="m-b-0"> 8451 </h2>
-                                     <p class="text-muted m-b-25">Revenue today</p>
+                                     <p class="text-muted m-b-25">5월 매출</p>
                                  </div>
                                  <div class="progress progress-bar-success-alt progress-sm m-b-0">
                                      <div class="progress-bar progress-bar-success" role="progressbar"
                                           aria-valuenow="77" aria-valuemin="0" aria-valuemax="100"
-                                          style="width: 77%;">
+                                          style="width: 120%;">
+                                         <span class="sr-only">77% Complete</span>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+                     </div><!-- end col -->
+                     
+                      <div class="col-lg-3 col-md-6">
+                         <div class="card-box">
+                             <div class="dropdown pull-right">
+                                 <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown"
+                                    aria-expanded="false">
+                                     <i class="zmdi zmdi-more-vert"></i>
+                                 </a>
+                                 <ul class="dropdown-menu" role="menu">
+                                     <li>일평균매출액</li>
+                                 </ul>
+                             </div>
+
+                             <h4 class="header-title m-t-0 m-b-30">일평균대비 매출현황</h4>
+
+                             <div class="widget-box-2">
+                                 <div class="widget-detail-2">
+                                     <span class="badge badge-warning pull-left m-t-20">120% <i
+                                             class="zmdi zmdi-trending-up"></i> </span>
+                                     <h2 class="m-b-0"> 8451 </h2>
+                                     <p class="text-muted m-b-25">15일 매출</p>
+                                 </div>
+                                 <div class="progress progress-bar-warning-alt progress-sm m-b-0">
+                                     <div class="progress-bar progress-bar-warning" role="progressbar"
+                                          aria-valuenow="77" aria-valuemin="0" aria-valuemax="100"
+                                          style="width: 120%;">
                                          <span class="sr-only">77% Complete</span>
                                      </div>
                                  </div>
@@ -192,38 +219,7 @@
                          </div>
                      </div><!-- end col -->
 
-                     <div class="col-lg-3 col-md-6">
-                         <div class="card-box">
-                             <div class="dropdown pull-right">
-                                 <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown"
-                                    aria-expanded="false">
-                                     <i class="zmdi zmdi-more-vert"></i>
-                                 </a>
-                                 <ul class="dropdown-menu" role="menu">
-                                     <li><a href="#">Action</a></li>
-                                     <li><a href="#">Another action</a></li>
-                                     <li><a href="#">Something else here</a></li>
-                                     <li class="divider"></li>
-                                     <li><a href="#">Separated link</a></li>
-                                 </ul>
-                             </div>
-
-                             <h4 class="header-title m-t-0 m-b-30">Statistics</h4>
-
-                             <div class="widget-chart-1">
-                                 <div class="widget-chart-box-1">
-                                     <input data-plugin="knob" data-width="80" data-height="80" data-fgColor="#ffbd4a"
-                                            data-bgColor="#FFE6BA" value="80"
-                                            data-skin="tron" data-angleOffset="180" data-readOnly=true
-                                            data-thickness=".15"/>
-                                 </div>
-                                 <div class="widget-detail-1">
-                                     <h2 class="p-t-10 m-b-0"> 4569 </h2>
-                                     <p class="text-muted">Revenue today</p>
-                                 </div>
-                             </div>
-                         </div>
-                     </div><!-- end col -->
+                     
 
                      <div class="col-lg-3 col-md-6">
                          <div class="card-box">
@@ -233,22 +229,18 @@
                                      <i class="zmdi zmdi-more-vert"></i>
                                  </a>
                                  <ul class="dropdown-menu" role="menu">
-                                     <li><a href="#">Action</a></li>
-                                     <li><a href="#">Another action</a></li>
-                                     <li><a href="#">Something else here</a></li>
-                                     <li class="divider"></li>
-                                     <li><a href="#">Separated link</a></li>
+                                     <li>시간대 평균매출</li>
                                  </ul>
                              </div>
 
-                             <h4 class="header-title m-t-0 m-b-30">Daily Sales</h4>
+                             <h4 class="header-title m-t-0 m-b-30">시간대 평균대비 매출현황</h4>
 
                              <div class="widget-box-2">
                                  <div class="widget-detail-2">
                                      <span class="badge badge-pink pull-left m-t-20">32% <i
                                              class="zmdi zmdi-trending-up"></i> </span>
                                      <h2 class="m-b-0"> 158 </h2>
-                                     <p class="text-muted m-b-25">Revenue today</p>
+                                     <p class="text-muted m-b-25">14시 매출</p>
                                  </div>
                                  <div class="progress progress-bar-pink-alt progress-sm m-b-0">
                                      <div class="progress-bar progress-bar-pink" role="progressbar"
@@ -265,31 +257,85 @@
                 <!-- end row -->
 
                 <div class="row">
-                    <div class="col-lg-4">
+                    <div class="col-lg-6">
                         <div class="card-box">
                             <h4 class="header-title m-t-0">메뉴별 판매비중</h4>
                             <div class="widget-chart text-center">
-                                <div id="morris-donut-example" style="height: 245px;"></div>
+                                <div id="morris-donut-example-menu" style="height: 245px;"></div>
                                 <ul class="list-inline chart-detail-list m-b-0">
+                                <c:forEach var="data" items="${MENUCOUNTRATIO }" varStatus="st">
                                     <li>
-                                        <h5 style="color: #ff8acc;"><i class="fa fa-circle m-r-5"></i>Series A</h5>
+                                        <h5 style="color: ${COLORCODE[st.count-1]};"><i class="fa fa-circle m-r-5"></i>${data.mname }</h5>
                                     </li>
-                                    <li>
-                                        <h5 style="color: #5b69bc;"><i class="fa fa-circle m-r-5"></i>Series B</h5>
-                                    </li>
+                              	</c:forEach>
                                 </ul>
                             </div>
                         </div>
                     </div><!-- end col -->
-
-                    <div class="col-lg-4">
+                    
+                    <div class="col-lg-6">
+                        <div class="card-box">
+                            <h4 class="header-title m-t-0">요일별 판매비중</h4>
+                            <div class="widget-chart text-center">
+                                <div id="morris-donut-example-week" style="height: 245px;"></div>
+                                <ul class="list-inline chart-detail-list m-b-0">
+                                <c:forEach var="data" items="${WEEKSALERATIO }" varStatus="st">
+                                    <li>
+                                        <h5 style="color: ${COLORCODE[st.count-1]};"><i class="fa fa-circle m-r-5"></i>${data.weekname }</h5>
+                                    </li>
+                              	</c:forEach>
+                                </ul>
+                            </div>
+                        </div>
+                    </div><!-- end col -->
+           		</div>
+           		
+           		<div class="row">
+                    <div class="col-lg-6">
+                        <div class="card-box">
+                            <h4 class="header-title m-t-0">성별 판매비중</h4>
+                            <div class="widget-chart text-center">
+                                <div id="morris-donut-example-gender" style="height: 245px;"></div>
+                                <ul class="list-inline chart-detail-list m-b-0">
+                                <c:forEach var="data" items="${GENDERSALERATIO }" varStatus="st">
+                                    <li>
+                                        <h5 style="color: ${COLORCODE[st.count-1]};"><i class="fa fa-circle m-r-5"></i>${data.gender }</h5>
+                                    </li>
+                              	</c:forEach>
+                                </ul>
+                            </div>
+                        </div>
+                    </div><!-- end col -->
+                    
+                    <div class="col-lg-6">
+                        <div class="card-box">
+                            <h4 class="header-title m-t-0">연령대별 판매비중</h4>
+                            <div class="widget-chart text-center">
+                                <div id="morris-donut-example-age" style="height: 245px;"></div>
+                                <ul class="list-inline chart-detail-list m-b-0">
+                                <c:forEach var="data" items="${AGESALERATIO }" varStatus="st">
+                                    <li>
+                                        <h5 style="color: ${COLORCODE[st.count-1]};"><i class="fa fa-circle m-r-5"></i>${data.age }</h5>
+                                    </li>
+                              	</c:forEach>
+                                </ul>
+                            </div>
+                        </div>
+                    </div><!-- end col -->
+           		</div>
+           		
+           		
+             	<div class="row">
+                    <div class="col-lg-12">
                         <div class="card-box">
                             <h4 class="header-title m-t-0">장소별 판매현황</h4>
                             <div id="morris-bar-example" style="height: 280px;"></div>
                         </div>
                     </div><!-- end col -->
-
-                    <div class="col-lg-4">
+               </div>
+               
+               <div class="row">
+                    <div class="col-lg-12">
                         <div class="card-box">
                             <h4 class="header-title m-t-0">일자별 판매현황</h4>
                             <div id="morris-line-example" style="height: 280px;"></div>
@@ -300,26 +346,9 @@
 
 				<!-- 후기 리스트 -->
                 <div class="row">
-                    <div class="col-lg-4" id="review">
-                        <div class="card-box">
-                            <h4 class="header-title m-t-0 m-b-30">후기</h4>
-                            <div class="inbox-widget nicescroll" style="height: 315px;">
- <!-- -----------------------   foreach문 사용하여  반복--------------------------------------- --> 
- 							<a href="../chef/Review.food?tno=${TNO }">	                           
-                                <c:forEach var="data" items="${REVIEWLIST }">
-                                    <div class="inbox-item">                                  
-                                        <p class="inbox-item-author">${data.pname }</p>
-                                        <p class="inbox-item-text">${data.reviewBody }</p>
-                                        <p class="inbox-item-date">${data.reviewTime }</p>
-                                    </div>
-                              	</c:forEach>
-                           	</a>   	
- <!-- -----------------------   foreach문 사용하여  반복 끝--------------------------------------- --> 
-                            </div>
-                        </div>
-                    </div><!-- end col -->
+                    
 
-                    <div class="col-lg-8">
+                    <div class="col-lg-12">
                         <div class="card-box">
                             <div class="dropdown pull-right">
                                 <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown"
@@ -494,12 +523,33 @@
         createLineChart('morris-line-example', $data, 'y', ['a','b'], ['Series A','Series B'],['0.9'],[colorarr[4]],[colorarr[0]], [colorarr[1],colorarr[2]]);
 
         //creating donut chart
-        var $donutData = [
+        var $donutDataMenu = [
                 {label: "Download Sales", value: 12},
                 {label: "In-Store Sales", value: 30},
                 {label: "Mail-Order Sales", value: 20}
             ];
-        createDonutChart('morris-donut-example', $donutData, [colorarr[1],colorarr[2],colorarr[3]]);
+        createDonutChart('morris-donut-example-menu', $donutDataMenu, [colorarr[1],colorarr[2],colorarr[3]]);
+        
+        var $donutDataWeek = [
+            {label: "Download Sales", value: 12},
+            {label: "In-Store Sales", value: 30},
+            {label: "Mail-Order Sales", value: 20}
+        ];
+    	createDonutChart('morris-donut-example-week', $donutDataWeek, [colorarr[1],colorarr[2],colorarr[3]]);
+    	
+   		 var $donutDataGender = [
+        	{label: "Download Sales", value: 12},
+        	{label: "In-Store Sales", value: 30},
+        	{label: "Mail-Order Sales", value: 20}
+    	];
+		createDonutChart('morris-donut-example-gender', $donutDataGender, [colorarr[1],colorarr[2],colorarr[3]]);
+		
+		var $donutDataAge = [
+        	{label: "Download Sales", value: 12},
+        	{label: "In-Store Sales", value: 30},
+        	{label: "Mail-Order Sales", value: 20}
+    	];
+		createDonutChart('morris-donut-example-age', $donutDataAge, [colorarr[1],colorarr[2],colorarr[3]]);
 	});
 	var createBarChart  = function(element, data, xkey, ykeys, labels, lineColors) {
 	        Morris.Bar({

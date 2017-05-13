@@ -27,4 +27,16 @@ public class CMainDataDAO {
 	public ArrayList<CMainDataVO> selectMenuCountRatio(int tno){
 		return (ArrayList)sqlSession.selectList("foodbuncker.CMainData.selectMenuCountRatio",tno);
 	}
+	
+	public ArrayList<CMainDataVO> selectWeekSaleRatio(int tno){
+		return (ArrayList)sqlSession.selectList("foodbuncker.CMainData.selectWeekSaleRatio",tno);
+	}
+	
+	public ArrayList<CMainDataVO> selectGenderSaleRatio(int tno){
+		return (ArrayList)sqlSession.selectList("foodbuncker.CMainData.selectGenderSaleRatio",tno);
+	}
+	
+	public ArrayList<CMainDataVO> selectAgeSaleRatio(int tno){
+		return (ArrayList)sqlSession.selectList("foodbuncker.CMainData.selectAgeSaleRatio",tno);
+	}
 }

@@ -122,4 +122,91 @@
 		m_name 
 </select>
 
+<select id="selectWeekSaleRatio" parameterType="int" resultType="cmainVO">
+	SELECT
+		WEEKNAME,
+		round(ratio_to_report(sum(om_num*m_price)) over(partition by grouping_id(WEEKNAME))*100,2) as RATIO
+	FROM
+		(SELECT
+			WEEKNAME,
+			om_m_no,
+			om_num
+		FROM
+			(SELECT
+				o_no,
+				o_t_no,
+				to_char(o_ordtime,'DY') AS WEEKNAME
+			FROM
+				morder
+			WHERE
+				o_t_no=#{tno}),
+				ordermenu
+		WHERE
+			o_no=om_o_no),
+			menu
+	WHERE
+		om_m_no = m_no
+	GROUP BY
+		WEEKNAME
+</select>
+
+<select id="selectGenderSaleRatio" parameterType="int" resultType="cmainVO">
+	SELECT
+		o_gender AS GENDER,
+		round(ratio_to_report(sum(om_num*m_price)) over(partition by grouping_id(o_gender))*100,2) as RATIO
+	FROM
+		(SELECT
+			o_gender,
+			om_m_no,
+			om_num
+		FROM
+			(SELECT
+				o_no,
+				o_t_no,
+				o_gender
+			FROM
+				morder
+			WHERE
+				o_t_no=#{tno}),
+				ordermenu
+		WHERE
+			o_no=om_o_no),
+			menu
+	WHERE
+		om_m_no = m_no
+	GROUP BY
+		o_gender
+		
+</select>
+
+<select id="selectAgeSaleRatio" parameterType="int" resultType="cmainVO">
+	SELECT
+		o_age AS AGE,
+		round(ratio_to_report(sum(om_num*m_price)) over(partition by grouping_id(o_age))*100,2) as RATIO
+	FROM
+		(SELECT
+			o_age,
+			om_m_no,
+			om_num
+		FROM
+			(SELECT
+				o_no,
+				o_t_no,
+				o_age
+			FROM
+				morder
+			WHERE
+				o_t_no=#{tno}),
+				ordermenu
+		WHERE
+			o_no=om_o_no),
+			menu
+	WHERE
+		om_m_no = m_no
+	GROUP BY
+		o_age
+</select>
+
+
+
 </mapper>

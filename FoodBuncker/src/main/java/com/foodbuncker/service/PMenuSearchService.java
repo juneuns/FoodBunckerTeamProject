@@ -190,12 +190,12 @@ public class PMenuSearchService {
 				updateMap.put("no", recordNo);
 				dao.updateSearchRecord(updateMap);
 			}catch(Exception e){
-				e.printStackTrace();
+				//e.printStackTrace();
 				String record = ","+no+":1";
 				HashMap insertMap = new HashMap();
 				insertMap.put("word",word);
 				insertMap.put("record", record);
-				
+				dao.insertSearchRecord(insertMap);
 			}
 		}
 	}
