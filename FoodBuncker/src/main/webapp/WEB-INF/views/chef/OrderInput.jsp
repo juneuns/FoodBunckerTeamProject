@@ -85,6 +85,8 @@
 <!-- -----------------------  foreach문으로 1단 1열 반복-------------------------------------- -->                 
                     <input type="hidden" name="tno" value="${TNO}">
                     <input type="hidden" name="pno" value="${PNO}">
+                    <input type="hidden" name="age" value="${AGE}">
+                    <input type="hidden" name="gen" value="${GEN}">
                     <div class="col-sm-6" align="center">
                     <c:forEach var="data" items="${LIST}" varStatus="st">
                 		<input type="hidden" name="mName" value="${data.mName}">
@@ -118,6 +120,7 @@
                 <div class="row">
                     <div class="text-center">
                         <input type="button" class="btn btn-danger btn-colored" id="lBtn" value="주문">
+                        <input type="button" class="btn btn-danger btn-colored" id="cBtn" value="취소">
                     </div>
                 </div>
             </div>
@@ -147,6 +150,10 @@
 	$(document).ready(function(){
 		$("#lBtn").click(function(){
 			$("#frm").attr("action", "../chef/OrderInputProc.food").submit();
+		});
+		
+		$("#cBtn").click(function(){
+			$("#frm").attr("action", "../person/userView.food").submit();
 		});
 		
 		$("input[name='mnum']").TouchSpin({

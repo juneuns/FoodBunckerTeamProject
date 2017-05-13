@@ -57,4 +57,23 @@ public class COrderPayDAO {
 		return (ArrayList)sqlSession.selectList("foodbuncker.COrderPay.selectOneTMenu",tno);
 	}
 
+	/*
+	 * 주문1 insert
+	 */
+	public void insertOrderInput(COrderPayVO data){
+		sqlSession.insert("foodbuncker.COrderPay.orderProc", data);
+	}
+	/*
+	 * 주문2 insert
+	 */
+	public void insertOrderInputTwo(COrderPayVO data){
+		sqlSession.insert("foodbuncker.COrderPay.orderProcTwo", data);
+	}
+	
+	/*
+	 * 주문번호 가져오기
+	 */
+	public int selectOrderNum(){
+		return sqlSession.selectOne("foodbuncker.COrderPay.selectOrderNum");
+	}
 }

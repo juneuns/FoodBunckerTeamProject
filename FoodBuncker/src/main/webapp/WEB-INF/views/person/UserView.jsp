@@ -39,7 +39,6 @@
 
     <body>
 
-
         <div class="wrapper-page">
             <div class="text-center">
                 <a href="../person/MainWindow.food" class="logo"><span>Food<span>Buncker</span></span></a>
@@ -48,13 +47,25 @@
         	<div class="m-t-40 card-box">
                 
                 <div class="panel-body">
-                   
+                <font size="3" color="red">메뉴 주문시 선택해 주셔야 주문이 가능합니다.</font><br>
+                &nbsp성별을 선택해주세요.<br>
+                &nbsp&nbsp<input type="radio" value="M" name="gender" class="gen" /> 남성  &nbsp&nbsp&nbsp&nbsp
+                   	<input type="radio" value="F" name="gender" class="gen"/> 여성<br>
+                &nbsp연령대를 선택해주세요.<br>
+                &nbsp&nbsp<input type="radio" value="1" name="age" class="age" /> 10~19 &nbsp&nbsp&nbsp
+                   	<input type="radio" value="2" name="age" class="age"/> 20~29 &nbsp&nbsp&nbsp
+                   	<input type="radio" value="3" name="age" class="age"/> 30~39 &nbsp&nbsp&nbsp <br>
+                &nbsp&nbsp<input type="radio" value="4" name="age" class="age"/> 40~49 &nbsp&nbsp&nbsp
+                <input type="radio" value="5" name="age" class="age"/> 50~59 &nbsp&nbsp&nbsp
+                <input type="radio" value="6" name="age" class="age"/> 60~
+                   	
                         <div class="form-group text-center m-t-30">
                             <div class="col-xs-12">
                                 <button class="btn btn-custom btn-bordred btn-block waves-effect waves-light" type="button" id="hBtn"=><h3>HOME</h3></button>
                             </div>
                         </div>
                    </div>
+                   
                    <div class="panel-body">
                         <div class="form-group text-center m-t-30">
                             <div class="col-xs-12">
@@ -62,6 +73,9 @@
                             </div>
                         </div>
                    </div>
+                   <c:if test="${ONUM ne null}">
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp주문번호 - ${ONUM}
+                            </c:if>
                    <div class="panel-body">
                         <div class="form-group text-center m-t-30">
                             <div class="col-xs-12">
@@ -106,7 +120,17 @@
 		});
 		
 		$("#mBtn").click(function(){
-			$(location).attr("href","../chef/OrderInputForm.food?tno="+${TNO}+"&pno="+${PNO});
+			var gen = $(".gen:checked").val();
+			var age = $(".age:checked").val();
+			if(gen == null){
+				alert("성별을 선택해주세요");
+			}
+			else if(age == null){
+				alert("연령대를 선택해주세요");
+			}
+			else{
+				$(location).attr("href","../chef/OrderInputForm.food?tno="+${TNO}+"&pno="+${PNO}+"&age="+age+"&gen="+gen);
+			}
 		});
 		
 		$("#rBtn").click(function(){

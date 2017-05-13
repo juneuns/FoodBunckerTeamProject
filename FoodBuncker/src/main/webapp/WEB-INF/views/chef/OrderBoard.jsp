@@ -141,7 +141,7 @@
                                 <div class="inner-box card-box" style="height:500px;">
                                     <div class="plan-header text-center">
                                         <h3 class="plan-title">주문No</h3>
-                                        <h2 class="plan-price">${data.ono }</h2>
+                                        <h2 class="plan-price">${data.ono}</h2>
                                         <div class="plan-duration">주문시간 ${data.showdate}</div>
                                     </div>
 									<div class="text-center">

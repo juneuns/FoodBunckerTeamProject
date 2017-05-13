@@ -198,7 +198,7 @@
 	<insert id="orderProc" parameterType="corderVO">
 		INSERT INTO MORDER VALUES(
 			(SELECT NVL(MAX(O_NO), 0) + 1 FROM MORDER),
-			#{tno}, SYSDATE, SYSDATE, SYSDATE, 20, 50, 0, 'M', 2
+			#{tno}, SYSDATE, SYSDATE, SYSDATE, 20, 50, 0, #{gen}, #{age}
 		)
 	</insert>
 	
@@ -206,10 +206,14 @@
 	<insert id="orderProcTwo" parameterType="corderVO">
 		INSERT INTO ORDERMENU VALUES(
 			(SELECT NVL(MAX(OM_NO), 0) + 1 FROM ORDERMENU),
-			(SELECT MAX(O_NO) FROM MORDER WHERE O_T_NO = #{tno}),
+			(SELECT NVL(MAX(O_NO), 0) FROM MORDER),
 			#{amno},
 			#{ea}
 		)
 	</insert>
 	
+	<!-- 주문번호 가져오기 -->
+	<select id="selectOrderNum" resultType="int">
+		SELECT MAX(O_NO) FROM MORDER
+	</select>
 </mapper>
