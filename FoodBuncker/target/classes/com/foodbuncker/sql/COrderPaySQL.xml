@@ -8,9 +8,9 @@
 	SELECT
 		o_no AS ONO,
 		o_t_no AS TNO,
-		o_ordtime AS ORDERTIME,
-		o_paytime AS PAYTIME,
-		o_servtime AS SERVTIME
+		o_ordtime AS OTIME,
+		o_paytime AS PTIME,
+		o_servtime AS STIME
 	FROM
 		morder
 	WHERE
@@ -145,7 +145,7 @@
 	SELECT
 		o_no AS ONO,
 		o_t_no AS TNO,
-		o_ordTime AS ORDERTIME,
+		o_ordTime AS OTIME,
 		t_name AS TNAME
 	FROM	
 		(SELECT
@@ -194,4 +194,22 @@
 		m_isshow = 'Y'
 </select>
 
+	<!-- 주문받기1 -->
+	<insert id="orderProc" parameterType="corderVO">
+		INSERT INTO MORDER VALUES(
+			(SELECT NVL(MAX(O_NO), 0) + 1 FROM MORDER),
+			#{tno}, SYSDATE, SYSDATE, SYSDATE, 20, 50, 0, 'M', 2
+		)
+	</insert>
+	
+	<!-- 주문받기2 -->
+	<insert id="orderProcTwo" parameterType="corderVO">
+		INSERT INTO ORDERMENU VALUES(
+			(SELECT NVL(MAX(OM_NO), 0) + 1 FROM ORDERMENU),
+			(SELECT MAX(O_NO) FROM MORDER WHERE O_T_NO = #{tno}),
+			#{amno},
+			#{ea}
+		)
+	</insert>
+	
 </mapper>

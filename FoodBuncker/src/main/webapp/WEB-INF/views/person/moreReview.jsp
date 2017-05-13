@@ -9,7 +9,7 @@
 </head>
 <body>
 	<%-- 후기내용 출력 --%>
-	<table boarder="1" align="center" width="1200">
+	<table class="table tabel-bordered">
 		<c:forEach var="data" items="${TRLIST}">
 		<tr>
 			<td width="85%" align="left">${data.body}</td>			
@@ -19,7 +19,7 @@
 	</table>
 	
 	<%-- 페이지 이동 기능 --%>
-	<table width="1200" border="1" align="center">
+	<table class="table">
 		<tr>
 			<td align="center">
 			<c:if test="${PINFO.startPage eq 1}">

@@ -79,7 +79,7 @@ public class InsertMOrderMenu {
 			
 			int[] numFactor = new int[menuInfoList.size()];
 			for(int m = 0 ; m < menuInfoList.size() ; m++){
-				numFactor[m] = (int)(Math.random()*4+1);
+				numFactor[m] = (int)(Math.random()*5+2);
 			}
 			
 			 

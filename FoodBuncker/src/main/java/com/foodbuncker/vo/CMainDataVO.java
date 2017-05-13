@@ -15,6 +15,10 @@ public class CMainDataVO {
 	LocalDate reviewTime;
 	int rno;
 	float ratio;
+	String weekname;
+	String gender;
+	int age;
+	String mname;
 	
 	public String getPname() {
 		return pname;
@@ -64,4 +68,31 @@ public class CMainDataVO {
 	public void setRatio(float ratio) {
 		this.ratio = ratio;
 	}
+	public String getWeekname() {
+		return weekname;
+	}
+	public void setWeekname(String weekname) {
+		this.weekname = weekname;
+	}
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
+	public String getMname() {
+		return mname;
+	}
+	public void setMname(String mname) {
+		this.mname = mname;
+	}
+	
+	
+	
 }
