@@ -19,6 +19,13 @@ public class CMainDataVO {
 	String gender;
 	int age;
 	String mname;
+	int salesum;
+	String sdate;
+	String syear;
+	int totalsum;
+	int s2015;
+	int s2016;
+	int s2017;
 	
 	public String getPname() {
 		return pname;
@@ -92,7 +99,47 @@ public class CMainDataVO {
 	public void setMname(String mname) {
 		this.mname = mname;
 	}
-	
-	
+	public int getSalesum() {
+		return salesum;
+	}
+	public void setSalesum(int salesum) {
+		this.salesum = salesum;
+	}
+	public String getSdate() {
+		return sdate;
+	}
+	public void setSdate(String sdate) {
+		this.sdate = sdate;
+	}
+	public String getSyear() {
+		return syear;
+	}
+	public void setSyear(String syear) {
+		this.syear = syear;
+	}
+	public int getTotalsum() {
+		return totalsum;
+	}
+	public void setTotalsum(int totalsum) {
+		this.totalsum = totalsum;
+	}
+	public int getS2015() {
+		return s2015;
+	}
+	public void setS2015(int s2015) {
+		this.s2015 = s2015;
+	}
+	public int getS2016() {
+		return s2016;
+	}
+	public void setS2016(int s2016) {
+		this.s2016 = s2016;
+	}
+	public int getS2017() {
+		return s2017;
+	}
+	public void setS2017(int s2017) {
+		this.s2017 = s2017;
+	}
 	
 }

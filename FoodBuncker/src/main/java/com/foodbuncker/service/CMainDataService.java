@@ -65,4 +65,28 @@ public class CMainDataService {
 		String[] colorCode = {"#349D4B","#818e2f","#9ed98c", "#dfd79f", "#e9c9be","#cab3e6","#b3bee6","#989add","#9f5ec9","#934bc3","#4051bf","#201849","#58281d"};
 		return colorCode;
 	}
+	
+	public ArrayList<CMainDataVO> selectPlaceSaleSum(int tno){
+		return dao.selectPlaceSaleSum(tno);
+	}
+	
+	public ArrayList<CMainDataVO> selectDaySaleSum(int tno){
+		return dao.selectDaySaleSum(tno);
+	}
+	
+	public HashMap<String,Integer> selectYearSaleRatio(int tno){
+		return dao.selectYearSaleRatio(tno);
+	}
+	
+	public HashMap<String,Integer> selectMonthSaleRatio(int tno){
+		return dao.selectMonthSaleRatio(tno);
+	}
+	
+	public HashMap<String,Integer> selectDaySaleRatio(int tno){
+		return dao.selectDaySaleRatio(tno);
+	}
+	
+	public HashMap<String,Integer> selectHourSaleRatio(int tno){
+		return dao.selectHourSaleRatio(tno);
+	}
 }

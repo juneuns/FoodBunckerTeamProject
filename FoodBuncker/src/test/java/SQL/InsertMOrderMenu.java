@@ -79,7 +79,7 @@ public class InsertMOrderMenu {
 			
 			int[] numFactor = new int[menuInfoList.size()];
 			for(int m = 0 ; m < menuInfoList.size() ; m++){
-				numFactor[m] = (int)(Math.random()*5+2);
+				numFactor[m] = (int)(Math.random()*4+1);
 			}
 			
 			 
@@ -260,7 +260,13 @@ public class InsertMOrderMenu {
 		sql = "select "+wcolName+" from selldata where sd_p_no = "+pno+" and sd_yearmonth like '%"+yearMonth+"%'";
 		rs = stmt.executeQuery(sql);
 		rs.next();
-		return rs.getFloat(1);
+		if(wcolName.equals("sd_frirate")){
+			return rs.getFloat(1)+2;
+		}else if(wcolName.equals("sd_sunrate")){
+			return rs.getFloat(1)-2;
+		}else{
+			return rs.getFloat(1);
+		}
 	}
 	
 	public float getQuarterRatio(LocalDateTime now, int pno) throws Exception{

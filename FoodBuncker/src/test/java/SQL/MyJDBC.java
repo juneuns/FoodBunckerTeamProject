@@ -17,8 +17,10 @@ public class MyJDBC {
 
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			String url = "jdbc:oracle:thin:@localhost:1521:orcl";
-			con = DriverManager.getConnection(url, "scott", "tiger");
+			//String url = "jdbc:oracle:thin:@localhost:1521:orcl";
+			String url="jdbc:oracle:thin:@foodbuncker.cq30moryfq6h.ap-northeast-2.rds.amazonaws.com:1521:orcl";
+			//con = DriverManager.getConnection(url, "scott", "tiger");
+			con = DriverManager.getConnection(url, "sungmo00", "foodbunckeralice");
 		}
 		catch(Exception e1){
 			e1.printStackTrace();
