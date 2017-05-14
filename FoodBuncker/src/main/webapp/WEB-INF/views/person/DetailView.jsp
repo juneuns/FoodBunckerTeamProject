@@ -398,25 +398,6 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-4">
-				<div class="footer-brand">
-					<img src="../resources/img/logo.png" alt="About the image">
-				</div>
-			</div>
-			<div class="col-sm-4">
-				<div class="footer-social">
-					<ul class="social">
-						<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-						<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-						<li><a href="#"><i class="fa fa-instagram"></i></a></li>
-						<li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-					</ul>
-				</div>
-			</div>
-			<div class="col-sm-4">
-				<div class="footer-copyright">
-					<p>© Zawia</p>
-				</div>
-
 			</div>
 		</div>
 	</div>

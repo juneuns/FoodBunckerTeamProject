@@ -58,4 +58,16 @@ public class CMainDataDAO {
 	public HashMap<String,Integer> selectHourSaleRatio(int tno){
 		return (HashMap)sqlSession.selectOne("foodbuncker.CMainData.selectHourSaleRatio", tno);
 	}
+	public ArrayList<CMainDataVO> selectRainSaleRatio(int tno){
+		return (ArrayList)sqlSession.selectList("foodbuncker.CMainData.selectRainSaleRatio", tno);
+	}
+	public ArrayList<CMainDataVO> selectTempSaleRatio(int tno){
+		return (ArrayList)sqlSession.selectList("foodbuncker.CMainData.selectTempSaleRatio", tno);
+	}
+	public ArrayList<CMainDataVO> selectHourSaleSum(int tno){
+		return (ArrayList)sqlSession.selectList("foodbuncker.CMainData.selectHourSaleSum",tno);
+	}
+	public ArrayList<CMainDataVO> selectMonthSaleSum(int tno){
+		return (ArrayList)sqlSession.selectList("foodbuncker.CMainData.selectMonthSaleSum",tno);
+	}
 }

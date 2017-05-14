@@ -89,4 +89,20 @@ public class CMainDataService {
 	public HashMap<String,Integer> selectHourSaleRatio(int tno){
 		return dao.selectHourSaleRatio(tno);
 	}
+	
+	public ArrayList<CMainDataVO> selectRainSaleRatio(int tno){
+		return dao.selectRainSaleRatio(tno);
+	}
+	
+	public ArrayList<CMainDataVO> selectTempSaleRatio(int tno){
+		return dao.selectTempSaleRatio(tno);
+	}
+	
+	public ArrayList<CMainDataVO> selectHourSaleSum(int tno){
+		return dao.selectHourSaleSum(tno);
+	}
+	
+	public ArrayList<CMainDataVO> selectMonthSaleSum(int tno){
+		return dao.selectMonthSaleSum(tno);
+	}
 }

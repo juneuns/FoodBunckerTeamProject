@@ -26,6 +26,10 @@ public class CMainDataVO {
 	int s2015;
 	int s2016;
 	int s2017;
+	int shour;
+	int rain;
+	int temp;
+	String smonth;
 	
 	public String getPname() {
 		return pname;
@@ -140,6 +144,30 @@ public class CMainDataVO {
 	}
 	public void setS2017(int s2017) {
 		this.s2017 = s2017;
+	}
+	public int getRain() {
+		return rain;
+	}
+	public void setRain(int rain) {
+		this.rain = rain;
+	}
+	public int getTemp() {
+		return temp;
+	}
+	public void setTemp(int temp) {
+		this.temp = temp;
+	}
+	public int getShour() {
+		return shour;
+	}
+	public void setShour(int shour) {
+		this.shour = shour;
+	}
+	public String getSmonth() {
+		return smonth;
+	}
+	public void setSmonth(String smonth) {
+		this.smonth = smonth;
 	}
 	
 }

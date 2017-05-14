@@ -80,10 +80,6 @@
                             </li>
 
                             <li class="has-submenu">
-                                <a href="#"><i class="zmdi zmdi-view-list"></i> <span> 판매 통계 </span> </a>
-                            </li>
-
-                            <li class="has-submenu">
                                 <a href="#"><i class="zmdi zmdi-chart"></i><span> 메뉴 및 사진 등록 </span> </a>
                                 <ul class="submenu">
                                     <li><a href="../chef/MenuModify.food?tno=${TNO }">메뉴 등록 및 수정</a></li>
@@ -315,7 +311,7 @@
                                 <ul class="list-inline chart-detail-list m-b-0">
                                 <c:forEach var="data" items="${AGESALERATIO }" varStatus="st">
                                     <li>
-                                        <h5 style="color: ${COLORCODE[st.index]};"><i class="fa fa-circle m-r-5"></i>${data.age }</h5>
+                                        <h5 style="color: ${COLORCODE[st.index]};"><i class="fa fa-circle m-r-5"></i>${data.age }0대</h5>
                                     </li>
                               	</c:forEach>
                                 </ul>
@@ -337,118 +333,41 @@
                <div class="row">
                     <div class="col-lg-12">
                         <div class="card-box">
-                            <h4 class="header-title m-t-0">일자별 판매현황(<span><font color="#9f5ec9">2017</font></span>,<span><font color="#989add">2016</font></span>,<span><font color="#dfd79f">2015</font></span>) </h4>
-                            <div id="morris-line-example" style="height: 280px;"></div>
-                        </div>
-                    </div><!-- end col -->
-                </div>
-                <!-- end row -->
-
-				<!-- 후기 리스트 -->
-                <div class="row">
-                    
-
-                    <div class="col-lg-12">
-                        <div class="card-box">
-                            <div class="dropdown pull-right">
+                         <div class="dropdown pull-right">
                                 <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown"
                                    aria-expanded="false">
                                     <i class="zmdi zmdi-more-vert"></i>
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="#">Action</a></li>
-                                    <li><a href="#">Another action</a></li>
-                                    <li><a href="#">Something else here</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="#">Separated link</a></li>
+                                    <li><a href="javascript:void(0);" onClick="ajaxHour()">시간대별</a></li>
+                                    <li><a href="javascript:void(0);" onClick="ajaxMonth()">월별</a></li>
                                 </ul>
                             </div>
-
-                            <h4 class="header-title m-t-0 m-b-30">장소별 예상매출(2017-05-15)</h4>
-
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Project Name</th>
-                                        <th>Start Date</th>
-                                        <th>Due Date</th>
-                                        <th>Status</th>
-                                        <th>Assign</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Adminto Admin v1</td>
-                                        <td>01/01/2016</td>
-                                        <td>26/04/2016</td>
-                                        <td><span class="label label-danger">Released</span></td>
-                                        <td>Coderthemes</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Adminto Frontend v1</td>
-                                        <td>01/01/2016</td>
-                                        <td>26/04/2016</td>
-                                        <td><span class="label label-success">Released</span></td>
-                                        <td>Adminto admin</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Adminto Admin v1.1</td>
-                                        <td>01/05/2016</td>
-                                        <td>10/05/2016</td>
-                                        <td><span class="label label-pink">Pending</span></td>
-                                        <td>Coderthemes</td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td>Adminto Frontend v1.1</td>
-                                        <td>01/01/2016</td>
-                                        <td>31/05/2016</td>
-                                        <td><span class="label label-purple">Work in Progress</span>
-                                        </td>
-                                        <td>Adminto admin</td>
-                                    </tr>
-                                    <tr>
-                                        <td>5</td>
-                                        <td>Adminto Admin v1.3</td>
-                                        <td>01/01/2016</td>
-                                        <td>31/05/2016</td>
-                                        <td><span class="label label-warning">Coming soon</span></td>
-                                        <td>Coderthemes</td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>6</td>
-                                        <td>Adminto Admin v1.3</td>
-                                        <td>01/01/2016</td>
-                                        <td>31/05/2016</td>
-                                        <td><span class="label label-primary">Coming soon</span></td>
-                                        <td>Adminto admin</td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>7</td>
-                                        <td>Adminto Admin v1.3</td>
-                                        <td>01/01/2016</td>
-                                        <td>31/05/2016</td>
-                                        <td><span class="label label-primary">Coming soon</span></td>
-                                        <td>Adminto admin</td>
-                                    </tr>
-
-                                    </tbody>
-                                </table>
-                            </div>
+                            
+                            <h4 class="header-title m-t-0"><span id="daysum">일자별 판매현황</span>(<span><font color="#9f5ec9">2017</font></span>,<span><font color="#989add">2016</font></span>,<span><font color="#dfd79f">2015</font></span>) </h4>
+                            <div id="morris-line-example" style="height: 280px;"></div>
                         </div>
                     </div><!-- end col -->
-
+                </div>
+                
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card-box">
+                            <h4 class="header-title m-t-0">강수량별 판매현황(시간당 평균강수량) </h4>
+                            <div id="morris-line-rain" style="height: 280px;"></div>
+                        </div>
+                    </div><!-- end col -->
+                </div>
+                
+                 <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card-box">
+                            <h4 class="header-title m-t-0">기온별 판매현황(시간당 평균기온) </h4>
+                            <div id="morris-line-temp" style="height: 280px;"></div>
+                        </div>
+                    </div><!-- end col -->
                 </div>
                 <!-- end row -->
-
-
                 <!-- Footer -->
                 <footer class="footer text-right">
                     <div class="container">
@@ -498,7 +417,7 @@
 
 	<script>
 	$(document).ready(function(){
-		var colorarr = ["#349D4B","#818e2f","#9ed98c", "#dfd79f", "#e9c9be","#cab3e6","#b3bee6","#989add","#9f5ec9","#934bc3","#4051bf","#201849","#58281d"]
+		var colorarr = ["#349D4B","#818e2f","#9ed98c", "#dfd79f", "#e9c9be","#cab3e6","#b3bee6","#989add","#9f5ec9","#934bc3","#4051bf","#201849","#58281d"];
 		var $barData  = [
 			<c:forEach var="data" items="${PLACESALESUM}" varStatus="st">
 			<c:if test="${st.last eq false}">
@@ -521,9 +440,37 @@
             	{ y: '${data.sdate}', a: ${data.s2015}, b: ${data.s2016}, c:${data.s2017} }
             </c:if>
            	</c:forEach>
-         
           ];
         createLineChart('morris-line-example', $data, 'y', ['a','b','c'], ['2015년','2016년','2017년'],['0.9'],[colorarr[1]],[colorarr[2]], [colorarr[3],colorarr[7],colorarr[8]]);
+        
+        
+      //create line chart
+        var $data  = [
+        	<c:forEach var="data" items="${RAINSALERATIO}" varStatus="st">
+        	<c:if test="${st.last eq false}">
+            	{ y: '${data.rain}', a: ${data.salesum} },
+            </c:if>
+            <c:if test="${st.last ne false}">
+            	{ y: '${data.rain}', a: ${data.salesum} }
+            </c:if>
+           	</c:forEach>
+         
+          ];
+        createLineChart('morris-line-rain', $data, 'y', ['a'], ['평균시간매출'],['0.9'],[colorarr[1]],[colorarr[2]], [colorarr[3]]);
+        
+        //create line chart
+        var $data  = [
+        	<c:forEach var="data" items="${TEMPSALERATIO}" varStatus="st">
+        	<c:if test="${st.last eq false}">
+            	{ y: '${data.temp}', a: ${data.salesum} },
+            </c:if>
+            <c:if test="${st.last ne false}">
+            	{ y: '${data.temp}', a: ${data.salesum} }
+            </c:if>
+           	</c:forEach>
+         
+          ];
+        createLineChart('morris-line-temp', $data, 'y', ['a'], ['평균시간매출'],['0.9'],[colorarr[1]],[colorarr[2]], [colorarr[3]]);
 
         //creating donut chart
         var $donutDataMenu = [
@@ -593,10 +540,10 @@
 		var $donutDataAge = [
 			<c:forEach var="data" items="${AGESALERATIO}" varStatus="st">
 			<c:if test="${st.last eq false}">
-        		{label: "${data.age*10}", value: ${data.ratio}},
+        		{label: "${data.age*10}대", value: ${data.ratio}},
         	</c:if>
         	<c:if test="${st.last ne false}">
-        		{label: "${data.age*10}", value: ${data.ratio}}
+        		{label: "${data.age*10}대", value: ${data.ratio}}
         	</c:if>
         	</c:forEach>
     	];
@@ -627,6 +574,7 @@
 	    };
 	 
 	var createLineChart = function(element, data, xkey, ykeys, labels, opacity, Pfillcolor, Pstockcolor, lineColors) {
+		//alert(data);
 	        Morris.Line({
 	          element: element,
 	          data: data,
@@ -649,6 +597,7 @@
 	};
 	
 	
+	
 	var createDonutChart = function(element, data, colors) {
         Morris.Donut({
             element: element,
@@ -657,6 +606,50 @@
             colors: colors
         });
     };
+    
+    function setLineChart(data){
+    	var colorarr = ["#349D4B","#818e2f","#9ed98c", "#dfd79f", "#e9c9be","#cab3e6","#b3bee6","#989add","#9f5ec9","#934bc3","#4051bf","#201849","#58281d"];
+		//alert(data);
+		var $data = data.salesum;
+		$("#daysum").html("시간별 매출현황");
+		$("#morris-line-example").html("");
+		createLineChart('morris-line-example', $data, 'y', ['a','b','c'], ['2015년','2016년','2017년'],['0.9'],[colorarr[1]],[colorarr[2]], [colorarr[3],colorarr[7],colorarr[8]]);
+		//$("#morris-line-example").setData($data);    
+    }
+    
+    function ajaxHour(){
+    	//alert("ajaxHour");
+    	$.ajax({
+    		data : "temp=" + new Date() + "&tno=${TNO}",
+    		dataType : "JSON",
+    		type : "GET",
+    		url : "../chef/HourSaleSum.food",
+    		success : setLineChart ,
+    		error : function(){
+    			alert("ajax 오류");
+    		}
+    	});	
+    }
+    function ajaxMonth(){
+    	$.ajax({
+    		//alert("ajaxMonth");
+    		data : "temp=" + new Date() + "&tno=${TNO}",
+    		dataType : "json",
+    		type : "GET",
+    		url : "../chef/MonthSaleSum.food",
+    		success : function(data){
+    			//alert(data);
+    			$("#daysum").html("월별매출현황");
+    			$("#morris-line-example").html("");
+    			var $data = data.salesum;
+    			var colorarr = ["#349D4B","#818e2f","#9ed98c", "#dfd79f", "#e9c9be","#cab3e6","#b3bee6","#989add","#9f5ec9","#934bc3","#4051bf","#201849","#58281d"];
+    			createLineChart('morris-line-example', $data, 'y', ['a'], ['월 매출'],['0.9'],[colorarr[1]],[colorarr[2]], [colorarr[3]]);
+    		},
+    		error : function(){
+    			alert("ajax 오류");
+    		}
+    	});
+    }
 
 
 	</script>
