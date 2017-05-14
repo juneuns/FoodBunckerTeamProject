@@ -18,11 +18,23 @@ import com.sun.javafx.event.RedirectedEvent;
 
 import oracle.sql.ARRAY;
 
+/**
+ * 
+ * @author sungmo
+ * @author jingwan
+ */
 @Controller
 public class COrderPayController {
 	@Autowired
 	COrderPayService service;
 
+	/**
+	 * 
+	 * @param mv
+	 * @param session
+	 * @param req
+	 * @return
+	 */
 	@RequestMapping("/chef/OrderBoard.food")
 	public ModelAndView orderBoard(ModelAndView mv,HttpSession session,HttpServletRequest req){
 		String strTno = req.getParameter("tno");
@@ -44,6 +56,12 @@ public class COrderPayController {
 		return mv;
 	}
 	
+	/**
+	 * 
+	 * @param mv
+	 * @param req
+	 * @return
+	 */
 	@RequestMapping("/chef/Invoice.food")
 	public ModelAndView invoice(ModelAndView mv,HttpServletRequest req){
 		String strOno = req.getParameter("ono");
@@ -54,7 +72,12 @@ public class COrderPayController {
 		mv.setViewName("chef/Invoice");
 		return mv;
 	}
-	
+	/**
+	 * 
+	 * @param mv
+	 * @param req
+	 * @return
+	 */
 	@RequestMapping("/chef/PayProc.food")
 	public ModelAndView payProc(ModelAndView mv,HttpServletRequest req){
 		String strOno = req.getParameter("ono");
@@ -67,6 +90,12 @@ public class COrderPayController {
 		return mv;
 	}
 	
+	/**
+	 * 
+	 * @param mv
+	 * @param req
+	 * @return
+	 */
 	@RequestMapping("/chef/OpenProc.food")
 	public ModelAndView openProc(ModelAndView mv,HttpServletRequest req){
 		String strTno = req.getParameter("tno");
@@ -79,6 +108,12 @@ public class COrderPayController {
 		return mv;
 	}
 	
+	/**
+	 * 
+	 * @param mv
+	 * @param req
+	 * @return
+	 */
 	@RequestMapping("/chef/CloseProc.food")
 	public ModelAndView closeProc(ModelAndView mv, HttpServletRequest req){
 		String strTno = req.getParameter("tno");
@@ -90,6 +125,12 @@ public class COrderPayController {
 		return mv;
 	}
 	
+	/**
+	 * 
+	 * @param mv
+	 * @param req
+	 * @return
+	 */
 	@RequestMapping("/chef/CookEndProc.food")
 	public ModelAndView updateServTime(ModelAndView mv, HttpServletRequest req){
 		String strOno = req.getParameter("ono");
@@ -102,6 +143,12 @@ public class COrderPayController {
 		return mv;
 	}
 	
+	/**
+	 * 
+	 * @param mv
+	 * @param req
+	 * @return
+	 */
 	@RequestMapping("/chef/OrderInputForm.food")
 	public ModelAndView orderInputForm(ModelAndView mv, HttpServletRequest req){
 		String strTno = req.getParameter("tno");
@@ -121,6 +168,13 @@ public class COrderPayController {
 		return mv;
 	}
 	
+	/**
+	 * 
+	 * @param mv
+	 * @param req
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping("/chef/OrderInputProc.food")
 	public ModelAndView orderInputProc(ModelAndView mv, HttpServletRequest req, HttpSession session){
 		String  stno = req.getParameter("tno");

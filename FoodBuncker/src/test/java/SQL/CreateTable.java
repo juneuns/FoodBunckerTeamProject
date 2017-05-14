@@ -55,13 +55,13 @@ public class CreateTable {
 				"CREATE TABLE BOARD "
 						+ "(B_NO NUMBER(10) Constraint B_NO_PK Primary Key, "
 						+ "B_T_NO NUMBER(5) references TRUCKINFO(T_NO), "
-						+ "B_BODY VARCHAR2(200) NOT NULL, "
+						+ "B_BODY VARCHAR2(300) NOT NULL, "
 						+ "B_DATE DATE NOT NULL, "
 						+ "B_ISSHOW CHAR(1) NOT NULL)",
 				"CREATE TABLE REPLYBOARD "
 						+ "(RB_NO NUMBER(10) Constraint RB_NO_PK Primary Key, "
 						+ "RB_B_NO NUMBER(5) references BOARD(B_NO), "
-						+ "RB_BODY VARCHAR2(200) NOT NULL, "
+						+ "RB_BODY VARCHAR2(300) NOT NULL, "
 						+ "RB_DATE DATE NOT NULL, "
 						+ "RB_ISSHOW CHAR(1) NOT NULL)",
 				"CREATE TABLE MENU "

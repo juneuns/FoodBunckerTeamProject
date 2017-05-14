@@ -17,9 +17,12 @@
 	
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
     	<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
-     	<property name="url" value="jdbc:oracle:thin:@localhost:1521:orcl" /> 
-    	<property name="username" value="scott" />
-    	<property name="password" value="tiger" />
+     	<!-- <property name="url" value="jdbc:oracle:thin:@localhost:1521:orcl" /> -->
+     	<property name="url" value="jdbc:oracle:thin:@foodbuncker.cq30moryfq6h.ap-northeast-2.rds.amazonaws.com:1521:orcl" />  
+     	<property name="username" value="alice"/> 
+     	<property name="password" value="123456789a"/>
+    	<!-- <property name="username" value="scott" /> -->
+    	<!-- <property name="password" value="tiger" /> -->
 	</bean> 
 	
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">

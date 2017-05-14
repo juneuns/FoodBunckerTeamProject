@@ -1,9 +1,4 @@
 package com.foodbuncker.controller;
-/**
- * 
- */
-
-
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -19,6 +14,11 @@ import org.springframework.web.servlet.view.RedirectView;
 import com.foodbuncker.service.CRegLoginService;
 import com.foodbuncker.vo.CRegLoginVO;
 
+/**
+ * 
+ * @author eunsuk
+ *
+ */
 @Controller
 public class CRegLoginController {
 	@Autowired
@@ -26,6 +26,13 @@ public class CRegLoginController {
 	
 	/*
 	 * 로그인 폼 보여주기 전담 컨트롤러 함수
+	 */
+	/**
+	 * 
+	 * @param mv
+	 * @param session
+	 * @param cregVO
+	 * @return
 	 */
 	@RequestMapping("/chef/LoginForm.food")
 	public ModelAndView loginForm(ModelAndView mv, HttpSession session, CRegLoginVO cregVO){
@@ -65,6 +72,13 @@ public class CRegLoginController {
 
 	/*
 	 * 로그인 요청 전담 처리 컨트롤러 함수
+	 */
+	/**
+	 * 
+	 * @param mv
+	 * @param session
+	 * @param cregVO
+	 * @return
 	 */
 	@RequestMapping("/chef/LoginProc.food")
 	public ModelAndView loginProc(ModelAndView mv, HttpSession session, CRegLoginVO cregVO){
@@ -128,6 +142,12 @@ public class CRegLoginController {
 	/*
 	 * 로그인 처리된 사용자 redirect 처리 컨트롤러..
 	 */
+	/**
+	 * 
+	 * @param mv
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping("/chef/RedirectProc.food")
 	public ModelAndView redirectProc(ModelAndView mv, HttpSession session){
 		int tabNo = 0 ;
@@ -162,6 +182,13 @@ public class CRegLoginController {
 		return mv;
 	}
 	
+	/**
+	 * 
+	 * @param mv
+	 * @param cregVO
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping("/chef/RegForm.food")
 	public ModelAndView regForm(ModelAndView mv, CRegLoginVO cregVO, HttpSession session){
 		
@@ -187,6 +214,13 @@ public class CRegLoginController {
 		return mv;
 	}
 	
+	/**
+	 * 
+	 * @param mv
+	 * @param cregVO
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping("/chef/TempSave.food")
 	public ModelAndView tempSave(ModelAndView mv, CRegLoginVO cregVO, HttpSession session){
 
@@ -266,6 +300,13 @@ public class CRegLoginController {
 	/*
 	 * 회원가입 확인 페이지 보여주기...
 	 */
+	/**
+	 * 
+	 * @param mv
+	 * @param session
+	 * @param cregVO
+	 * @return
+	 */
 	@RequestMapping("/chef/RegConf.food")
 	public ModelAndView regConf(ModelAndView mv, HttpSession session, CRegLoginVO cregVO){
 		cregLoginService.sessionSettingSrvc(session, cregVO);
@@ -280,6 +321,13 @@ public class CRegLoginController {
 	
 	/*
 	 * 회원가입 최종 완료 요청 처리 컨트롤러
+	 */
+	/**
+	 * 
+	 * @param mv
+	 * @param cregVO
+	 * @param session
+	 * @return
 	 */
 	@RequestMapping("/chef/RegProc.food")
 	public ModelAndView regProc(ModelAndView mv, CRegLoginVO cregVO, HttpSession session){
@@ -305,6 +353,13 @@ public class CRegLoginController {
 	
 	/*
 	 * 회원 정보 보여주기 요청 처리 컨트롤러
+	 */
+	/**
+	 * 
+	 * @param mv
+	 * @param cregVO
+	 * @param session
+	 * @return
 	 */
 	@RequestMapping("/chef/InfoModify.food")
 	public ModelAndView infoModify(ModelAndView mv, CRegLoginVO cregVO, HttpSession session){
@@ -332,6 +387,13 @@ public class CRegLoginController {
 	/*
 	 * 회원정보 처리 요청 전담 컨트롤러
 	 */
+	/**
+	 * 
+	 * @param mv
+	 * @param cregVO
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping("/chef/InfoModifyProc.food")
 	public ModelAndView infoModifyProc(ModelAndView mv, CRegLoginVO cregVO, HttpSession session){
 		
@@ -354,6 +416,13 @@ public class CRegLoginController {
 	/*
 	 * 메뉴 등록화면 보여주기 요청 처리..
 	 */
+	/**
+	 * 
+	 * @param mv
+	 * @param cregVO
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping("/chef/MenuModify.food")
 	public ModelAndView menuModify(ModelAndView mv, CRegLoginVO cregVO, HttpSession session){
 		// 할일
@@ -375,6 +444,13 @@ public class CRegLoginController {
 	
 	/*
 	 * 메뉴 등록 요청 처리..
+	 */
+	/**
+	 * 
+	 * @param mv
+	 * @param cregVO
+	 * @param session
+	 * @return
 	 */
 	@RequestMapping("/chef/MenuModProc.food")
 	public ModelAndView menuModProc(ModelAndView mv, CRegLoginVO cregVO, HttpSession session){
@@ -439,6 +515,13 @@ public class CRegLoginController {
 	
 	/*
 	 * 일반사진 등록 전담 컨트롤러
+	 */
+	/**
+	 * 
+	 * @param mv
+	 * @param cregVO
+	 * @param session
+	 * @return
 	 */
 	@RequestMapping("/chef/PhotoUpload.food")
 	public ModelAndView photoUpload(ModelAndView mv, CRegLoginVO cregVO, HttpSession session){
@@ -522,6 +605,13 @@ public class CRegLoginController {
 	
 	/*
 	 * 일반사진 등록 요청 전담 컨트롤러
+	 */
+	/**
+	 * 
+	 * @param mv
+	 * @param cregVO
+	 * @param session
+	 * @return
 	 */
 	@RequestMapping("/chef/PhotoUploadProc.food")
 	public ModelAndView photoUploadProc(ModelAndView mv, CRegLoginVO cregVO, HttpSession session){

@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -12,17 +12,17 @@
 	<table align="center">	
 		<tr>
 			<td align="center">
-				<input type="button" id="hBtn" value="È¨ÆäÀÌÁö ÀÌµ¿" ><br>
+				<input type="button" id="hBtn" value="í™ˆíŽ˜ì´ì§€ ì´ë™" ><br>
 			<td>
 		</tr>
 		<tr>
 			<td align="center">	
-				<input type="button" id="mBtn" value="¸Þ´ºÁÖ¹® ÇÏ±â" ><br>
+				<input type="button" id="mBtn" value="ë©”ë‰´ì£¼ë¬¸ í•˜ê¸°" ><br>
 			<td>
 		</tr>
 		<tr>
 			<td align="center">	
-				<input type="button" id="rBtn" value="ÈÄ±â ÀÛ¼ºÇÏ±â" >
+				<input type="button" id="rBtn" value="í›„ê¸° ìž‘ì„±í•˜ê¸°" >
 			<td>
 		</tr>
 	</table>

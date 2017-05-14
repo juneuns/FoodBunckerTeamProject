@@ -15,11 +15,22 @@ import com.foodbuncker.service.PMenuSearchService;
 import com.foodbuncker.util.PageUtil;
 import com.foodbuncker.vo.PMenuSearchVO;
 
+/**
+ * 
+ * @author sungmo
+ *
+ */
 @Controller
 public class PMenuSearchController {
 	@Autowired
 	PMenuSearchService service;
 	
+	/**
+	 * 
+	 * @param mv
+	 * @param req
+	 * @return
+	 */
 	@RequestMapping("/person/Menu.food")
 	public ModelAndView menuView(ModelAndView mv,HttpServletRequest req){
 		String word="";
@@ -39,7 +50,12 @@ public class PMenuSearchController {
 		return mv;
 	}
 	
-	
+	/**
+	 * 
+	 * @param mv
+	 * @param req
+	 * @return
+	 */
 	@RequestMapping("/person/MenuAddView.food")
 	public ModelAndView menuAddView(ModelAndView mv, HttpServletRequest req){
 		String word="";
@@ -62,6 +78,12 @@ public class PMenuSearchController {
 		return mv;
 	}
 	
+	/**
+	 * 
+	 * @param mv
+	 * @param req
+	 * @return
+	 */
 	@RequestMapping("/person/Search.food")
 	public ModelAndView searchView(ModelAndView mv, HttpServletRequest req){
 		String strTno = req.getParameter("tno");
@@ -87,6 +109,12 @@ public class PMenuSearchController {
 		return mv;
 	}
 	
+	/**
+	 * 
+	 * @param mv
+	 * @param req
+	 * @return
+	 */
 	@RequestMapping("/person/TruckSearch.food")
 	public ModelAndView truckSearch(ModelAndView mv, HttpServletRequest req){
 		ArrayList oneTPlan = service.selectOneTPlan(req.getParameter("tno"));
@@ -95,6 +123,12 @@ public class PMenuSearchController {
 		return mv;
 	}
 	
+	/**
+	 * 
+	 * @param mv
+	 * @param req
+	 * @return
+	 */
 	@RequestMapping("/person/MenuSearchRecordProc.food")
 	public ModelAndView menuSearchRecordProc(ModelAndView mv, HttpServletRequest req){
 		String strNo = req.getParameter("no");
