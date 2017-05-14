@@ -34,6 +34,8 @@ public class CRegLoginVO {
 	public String truckComment;
 	public MultipartFile mmenuImg;
 	public String mmenuImgName;
+	public MultipartFile menuImg;
+	public String menuImgName;
 	public String truckThumb;
 	public String chefThumb;
 	public String thumbName;
@@ -49,6 +51,7 @@ public class CRegLoginVO {
 	public String keyword3;
 	public String keyword4;
 	public String keyword5;
+	public String keyword6;
 	
 	public String oldChefImg;
 	public String oldTruckImg;
@@ -65,6 +68,18 @@ public class CRegLoginVO {
 	public ArrayList list2;
 	
 
+	public MultipartFile getMenuImg() {
+		return menuImg;
+	}
+	public void setMenuImg(MultipartFile menuImg) {
+		this.menuImg = menuImg;
+	}
+	public String getMenuImgName() {
+		return menuImgName;
+	}
+	public void setMenuImgName(String menuImgName) {
+		this.menuImgName = menuImgName;
+	}
 	public ArrayList getList1() {
 		return list1;
 	}
@@ -202,6 +217,12 @@ public class CRegLoginVO {
 	}
 	public void setKeyword5(String keyword5) {
 		this.keyword5 = keyword5;
+	}
+	public String getKeyword6() {
+		return keyword6;
+	}
+	public void setKeyword6(String keyword6) {
+		this.keyword6 = keyword6;
 	}
 	public MultipartFile getMmenuImg() {
 		return mmenuImg;

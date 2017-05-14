@@ -110,9 +110,6 @@
                 <!-- Page-Title -->
                 <div class="row">
                     <div class="col-sm-12">
-                        <div class="btn-group pull-right m-t-15">
-                            <button type="button" class="btn btn-custom dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="false">저장 <span class="m-l-5"><i class="fa fa-cog"></i></span></button>
-                        </div>
                         <h4 class="page-title">사진 등록</h4>
                     </div>
                 </div>
@@ -121,73 +118,89 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="card-box">
-							<h4 class="header-title m-t-0 m-b-30">쉐프사진(1895X1000)</h4>
-                            <input type="file" class="dropify" data-height="300" data-default-file="../image/${CDATA.mImgName}"/>
+                    <div class="col-sm-10">
+												<h4 class="header-title m-t-0 m-b-30">쉐프사진(1895X1000)</h4>
+                        </div>
+                        <form method="POST" action="" id="cheffrm" name="cheffrm" encType="multipart/form-data">
+                    
+                    <input type="hidden" id="oldChefImg" name="oldChefImg" value="${CDATA.mImgName}">
+                    <input type="hidden" id="cftino" name="tino" value="${CDATA.tino}">
+                    <input type="hidden" id="chefComment" name="chefComment">
+                    
+                    <div class="col-sm-2" style="text-align:right;">
+	                            <button type="button" id="cfBtn" name="cfBtn" class="btn btn-custom dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="false">저장 <span class="m-l-5"><i class="fa fa-cog"></i></span></button>
+	                       </div>
+                            <input type="file" id="chefImg" name="chefImg" class="dropify" data-height="300" data-default-file="../image/${CDATA.mImgName}"/>
                             <p></p>
 							<div class="row">
 								<div class="form-group clearfix">
 									<label class="col-lg-12 control-label" style="text-align:center;">쉐프한마디</label>
 									<div class="col-sm-12" style="text-align:center;">
-										<a href="#" id="chefComment" data-type="text" data-pk="1">${CDATA.imgbody}</a>
+										<a href="#" id="chefcmt" data-type="text" data-pk="1">${CDATA.imgbody}</a>
 									</div>
 								</div>
 							</div>
+                        </form>
                         </div>
                     </div><!-- end col -->
                 </div>
                 <!-- end row -->
 
+
+<form method="POST" action="" id="truckfrm" name="truckfrm" encType="multipart/form-data">
+			<input type="hidden" id="truckComment" name="truckComment">
+			<input type="hidden" id="oldTruckImg" name="oldTruckImg" value="${TDATA.mImgName}">
 				 <div class="row">
-                    <div class="col-sm-12">
-                        <div class="card-box">
-							<h4 class="header-title m-t-0 m-b-30">트럭사진(1895X1000)</h4>
-                            <input type="file" class="dropify" data-height="300" data-default-file="../image/${TDATA.mImgName}"/>
+          <div class="col-sm-12">
+            <div class="card-box">
+              <div class="col-sm-10">
+								<h4 class="header-title m-t-0 m-b-30">트럭사진(1895X1000)</h4>
+							</div>
+							<div class="col-sm-2" style="text-align:right;">
+	               <button type="button" id="truckBtn" name="cfBtn" class="btn btn-custom dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="false">저장 <span class="m-l-5"><i class="fa fa-cog"></i></span></button>
+	            </div>
+                            <input type="file" id="truckImg" name="truckImg" class="dropify" data-height="300" data-default-file="../image/${TDATA.mImgName}"/>
                             <p></p>
 							<div class="row">
 								<div class="form-group clearfix">
 									<label class="col-lg-12 control-label" style="text-align:center;">트럭설명</label>
 									<div class="col-sm-12" style="text-align:center;">
-										<a href="#" id="truckComment" data-type="text" data-pk="1">${TDATA.imgbody}</a>
+										<a href="#" id="truckcmt" data-type="text" data-pk="1">${TDATA.imgbody}</a>
 									</div>
 								</div>
-								<%-- <div class="form-group">
-									<label class="col-sm-5 control-label">검색키워드</label>
-									<div class="col-sm-7">
-										<a href="#" id="keyword" data-type="text" data-pk="1">${TDATA.keyword}</a>
-									</div>
-								</div> --%>
 							</div>
                         </div>
                     </div><!-- end col -->
                 </div>
                 <!-- end row -->
+</form>
 
 
-
+<c:if test="${LIST ne null }">
+	<c:forEach var="data" items="${LIST}">
 				<div class="row">
                     <div class="col-sm-12">
                         <div class="card-box">
 								<h4 class="header-title m-t-0 m-b-30">기타사진(1895X1000)</h4>
-								<hr>
-                        	<c:forEach var="data" items="${LIST}">
-	                            <input type="file" class="dropify" data-height="300" data-default-file="../image/${data.mImgName}"/>
+                        			<input type="hidden" class="tino" name="tino" value="${data.tino}">
+                        			<input type="hidden" class="imgbody" name="imgbody" value="${data.imgbody}">
+	                            <input type="file" class="dropify" name="mImgName" data-height="300" data-default-file="../image/${data.mImgName}"/>
 	                            <p></p>
 								<div class="row">
 									<div class="form-group clearfix" style="text-align:center;">
 										<!-- <label class="col-lg-4 control-label">사진설명</label> -->
 										<div class="col-sm-12">
-											<a href="#" id="${data.no}photoComment" data-type="text" data-pk="1">${data.imgbody}</a>
+											<a href="#" class="photobody" name="photoComment" data-type="text" data-pk="1">${data.imgbody}</a>
 										</div>
 									</div>
 								</div>
-								<hr>
-							</c:forEach>
 							
                         </div>
                     </div><!-- end col -->
                 </div>
-
                 <!-- end row -->
+	</c:forEach>
+</c:if>
 
 			<form method="POST" action="" class="form-horizontal" id="efrm" name="efrm" encType="multipart/form-data">
 				<div class="row">
@@ -208,7 +221,9 @@
 							</div>
 							<div style="text-align:center;">
 							<div class="row btn-group">
+									
                        			<button type="button" href="#" id="sBtn" class="btn btn-custom dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="false">저장 <span class="m-l-5"><i class="fa fa-cog"></i></span></button>
+                  
                     		</div>
                     		</div>
                         </div>
@@ -277,7 +292,9 @@
 		<script>
 		$(document).ready(function(){
 			$('#chefComment').editable({mode: 'inline'});
+			$('#chefcmt').editable({mode: 'inline'});
 			$('#truckComment').editable({mode: 'inline'});
+			$('#truckcmt').editable({mode: 'inline'});
 			$('#keyword').editable({mode: 'inline'});
 			/* $('#photoComment1').editable({mode: 'inline'});
 			$('#photoComment2').editable({mode: 'inline'});
@@ -296,6 +313,24 @@
 				};
 				
 				$('#efrm').attr("action", "../chef/PhotoUploadProc.food").submit();
+			});
+			
+			$('#cfBtn').click(function(){
+				var cfcmt = $('#chefcmt').text();
+				$('#chefComment').val(cfcmt) ;
+//				alert("이건 나오냐???");
+//				alert(cfcmt);
+				
+				$('#cheffrm').attr("action", "../chef/ChefEditProc.food").submit();
+			});
+			
+			$('#truckBtn').click(function(){
+				var trcmt = $('#truckcmt').text();
+				$('#truckComment').val(trcmt) ;
+//				alert("이건 나오냐???");
+//				alert(trcmt);
+				
+				$('#truckfrm').attr("action", "../chef/TruckEditProc.food").submit();
 			});
 
 			$('#basicwizard').bootstrapWizard({'tabClass': 'nav nav-tabs navtab-wizard nav-justified bg-muted'});

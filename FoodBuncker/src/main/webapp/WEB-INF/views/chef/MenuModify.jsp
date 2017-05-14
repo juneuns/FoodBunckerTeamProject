@@ -44,7 +44,7 @@
 
 					<!-- LOGO -->
                     <div class="topbar-left">
-                        <a href="../Person/MainWindow.food" class="logo"><span>Food<span>Buncker</span></span></a>
+                        <a href="../person/MainWindow.food" class="logo"><span>Food<span>Buncker</span></span></a>
                     </div>
                     <!-- End Logo container-->
                     <div class="menu-extras">                        
@@ -118,35 +118,64 @@
                 </div>
 
 			<form method="POST" action="#" class="form-horizontal" id="mfrm" name="mfrm" enctype="multipart/form-data">
+					<input type="hidden" id="tino" name="tino" value="${DATA.tino}">
+					<input type="hidden" id="oldMenuImg" name="oldMenuImg" value="${DATA.mImgName}">
+					<input type="hidden" id="mmenuName" name="mmenuName">
+					<input type="hidden" id="strPrice" name="strPrice">
+					<input type="hidden" id="mmenuComment" name="mmenuComment">
+					<input type="hidden" id="keyword" name="keyword">
+					
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="card-box">
+                        <div class="col-sm-10">
 													<h4 class="header-title m-t-0 m-b-30">메인메뉴(1895X1000)</h4>
-                            <input type="file" class="dropify" id="mmmenuImg" name="mmmenuImg" data-height="300" data-default-file="../image/${DATA.mImgName}"/>
+												</div>
+									<div class="col-sm-2" style="text-align:right;">
+										<button type="button" class="btn btn-custom dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="false" id="msBtn" name="msBtn">저장 <span class="m-l-5"><i class="fa fa-cog"></i></span></button>
+									</div>
+                            <input type="file" class="dropify" id="mmImg" name="mmenuImg" data-height="300" data-default-file="../image/${DATA.mImgName}"/>
 							<div class="row">
 								<div class="form-group">
 									<label class="col-sm-5 control-label">주메뉴이름</label>
-									<div class="col-sm-7">
-										<a href="#" id="mmmenuName" data-type="text" data-pk="1">${DATA.mmenuName}</a>
+									<div class="col-sm-5">
+										<a href="#" class="mmmenuName" id="mmName" name="mmmenuName" data-type="text" data-pk="1">${DATA.mmenuName}</a>
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-sm-5 control-label">주메뉴가격(원)</label>
 								    <div class="col-sm-7">
-										<a href="#" id="mmmenuPrice" data-type="text" data-pk="1">${DATA.mmenuPrice}</a>
+										<a href="#" class="mmmenuPrice" id="mmPrice" name="mmmenuPrice" data-type="text" data-pk="1">${DATA.mmenuPrice}</a>
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-sm-5 control-label">주메뉴설명</label>
 									<div class="col-sm-7">
-										<a href="#" id="mmmenuComment" data-type="text" data-pk="1">${DATA.mmenuComment}</a>
+										<a href="#" class="mmmenuComment" id="mmComment" name="mmmenuComment" data-type="text" data-pk="1">${DATA.mmenuComment}</a>
 									</div>
 								</div>
-								<div class="form-group">
-									<label class="col-sm-5 control-label">검색키워드</label>
-									<div class="col-sm-7">
-										<a href="#" id="mmmenukeyword" data-type="text" data-pk="1">${DATA.keyword}</a>
-									</div>
+									<div class="form-group">
+										<label class="col-sm-5 control-label">검색키워드</label>
+										<div class="col-sm-1">
+											<a href="#" class="keyword" id="mmkeyword1" name="keyword1" data-type="text" data-pk="1">${DATA.keyword1}</a>
+										</div>
+										<div class="col-sm-1">
+											<a href="#" class="keyword" id="mmkeyword2" name="keyword2" data-type="text" data-pk="1">${DATA.keyword2}</a>
+										</div>
+										<div class="col-sm-1">
+											<a href="#" class="keyword" id="mmkeyword3" name="keyword3" data-type="text" data-pk="1">${DATA.keyword3}</a>
+										</div>
+										<div class="col-sm-1">
+											<a href="#" class="keyword" id="mmkeyword4" name="keyword4" data-type="text" data-pk="1">${DATA.keyword4}</a>
+										</div>
+										<div class="col-sm-1">
+											<a href="#" class="keyword" id="mmkeyword5" name="keyword5" data-type="text" data-pk="1">${DATA.keyword5}</a>
+										</div>
+										<c:if test="${data.keyword6 ne null }">
+										<div class="col-sm-1">
+											<a href="#" class="keyword" id="mmkeyword6" name="keyword6" data-type="text" data-pk="1">${DATA.keyword6}</a>
+										</div>
+										</c:if>
 								</div>
 							</div>
                         </div>
@@ -155,127 +184,126 @@
                 <!-- end row -->
         </form>        
         
+<c:forEach var="data" items="${LIST}">
 		<form method="POST" action="#" class="form-horizontal" id="sfrm" name="sfrm" enctype="multipart/form-data">	
-				<c:forEach var="data" items="${LIST}">
 				 <div class="row">
-                    <div class="col-sm-12">
-                        <div class="card-box">
-							<h4 class="header-title m-t-0 m-b-30">서브메뉴(300X300)</h4>
-                            <input type="file" id="${data.mNo}mmenuImg" class="dropify" data-height="200" data-default-file="../image/${data.sname}"/>
+						<div class="col-sm-12">
+               <div class="card-box">
+									<h4 class="header-title m-t-0 m-b-30">서브 메뉴</h4>
+                  <input type="file" id="${data.mNo}subMImg" name="subMImg" class="dropify" data-height="200" data-default-file="../image/${data.sname}"/>
 							<div class="row">
 								<div class="form-group">
 									<label class="col-sm-5 control-label">메뉴이름</label>
 									<div class="col-sm-7">
-										<a href="#" id="${data.mNo}mName" data-type="text" data-pk="1">${data.mmenuName}</a>
+										<a href="#" class="mmenuName" id="${data.mNo}mName" name="mmenuName" data-type="text" data-pk="1">${data.mmenuName}</a>
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-sm-5 control-label">메뉴가격(원)</label>
 								    <div class="col-sm-7">
-										<a href="#" id="${data.mNo}price" data-type="text" data-pk="1">${data.mmenuPrice}</a>
+										<a href="#" class="mmenuPrice" id="${data.mNo}price" name="mmenuPrice" data-type="text" data-pk="1">${data.mmenuPrice}</a>
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-sm-5 control-label">메뉴설명</label>
 									<div class="col-sm-7">
-										<a href="#" id="${data.mNo}imgbody" data-type="text" data-pk="1">${data.mmenuComment}</a>
+										<a href="#" class="mmenuComment" id="${data.mNo}imgbody" name="imgbody" data-type="text" data-pk="1">${data.mmenuComment}</a>
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-sm-5 control-label">검색키워드</label>
-									<div class="col-sm-7">
-										<a href="#" id="${data.mNo}keyword" data-type="text" data-pk="1">${data.keyword}</a>
-									</div>
+									<div class="col-sm-1">
+											<a href="#" class="keyword" name="keyword1" data-type="text" data-pk="1">${data.keyword1}</a>
+										</div>
+										<div class="col-sm-1">
+											<a href="#" class="keyword" name="keyword2" data-type="text" data-pk="1">${data.keyword2}</a>
+										</div>
+										<div class="col-sm-1">
+											<a href="#" class="keyword" name="keyword3" data-type="text" data-pk="1">${data.keyword3}</a>
+										</div>
+										<div class="col-sm-1">
+											<a href="#" class="keyword" name="keyword4" data-type="text" data-pk="1">${data.keyword4}</a>
+										</div>
+										<div class="col-sm-1">
+											<a href="#" class="keyword" name="keyword5" data-type="text" data-pk="1">${data.keyword5}</a>
+										</div>
+										<%-- <c:if test="${data.keyword6 ne null }">
+										<div class="col-sm-1">
+											<a href="#" class="keyword" name="keyword6" data-type="text" data-pk="1">${data.keyword6}</a>
+										</div>
+										</c:if> --%>
+								</div>
 								</div>
 							</div>
-                        </div>
-                    </div><!-- end col -->
-                </div>
-                <!-- end row -->
-              </c:forEach>
-			</form>         
+                        </div><!-- end col -->
+                    </div><!-- end row --> 
+			</form> 
+</c:forEach>
+                       
 
 				 <div class="row">
-                    <div class="col-sm-12">
-		<form method="POST" id="#" class="form-horizontal" id="morefrm" name="morefrm" encType="multipart/form-data">	
+            <div class="col-sm-12">
+		<form method="POST" class="form-horizontal" id="morefrm" name="morefrm" encType="multipart/form-data">	
                         
-                        <div class="card-box">
+            <div class="card-box">
 							<h4 class="header-title m-t-0 m-b-30">서브메뉴 추가(300X300)</h4>
-                            <input type="file" id="mmenuImg" name="mmenuImg" class="dropify" data-height="200">						
+                            <input type="file" id="menuImg" name="menuImg" class="dropify" data-height="200">						
 							<div class="row">
 							<br><br>
 
 								<div class="form-group clearfix">
-									<label class="col-lg-4 control-label" for="mmenuName">메뉴이름</label>
-									<div class="col-lg-6">
-										<input id="mmenuName" name="mmenuName" type="text" class="required form-control" placeholder="메뉴 이름">
+									<label class="col-lg-4 control-label" for="menuName">메뉴이름</label>
+									<div class="col-lg-5">
+										<input id="menuName" name="mmenuName" type="text" class="required form-control" placeholder="메뉴 이름">
 									</div>
 								</div>
 								<div class="form-group clearfix">
-									<label class="col-lg-4 control-label" for="mmenuPrice">메뉴가격(원)</label>
-								    <div class="col-lg-6">
-										<input id="mmenuPrice" name="mmenuPrice" type="text" class="required form-control" placeholder="가 격">
+									<label class="col-lg-4 control-label" for="menuPrice">메뉴가격(원)</label>
+								    <div class="col-lg-5">
+										<input id="menuPrice" name="mmenuPrice" type="text" class="required form-control" placeholder="가 격">
 									</div>
 								</div>
 								<div class="form-group clearfix">
-									<label class="col-lg-4 control-label" for="mmenuComment">메뉴설명</label>
-									<div class="col-lg-6">
-										<input id="mmenuComment" name="mmenuComment" type="text" class="required form-control" placeholder="설명을 입력해주세요!">
+									<label class="col-lg-4 control-label" for="menuComment">메뉴설명</label>
+									<div class="col-lg-5">
+										<input id="menuComment" name="mmenuComment" type="text" class="required form-control" placeholder="설명을 입력해주세요!">
 									</div>
 								</div>
 							
 									<div class="form-group clearfix">
-										<input type="hidden" id="keyword" name="keyword">
-										<label class="col-lg-4 control-label" for="keyword1"> 검색키워드1</label>
-										<div class="col-lg-6">
+										<input type="hidden" id="kw" name="keyword">
+										<label class="col-lg-4 control-label" for="keyword"> 검색키워드</label>
+										<div class="col-lg-1">
 											<input id="keyword1" name="keyword1" type="text" class="required form-control" placeholder="Keyword 1">
 										</div>
-									</div>
-													
-													
-									<div class="form-group clearfix">
-										<label class="col-lg-4 control-label" for="keyword2"> 검색키워드2</label>
-										<div class="col-lg-6">
+										<div class="col-lg-1">
 											<input id="keyword2" name="keyword2" type="text" class="required form-control" placeholder="Keyword 2">
 										</div>
-									</div>
-													
-									<div class="form-group clearfix">
-										<label class="col-lg-4 control-label" for="keyword3"> 검색키워드3</label>
-										<div class="col-lg-6">
+										<div class="col-lg-1">
 											<input id="keyword3" name="keyword3" type="text" class="required form-control" placeholder="Keyword 3">
 										</div>
-									</div>
-													
-									<div class="form-group clearfix">
-										<label class="col-lg-4 control-label" for="keyword4"> 검색키워드4</label>
-										<div class="col-lg-6">
+										<div class="col-lg-1">
 											<input id="keyword4" name="keyword4" type="text" class="required form-control" placeholder="Keyword 4">
 										</div>
-									</div>
-													
-	
-
-									<div class="form-group clearfix">
-										<label class="col-lg-4 control-label" for="keyword5"> 검색키워드5</label>
-										<div class="col-lg-6">
+										<div class="col-lg-1">
 											<input id="keyword5" name="keyword5" type="text" class="required form-control" placeholder="Keyword 5">
 										</div>
 									</div>
-								
+							<div style="text-align:center;">
+								<div class="row btn-group">
+                    <button type="button" href="#" id="sBtn" class="btn btn-custom dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="false"> 메뉴 등록 <span class="m-l-5"><i class="fa fa-cog"></i></span></button>
+                </div>
+							</div>
 									
 							</div>	
-							<div class="row">
-								<div class="btn-group pull-center m-t-15">
-                            		<button type="button" href="#" id="sBtn" class="btn btn-custom dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="false">저장 <span class="m-l-5"><i class="fa fa-cog"></i></span></button>
-                        		</div>
-							</div>
 						
-               		</div>
+          </div>
 			</form>
-                    </div><!-- end col -->
-                </div>
-                <!-- end row -->
+    </div><!-- end col -->
+ </div><!-- end row -->
+ 
+ 
+         </div>
                 <!-- Footer -->
                 <footer class="footer text-right">
                     <div class="container">
@@ -304,7 +332,7 @@
 
             </div>
             <!-- end container -->
-        </div>
+        
 
 
 
@@ -347,39 +375,58 @@
         </script>
 		<script>
 		$(document).ready(function(){
-			$('#mmmenuName').editable({mode: 'inline'});
-			$('#mmmenuPrice').editable({mode: 'inline'});
-			$('#mmmenuComment').editable({mode: 'inline'});
-			$('#mmmenukeyword').editable({mode: 'inline'});
-			$('#smenuName1').editable({mode: 'inline'});
-			$('#smenuPrice1').editable({mode: 'inline'});
-			$('#smenuComment1').editable({mode: 'inline'});
-			$('#smenukeyword1').editable({mode: 'inline'});
-			$('#smenuName2').editable({mode: 'inline'});
-			$('#smenuPrice2').editable({mode: 'inline'});
-			$('#smenuComment2').editable({mode: 'inline'});
-			$('#smenukeyword2').editable({mode: 'inline'});
-			$('#smenuName3').editable({mode: 'inline'});
-			$('#smenuPrice3').editable({mode: 'inline'});
-			$('#smenuComment3').editable({mode: 'inline'});
-			$('#smenukeyword3').editable({mode: 'inline'});
-			$('#smenuName4').editable({mode: 'inline'});
-			$('#smenuPrice4').editable({mode: 'inline'});
-			$('#smenuComment4').editable({mode: 'inline'});
-			$('#smenukeyword4').editable({mode: 'inline'});
+			$('.mmmenuName').editable({mode: 'inline'});
+			$('.mmmenuPrice').editable({mode: 'inline'});
+			$('.mmmenuComment').editable({mode: 'inline'});
+			$('.keyword').editable({mode: 'inline'});
+			$('.keyword1').editable({mode: 'inline'});
+			$('.keyword2').editable({mode: 'inline'});
+			$('.keyword3').editable({mode: 'inline'});
+			$('.keyword4').editable({mode: 'inline'});
+			$('.keyword5').editable({mode: 'inline'});
+			$('.keyword6').editable({mode: 'inline'});
 						
 			
 			$('#sBtn').click(function(){
 				// 무결성 검사하기
-				var tmmenuImg = $("#mmenuImg").val();
-				var tmmenuName = $("#mmenuName").val();
-				var tmmenuPrice = $("#mmenuPrice").val();
-				var tmmenuComment = $("#mmenuComment").val();
-				var tkeyword = "#" + $("#keyword1").val() + "#" + $("#keyword2").val() + "#" + $("#keyword3").val() + "#" + $("#keyword4").val() + "#" + $("#keyword5").val();
-				$('#keyword').val(tkeyword);
-				if(tmmenuImg != '' && tmmenuName != '' && tmmenuPrice != '' && tmmenuComment != '' && tkeyword != ''){
+				var tmmenuImg = $('#menuImg').val();
+//				alert(tmmenuImg);
+				var tmmenuName = $("#menuName").val();
+//				alert(tmmenuName);
+				var tmmenuPrice = $("#menuPrice").val();
+//				alert(tmmenuPrice);
+				var tmmenuComment = $('#menuComment').val();
+//				alert(tmmenuComment);
+				var tkw = "#" + $("#keyword1").val() + "#" + $("#keyword2").val() + "#" + $("#keyword3").val() + "#" + $("#keyword4").val() + "#" + $("#keyword5").val();
+
+//				alert(tkw);
+				
+				$('#kw').val(tkw) ;
+//				alert(tkw);
+				if(tmmenuImg != '' && tmmenuName != '' && tmmenuPrice != '' && tmmenuComment != '' && tkw != ''){
 					// 모든 사항이 입력된 경우 폼의 내용을 보내자.
-					$('#morefrm').attr("action", "../chef/MenuModProc.food").submit();
+//					alert(tkeyword);
+					$("#morefrm").attr("action", "../chef/MenuModProc.food").submit();
+				};
+			});
+			
+			$('#msBtn').click(function(){
+				// 무결성 검사하기
+				var tmmenuImg = $("#mmImg").val();
+				var tmmenuName = $("#mmName").text();
+				var tmmenuPrice = $("#mmPrice").text();
+				var tmmenuComment = $("#mmComment").text();
+				var tkeyword = "#" + $("#mmkeyword1").text() + "#" + $("#mmkeyword2").text() + "#" + $("#mmkeyword3").text() + "#" + $("#mmkeyword4").text() + "#" + $("#mmkeyword5").text();
+
+				$("#strPrice").val(tmmenuPrice);
+				$("#mmenuName").val(tmmenuName);
+				$("#keyword").val(tmmenuName);
+				$("#mmenuComment").val(tmmenuComment);
+				$("#keyword").val(tkeyword);
+				
+				if(tmmenuImg != "" && tmmenuName != "" && tmmenuPrice != "" && tmmenuComment != "" && tkeyword != ""){
+					// 모든 사항이 입력된 경우 폼의 내용을 보내자.
+					$('#mfrm').attr("action", "../chef/MMenuEditProc.food").submit();
 				};
 			});
 			
