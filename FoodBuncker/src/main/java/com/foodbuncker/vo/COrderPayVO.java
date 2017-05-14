@@ -33,8 +33,26 @@ public class COrderPayVO {
 	public Date otime;
 	public Date ptime;
 	public Date stime;
+	public int age;
+	public String gen;
 	
 	
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public String getGen() {
+		return gen;
+	}
+
+	public void setGen(String gen) {
+		this.gen = gen;
+	}
+
 	public int getAmno() {
 		return amno;
 	}

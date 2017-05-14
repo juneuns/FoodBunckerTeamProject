@@ -26,6 +26,7 @@ public class COrderPayController {
 	@RequestMapping("/chef/OrderBoard.food")
 	public ModelAndView orderBoard(ModelAndView mv,HttpSession session,HttpServletRequest req){
 		String strTno = req.getParameter("tno");
+		String strPno = req.getParameter("pno");
 		try{
 			ArrayList orderList = service.selectAllOrder(session,strTno);
 			ArrayList orderMenuList = service.selectAllOrderMenu();
@@ -104,6 +105,8 @@ public class COrderPayController {
 	@RequestMapping("/chef/OrderInputForm.food")
 	public ModelAndView orderInputForm(ModelAndView mv, HttpServletRequest req){
 		String strTno = req.getParameter("tno");
+		String gen = req.getParameter("gen");
+		String age = req.getParameter("age");
 		ArrayList<COrderPayVO> list = service.selectOneTMenu(strTno);
 		int tno = service.tnoChange(strTno);
 		String strpno = req.getParameter("pno");
@@ -111,6 +114,8 @@ public class COrderPayController {
 		
 		mv.addObject("TNO", tno);
 		mv.addObject("PNO", pno);
+		mv.addObject("AGE", age);
+		mv.addObject("GEN", gen);
 		mv.addObject("LIST",list);
 		mv.setViewName("/chef/OrderInput");
 		return mv;
@@ -122,13 +127,18 @@ public class COrderPayController {
 		int tno = service.tnoChange(stno);
 		String  spno = req.getParameter("pno");
 		int pno = service.pnoChange(spno);
+		String gen = req.getParameter("gen");
+		String strage = req.getParameter("age");
+		int age = Integer.parseInt(strage);
 		
 		String[] mName = req.getParameterValues("mName");
 		String[] price = req.getParameterValues("price");
 		String[] ea = req.getParameterValues("mnum");
 		String[] mno = req.getParameterValues("amno");
 		
-		service.insertOrderInput(mName, price, ea, tno, mno);
+		service.insertOrderInput(mName, price, ea, tno, mno, gen, age);
+		int oNum = service.selectOrderNum();
+		System.out.println(oNum);
 		
 		RedirectView rv = new RedirectView();
 		rv.addStaticAttribute("TNO", tno);
@@ -137,13 +147,17 @@ public class COrderPayController {
 		rv.addStaticAttribute("PRICE", price);
 		rv.addStaticAttribute("EA", ea);
 		rv.addStaticAttribute("MNO", mno);
+		rv.addStaticAttribute("ONUM", oNum);
+		mv.addObject("ONUM", oNum);
+		mv.addObject("TNO", tno);
+		mv.addObject("PNO", pno);
 		if(!(session.getAttribute("UTNO") == null)){
 			rv.setUrl("../chef/OrderBoard.food");
 			mv.setView(rv);
 		}
 		else{
-			rv.setUrl("../person/userView.food");
-			mv.setView(rv);
+//			rv.setUrl("../person/userView.food");
+			mv.setViewName("person/UserView");
 		}
 		return mv;
 	}
