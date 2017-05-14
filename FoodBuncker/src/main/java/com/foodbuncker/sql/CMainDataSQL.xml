@@ -129,25 +129,30 @@
 	FROM
 		(SELECT
 			WEEKNAME,
+			WEEKNUM,
 			om_m_no,
 			om_num
 		FROM
 			(SELECT
 				o_no,
 				o_t_no,
-				to_char(o_ordtime,'DY') AS WEEKNAME
+				to_char(o_ordtime,'DY') AS WEEKNAME,
+				to_char(o_ordtime,'D') AS WEEKNUM
 			FROM
 				morder
 			WHERE
 				o_t_no=#{tno}),
-				ordermenu
+			ordermenu
 		WHERE
 			o_no=om_o_no),
-			menu
+		menu
 	WHERE
 		om_m_no = m_no
 	GROUP BY
-		WEEKNAME
+		WEEKNAME,
+		WEEKNUM
+	ORDER BY
+		WEEKNUM
 </select>
 
 <select id="selectGenderSaleRatio" parameterType="int" resultType="cmainVO">
@@ -205,8 +210,359 @@
 		om_m_no = m_no
 	GROUP BY
 		o_age
+	ORDER BY
+		o_age
 </select>
 
+<select id="selectPlaceSaleSum" parameterType="int" resultType="cmainVO">
+	SELECT
+		SALESUM,
+		p_placename AS PNAME
+	FROM
+		(SELECT
+			sum(m_price*om_num) AS SALESUM,
+			oc_p_no		
+		FROM
+			(SELECT
+				om_m_no,
+				om_num,
+				oc_p_no
+			FROM
+				(SELECT
+					o_no,
+					o_t_no,
+					oc_p_no
+				FROM
+					morder,
+					openclose
+				WHERE
+					o_t_no=#{tno}
+				AND
+					o_t_no=oc_t_no
+				AND
+					to_date(o_ordtime,'YYYY/MM/DD')=to_date(oc_open,'YYYY/MM/DD')),
+				ordermenu
+			WHERE
+				o_no = om_o_no),
+			menu
+		WHERE
+			om_m_no=m_no	
+		GROUP BY
+			oc_p_no
+		ORDER BY
+			oc_p_no),
+		place
+	WHERE
+		p_no=oc_p_no
+		
+</select>
 
+<select id="selectDaySaleSum" parameterType="int" resultType="cmainVO">
+	
+	SELECT
+		*
+	FROM
+		(SELECT
+			to_char(o_ordtime,'MM/DD') AS SDATE,
+			to_char(o_ordtime,'YYYY') AS SYEAR,
+			sum(MIDSUM) AS TOTALSUM
+		FROM
+			(SELECT
+				o_ordtime,
+				(m_price * om_num) AS MIDSUM
+			FROM
+				(SELECT
+					o_ordtime,
+					om_m_no,
+					om_num
+				FROM
+					(SELECT
+						o_no,
+						o_ordtime
+					FROM
+						morder
+					WHERE
+						o_t_no=#{tno}
+					AND
+						o_ordtime between (o_ordtime - 60) AND SYSDATE ),
+					ordermenu
+				WHERE
+					o_no=om_o_no
+				AND	
+					(to_char(o_ordtime,'MM/DD') between to_char((SYSDATE-60),'MM/DD') AND to_char(SYSDATE,'MM/DD'))),
+				menu
+			WHERE
+				m_no=om_m_no)
+		group by
+			to_char(o_ordtime,'MM/DD'),
+			to_char(o_ordtime,'YYYY')
+		order by
+			to_char(o_ordtime,'MM/DD'))
+	PIVOT
+		(MAX(TOTALSUM) FOR SYEAR in('2015' s2015,'2016' s2016,'2017' s2017)
+		)
+	ORDER BY
+		SDATE
+</select>
+
+<select id="selectYearSaleRatio" parameterType="int" resultType="hashmap">
+<![CDATA[
+	SELECT
+		to_char(SYSDATE,'MM') AS YEARNAME,
+		YEARSUM,
+		YAVG,
+		round(YEARSUM/YAVG*100) AS RATIO
+	FROM
+		(SELECT
+			YEARSUM,
+			YAVG
+		FROM
+			(SELECT
+				sum(om_num * m_price) AS YEARSUM
+			FROM
+				(SELECT
+					om_m_no,
+					om_num
+				FROM
+					(SELECT
+						o_no
+					FROM
+						morder
+					WHERE
+						o_t_no=#{tno}
+					AND
+						to_char(o_ordtime,'YYYY') = to_char(SYSDATE,'YYYY')),
+					ordermenu
+				WHERE
+					o_no=om_o_no),
+				menu
+			WHERE
+				om_m_no=m_no) ,	
+			(SELECT
+				round(avg(sum(om_num * m_price))) AS YAVG
+			FROM
+				(SELECT
+					AYEAR,
+					om_m_no,
+					om_num
+				FROM
+					(SELECT
+						to_char(o_ordtime,'YYYY') AS AYEAR,
+						o_no
+					FROM
+						morder
+					WHERE
+						o_t_no=#{tno}
+					AND
+						to_char(o_ordtime,'YYYY')<>to_char(SYSDATE,'YYYY')),
+					ordermenu
+				WHERE
+					o_no=om_o_no),
+				menu
+			WHERE
+				om_m_no=m_no
+			GROUP BY
+				AYEAR))
+]]>
+
+</select>
+
+<select id="selectMonthSaleRatio" parameterType="int" resultType="hashmap">
+<![CDATA[
+	SELECT
+		to_char(SYSDATE,'MM') AS MONTHNAME,
+		MONTHSUM,
+		MAVG,
+		round(MONTHSUM/MAVG*100) AS RATIO
+	FROM
+		(SELECT
+			MONTHSUM,
+			MAVG
+		FROM
+			(SELECT
+				sum(om_num * m_price) AS MONTHSUM
+			FROM
+				(SELECT
+					om_m_no,
+					om_num
+				FROM
+					(SELECT
+						o_no
+					FROM
+						morder
+					WHERE
+						o_t_no=#{tno}
+					AND
+						to_char(o_ordtime,'YYYY/MM') = to_char(SYSDATE,'YYYY/MM')),
+					ordermenu
+				WHERE
+					o_no=om_o_no),
+				menu
+			WHERE
+				om_m_no=m_no) ,	
+			(SELECT
+				round(avg(sum(om_num * m_price))) AS MAVG
+			FROM
+				(SELECT
+					AMONTH,
+					om_m_no,
+					om_num
+				FROM
+					(SELECT
+						to_char(o_ordtime,'YYYY/MM') AS AMONTH,
+						o_no
+					FROM
+						morder
+					WHERE
+						o_t_no=#{tno}
+					AND
+						to_char(o_ordtime,'YYYY')<>to_char(SYSDATE,'YYYY')
+					AND
+						to_char(o_ordtime,'MM')=to_char(SYSDATE,'MM')),
+					ordermenu
+				WHERE
+					o_no=om_o_no),
+				menu
+			WHERE
+				om_m_no=m_no
+			GROUP BY
+				AMONTH))
+]]>
+
+</select>
+
+<select id="selectDaySaleRatio" parameterType="int" resultType="hashmap">
+	<![CDATA[
+	SELECT
+		to_char(SYSDATE,'DD') AS DAYNAME,
+		DAYSUM,
+		DAVG,
+		round(DAYSUM/DAVG*100) AS RATIO
+	FROM
+		(SELECT
+			DAYSUM,
+			DAVG
+		FROM
+			(SELECT
+				sum(om_num * m_price) AS DAYSUM
+			FROM
+				(SELECT
+					om_m_no,
+					om_num
+				FROM
+					(SELECT
+						o_no
+					FROM
+						morder
+					WHERE
+						o_t_no=#{tno}
+					AND
+						to_char(o_ordtime,'YYYY/MM/DD') = to_char(SYSDATE,'YYYY/MM/DD')),
+					ordermenu
+				WHERE
+					o_no=om_o_no),
+				menu
+			WHERE
+				om_m_no=m_no) ,	
+			(SELECT
+				round(avg(sum(om_num * m_price))) AS DAVG
+			FROM
+				(SELECT
+					ADAY,
+					om_m_no,
+					om_num
+				FROM
+					(SELECT
+						to_char(o_ordtime,'YYYY/MM/DD') AS ADAY,
+						o_no
+					FROM
+						morder
+					WHERE
+						o_t_no=#{tno}
+					AND
+						to_char(o_ordtime,'YYYY')<>to_char(SYSDATE,'YYYY')
+					AND
+						to_char(o_ordtime,'MM')<>to_char(SYSDATE,'MM')
+					AND
+						to_char(o_ordtime,'DD')=to_char(SYSDATE,'DD')),
+					ordermenu
+				WHERE
+					o_no=om_o_no),
+				menu
+			WHERE
+				om_m_no=m_no
+			GROUP BY
+				ADAY))
+]]>
+	
+</select>
+
+<select id="selectHourSaleRatio" parameterType="int" resultType="hashmap">
+	<![CDATA[
+	SELECT
+		to_char(SYSDATE,'HH24') AS HOURNAME,
+		HOURSUM,
+		HAVG,
+		round(HOURSUM/HAVG*100) AS RATIO
+	FROM
+		(SELECT
+			HOURSUM,
+			HAVG
+		FROM
+			(SELECT
+				sum(om_num * m_price) AS HOURSUM
+			FROM
+				(SELECT
+					om_m_no,
+					om_num
+				FROM
+					(SELECT
+						o_no
+					FROM
+						morder
+					WHERE
+						o_t_no=#{tno}
+					AND
+						to_char(o_ordtime,'YYYY/MM/DD/HH24') = to_char(SYSDATE,'YYYY/MM/DD/HH24')),
+					ordermenu
+				WHERE
+					o_no=om_o_no),
+				menu
+			WHERE
+				om_m_no=m_no) ,	
+			(SELECT
+				round(avg(sum(om_num * m_price))) AS HAVG
+			FROM
+				(SELECT
+					AHOUR,
+					om_m_no,
+					om_num
+				FROM
+					(SELECT
+						to_char(o_ordtime,'YYYY/MM/DD/HH24') AS AHOUR,
+						o_no
+					FROM
+						morder
+					WHERE
+						o_t_no=#{tno}
+					AND
+						to_char(o_ordtime,'YYYY')<>to_char(SYSDATE,'YYYY')
+					AND
+						to_char(o_ordtime,'MM')<>to_char(SYSDATE,'MM')
+					AND
+						to_char(o_ordtime,'DD')<>to_char(SYSDATE,'DD')
+					AND
+						to_char(o_ordtime,'HH24')=to_char(SYSDATE,'HH24')),
+					ordermenu
+				WHERE
+					o_no=om_o_no),
+				menu
+			WHERE
+				om_m_no=m_no
+			GROUP BY
+				AHOUR))
+]]>
+	
+</select>
 
 </mapper>
