@@ -13,11 +13,21 @@ import org.springframework.web.servlet.view.RedirectView;
 import com.foodbuncker.service.PMainViewService;
 import com.foodbuncker.util.PageUtil;
 
+/**
+ * 
+ * @author jingwan
+ *
+ */
 @Controller
 public class PMainViewController {
 	@Autowired
 	public PMainViewService pmvService;
 	
+	/**
+	 * 
+	 * @param mv
+	 * @return
+	 */
 	@RequestMapping("/person/MainWindow.food")
 	public ModelAndView mainView(ModelAndView mv){
 		ArrayList list = pmvService.selectMenu();
@@ -31,6 +41,12 @@ public class PMainViewController {
 		return mv;
 	}
 	
+	/**
+	 * 
+	 * @param mv
+	 * @param req
+	 * @return
+	 */
 	@RequestMapping("/person/DetailView.food")
 	public ModelAndView detailView(ModelAndView mv, HttpServletRequest req){
 		String strtno = req.getParameter("tno");
@@ -66,6 +82,12 @@ public class PMainViewController {
 		return mv;
 	}
 	
+	/**
+	 * 
+	 * @param mv
+	 * @param req
+	 * @return
+	 */
 	@RequestMapping("/person/About.food")
 	public ModelAndView aboutView(ModelAndView mv, HttpServletRequest req){
 //		String strtno = req.getParameter("tno");
@@ -88,6 +110,12 @@ public class PMainViewController {
 		return mv;
 	}
 	
+	/**
+	 * 
+	 * @param mv
+	 * @param req
+	 * @return
+	 */
 	@RequestMapping("/person/Gallery.food")
 	public ModelAndView galleryView(ModelAndView mv, HttpServletRequest req){
 		String strPage = req.getParameter("nowPage");
@@ -103,6 +131,12 @@ public class PMainViewController {
 		return mv;
 	}
 	
+	/**
+	 * 
+	 * @param mv
+	 * @param req
+	 * @return
+	 */
 	@RequestMapping("/person/moreGallery.food")
 	public ModelAndView moreGallery(ModelAndView mv, HttpServletRequest req){
 		String strPage = req.getParameter("nowPage");
@@ -119,6 +153,12 @@ public class PMainViewController {
 		return mv;
 	}
 	
+	/**
+	 * 
+	 * @param mv
+	 * @param req
+	 * @return
+	 */
 	@RequestMapping("/person/moreReview.food")
 	public ModelAndView moreReview(ModelAndView mv, HttpServletRequest req){
 		String strtno = req.getParameter("tno");
@@ -138,6 +178,12 @@ public class PMainViewController {
 		return mv;
 	}
 	
+	/**
+	 * 
+	 * @param mv
+	 * @param req
+	 * @return
+	 */
 	@RequestMapping("/person/userView.food")
 	public ModelAndView userMainView(ModelAndView mv, HttpServletRequest req){
 		String strtno = req.getParameter("tno");
@@ -151,6 +197,12 @@ public class PMainViewController {
 		return mv;
 	}
 	
+	/**
+	 * 
+	 * @param mv
+	 * @param req
+	 * @return
+	 */
 	@RequestMapping("/person/reveiwForm.food")
 	public ModelAndView reveiwForm(ModelAndView mv, HttpServletRequest req){
 		String strtno = req.getParameter("tno");
@@ -164,6 +216,12 @@ public class PMainViewController {
 		return mv;
 	}
 	
+	/**
+	 * 
+	 * @param mv
+	 * @param req
+	 * @return
+	 */
 	@RequestMapping("/person/reviewProc.food")
 	public ModelAndView reveiwProc(ModelAndView mv, HttpServletRequest req){
 		String strtno = req.getParameter("tno");

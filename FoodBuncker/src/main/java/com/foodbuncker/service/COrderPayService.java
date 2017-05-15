@@ -111,24 +111,28 @@ public class COrderPayService {
 	/*
 	 * 주문 insert
 	 */
-	public void insertOrderInput(String[] mArray, String[] pArray, String[] eaArray, int tno, String[] mno){
+	public void insertOrderInput(String[] mArray, String[] pArray, String[] eaArray, int tno, String[] mno, String gen, int age){
 		boolean result = true;
 		for(int i=0; i < mArray.length; i++){
-			if(!(eaArray[i].equals(0))){
-			COrderPayVO data = new COrderPayVO();
-				data.name = mArray[i];
-				data.aprice = pArray[i];
-				int iea = Integer.parseInt(eaArray[i]);
-				data.ea = iea;
-				data.tno = tno;
-				int imno = Integer.parseInt(mno[i]);
-				data.amno = imno;
-				if(result == true){
-					dao.insertOrderInput(data);
-					result = false;
-				}
-				if(!(iea == 0)){
-					dao.insertOrderInputTwo(data);
+			int iea = Integer.parseInt(eaArray[i]);
+			if(!(iea == 0)){
+				if(!(eaArray[i].equals(0))){
+					COrderPayVO data = new COrderPayVO();
+					data.name = mArray[i];
+					data.aprice = pArray[i];
+					data.ea = iea;
+					data.tno = tno;
+					data.gen = gen;
+					data.age = age;
+					int imno = Integer.parseInt(mno[i]);
+					data.amno = imno;
+					if(result == true){
+						dao.insertOrderInput(data);
+						result = false;
+					}
+					if(!(iea == 0)){
+						dao.insertOrderInputTwo(data);
+					}
 				}
 			}
 		}
@@ -162,5 +166,11 @@ public class COrderPayService {
 		return pno;
 	}
 	
+	/*
+	 * 주문번호 가져오기 질의 실행 함수
+	 */
+	public int selectOrderNum(){
+		return dao.selectOrderNum();
+	}
 	
 }

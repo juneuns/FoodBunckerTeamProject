@@ -70,6 +70,7 @@
 									<input type="hidden" id="truckComment" name="truckComment">
 									<input type="hidden" id="mmenuName" name="mmenuName">
 									<input type="hidden" id="strPrice" name="strPrice">
+									<input type="hidden" id="mmenuPrice" name="mmenuPrice">
 									<input type="hidden" id="mmenuComment" name="mmenuComment">
 									<input type="hidden" id="keyword" name="keyword">
 									<input type="hidden" id="oldChefImg" name="oldChefImg" value="${DATA.chefImgName}">
@@ -296,7 +297,8 @@
 				$('#chefComment').val($('#tchefComment').text());
 				$('#truckComment').val($('#ttruckComment').text());
 				$('#mmenuName').val($('#tmmenuName').text());
-				$('#mPrice').val($('#tmmenuPrice').text());
+				$('#mmenuPrice').val($('#tmmenuPrice').text());
+				$('#strPrice').val($('#tmmenuPrice').text());
 				$('#mmenuComment').val($('#tmmenuComment').text());
 
 				/* alert("1 : " + $('#phone').val()); */
@@ -305,26 +307,12 @@
 				var tk3 = $('#keyword3').text();
 				var tk4 = $('#keyword4').text();
 				var tk5 = $('#keyword5').text();
-				/* alert("2 : " + $('#phone').val()); */
 				
-				/* '""#oldChefImg').val() = ${DATA.chefImgName}; */
-				/* alert("3 : " + $('#phone').val()); */
-				/* '""#oldTruckImg').val() = ${DATA.truckImgName};
-				$('#oldMenuImg').val() = ${DATA.mmenuImgName}; */
-
 				$('#keyword').val('#' + tk1 + '#' + tk2 + '#' + tk3 + '#' + tk4 + '#' + tk5) ;
-				/* 
-				alert($('#oldChefImg').val());
-				alert("4 : " + $('#phone').val()); */
 				
 				$('#frm').attr("action", "../chef/RegProc.food").submit();
-				/* $(location).attr("href","../chef/ChefMain.food"); */
 			});
 
-/* 			$('#hBtn').click(function(){
-				
-				$(location).attr("href","../person/MainWindow.food");
-			}); */
 
 /* 			$('#cBtn').click(function(){
 				alert("수정된 내용이 저장되지 않았습니다.회원가입 페이지로 이동합니다.");

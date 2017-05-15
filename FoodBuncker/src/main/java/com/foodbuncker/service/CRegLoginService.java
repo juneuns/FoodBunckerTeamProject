@@ -64,7 +64,7 @@ public class CRegLoginService {
 			// 아이디는 세션에 저장해주자.
 			session.setAttribute("UID", cregVO.id);
 			
-			System.out.println("session set ID : " + cregVO.id);
+//			System.out.println("session set ID : " + cregVO.id);
 			
 			// 회원 번호는 데이터베이스에서 가져오자.
 			try{
@@ -72,7 +72,7 @@ public class CRegLoginService {
 			}catch(Exception e){}
 //			System.out.println("############# selectInfoNoDAO 진입후 ##############");
 			session.setAttribute("UTNO", cregVO.no);
-			System.out.println("session set UTNO : " + cregVO.no);
+//			System.out.println("session set UTNO : " + cregVO.no);
 //			cregVO.no = tno ;
 			
 			// 회원 등록 절차 확인을 하자.
@@ -96,7 +96,7 @@ public class CRegLoginService {
 			session.setAttribute("tabNo", tabNo);
 		}
 		
-		System.out.println("sessionSetting service tabNo : " + session.getAttribute("sessionset   tabNo : " + tabNo));
+//		System.out.println("sessionSetting service tabNo : " + session.getAttribute("sessionset   tabNo : " + tabNo));
 		return ;
 	}
 	
@@ -115,7 +115,7 @@ public class CRegLoginService {
 	 * 회원 기본 정보 등록 전담 처리 서비스 함수
 	 */
 	public CRegLoginVO cRegInfoSrvc(HttpSession session, CRegLoginVO cregVO) throws Exception{
-		System.out.println("############# creginfoservice cregVO NO : " + cregVO.no);
+//		System.out.println("############# creginfoservice cregVO NO : " + cregVO.no);
 		int tabNo = 0 ;
 		try{
 			tabNo = (int) session.getAttribute("tabNo");
@@ -129,14 +129,14 @@ public class CRegLoginService {
 			cregVO = cregLoginDAO.selectInfoDAO(cregVO);
 			cregVO.cnt = cnt ;
 			cregLoginDAO.updateMemberisShow(cregVO);
-			System.out.println("############# infosrvc cnt 0 : " + cregVO.cnt);
+//			System.out.println("############# infosrvc cnt 0 : " + cregVO.cnt);
 //			if(cnt > 0 ){
 				tabNo = 1 ;
 				session.setAttribute("tabNo", tabNo );
 				session.setAttribute("UID", cregVO.id);
 				session.setAttribute("UTNO", cregVO.no);
-				System.out.println("############# infosrvc tabNo0 : " + tabNo);
-				System.out.println("############# infosrvc session tabNo0 : " + session.getAttribute("tabNo"));
+//				System.out.println("############# infosrvc tabNo0 : " + tabNo);
+//				System.out.println("############# infosrvc session tabNo0 : " + session.getAttribute("tabNo"));
 //			}
 
 			cregVO.tabNo = tabNo;
@@ -144,36 +144,33 @@ public class CRegLoginService {
 		}
 		else if(cregVO.tabNo == 1){
 			//  트럭이미지 저장하고
+			cregVO.tigrade = 1 ;
 			cregVO.sname = insertTruckImgSrvc(cregVO, session);
-			// thumbnail 파일을 저장해주자.
-			cregVO.truckThumb = makeThumbImg(cregVO.sname, session);
 			
 			// 쉐프이미지 저장하자.
+			cregVO.tigrade = 2 ;
 			cregVO.sname = insertChefImgSrvc(cregVO, session);
-			// thumbnail 파일을 저장해주자.
-			cregVO.chefThumb = makeThumbImg(cregVO.sname, session);
 			
 			int tmp = cregLoginDAO.selectTImgCNTDAO(cregVO);
-			System.out.println("############# infosrvc 1  img cnt : " + tmp);
+//			System.out.println("############# infosrvc 1  img cnt : " + tmp);
 			cregVO.isShow = "T";
 			cregVO.no = (int) session.getAttribute("UTNO");
 			cregLoginDAO.updateMemberisShow(cregVO);
 //			if(tmp > 0){
 				tabNo = 2 ;
 				session.setAttribute("tabNo", tabNo );
-				System.out.println("############# infosrvc tabNo1 : " + tabNo);
+//				System.out.println("############# infosrvc tabNo1 : " + tabNo);
 //			}
 			cregVO.tabNo =  tabNo ;
 			cregVO.cnt = 1 ;
 		}
 		else if(tabNo == 2){
 			// 이미지 파일을 저장하고...
+			cregVO.tigrade = 3 ;
 			cregVO.mmenugrade = "M" ;
 			cregVO.sname = insertMMenuImgSrvc(cregVO, session);
-			// thumbnail 파일을 저장해주자.
-			cregVO.thumbName = makeThumbImg(cregVO.sname, session);
 			
-			System.out.println("############# tabNo" + tabNo);
+//			System.out.println("############# tabNo" + tabNo);
 			int tmp = cregLoginDAO.selectMImgCNTDAO(cregVO);
 			cregVO.isShow = "R";
 			cregVO.no = (int) session.getAttribute("UTNO");
@@ -184,17 +181,8 @@ public class CRegLoginService {
 //			}
 			cregVO.tabNo = tabNo ;
 			cregVO.cnt = 1 ;
-			System.out.println("############# 메뉴table 이미지 업로드완료");
+//			System.out.println("############# 메뉴table 이미지 업로드완료");
 //			System.out.println("############# cRegInfoSrvc tabNo : " + tabNo);
-		}
-		else if(tabNo ==3){
-			
-		}
-		else if(tabNo == 4){
-			
-		}
-		else{
-			
 		}
 		
 		return cregVO;
@@ -207,7 +195,7 @@ public class CRegLoginService {
 
 		// 파일이 업로드된 실제 경로를 알아내자.
 		String path = session.getServletContext().getRealPath("image");
-		System.out.println(path);
+//		System.out.println(path);
 		
 		// 업로드할 파일이 여러개 있으므로 배열로 처리한다.
 		String oriName = new String();
@@ -236,7 +224,7 @@ public class CRegLoginService {
 		// 버퍼에 이미지 저장
 		BufferedImage srcImg = ImageIO.read(new File(path, fileName));
 		// 버퍼에 리사이즈된 이미지 저장
-		BufferedImage thumbImg = Scalr.resize(srcImg, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_HEIGHT, 150);
+		BufferedImage thumbImg = Scalr.resize(srcImg, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_HEIGHT, 300, 300);
 		// 이미지 이름 규칙
 		String thumbName = "thumb_" + fileName;
 		
@@ -253,39 +241,90 @@ public class CRegLoginService {
 	/*
 	 * 트럭이미지 파일 전담 처리 서비스 함수
 	 */
-	public String insertTruckImgSrvc(CRegLoginVO cregVO, HttpSession session){
+	public String insertTruckImgSrvc(CRegLoginVO cregVO, HttpSession session) throws Exception{
 		
 		cregVO.sname = uploadProc(cregVO.truckImg, session);
+		// thumbnail 파일을 저장해주자.
+//		cregVO.truckThumb = makeThumbImg(cregVO.sname, session);
 		cregVO.imgbody = cregVO.truckComment ;
-		cregVO.tigrade = 1 ;
 		cregLoginDAO.insertTImgDAO(cregVO);
-		System.out.println("############# truck 이미지 업로드완료");
+//		System.out.println("############# truck 이미지 업로드완료");
 		return cregVO.sname;
 	}
 	
 	/*
 	 * 쉐프 이미지 파일 전담 처리 서비스 함수
 	 */
-	public String insertChefImgSrvc(CRegLoginVO cregVO, HttpSession session){
+	public String insertChefImgSrvc(CRegLoginVO cregVO, HttpSession session) throws Exception{
 		cregVO.sname = uploadProc(cregVO.chefImg, session) ;
+		// thumbnail 파일을 저장해주자.
+//		cregVO.chefThumb = makeThumbImg(cregVO.sname, session);
 		cregVO.imgbody = cregVO.chefComment ;
-		cregVO.tigrade = 2 ;
 		cregLoginDAO.insertTImgDAO(cregVO);
-		System.out.println("############# chef 이미지 업로드완료");
+//		System.out.println("############# chef 이미지 업로드완료");
 		return cregVO.sname ;
+	}
+	
+	/*
+	 * 메인메뉴 이미지 업데이트 처리 서비스 함수
+	 */
+	public void MMenuEditSrvc(CRegLoginVO cregVO, HttpSession session) throws Exception{
+		// 메뉴 이미지 변경 처리
+		System.out.println("메인 메뉴 수정 0 ");
+		cregVO.mmenuImgName = cregVO.mmenuImg.getOriginalFilename();
+		System.out.println("메인 메뉴 수정 1 keyword : " + cregVO.mmenuName);
+		cregVO.imgbody = cregVO.mmenuComment ;
+		try{
+			cregVO.mmenuPrice = Integer.parseInt(cregVO.strPrice);
+			System.out.println("메인 메뉴 수정 2 ");
+		}
+		catch(Exception e){}
+		cregVO.sname = cregVO.oldMenuImg ;
+		cregVO.tigrade = 3 ;
+		cregVO.mmenugrade = "M" ;
+		if(!cregVO.mmenuImgName.equals("")){
+			// 파일 저장하고 파일 이름 받자.
+			cregVO.sname = uploadProc(cregVO.mmenuImg, session);
+			System.out.println("메인 메뉴 수정 3 ");
+			// thumbnail 파일을 저장해주자.
+//			cregVO.thumbName = makeThumbImg(cregVO.sname, session);
+//			cregVO.mmenuImgName = cregVO.thumbName;
+			// db에 기록하자. 테이블 두개에 기록해야한다.
+			
+			//  트럭이미지테이블에 넣고...
+			cregLoginDAO.insertTImgDAO(cregVO);
+			System.out.println("메인 메뉴 수정 4 ");
+			// 메뉴테이블에 넣자.
+			cregLoginDAO.insertMMenuDAO(cregVO);
+			// db 기록 안보이게 업데이트해주고
+			cregVO.sname = cregVO.oldMenuImg ;
+			cregLoginDAO.updateTImgIsShowDAO(cregVO);
+			cregVO.mmenuImgName = cregVO.oldMenuImg ;
+			cregLoginDAO.updateMImgIsShowDAO(cregVO);
+			System.out.println("메인 메뉴 새로 작성");
+		} else {
+			// db 기록 업데이트하자.
+			System.out.println("메인 메뉴 업데이트 ");
+			cregVO.mmenuImgName = cregVO.sname ;
+			cregLoginDAO.updateTImgDAO(cregVO);
+			cregLoginDAO.updateMImgDAO(cregVO);
+		}
+		return ;
 	}
 	
 	/*
 	 * 메인메뉴 이미지 파일 전담 처리 서비스 함수
 	 */
-	public String insertMMenuImgSrvc(CRegLoginVO cregVO, HttpSession session){
+	public String insertMMenuImgSrvc(CRegLoginVO cregVO, HttpSession session) throws Exception{
 		cregVO.sname = uploadProc(cregVO.mmenuImg, session) ;
+		// thumbnail 파일을 저장해주자.
+//		cregVO.thumbName = makeThumbImg(cregVO.sname, session);
 		cregVO.imgbody = cregVO.mmenuComment ;
-		cregVO.tigrade = 3 ;
 		cregLoginDAO.insertTImgDAO(cregVO);
-		System.out.println("############# main 메뉴 이미지 업로드완료");
+//		System.out.println("############# main 메뉴 이미지 업로드완료");
+		cregVO.mmenuImgName = cregVO.sname ;
 		cregLoginDAO.insertMMenuDAO(cregVO);
-		System.out.println("############# 메뉴 이미지 업로드완료");
+//		System.out.println("############# 메뉴 이미지 업로드완료");
 		return cregVO.sname;
 	}
 	
@@ -293,10 +332,11 @@ public class CRegLoginService {
 	 * 메뉴 이미지 파일 전담 처리 서비스 함수
 	 */
 	public String insertMenuImgSrvc(CRegLoginVO cregVO, HttpSession session){
-		cregVO.sname = uploadProc(cregVO.mmenuImg, session) ;
+		cregVO.sname = uploadProc(cregVO.menuImg, session) ;
 		cregVO.imgbody = cregVO.mmenuComment ;
+		cregVO.mmenuImgName = cregVO.sname ;
 		cregLoginDAO.insertMMenuDAO(cregVO);
-		System.out.println("############# 메뉴 이미지 업로드완료");
+//		System.out.println("############# 메뉴 이미지 업로드완료");
 		return cregVO.sname;
 	}
 	
@@ -312,18 +352,11 @@ public class CRegLoginService {
 		
 		try{
 			data.keyword1 = tmp.split("#")[1];
-		} catch(Exception e){}
-		try{
 			data.keyword2 = tmp.split("#")[2];
-		} catch(Exception e){}
-		try{
 			data.keyword3 = tmp.split("#")[3];
-		} catch(Exception e){}
-		try{
 			data.keyword4 = tmp.split("#")[4];
-		} catch(Exception e){}
-		try{
 			data.keyword5 = tmp.split("#")[5];
+			data.keyword6 = tmp.split("#")[6];
 		} catch(Exception e){}
 		
 		return data;
@@ -332,83 +365,95 @@ public class CRegLoginService {
 	/*
 	 * 회원가입 최종 완료 처리 전담 서비스 함수
 	 */
-	public void regProcSrvc(CRegLoginVO cregVO, HttpSession session){
+	public void regProcSrvc(CRegLoginVO cregVO, HttpSession session) throws Exception{
 		
-		// 회원 정보 업데이트 해주고...
-		cregLoginDAO.updateRegConf(cregVO);
-		System.out.println("###############회원 정보 업데이트 완료#####");
 		// 만약 이미지가 변경 되었으면 다시 넣어준다.
 		
 		// 쉐프이미지 변경 처리
 		cregVO.chefImgName = cregVO.chefImg.getOriginalFilename();
 		cregVO.imgbody = cregVO.chefComment ;
 		cregVO.sname = cregVO.oldChefImg ;
-		/*if(cregVO.oldChefImg != cregVO.chefImgName){
+		cregVO.tigrade = 2 ;
+		if(!cregVO.chefImgName.equals("")){
 			// 파일을 저장하자. 위의 함수를 이용해주자. 반환값 파일이름이있으니 VO에 넣어주자.
-			//  db 기록 기존 파일 안보이게 처리하고...
-			cregLoginDAO.updateTImgIsShowDAO(cregVO);
 			// 파일 저장하고
-			cregVO.sname = uploadProc(cregVO.chefImg, session);			
-			// db에 저장하자.
-			cregVO.chefImgName = cregVO.sname ;
-			cregVO.tigrade = 2 ;
+			cregVO.sname = uploadProc(cregVO.chefImg, session);
+			// thumbnail 파일을 저장해주자.
+			cregVO.chefThumb = makeThumbImg(cregVO.sname, session);
 			cregLoginDAO.insertTImgDAO(cregVO);
-			System.out.println("###############쉐프이미지 업데이트 완료#####");
-		} else {*/
+			// db 안보이게 업데이트해주고...
+			cregVO.sname = cregVO.oldChefImg ;
+			cregLoginDAO.updateTImgIsShowDAO(cregVO);
+		} else {
+			// 아닌 null 이란 이야기는 변경이 안된경우 이므로 예전 이름이다.
 			// db 기록(이미지 설명)만 업데이트하자.
-			cregVO.tigrade = 2 ;
 			cregLoginDAO.updateTImgDAO(cregVO);
-		/*}*/
+		}
+//		System.out.println("###############쉐프이미지 업데이트 완료 #####");
 		
 		// 트럭이미지 변경 처리
-		cregVO.truckImgName = cregVO.truckImg.getOriginalFilename();
 		cregVO.imgbody = cregVO.truckComment ;
+		cregVO.truckImgName = cregVO.truckImg.getOriginalFilename();
 		cregVO.sname = cregVO.oldTruckImg ;
-		/*if(cregVO.oldTruckImg != cregVO.truckImgName){
+		cregVO.tigrade = 1 ;
+		if(!cregVO.truckImgName.equals("") ){
 			//  파일 저장하고
-			cregVO.truckImgName = uploadProc(cregVO.truckImg, session);
-			// db 안보이게 업데이트해주고...
-			cregLoginDAO.updateTImgIsShowDAO(cregVO);
+			cregVO.sname = uploadProc(cregVO.truckImg, session);
+			// thumbnail 파일을 저장해주자.
+			cregVO.truckThumb = makeThumbImg(cregVO.sname, session);
 			// db에 기록하자.
-			cregVO.sname = cregVO.truckImgName ;
-			cregVO.tigrade = 1 ;
 			cregLoginDAO.insertTImgDAO(cregVO);
-			System.out.println("###############트럭이미지 추가 완료#####");
-		} else {*/
-			// db 기록(이미지 설명)만 업데이트하자.
-			cregVO.tigrade = 1 ;
+
+			// db 안보이게 업데이트해주고...
+			cregVO.sname = cregVO.oldTruckImg ;
+			cregLoginDAO.updateTImgIsShowDAO(cregVO);
+			
+//			System.out.println("###############트럭이미지 추가 완료#####");
+		} else {
+			// db 기록(이미지 설명) 업데이트하자.
 			cregLoginDAO.updateTImgDAO(cregVO);
-		/*}*/
+		}
+
+		
+		
 		
 		// 메뉴 이미지 변경 처리
 		cregVO.mmenuImgName = cregVO.mmenuImg.getOriginalFilename();
 		cregVO.imgbody = cregVO.mmenuComment ;
+		try{
+			cregVO.mmenuPrice = Integer.parseInt(cregVO.strPrice);
+		}
+		catch(Exception e){}
 		cregVO.sname = cregVO.oldMenuImg ;
-/*		if(cregVO.oldMenuImg != cregVO.mmenuImgName){
+		cregVO.tigrade = 3 ;
+		cregVO.mmenugrade = "M" ;
+		if(!cregVO.mmenuImgName.equals("")){
+			// 파일 저장하고 파일 이름 받자.
+			cregVO.sname = uploadProc(cregVO.mmenuImg, session);
+			// thumbnail 파일을 저장해주자.
+//			cregVO.thumbName = makeThumbImg(cregVO.sname, session);
+			cregVO.mmenuImgName = cregVO.thumbName;
+			// db에 기록하자. 테이블 두개에 기록해야한다.
+			
+			//  트럭이미지테이블에 넣고...
+			cregLoginDAO.insertTImgDAO(cregVO);
+			// 메뉴테이블에 넣자.
+			cregLoginDAO.insertMMenuDAO(cregVO);
 			// db 기록 안보이게 업데이트해주고
+			cregVO.sname = cregVO.oldMenuImg ;
 			cregLoginDAO.updateTImgIsShowDAO(cregVO);
 			cregLoginDAO.updateMImgIsShowDAO(cregVO);
-			// 파일 저장하고 파일 이름 받자.
-			cregVO.mmenuImgName = uploadProc(cregVO.mmenuImg, session);
-			// db에 기록하자. 테이블 두개에 기록해야한다.
-			cregVO.sname = cregVO.mmenuImgName ;
-			cregVO.tigrade = 3 ;
-			cregVO.mmenugrade = "M" ;
-			cregLoginDAO.insertTImgDAO(cregVO);
-			System.out.println("############### 메인 메뉴 이미지 insert 완료#####");
-			cregLoginDAO.insertMMenuDAO(cregVO);
-			System.out.println("############### 메뉴 이미지 insert 완료#####");
-		} else {*/
+		} else {
 			// db 기록 업데이트하자.
-			cregVO.tigrade = 3 ;
-			cregVO.mmenugrade = "M" ;
 			cregLoginDAO.updateTImgDAO(cregVO);
-			System.out.println("############### 메인 메뉴 이미지 업데이트 완료#####");
 			cregLoginDAO.updateMImgDAO(cregVO);
-			System.out.println("############### 메뉴 이미지 업데이트 완료#####");
-		/*}*/
-			
-			session.setAttribute("tabNo", 4);
+		}
+		
+
+		// 회원 정보 업데이트 해주고...
+		cregLoginDAO.updateRegConf(cregVO);
+//		System.out.println("###############회원 정보 업데이트 완료#####");
+		session.setAttribute("tabNo", 4);
 				
 		return ;
 	}
@@ -460,12 +505,43 @@ public class CRegLoginService {
 		cregVO.mmenuComment = vo2.mmenuComment ;
 		cregVO.sname = vo2.sname ;
 		cregVO.keyword = vo2.keyword ;
+		
+		String[] str0 = vo2.keyword.split("#") ;
+		try{
+			cregVO.keyword1 = str0[1] ;
+			cregVO.keyword2 = str0[2] ;
+			cregVO.keyword3 = str0[3] ;
+			cregVO.keyword4 = str0[4] ;
+			cregVO.keyword5 = str0[5] ;
+			cregVO.keyword6 = str0[6] ;
+		} catch(Exception e){}
 //		System.out.println("&&&&&&&&&&&&&&&&&& 메인메뉴 받기 완료");
 //		System.out.println("&&&&&&&&&&&&&&&&&& 메인메뉴 받기 확인  price : " + cregVO.mmenuPrice);
 		
 		// 서브 메뉴 가져오자...
 		cregVO.mmenugrade = "S" ;
-		cregVO.list = (ArrayList) cregLoginDAO.selectMenuDAO(cregVO);
+		ArrayList tlist = (ArrayList) cregLoginDAO.selectMenuDAO(cregVO);
+		ArrayList sList = new ArrayList();
+		Iterator itor = tlist.iterator();
+		while(itor.hasNext()){
+			CRegLoginVO tmp = (CRegLoginVO) itor.next();
+			String str = tmp.keyword ;
+			
+			try{
+				tmp.keyword1 = str.split("#")[1];
+				tmp.keyword2 = str.split("#")[2];
+				tmp.keyword3 = str.split("#")[3];
+				tmp.keyword4 = str.split("#")[4];
+				tmp.keyword5 = str.split("#")[5];
+				tmp.keyword6 = str.split("#")[6];
+			} catch(Exception e){}
+			
+			sList.add(tmp);
+			
+		}
+		
+		cregVO.list= sList;
+
 //		System.out.println("&&&&&&&&&&&&&&&&&& 서브메뉴 받기 완료");
 		
 		return cregVO;
@@ -476,8 +552,66 @@ public class CRegLoginService {
 	 */
 	public void menuModProcSrvc(CRegLoginVO cregVO){
 		cregLoginDAO.insertMMenuDAO(cregVO);
-		System.out.println("############   service insert menu complete #############");
+//		System.out.println("############   service insert menu complete #############");
 		
+		return ;
+	}
+	
+	/*
+	 * 쉐프 수정 요청 처리 서비스 함수..
+	 */
+	public void chefEditSrvc(CRegLoginVO cregVO, HttpSession session){
+		// 쉐프이미지 변경 처리
+				cregVO.chefImgName = cregVO.chefImg.getOriginalFilename();
+				cregVO.imgbody = cregVO.chefComment ;
+				cregVO.sname = cregVO.oldChefImg ;
+				cregVO.tigrade = 2 ;
+				if(!cregVO.chefImgName.equals("")){
+					// 파일을 저장하자. 위의 함수를 이용해주자. 반환값 파일이름이있으니 VO에 넣어주자.
+					// 파일 저장하고
+					cregVO.sname = uploadProc(cregVO.chefImg, session);
+					// thumbnail 파일을 저장해주자.
+//					try {
+//						cregVO.chefThumb = makeThumbImg(cregVO.sname, session);
+//					} catch (Exception e) {}
+					cregLoginDAO.insertTImgDAO(cregVO);
+					// db 안보이게 업데이트해주고...
+					cregVO.sname = cregVO.oldChefImg ;
+					cregLoginDAO.updateTImgIsShowDAO(cregVO);
+				} else {
+					// 아닌 null 이란 이야기는 변경이 안된경우 이므로 예전 이름이다.
+					// db 기록(이미지 설명)만 업데이트하자.
+					cregLoginDAO.updateTImgDAO(cregVO);
+				}
+		return ;
+	}
+	
+	/*
+	 * 트럭 수정 요청 처리 서비스 함수..
+	 */
+	public void truckEditSrvc(CRegLoginVO cregVO, HttpSession session){
+		// 쉐프이미지 변경 처리
+		cregVO.truckImgName = cregVO.truckImg.getOriginalFilename();
+		cregVO.imgbody = cregVO.truckComment ;
+		cregVO.sname = cregVO.oldTruckImg ;
+		cregVO.tigrade = 1 ;
+		if(!cregVO.truckImgName.equals("")){
+			// 파일을 저장하자. 위의 함수를 이용해주자. 반환값 파일이름이있으니 VO에 넣어주자.
+			// 파일 저장하고
+			cregVO.sname = uploadProc(cregVO.truckImg, session);
+			// thumbnail 파일을 저장해주자.
+//					try {
+//						cregVO.chefThumb = makeThumbImg(cregVO.sname, session);
+//					} catch (Exception e) {}
+			cregLoginDAO.insertTImgDAO(cregVO);
+			// db 안보이게 업데이트해주고...
+			cregVO.sname = cregVO.oldTruckImg ;
+			cregLoginDAO.updateTImgIsShowDAO(cregVO);
+		} else {
+			// 아닌 null 이란 이야기는 변경이 안된경우 이므로 예전 이름이다.
+			// db 기록(이미지 설명)만 업데이트하자.
+			cregLoginDAO.updateTImgDAO(cregVO);
+		}
 		return ;
 	}
 	
@@ -520,14 +654,14 @@ public class CRegLoginService {
 			String truckImg = uploadProc(cregVO.truckImg, session);
 			cregVO.sname = truckImg ;
 			cregVO.no = (int) session.getAttribute("UTNO");
-			System.out.println("############   service 기타이미지 업로드 sname #############" + cregVO.sname);
+//			System.out.println("############   service 기타이미지 업로드 sname #############" + cregVO.sname);
 			cregVO.tigrade = 4 ;
 
-			System.out.println("############   service 기타이미지 업로드 imgbody #############" + cregVO.imgbody);
+//			System.out.println("############   service 기타이미지 업로드 imgbody #############" + cregVO.imgbody);
 		}catch(Exception e){System.out.println("******파일 이름 가져오기 에러!");}
 		
 		cregLoginDAO.insertTImgDAO(cregVO);
-		System.out.println("************ 기타사진 업로드 완료 ");		
+//		System.out.println("************ 기타사진 업로드 완료 ");		
 		return ;
 	}
 	

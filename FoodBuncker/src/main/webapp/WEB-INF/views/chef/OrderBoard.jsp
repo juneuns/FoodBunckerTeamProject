@@ -76,11 +76,6 @@
                             <li class="has-submenu">
                                 <a href="../chef/Review.food"><i class="zmdi zmdi-collection-text"></i><span>후기 및 답변달기 </span> </a>                                
                             </li>
-
-                            <li class="has-submenu">
-                                <a href="#"><i class="zmdi zmdi-view-list"></i> <span> 판매 통계 </span> </a>
-                            </li>
-
                             <li class="has-submenu">
                                 <a href="#"><i class="zmdi zmdi-chart"></i><span> 메뉴 및 사진 등록 </span> </a>
                                 <ul class="submenu">
@@ -141,7 +136,7 @@
                                 <div class="inner-box card-box" style="height:500px;">
                                     <div class="plan-header text-center">
                                         <h3 class="plan-title">주문No</h3>
-                                        <h2 class="plan-price">${data.ono }</h2>
+                                        <h2 class="plan-price">${data.ono}</h2>
                                         <div class="plan-duration">주문시간 ${data.showdate}</div>
                                     </div>
 									<div class="text-center">
